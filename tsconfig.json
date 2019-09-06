@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "lib": ["es2015", "dom"],
+    "baseUrl": "src",
+    "rootDirs": ["src", "test", ""],
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationDir": "build",
+    "target": "es5",
+    "removeComments": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "stripInternal": true,
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "build",
+    "noEmitOnError": true,
+    "downlevelIteration": true
+  },
+  "include": ["src", "test"],
+  "exclude": ["node_modules"]
+}

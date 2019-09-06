@@ -1,0 +1,21 @@
+{
+  "name": "transql",
+  "version": "0.0.1",
+  "description": "Utilities for data modeling around SQL database schemas",
+  "main": "dist/index.js",
+  "repository": "https://github.com/yndc/transql.git",
+  "author": "Jonathan Steven <yondercode@gmail.com>",
+  "license": "GPLv3",
+  "dependencies": {
+    "knex": "^0.19.3",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.7.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.4",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.6.2"
+  }
+}
