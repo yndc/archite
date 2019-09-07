@@ -6,7 +6,7 @@
  */
 
 import * as knex from "knex"
-import { mapAsync, mapObject } from "utils"
+import { mapAsync, mapObject, cleanObject } from "utils"
 import {
   SqlColumn,
   SqlReference,
@@ -18,16 +18,14 @@ import {
 import { MySqlColumnDescription } from "sql/mysql"
 import { JsonSchema } from "json-schema"
 
-const SQLSelectTableColumns = `      
-  COLUMN_NAME as 'column',
-  COLUMN_TYPE as 'type',
-  IS_NULLABLE as 'nullable',
-  COLUMN_DEFAULT as 'defaultValue',
+const SQLSelectTableColumns = `COLUMN_NAME as name,
+  COLUMN_TYPE as rawType,
+  IS_NULLABLE as nullable,
+  COLUMN_DEFAULT as defaultValue,
   COLUMN_KEY as 'key',
-  COLUMN_COMMENT as 'comment',
-  COLLATION_NAME as 'collation',
-  EXTRA as 'extra'
-`
+  COLUMN_COMMENT as comment,
+  COLLATION_NAME as collation,
+  EXTRA as extra`
 
 /**
  * Retrieve the list of tables within a database
@@ -39,7 +37,7 @@ export async function getTableList(options: {
 }): Promise<string[]> {
   const { connection, database } = options
   return (await connection.raw(
-    `SELECT TABLE_NAME AS tables 
+    `SELECT TABLE_NAME AS tables
       FROM INFORMATION_SCHEMA.TABLES 
       WHERE TABLE_SCHEMA = '${database}';`
   ))[0].map((x: any) => x.tables)
@@ -65,7 +63,7 @@ export async function getIntermediateTables(options: {
     COLUMNS.TABLE_SCHEMA = '${database}'
     AND KEY_COLUMN_USAGE.TABLE_SCHEMA = '${database}'
     AND KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME IS NOT NULL
-  GROUP BY TABLE_NAME
+  GROUP BY name
   HAVING COUNT(DISTINCT COLUMNS.COLUMN_NAME) = COUNT(DISTINCT KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME)`))[0][1].map(
     x => x.name
   ) as string[]
@@ -87,13 +85,12 @@ export async function parseDatabase(options: {
   removeIntermediateTables?: boolean
 }): Promise<SqlDatabaseSchema> {
   const { connection, database, removeIntermediateTables } = options
-  const tables: SqlTable[] = mapObject(
-    ((await connection.raw(`
+  const query = `
     SELECT
-      TABLE_NAME as table,
+      TABLE_NAME as 'table',
       ${SQLSelectTableColumns}
     FROM
-      INFORMATION_SCHEMA.COLUMNSs=
+      INFORMATION_SCHEMA.COLUMNS
     WHERE
       TABLE_SCHEMA = '${database}'
     ${
@@ -114,11 +111,13 @@ export async function parseDatabase(options: {
         COUNT(DISTINCT COLUMNS.COLUMN_NAME) = COUNT(DISTINCT KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME)`
         : ``
     }
-      ;`))[0][1] as object[]).reduce<{
+  ;`
+  const tables: SqlTable[] = mapObject(
+    ((await connection.raw(query))[0] as object[]).map(cleanObject).reduce<{
       [table: string]: MySqlColumnDescription[]
     }>((r, x: any) => {
       const { table, ...rest } = x
-      if (r.hasOwnProperty(table)) r[table] = []
+      if (!r.hasOwnProperty(table)) r[table] = []
       r[table] = [...r[table], rest]
       return r
     }, {}),
@@ -130,6 +129,7 @@ export async function parseDatabase(options: {
   const references = await getDatabaseReferences(options)
   const manyToManyRelationships = await getManyToManyRelationships(options)
   return {
+    name: database,
     tables,
     references,
     manyToManyRelationships
@@ -150,11 +150,11 @@ export async function parseTable(options: {
     `SELECT
       ${SQLSelectTableColumns}
     FROM
-      INFORMATION_SCHEMA.COLUMNSs=
+      INFORMATION_SCHEMA.COLUMNS
     WHERE
       TABLE_SCHEMA = '${database}' AND
       TABLE_NAME = '${table}';`
-  ))[0] as MySqlColumnDescription[]
+  ))[0].map(cleanObject) as MySqlColumnDescription[]
   return {
     name: table,
     columns: columns.map(parseColumn)
@@ -186,13 +186,15 @@ export async function getDatabaseReferences(options: {
   const { connection, database } = options
   const query = `
     USE INFORMATION_SCHEMA;
-    SELECT TABLE_NAME as referencingTable,
-      COLUMN_NAME as referencingField,
+    SELECT 
+      TABLE_NAME as referencingTable,
       REFERENCED_TABLE_NAME as referencedTable,
-      REFERENCED_COLUMN_NAME as referencedField
+      COLUMN_NAME as referencingColumn,
+      REFERENCED_COLUMN_NAME as referencedColumn
     FROM KEY_COLUMN_USAGE
-    WHERE TABLE_SCHEMA = '${database}'
-    AND REFERENCED_TABLE_NAME IS NOT NULL`
+    WHERE 
+      TABLE_SCHEMA = '${database}'
+      AND REFERENCED_TABLE_NAME IS NOT NULL`
   return (await connection.raw(query))[0][1] as SqlReference[]
 }
 
@@ -204,22 +206,7 @@ export async function getManyToManyRelationships(options: {
   connection: knex
   database: string
 }): Promise<SqlManyToManyRelationship[]> {
-  const { connection, database } = options
-  const intermediateTables = (await connection.raw(`
-    USE INFORMATION_SCHEMA;
-    SELECT
-      KEY_COLUMN_USAGE.TABLE_NAME as TABLE_NAME
-    FROM KEY_COLUMN_USAGE
-    INNER JOIN COLUMNS
-      ON COLUMNS.TABLE_NAME = KEY_COLUMN_USAGE.TABLE_NAME
-    WHERE
-      COLUMNS.TABLE_SCHEMA = '${database}'
-      AND KEY_COLUMN_USAGE.TABLE_SCHEMA = '${database}'
-      AND KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME IS NOT NULL
-    GROUP BY TABLE_NAME
-    HAVING COUNT(DISTINCT COLUMNS.COLUMN_NAME) = COUNT(DISTINCT KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME)`))[0][1].map(
-    x => x.TABLE_NAME
-  ) as string[]
+  const intermediateTables = await getIntermediateTables(options)
   if (intermediateTables.length && intermediateTables.length >= 0) {
     return await mapAsync<string, SqlManyToManyRelationship>(
       intermediateTables,
@@ -227,18 +214,18 @@ export async function getManyToManyRelationships(options: {
         const references = await getTableReferences({
           ...options,
           table,
-          type: "REFERENCING"
+          filter: "REFERENCING"
         })
         return {
           pair: [
             {
               table: references[0].referencedTable,
-              field: references[0].referencingColumn,
+              column: references[0].referencingColumn,
               key: references[0].referencedColumn
             },
             {
               table: references[1].referencedTable,
-              field: references[1].referencedColumn,
+              column: references[1].referencingColumn,
               key: references[1].referencedColumn
             }
           ],
@@ -258,25 +245,28 @@ export async function getTableReferences(options: {
   connection: knex
   database: string
   table: string
-  type?: "REFERENCING" | "REFERENCED" | "ALL"
+  filter?: "REFERENCING" | "REFERENCED" | "ALL"
 }): Promise<SqlReference[]> {
-  const { connection, database, table, type } = options
+  const { connection, database, table, filter } = options
   const query = `
     USE INFORMATION_SCHEMA;
     SELECT TABLE_NAME as referencingTable,
-      COLUMN_NAME as referencingField,
+      COLUMN_NAME as referencingColumn,
       REFERENCED_TABLE_NAME as referencedTable,
-      REFERENCED_COLUMN_NAME as referencedField
+      REFERENCED_COLUMN_NAME as referencedColumn
     FROM KEY_COLUMN_USAGE
-    WHERE TABLE_SCHEMA = '${database}'
+    WHERE 
+      TABLE_SCHEMA = '${database}'
+    AND 
+      REFERENCED_COLUMN_NAME IS NOT NULL
       ${
-        type && type !== "ALL"
+        filter && filter !== "ALL"
           ? `AND ${
-              type === "REFERENCING" ? "TABLE_NAME" : "REFERENCED_TABLE_NAME"
+              filter === "REFERENCING" ? "TABLE_NAME" : "REFERENCED_TABLE_NAME"
             } = '${table}'`
           : `AND (TABLE_NAME = '${table}' OR REFERENCED_TABLE_NAME = '${table}')`
       } 
-      AND REFERENCED_COLUMN_NAME IS NOT NULL;`
+    ;`
   return (await connection.raw(query))[0][1] as SqlReference[]
 }
 
@@ -285,10 +275,11 @@ export async function getTableReferences(options: {
  * @param source
  */
 function parseColumn(source: MySqlColumnDescription): SqlColumn {
-  const { rawType, key, nullable } = source
+  const { name, rawType, key, nullable, comment } = source
   const type = generateColumnSchema(rawType)
   return {
-    ...source,
+    name,
+    comment,
     key: parseColumnKey(key),
     type,
     nullable: nullable === "YES" ? true : false

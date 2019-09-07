@@ -10,8 +10,8 @@ import * as fs from "fs"
 
 /**
  * Maps over an object
- * @param obj 
- * @param fn 
+ * @param obj
+ * @param fn
  */
 export function mapObject<T>(obj: object, fn: (key: string, value: any) => T) {
   return Object.keys(obj).map(k => fn(k, obj[k]))
@@ -265,4 +265,28 @@ export async function searchFileExtension(filePath: string): Promise<string[]> {
       })
     })
   })
+}
+
+/**
+ * I hate nulls because it's too Java-ish
+ * @param value
+ */
+export function clean<T>(value: any): T | undefined {
+  if (typeof value === "object" && value === null) return undefined
+  if (value === null) return undefined
+  return value as T
+}
+
+/**
+ * Same like clean<T> but this is for objects (deep)
+ * @param value
+ */
+export function cleanObject(value: object): object | undefined {
+  for (let k in value) {
+    if (value.hasOwnProperty(k)) {
+      value[k] = clean(value[k])
+      if (typeof value[k] === "object") value[k] = cleanObject(value[k])
+    }
+  }
+  return value
 }

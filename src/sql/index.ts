@@ -12,7 +12,11 @@ import { JsonSchema } from "json-schema"
  */
 export interface SqlDatabaseSchema {
   /**
-   * tables
+   * Database name
+   */
+  name: string
+  /**
+   * Tables in this database
    */
   tables: SqlTable[]
   /**
@@ -113,8 +117,8 @@ export interface SqlReference {
  */
 export interface SqlManyToManyRelationship {
   pair: [
-    { table: string; field: string; key?: string },
-    { table: string; field: string; key?: string } | undefined
+    { table: string; column: string; key?: string },
+    { table: string; column: string; key?: string } | undefined
   ]
   intermediateTable: string
 }
