@@ -4,7 +4,7 @@
     "resolveJsonModule": true,
     "lib": ["es2015", "dom"],
     "baseUrl": "src",
-    "rootDirs": ["src", "test", ""],
+    "rootDirs": ["src", "tests", ""],
     "alwaysStrict": true,
     "sourceMap": true,
     "declaration": true,
@@ -20,6 +20,6 @@
     "noEmitOnError": true,
     "downlevelIteration": true
   },
-  "include": ["src", "test"],
+  "include": ["src", "tests"],
   "exclude": ["node_modules"]
 }

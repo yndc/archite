@@ -5,11 +5,19 @@
   "main": "dist/index.js",
   "repository": "https://github.com/yndc/transql.git",
   "author": "Jonathan Steven <yondercode@gmail.com>",
-  "license": "GPLv3",
+  "license": "GPL-3.0-or-later",
+  "prettier": {
+    "semi": false
+  },
+  "scripts": {
+    "test": "jest -i"
+  },
   "dependencies": {
+    "js-yaml": "^3.13.1",
     "knex": "^0.19.3",
     "mysql": "^2.17.1",
-    "mysql2": "^1.7.0"
+    "mysql2": "^1.7.0",
+    "pluralize": "^8.0.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",

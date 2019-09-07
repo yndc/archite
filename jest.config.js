@@ -2,18 +2,18 @@ module.exports = {
   preset: 'ts-jest',
   verbose: false,
   testEnvironment: 'node',
-  testRegex: "test/e2e/.*.ts",
+  testRegex: "tests/cases/.*.ts",
   collectCoverageFrom: [
     "src/**/*.{ts,}",
     "!**/node_modules/**",
     "!**/vendor/**"
   ],
-  coverageDirectory: 'test/tmp/coverage',
+  coverageDirectory: 'tests/tmp/coverage',
   moduleDirectories: [
     "node_modules",
     "src"
   ],
   roots: [
-    "<rootDir>/test",
+    "<rootDir>/tests",
   ]
 };

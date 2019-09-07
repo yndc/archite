@@ -9,6 +9,15 @@ import * as path from "path"
 import * as fs from "fs"
 
 /**
+ * Maps over an object
+ * @param obj 
+ * @param fn 
+ */
+export function mapObject<T>(obj: object, fn: (key: string, value: any) => T) {
+  return Object.keys(obj).map(k => fn(k, obj[k]))
+}
+
+/**
  * Do an array of promises concurrently then maps onto the result
  * Use forEachAsync if sequence is an issue
  * @param array

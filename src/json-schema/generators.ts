@@ -1,0 +1,177 @@
+/**
+ * Generate JSON schema from parsed SQL database schemas
+ *
+ * Author   : Jonathan Steven (yondercode@gmail.com)
+ * License  : GNU General Public License v3 (GPLv3)
+ */
+
+import * as pluralize from "pluralize"
+import { JsonSchema, JsonSchemaVersion } from "json-schema"
+import { SqlReference, SqlTable } from "sql"
+import { SqlDatabaseSchema } from "sql"
+
+/**
+ * Generate a compound JSON schema
+ * from a SqlDatabaseSchema
+ * @param options
+ */
+export function generateFromSqlDatabaseSchema(options: {
+  /**
+   * Source SqlDatabaseSchema to generate from
+   */
+  source: SqlDatabaseSchema
+  /**
+   * The ID to be used for the generated schema
+   */
+  schemaId?: string
+  /**
+   * Proceed to generate references in the schema
+   */
+  withReferences?: boolean
+  /**
+   * Proceed to generate many to many relationships in the schema
+   */
+  withManyToManyRelationships?: boolean
+  /**
+   * The function that provides the property name of a reference
+   */
+  referencingPropertyNameTransformer?: (ref: SqlReference) => string
+  /**
+   * The function that provides the property name of a reference
+   */
+  referencedPropertyNameTransformer?: (ref: SqlReference) => string
+  /**
+   * The function that provides the property name of a reference
+   */
+  manyToManyPropertyNameTransformer?: (
+    fromTable: string,
+    toTable: string
+  ) => string
+}): JsonSchema {
+  const {
+    source,
+    schemaId,
+    referencingPropertyNameTransformer = (ref: SqlReference) =>
+      ref.referencingColumn.split("_id")[0],
+    referencedPropertyNameTransformer = (ref: SqlReference) =>
+      pluralize(ref.referencingTable),
+    manyToManyPropertyNameTransformer = (_from: string, to: string) =>
+      pluralize(to),
+    withReferences = true,
+    withManyToManyRelationships = true
+  } = options
+  const {
+    tables,
+    references,
+    manyToManyRelationships,
+    defaultCollation
+  } = source
+
+  // Generate the table definitions
+  const definitions = tables.reduce<{ [name: string]: JsonSchema }>((r, x) => {
+    return {
+      ...r,
+      [x.name]: generateFromSqlTableSchema({ source: x })
+    }
+  }, {})
+
+  // Add reference fields to the table definitions
+  if (withReferences) {
+    references.forEach(ref => {
+      const referencingSchema = definitions[ref.referencingTable]
+      const referencingPropertyName = referencingPropertyNameTransformer(ref)
+      const referencedSchema = definitions[ref.referencedTable]
+      const referencedPropertyName = referencedPropertyNameTransformer(ref)
+      if (referencingSchema.properties) {
+        referencingSchema.properties = {
+          ...referencingSchema.properties,
+          [referencingPropertyName]: {
+            $ref: `#/definitions/${ref.referencedTable}`
+          }
+        }
+      }
+      if (referencedSchema.properties) {
+        referencedSchema.properties = {
+          ...referencedSchema.properties,
+          [referencedPropertyName]: {
+            type: "array",
+            items: {
+              $ref: `#/definitions/${ref.referencingTable}`
+            }
+          }
+        }
+      }
+    })
+  }
+
+  // Add many to many relationship fields to the table definitions
+  if (withManyToManyRelationships) {
+    manyToManyRelationships.forEach(rel => {
+      if (rel.pair[1] === undefined) return
+      const firstSchema = definitions[rel.pair[0].table]
+      const secondSchema = definitions[rel.pair[1].table]
+      const firstPropertyName = manyToManyPropertyNameTransformer(
+        rel.pair[0].table,
+        rel.pair[1].table
+      )
+      const secondPropertyName = manyToManyPropertyNameTransformer(
+        rel.pair[1].table,
+        rel.pair[0].table
+      )
+      if (firstSchema.properties) {
+        firstSchema.properties = {
+          ...firstSchema.properties,
+          [firstPropertyName]: {
+            type: "array",
+            items: {
+              $ref: `#/definitions/${rel.pair[1].table}`
+            }
+          }
+        }
+      }
+      if (secondSchema.properties) {
+        secondSchema.properties = {
+          ...secondSchema.properties,
+          [secondPropertyName]: {
+            type: "array",
+            items: {
+              $ref: `#/definitions/${rel.pair[0].table}`
+            }
+          }
+        }
+      }
+    })
+  }
+
+  return {
+    $id: schemaId,
+    $schema: JsonSchemaVersion,
+    definitions
+  }
+}
+
+/**
+ * Generate JSON schema from SqlTable
+ * @param options
+ */
+export function generateFromSqlTableSchema(options: {
+  /**
+   * Source SqlTable to generate from
+   */
+  source: SqlTable
+}): JsonSchema {
+  const { source } = options
+  const { columns, defaultCollation } = source
+  return {
+    required: columns.filter(x => x.nullable === false).map(x => x.name),
+    properties: columns.reduce<{ [name: string]: JsonSchema }>((r, x) => {
+      return {
+        ...r,
+        [x.name]: {
+          ...(x.comment ? { description: x.comment } : {}),
+          ...x.type
+        }
+      }
+    }, {})
+  }
+}
