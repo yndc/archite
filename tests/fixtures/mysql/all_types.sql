@@ -6,7 +6,7 @@ SET
   foreign_key_checks = 0;
 SET
   sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
-CREATE TABLE `types` (
+CREATE TABLE `all_types_table` (
     `col_int` int(11) NOT NULL COMMENT 'This is an integer',
     `col_uint` int(11) unsigned NOT NULL COMMENT 'This is an unsigned integer',
     `col_bigint` bigint(20) NOT NULL,

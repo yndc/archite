@@ -30,7 +30,7 @@ describe("mysql connection parser", () => {
   beforeAll(async () => {
     config = loadConfig()
     connection = await createMySqlConnection(config)
-    typesDbName = await createMySqlDatabase(config, connection, "types")
+    typesDbName = await createMySqlDatabase(config, connection, "all_types")
     northwindDbName = await createMySqlDatabase(config, connection, "northwind")
   })
   afterAll(async () => {
@@ -39,8 +39,8 @@ describe("mysql connection parser", () => {
     await connection.destroy()
   })
 
-  test("getTableList types", async () => {
-    const expected_1 = ["types"]
+  test("getTableList all_types", async () => {
+    const expected_1 = ["all_types_table"]
     const actual_1 = await getTableList({
       connection,
       database: typesDbName
@@ -79,7 +79,7 @@ describe("mysql connection parser", () => {
     expect(actual_1).toEqual(expected_1)
   })
 
-  test("getDatabaseReferences types", async () => {
+  test("getDatabaseReferences all_types", async () => {
     const expected_1 = []
     const actual_1 = await getDatabaseReferences({
       connection,
@@ -375,7 +375,7 @@ describe("mysql connection parser", () => {
     )
   })
 
-  test("getIntermediateTables types", async () => {
+  test("getIntermediateTables all_types", async () => {
     const expected_1 = []
     const actual_1 = await getIntermediateTables({
       connection,
@@ -393,7 +393,7 @@ describe("mysql connection parser", () => {
     expect(actual_1).toEqual(expected_1)
   })
 
-  test("getManyToManyRelationships types", async () => {
+  test("getManyToManyRelationships all_types", async () => {
     const expected_1 = []
     const actual_1 = await getManyToManyRelationships({
       connection,
@@ -429,7 +429,7 @@ describe("mysql connection parser", () => {
 
   test("parseTable for checking all MySQL types", async () => {
     const expected_1 = {
-      name: "types",
+      name: "all_types_table",
       columns: [
         {
           name: "col_int",
@@ -561,7 +561,7 @@ describe("mysql connection parser", () => {
     const actual_1 = await parseTable({
       connection,
       database: typesDbName,
-      table: "types"
+      table: "all_types_table"
     })
     expect({
       ...actual_1,
@@ -571,7 +571,7 @@ describe("mysql connection parser", () => {
 
   test("parseDatabase northwind", async () => {
     const expected_1 = {
-      name: "types",
+      name: "all_types_table",
       columns: [
         {
           name: "col_int",
