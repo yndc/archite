@@ -1,5 +1,5 @@
 /**
- * MySQL tests database initialization
+ * Tests database initialization
  *
  * Author   : Jonathan Steven (yondercode@gmail.com)
  * License  : MIT

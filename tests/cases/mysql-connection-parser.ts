@@ -9,7 +9,7 @@ import {
   createMySqlDatabase,
   destroyMySqlDatabase,
   createMySqlConnection
-} from "../init"
+} from "../db"
 import * as knex from "knex"
 import {
   parseTable,
@@ -20,7 +20,7 @@ import {
   getTableList,
   getTableReferences
 } from "sql/mysql/connection-parser"
-import { JsonSchema } from "json-schema"
+import { sortComparer, normalizeObject } from "../utils"
 
 describe("mysql connection parser", () => {
   let connection: knex
@@ -92,128 +92,128 @@ describe("mysql connection parser", () => {
     const expected_1 = [
       {
         referencingTable: "order",
-        referencingColumn: "customer_id",
         referencedTable: "customer",
+        referencingColumn: "customer_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "employee_privilege",
-        referencingColumn: "employee_id",
         referencedTable: "employee",
+        referencingColumn: "employee_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "order",
-        referencingColumn: "employee_id",
         referencedTable: "employee",
+        referencingColumn: "employee_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "purchase_order",
-        referencingColumn: "created_by",
         referencedTable: "employee",
+        referencingColumn: "created_by",
         referencedColumn: "id"
       },
       {
         referencingTable: "purchase_order_detail",
-        referencingColumn: "inventory_id",
         referencedTable: "inventory_transaction",
+        referencingColumn: "inventory_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "inventory_transaction",
-        referencingColumn: "transaction_type",
         referencedTable: "inventory_transaction_type",
+        referencingColumn: "transaction_type",
         referencedColumn: "id"
       },
       {
         referencingTable: "inventory_transaction",
-        referencingColumn: "customer_order_id",
         referencedTable: "order",
+        referencingColumn: "customer_order_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "invoice",
-        referencingColumn: "order_id",
         referencedTable: "order",
+        referencingColumn: "order_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "order_detail",
-        referencingColumn: "order_id",
         referencedTable: "order",
+        referencingColumn: "order_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "order_detail",
-        referencingColumn: "status_id",
         referencedTable: "order_details_status",
-        referencedColumn: "id"
-      },
-      {
-        referencingTable: "order",
         referencingColumn: "status_id",
-        referencedTable: "orders_status",
         referencedColumn: "id"
       },
       {
         referencingTable: "order",
-        referencingColumn: "tax_status_id",
+        referencedTable: "orders_status",
+        referencingColumn: "status_id",
+        referencedColumn: "id"
+      },
+      {
+        referencingTable: "order",
         referencedTable: "orders_tax_status",
+        referencingColumn: "tax_status_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "employee_privilege",
-        referencingColumn: "privilege_id",
         referencedTable: "privilege",
+        referencingColumn: "privilege_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "inventory_transaction",
-        referencingColumn: "product_id",
         referencedTable: "product",
+        referencingColumn: "product_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "order_detail",
-        referencingColumn: "product_id",
         referencedTable: "product",
+        referencingColumn: "product_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "purchase_order_detail",
-        referencingColumn: "product_id",
         referencedTable: "product",
+        referencingColumn: "product_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "inventory_transaction",
-        referencingColumn: "purchase_order_id",
         referencedTable: "purchase_order",
+        referencingColumn: "purchase_order_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "purchase_order_detail",
-        referencingColumn: "purchase_order_id",
         referencedTable: "purchase_order",
+        referencingColumn: "purchase_order_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "purchase_order",
-        referencingColumn: "status_id",
         referencedTable: "purchase_order_status",
+        referencingColumn: "status_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "order",
-        referencingColumn: "shipper_id",
         referencedTable: "shipper",
+        referencingColumn: "shipper_id",
         referencedColumn: "id"
       },
       {
         referencingTable: "purchase_order",
-        referencingColumn: "supplier_id",
         referencedTable: "supplier",
+        referencingColumn: "supplier_id",
         referencedColumn: "id"
       }
     ]
@@ -222,15 +222,13 @@ describe("mysql connection parser", () => {
       database: northwindDbName
     })
     expect(
-      // JSON.parse(JSON.stringify(actual_1)).sort((a, b) =>
-      //   JSON.stringify(a).localeCompare(JSON.stringify(b))
-      // )
-      expected_1.length
+      normalizeObject(actual_1).sort((a, b) =>
+        sortComparer(a).localeCompare(sortComparer(b))
+      )
     ).toEqual(
-      // JSON.parse(JSON.stringify(expected_1)).sort((a, b) =>
-      //   JSON.stringify(a).localeCompare(JSON.stringify(b))
-      // )
-      actual_1.length
+      normalizeObject(expected_1).sort((a, b) =>
+        sortComparer(a).localeCompare(sortComparer(b))
+      )
     )
   })
 
