@@ -8,7 +8,7 @@ import {
   generateFromSqlTableSchema,
   generateFromSqlDatabaseSchema
 } from "json-schema/generators"
-import { sortComparer, normalizeObject } from "../utils"
+import { sortComparer, normalizeObject, deepRecursiveSort } from "../utils"
 import {
   allTypes as allTypesModel,
   northwind as northwindModel
@@ -41,6 +41,6 @@ describe("json schema generator from sql schema", () => {
     const actual_1 = generateFromSqlDatabaseSchema({
       source: northwindModel as SqlDatabaseSchema
     })
-    expect(actual_1).toEqual(expected_1)
+    expect(deepRecursiveSort(actual_1)).toEqual(deepRecursiveSort(expected_1))
   })
 })

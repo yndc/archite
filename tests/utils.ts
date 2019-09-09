@@ -34,29 +34,32 @@ export function sortComparer(value: object): string {
 
 /**
  * Recursively sort all arrays if found
- * @param o[k]
+ * @param value[k]
  */
-export function sortArrays<T extends object>(o: T): T {
-  if (!o) return o
-  for (let k in o) {
-    if (o.hasOwnProperty(k)) {
-      // If an element of o is an array
-      if (Array.isArray(o[k])) {
-        if (typeof o[k][0] === "object") {
-          // If it's an array of objects
-          // Sort all arrays inside the object first
-          // Then sort the result
-          o[k] = (o[k] as any).map(x => sortArrays(x)) as any
-          o[k] = (o[k] as any).sort((a, b) => {
-            return sortComparer(a).localeCompare(sortComparer(b))
-          })
-        } else if (Array.isArray(o[k][0])) {
-          o[k] = (o[k] as any).map(x => sortArrays(x)) as any
-        } else {
-          o[k] = (o[k] as any).sort()
-        }
-      } else if (typeof o[k] === "object") o[k] = sortArrays(o[k] as any)
+export function deepRecursiveSort<T>(value: T): T {
+  if (!value) return value
+  if (typeof value === "object") {
+    for (let k in value) {
+      if ((value as any).hasOwnProperty(k)) {
+        // If an element of o is an array
+        if (Array.isArray(value[k])) {
+          if (typeof value[k][0] === "object") {
+            // If it's an array of objects
+            // Sort all arrays inside the object first
+            // Then sort the result
+            value[k] = (value[k] as any).map(x => deepRecursiveSort(x)) as any
+            value[k] = (value[k] as any).sort((a, b) => {
+              return sortComparer(a).localeCompare(sortComparer(b))
+            })
+          } else if (Array.isArray(value[k][0])) {
+            value[k] = (value[k] as any).map(x => deepRecursiveSort(x)) as any
+          } else {
+            value[k] = (value[k] as any).sort()
+          }
+        } else if (typeof value[k] === "object")
+          value[k] = deepRecursiveSort(value[k] as any)
+      }
     }
   }
-  return o
+  return value
 }

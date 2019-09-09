@@ -78,13 +78,8 @@ export async function parseDatabase(options: {
    * Database name to parse
    */
   database: string
-  /**
-   * Remove all many-to-many intermediate tables
-   * Defaults to true
-   */
-  removeIntermediateTables?: boolean
 }): Promise<SqlDatabaseSchema> {
-  const { connection, database, removeIntermediateTables = false } = options
+  const { connection, database } = options
   const query = `
     SELECT
       TABLE_NAME as 'table',
@@ -93,25 +88,6 @@ export async function parseDatabase(options: {
       INFORMATION_SCHEMA.COLUMNS
     WHERE
       TABLE_SCHEMA = '${database}'
-    ${
-      removeIntermediateTables
-        ? `
-    AND NOT EXISTS (
-      SELECT
-        KEY_COLUMN_USAGE.TABLE_NAME as name
-      FROM KEY_COLUMN_USAGE
-      INNER JOIN COLUMNS
-        ON COLUMNS.TABLE_NAME = KEY_COLUMN_USAGE.TABLE_NAME
-      WHERE
-        COLUMNS.TABLE_SCHEMA = '${database}'
-        AND KEY_COLUMN_USAGE.TABLE_SCHEMA = '${database}'
-        AND KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME IS NOT NULL
-      GROUP BY name
-      HAVING 
-        COUNT(DISTINCT COLUMNS.COLUMN_NAME) = COUNT(DISTINCT KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME)
-    )`
-        : ``
-    }
   ;`
   const tables: SqlTable[] = mapObject(
     ((await connection.raw(query))[0] as object[])

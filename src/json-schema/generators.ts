@@ -74,7 +74,7 @@ export function generateFromSqlDatabaseSchema(options: {
       pluralize(to),
     withReferences = true,
     withManyToManyRelationships = true,
-    generateIntermediateTables = false,
+    generateIntermediateTables = false
   } = options
   const {
     name,
@@ -85,7 +85,12 @@ export function generateFromSqlDatabaseSchema(options: {
   } = source
 
   // Generate the table definitions
+  const intermediateTables = source.manyToManyRelationships.map(
+    x => x.intermediateTable
+  )
   const definitions = tables.reduce<{ [name: string]: JsonSchema }>((r, x) => {
+    if (!generateIntermediateTables && intermediateTables.includes(x.name))
+      return r
     return {
       ...r,
       [x.name]: generateFromSqlTableSchema({ source: x })
@@ -96,9 +101,10 @@ export function generateFromSqlDatabaseSchema(options: {
   if (withReferences) {
     references.forEach(ref => {
       const referencingSchema = definitions[ref.referencingTable]
-      const referencingPropertyName = referencingPropertyNameTransformer(ref)
       const referencedSchema = definitions[ref.referencedTable]
+      const referencingPropertyName = referencingPropertyNameTransformer(ref)
       const referencedPropertyName = referencedPropertyNameTransformer(ref)
+      if (!referencingSchema || !referencedSchema) return
       if (referencingSchema.properties) {
         referencingSchema.properties = {
           ...referencingSchema.properties,

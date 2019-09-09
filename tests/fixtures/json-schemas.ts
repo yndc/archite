@@ -113,10 +113,6 @@ export const northwind = {
         web_page: {},
         notes: {},
         attachments: { type: "string", contentEncoding: "base64" },
-        employee_privileges: {
-          type: "array",
-          items: { $ref: "#/definitions/employee_privilege" }
-        },
         orders: { type: "array", items: { $ref: "#/definitions/order" } },
         purchase_orders: {
           type: "array",
@@ -314,10 +310,6 @@ export const northwind = {
       properties: {
         id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
         privilege_name: { type: "string", maxLength: 50 },
-        employee_privileges: {
-          type: "array",
-          items: { $ref: "#/definitions/employee_privilege" }
-        },
         employees: { type: "array", items: { $ref: "#/definitions/employee" } }
       }
     },

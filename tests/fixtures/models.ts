@@ -338,19 +338,20 @@ export const northwind = {
       ]
     },
     {
-      name: "inventory_transaction_type",
+      name: "employee_privilege",
       columns: [
         {
-          name: "id",
+          name: "employee_id",
           comment: "",
           key: "PRIMARY",
-          type: { type: "boolean" },
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
           nullable: false
         },
         {
-          name: "type_name",
+          name: "privilege_id",
           comment: "",
-          type: { type: "string", maxLength: 50 },
+          key: "PRIMARY",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
           nullable: false
         }
       ]
@@ -416,6 +417,24 @@ export const northwind = {
       ]
     },
     {
+      name: "inventory_transaction_type",
+      columns: [
+        {
+          name: "id",
+          comment: "",
+          key: "PRIMARY",
+          type: { type: "boolean" },
+          nullable: false
+        },
+        {
+          name: "type_name",
+          comment: "",
+          type: { type: "string", maxLength: 50 },
+          nullable: false
+        }
+      ]
+    },
+    {
       name: "invoice",
       columns: [
         {
@@ -460,90 +479,6 @@ export const northwind = {
           comment: "",
           type: { type: "string", maxLength: 19 },
           nullable: true
-        }
-      ]
-    },
-    {
-      name: "order_detail",
-      columns: [
-        {
-          name: "date_allocated",
-          comment: "",
-          type: { type: "string", format: "date-time" },
-          nullable: true
-        },
-        {
-          name: "discount",
-          comment: "",
-          type: { type: "number" },
-          nullable: false
-        },
-        {
-          name: "id",
-          comment: "",
-          key: "PRIMARY",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: false
-        },
-        {
-          name: "inventory_id",
-          comment: "",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: true
-        },
-        {
-          name: "order_id",
-          comment: "",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: false
-        },
-        {
-          name: "product_id",
-          comment: "",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: true
-        },
-        {
-          name: "purchase_order_id",
-          comment: "",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: true
-        },
-        {
-          name: "quantity",
-          comment: "",
-          type: { type: "string", maxLength: 18 },
-          nullable: false
-        },
-        {
-          name: "status_id",
-          comment: "",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: true
-        },
-        {
-          name: "unit_price",
-          comment: "",
-          type: { type: "string", maxLength: 19 },
-          nullable: true
-        }
-      ]
-    },
-    {
-      name: "order_details_status",
-      columns: [
-        {
-          name: "id",
-          comment: "",
-          key: "PRIMARY",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: false
-        },
-        {
-          name: "status_name",
-          comment: "",
-          type: { type: "string", maxLength: 50 },
-          nullable: false
         }
       ]
     },
@@ -660,6 +595,90 @@ export const northwind = {
           comment: "",
           type: { type: "string", maxLength: 19 },
           nullable: true
+        }
+      ]
+    },
+    {
+      name: "order_detail",
+      columns: [
+        {
+          name: "date_allocated",
+          comment: "",
+          type: { type: "string", format: "date-time" },
+          nullable: true
+        },
+        {
+          name: "discount",
+          comment: "",
+          type: { type: "number" },
+          nullable: false
+        },
+        {
+          name: "id",
+          comment: "",
+          key: "PRIMARY",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: false
+        },
+        {
+          name: "inventory_id",
+          comment: "",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: true
+        },
+        {
+          name: "order_id",
+          comment: "",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: false
+        },
+        {
+          name: "product_id",
+          comment: "",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: true
+        },
+        {
+          name: "purchase_order_id",
+          comment: "",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: true
+        },
+        {
+          name: "quantity",
+          comment: "",
+          type: { type: "string", maxLength: 18 },
+          nullable: false
+        },
+        {
+          name: "status_id",
+          comment: "",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: true
+        },
+        {
+          name: "unit_price",
+          comment: "",
+          type: { type: "string", maxLength: 19 },
+          nullable: true
+        }
+      ]
+    },
+    {
+      name: "order_details_status",
+      columns: [
+        {
+          name: "id",
+          comment: "",
+          key: "PRIMARY",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: false
+        },
+        {
+          name: "status_name",
+          comment: "",
+          type: { type: "string", maxLength: 50 },
+          nullable: false
         }
       ]
     },
@@ -798,78 +817,6 @@ export const northwind = {
       ]
     },
     {
-      name: "purchase_order_detail",
-      columns: [
-        {
-          name: "date_received",
-          comment: "",
-          type: { type: "string", format: "date-time" },
-          nullable: true
-        },
-        {
-          name: "id",
-          comment: "",
-          key: "PRIMARY",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: false
-        },
-        {
-          name: "inventory_id",
-          comment: "",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: true
-        },
-        {
-          name: "posted_to_inventory",
-          comment: "",
-          type: { type: "boolean" },
-          nullable: false
-        },
-        {
-          name: "product_id",
-          comment: "",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: true
-        },
-        {
-          name: "purchase_order_id",
-          comment: "",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: false
-        },
-        {
-          name: "quantity",
-          comment: "",
-          type: { type: "string", maxLength: 18 },
-          nullable: false
-        },
-        {
-          name: "unit_cost",
-          comment: "",
-          type: { type: "string", maxLength: 19 },
-          nullable: false
-        }
-      ]
-    },
-    {
-      name: "purchase_order_status",
-      columns: [
-        {
-          name: "id",
-          comment: "",
-          key: "PRIMARY",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-          nullable: false
-        },
-        {
-          name: "status",
-          comment: "",
-          type: { type: "string", maxLength: 50 },
-          nullable: true
-        }
-      ]
-    },
-    {
       name: "purchase_order",
       columns: [
         {
@@ -963,6 +910,78 @@ export const northwind = {
           comment: "",
           type: { type: "string", maxLength: 19 },
           nullable: false
+        }
+      ]
+    },
+    {
+      name: "purchase_order_detail",
+      columns: [
+        {
+          name: "date_received",
+          comment: "",
+          type: { type: "string", format: "date-time" },
+          nullable: true
+        },
+        {
+          name: "id",
+          comment: "",
+          key: "PRIMARY",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: false
+        },
+        {
+          name: "inventory_id",
+          comment: "",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: true
+        },
+        {
+          name: "posted_to_inventory",
+          comment: "",
+          type: { type: "boolean" },
+          nullable: false
+        },
+        {
+          name: "product_id",
+          comment: "",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: true
+        },
+        {
+          name: "purchase_order_id",
+          comment: "",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: false
+        },
+        {
+          name: "quantity",
+          comment: "",
+          type: { type: "string", maxLength: 18 },
+          nullable: false
+        },
+        {
+          name: "unit_cost",
+          comment: "",
+          type: { type: "string", maxLength: 19 },
+          nullable: false
+        }
+      ]
+    },
+    {
+      name: "purchase_order_status",
+      columns: [
+        {
+          name: "id",
+          comment: "",
+          key: "PRIMARY",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: false
+        },
+        {
+          name: "status",
+          comment: "",
+          type: { type: "string", maxLength: 50 },
+          nullable: true
         }
       ]
     },
@@ -1216,15 +1235,33 @@ export const northwind = {
   ],
   references: [
     {
+      referencingTable: "order",
+      referencedTable: "customer",
+      referencingColumn: "customer_id",
+      referencedColumn: "id"
+    },
+    {
       referencingTable: "employee_privilege",
       referencedTable: "employee",
       referencingColumn: "employee_id",
       referencedColumn: "id"
     },
     {
-      referencingTable: "employee_privilege",
-      referencedTable: "privilege",
-      referencingColumn: "privilege_id",
+      referencingTable: "order",
+      referencedTable: "employee",
+      referencingColumn: "employee_id",
+      referencedColumn: "id"
+    },
+    {
+      referencingTable: "purchase_order",
+      referencedTable: "employee",
+      referencingColumn: "created_by",
+      referencedColumn: "id"
+    },
+    {
+      referencingTable: "purchase_order_detail",
+      referencedTable: "inventory_transaction",
+      referencingColumn: "inventory_id",
       referencedColumn: "id"
     },
     {
@@ -1240,19 +1277,13 @@ export const northwind = {
       referencedColumn: "id"
     },
     {
-      referencingTable: "inventory_transaction",
-      referencedTable: "product",
-      referencingColumn: "product_id",
-      referencedColumn: "id"
-    },
-    {
-      referencingTable: "inventory_transaction",
-      referencedTable: "purchase_order",
-      referencingColumn: "purchase_order_id",
-      referencedColumn: "id"
-    },
-    {
       referencingTable: "invoice",
+      referencedTable: "order",
+      referencingColumn: "order_id",
+      referencedColumn: "id"
+    },
+    {
+      referencingTable: "order_detail",
       referencedTable: "order",
       referencingColumn: "order_id",
       referencedColumn: "id"
@@ -1261,30 +1292,6 @@ export const northwind = {
       referencingTable: "order_detail",
       referencedTable: "order_details_status",
       referencingColumn: "status_id",
-      referencedColumn: "id"
-    },
-    {
-      referencingTable: "order_detail",
-      referencedTable: "order",
-      referencingColumn: "order_id",
-      referencedColumn: "id"
-    },
-    {
-      referencingTable: "order_detail",
-      referencedTable: "product",
-      referencingColumn: "product_id",
-      referencedColumn: "id"
-    },
-    {
-      referencingTable: "order",
-      referencedTable: "customer",
-      referencingColumn: "customer_id",
-      referencedColumn: "id"
-    },
-    {
-      referencingTable: "order",
-      referencedTable: "employee",
-      referencingColumn: "employee_id",
       referencedColumn: "id"
     },
     {
@@ -1300,21 +1307,33 @@ export const northwind = {
       referencedColumn: "id"
     },
     {
-      referencingTable: "order",
-      referencedTable: "shipper",
-      referencingColumn: "shipper_id",
+      referencingTable: "employee_privilege",
+      referencedTable: "privilege",
+      referencingColumn: "privilege_id",
       referencedColumn: "id"
     },
     {
-      referencingTable: "purchase_order_detail",
-      referencedTable: "inventory_transaction",
-      referencingColumn: "inventory_id",
+      referencingTable: "inventory_transaction",
+      referencedTable: "product",
+      referencingColumn: "product_id",
+      referencedColumn: "id"
+    },
+    {
+      referencingTable: "order_detail",
+      referencedTable: "product",
+      referencingColumn: "product_id",
       referencedColumn: "id"
     },
     {
       referencingTable: "purchase_order_detail",
       referencedTable: "product",
       referencingColumn: "product_id",
+      referencedColumn: "id"
+    },
+    {
+      referencingTable: "inventory_transaction",
+      referencedTable: "purchase_order",
+      referencingColumn: "purchase_order_id",
       referencedColumn: "id"
     },
     {
@@ -1325,14 +1344,14 @@ export const northwind = {
     },
     {
       referencingTable: "purchase_order",
-      referencedTable: "employee",
-      referencingColumn: "created_by",
+      referencedTable: "purchase_order_status",
+      referencingColumn: "status_id",
       referencedColumn: "id"
     },
     {
-      referencingTable: "purchase_order",
-      referencedTable: "purchase_order_status",
-      referencingColumn: "status_id",
+      referencingTable: "order",
+      referencedTable: "shipper",
+      referencingColumn: "shipper_id",
       referencedColumn: "id"
     },
     {

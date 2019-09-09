@@ -20,8 +20,8 @@ import {
   getTableList,
   getTableReferences
 } from "sql/mysql/connection-parser"
-import { northwind } from "../fixtures/models"
-import { sortComparer, normalizeObject, sortArrays } from "../utils"
+import { allTypes, northwind } from "../fixtures/models"
+import { sortComparer, normalizeObject, deepRecursiveSort } from "../utils"
 
 describe("mysql connection parser", () => {
   let connection: knex
@@ -86,7 +86,7 @@ describe("mysql connection parser", () => {
       connection,
       database: typesDbName
     })
-    expect(sortArrays(actual_1)).toEqual(sortArrays(expected_1))
+    expect(deepRecursiveSort(actual_1)).toEqual(deepRecursiveSort(expected_1))
   })
 
   test("getDatabaseReferences northwind", async () => {
@@ -429,145 +429,13 @@ describe("mysql connection parser", () => {
   })
 
   test("parseTable for checking all MySQL types", async () => {
-    const expected_1 = {
-      name: "all_types_table",
-      columns: [
-        {
-          name: "col_int",
-          comment: "This is an integer",
-          type: {
-            type: "integer",
-            maximum: 2147483647,
-            minimum: -2147483648
-          },
-          nullable: false
-        },
-        {
-          name: "col_uint",
-          comment: "This is an unsigned integer",
-          type: {
-            type: "integer",
-            maximum: 4294967295,
-            minimum: 0
-          },
-          nullable: false
-        },
-        {
-          name: "col_bigint",
-          comment: "",
-          type: {
-            type: "integer",
-            maximum: 9223372036854776000,
-            minimum: -9223372036854776000
-          },
-          nullable: false
-        },
-        {
-          name: "col_ubigint",
-          comment: "",
-          type: {
-            type: "integer",
-            maximum: 18446744073709552000,
-            minimum: 0
-          },
-          nullable: false
-        },
-        {
-          name: "col_double",
-          comment: "",
-          type: {
-            type: "number"
-          },
-          nullable: false
-        },
-        {
-          name: "col_date",
-          comment: "",
-          type: {
-            type: "string",
-            format: "date"
-          },
-          nullable: false
-        },
-        {
-          name: "col_datetime",
-          comment: "",
-          type: {
-            type: "string",
-            format: "date-time"
-          },
-          nullable: false
-        },
-        {
-          name: "col_timestamp",
-          comment: "",
-          type: {
-            type: "integer",
-            maximum: 18446744073709552000,
-            minimum: 0
-          },
-          nullable: false
-        },
-        {
-          name: "col_char",
-          comment: "",
-          type: {
-            type: "string",
-            maxLength: 1
-          },
-          nullable: false
-        },
-        {
-          name: "col_varchar",
-          comment: "",
-          type: {
-            type: "string",
-            maxLength: 255
-          },
-          nullable: false
-        },
-        {
-          name: "col_enum",
-          comment: "",
-          type: {
-            type: "string",
-            enum: ["ONE", "TWO", "THREE"]
-          },
-          nullable: false
-        },
-        {
-          name: "col_set",
-          comment: "",
-          type: {
-            type: "array",
-            uniqueItems: true,
-            items: {
-              type: "string",
-              enum: ["ONE", "TWO", "THREE"]
-            }
-          },
-          nullable: false
-        },
-        {
-          name: "col_nullable",
-          comment: "",
-          type: {
-            type: "string",
-            maxLength: 255
-          },
-          nullable: true
-        }
-      ].sort()
-    }
+    const expected_1 = allTypes.tables[0]
     const actual_1 = await parseTable({
       connection,
       database: typesDbName,
       table: "all_types_table"
     })
-    expect({
-      ...actual_1,
-      columns: actual_1.columns.sort()
-    }).toEqual(expected_1)
+    expect(deepRecursiveSort(expected_1)).toEqual(normalizeObject(deepRecursiveSort(actual_1)))
   })
 
   test("parseDatabase all_types_table", async () => {
@@ -712,7 +580,7 @@ describe("mysql connection parser", () => {
       connection,
       database: typesDbName
     })
-    expect(actual_1).toEqual(expected_1)
+    expect(deepRecursiveSort(expected_1)).toEqual(normalizeObject(deepRecursiveSort(actual_1)))
   })
 
   test("parseDatabase northwind", async () => {
@@ -721,6 +589,6 @@ describe("mysql connection parser", () => {
       connection,
       database: northwindDbName
     })
-    expect(sortArrays(expected_1)).toEqual(normalizeObject(sortArrays(actual_1)))
+    expect(deepRecursiveSort(expected_1)).toEqual(normalizeObject(deepRecursiveSort(actual_1)))
   })
 })
