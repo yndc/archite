@@ -1,31 +1,9 @@
 export const allTypes = {
   name: "___transql___test_all_types",
-  references: [],
-  manyToManyRelationships: [],
   tables: [
     {
       name: "all_types_table",
       columns: [
-        {
-          name: "col_int",
-          comment: "This is an integer",
-          type: {
-            type: "integer",
-            maximum: 2147483647,
-            minimum: -2147483648
-          },
-          nullable: false
-        },
-        {
-          name: "col_uint",
-          comment: "This is an unsigned integer",
-          type: {
-            type: "integer",
-            maximum: 4294967295,
-            minimum: 0
-          },
-          nullable: false
-        },
         {
           name: "col_bigint",
           comment: "",
@@ -37,77 +15,158 @@ export const allTypes = {
           nullable: false
         },
         {
-          name: "col_ubigint",
+          name: "col_binary",
           comment: "",
-          type: {
-            type: "integer",
-            maximum: 18446744073709552000,
-            minimum: 0
-          },
+          type: { type: "string", maxLength: 123 },
           nullable: false
         },
         {
-          name: "col_double",
+          name: "col_bit",
           comment: "",
-          type: {
-            type: "number"
-          },
+          type: { type: "string", maxLength: 4 },
           nullable: false
         },
         {
-          name: "col_date",
+          name: "col_blob",
           comment: "",
-          type: {
-            type: "string",
-            format: "date"
-          },
-          nullable: false
-        },
-        {
-          name: "col_datetime",
-          comment: "",
-          type: {
-            type: "string",
-            format: "date-time"
-          },
-          nullable: false
-        },
-        {
-          name: "col_timestamp",
-          comment: "",
-          type: {
-            type: "integer",
-            maximum: 18446744073709552000,
-            minimum: 0
-          },
+          type: { type: "string", contentEncoding: "base64", maxLength: 87380 },
           nullable: false
         },
         {
           name: "col_char",
           comment: "",
+          type: { type: "string", maxLength: 1 },
+          nullable: false
+        },
+        {
+          name: "col_date",
+          comment: "",
+          type: { type: "string", format: "date" },
+          nullable: false
+        },
+        {
+          name: "col_datetime",
+          comment: "",
+          type: { type: "string", format: "date-time" },
+          nullable: false
+        },
+        {
+          name: "col_decimal",
+          comment: "",
           type: {
             type: "string",
-            maxLength: 1
+            maxLength: 10,
+            pattern: "^[-]?(\\d+\\.?\\d{0,5})$"
           },
           nullable: false
         },
         {
-          name: "col_varchar",
-          comment: "",
+          name: "col_default_decimal",
+          comment: "This is a decimal, the default should be 5",
           type: {
             type: "string",
-            maxLength: 255
+            default: "5.00000",
+            maxLength: 10,
+            pattern: "^[-]?(\\d+\\.?\\d{0,5})$"
           },
+          nullable: false
+        },
+        {
+          name: "col_default_integer",
+          comment: "",
+          type: {
+            type: "integer",
+            default: 123,
+            maximum: 2147483647,
+            minimum: -2147483648
+          },
+          nullable: false
+        },
+        {
+          name: "col_default_varchar",
+          comment: "",
+          type: { type: "string", default: "ayy lmao", maxLength: 11 },
+          nullable: false
+        },
+        {
+          name: "col_double",
+          comment: "",
+          type: { type: "number" },
           nullable: false
         },
         {
           name: "col_enum",
           comment: "",
+          type: { type: "string", enum: ["ONE", "TWO", "THREE"] },
+          nullable: false
+        },
+        {
+          name: "col_float",
+          comment: "",
+          type: { type: "number" },
+          nullable: false
+        },
+        {
+          name: "col_int",
+          comment: "This is an integer",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: false
+        },
+        {
+          name: "col_longblob",
+          comment: "",
           type: {
             type: "string",
-            enum: ["ONE", "TWO", "THREE"]
+            contentEncoding: "base64",
+            maxLength: 5726623060
           },
           nullable: false
+        },
+        {
+          name: "col_longtext",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: false
+        },
+        {
+          name: "col_mediumblob",
+          comment: "",
+          type: {
+            type: "string",
+            contentEncoding: "base64",
+            maxLength: 22369620
+          },
+          nullable: false
+        },
+        {
+          name: "col_mediumint",
+          comment: "This is a medium integer",
+          type: { type: "integer", maximum: 8388607, minimum: -8388608 },
+          nullable: false
+        },
+        {
+          name: "col_mediumtext",
+          comment: "",
+          type: { type: "string", maxLength: 16777215 },
+          nullable: false
+        },
+        {
+          name: "col_nullable_double",
+          comment: "",
+          type: { type: "number" },
+          nullable: true
+        },
+        {
+          name: "col_nullable_integer",
+          comment: "",
+          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          nullable: true
+        },
+        {
+          name: "col_nullable_varchar",
+          comment: "",
+          type: { type: "string", maxLength: 255 },
+          nullable: true
         },
         {
           name: "col_set",
@@ -115,25 +174,81 @@ export const allTypes = {
           type: {
             type: "array",
             uniqueItems: true,
-            items: {
-              type: "string",
-              enum: ["ONE", "TWO", "THREE"]
-            }
+            items: { type: "string", enum: ["ONE", "TWO", "THREE"] }
           },
           nullable: false
         },
         {
-          name: "col_nullable",
+          name: "col_smallint",
+          comment: "This is a smol integer",
+          type: { type: "integer", maximum: 32767, minimum: -32768 },
+          nullable: false
+        },
+        {
+          name: "col_text",
           comment: "",
-          type: {
-            type: "string",
-            maxLength: 255
-          },
-          nullable: true
+          type: { type: "string", maxLength: 65535 },
+          nullable: false
+        },
+        {
+          name: "col_timestamp",
+          comment: "",
+          type: { type: "integer", maximum: 18446744073709552000, minimum: 0 },
+          nullable: false
+        },
+        {
+          name: "col_tinyblob",
+          comment: "",
+          type: { type: "string", contentEncoding: "base64", maxLength: 340 },
+          nullable: false
+        },
+        {
+          name: "col_tinyint",
+          comment: "A boolean value",
+          type: { type: "boolean", default: false },
+          nullable: false
+        },
+        {
+          name: "col_tinytext",
+          comment: "",
+          type: { type: "string", maxLength: 255 },
+          nullable: false
+        },
+        {
+          name: "col_ubigint",
+          comment: "",
+          type: { type: "integer", maximum: 18446744073709552000, minimum: 0 },
+          nullable: false
+        },
+        {
+          name: "col_uint",
+          comment: "This is an unsigned integer",
+          type: { type: "integer", maximum: 4294967295, minimum: 0 },
+          nullable: false
+        },
+        {
+          name: "col_varbinary",
+          comment: "",
+          type: { type: "string", maxLength: 500 },
+          nullable: false
+        },
+        {
+          name: "col_varchar",
+          comment: "",
+          type: { type: "string", maxLength: 255 },
+          nullable: false
+        },
+        {
+          name: "col_year",
+          comment: "",
+          type: { type: "integer", maximum: 9999, minimum: 0 },
+          nullable: false
         }
-      ].sort()
+      ]
     }
-  ]
+  ],
+  references: [],
+  manyToManyRelationships: []
 }
 
 export const northwind = {
@@ -449,7 +564,7 @@ export const northwind = {
         {
           name: "transaction_type",
           comment: "",
-          type: { type: "boolean" },
+          type: { type: "boolean", default: false },
           nullable: false
         }
       ]
@@ -461,7 +576,7 @@ export const northwind = {
           name: "id",
           comment: "",
           key: "PRIMARY",
-          type: { type: "boolean" },
+          type: { type: "boolean", default: false },
           nullable: false
         },
         {
@@ -480,6 +595,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -515,6 +631,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -525,6 +642,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -631,6 +749,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -639,19 +758,19 @@ export const northwind = {
         {
           name: "status_id",
           comment: "",
-          type: { type: "boolean" },
+          type: { type: "boolean", default: true },
           nullable: true
         },
         {
           name: "tax_rate",
           comment: "",
-          type: { type: "number" },
+          type: { type: "number", default: 0 },
           nullable: true
         },
         {
           name: "tax_status_id",
           comment: "",
-          type: { type: "boolean" },
+          type: { type: "boolean", default: false },
           nullable: true
         },
         {
@@ -659,6 +778,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -678,7 +798,7 @@ export const northwind = {
         {
           name: "discount",
           comment: "",
-          type: { type: "number" },
+          type: { type: "number", default: 0 },
           nullable: false
         },
         {
@@ -717,6 +837,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 18,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -733,6 +854,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -765,7 +887,7 @@ export const northwind = {
           name: "id",
           comment: "",
           key: "PRIMARY",
-          type: { type: "boolean" },
+          type: { type: "boolean", default: false },
           nullable: false
         },
         {
@@ -783,7 +905,7 @@ export const northwind = {
           name: "id",
           comment: "",
           key: "PRIMARY",
-          type: { type: "boolean" },
+          type: { type: "boolean", default: false },
           nullable: false
         },
         {
@@ -840,7 +962,7 @@ export const northwind = {
         {
           name: "discontinued",
           comment: "",
-          type: { type: "boolean" },
+          type: { type: "boolean", default: true },
           nullable: false
         },
         {
@@ -855,6 +977,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -895,6 +1018,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -965,6 +1089,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -987,6 +1112,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -995,7 +1121,12 @@ export const northwind = {
         {
           name: "status_id",
           comment: "",
-          type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+          type: {
+            type: "integer",
+            default: 0,
+            maximum: 2147483647,
+            minimum: -2147483648
+          },
           nullable: true
         },
         {
@@ -1021,6 +1152,7 @@ export const northwind = {
           comment: "",
           type: {
             type: "string",
+            default: "0.0000",
             maxLength: 19,
             pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
           },
@@ -1053,7 +1185,7 @@ export const northwind = {
         {
           name: "posted_to_inventory",
           comment: "",
-          type: { type: "boolean" },
+          type: { type: "boolean", default: true },
           nullable: false
         },
         {
@@ -1114,7 +1246,7 @@ export const northwind = {
         {
           name: "default",
           comment: "",
-          type: { type: "boolean" },
+          type: { type: "boolean", default: true },
           nullable: false
         },
         {

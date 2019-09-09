@@ -25,7 +25,7 @@ describe("json schema generator from sql schema", () => {
     const actual_1 = generateFromSqlTableSchema({
       source: allTypesModel.tables[0] as SqlTable
     })
-    expect(actual_1).toEqual(expected_1)
+    expect(deepRecursiveSort(actual_1)).toEqual(deepRecursiveSort(expected_1))
   })
 
   test("all_types database", async () => {
@@ -33,7 +33,7 @@ describe("json schema generator from sql schema", () => {
     const actual_1 = generateFromSqlDatabaseSchema({
       source: allTypesModel as SqlDatabaseSchema
     })
-    expect(actual_1).toEqual(expected_1)
+    expect(deepRecursiveSort(actual_1)).toEqual(deepRecursiveSort(expected_1))
   })
 
   test("northwind database", async () => {

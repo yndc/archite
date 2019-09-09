@@ -254,8 +254,8 @@ export async function getTableReferences(options: {
  * @param source
  */
 function parseColumn(source: MySqlColumnDescription): SqlColumn {
-  const { name, rawType, key, nullable, comment } = source
-  const type = generateColumnSchema(rawType)
+  const { name, rawType, key, nullable, comment, defaultValue } = source
+  const type = generateColumnSchema(rawType, defaultValue)
   return cleanObject(
     {
       name,
@@ -272,23 +272,23 @@ function parseColumn(source: MySqlColumnDescription): SqlColumn {
  * Maps SQL field type to JSON schema type
  * @param type
  */
-function generateColumnSchema(raw: string): JsonSchema {
+function generateColumnSchema(raw: string, defaultValue?: string): JsonSchema {
+  if (defaultValue === "NULL") defaultValue = undefined
   const parsedFieldType = parseFieldType(raw)
   const [fieldType] = parsedFieldType
   switch (fieldType) {
     case "tinyint":
-      return generateBooleanFieldSchema()
-    case "tinyint":
+      return generateBooleanFieldSchema(defaultValue)
     case "smallint":
     case "mediumint":
     case "int":
     case "bigint":
     case "year":
     case "timestamp":
-      return generateIntegerFieldSchema(parsedFieldType)
+      return generateIntegerFieldSchema(parsedFieldType, defaultValue)
     case "float":
     case "double":
-      return generateNumberFieldSchema()
+      return generateNumberFieldSchema(defaultValue)
     case "varchar":
     case "tinytext":
     case "text":
@@ -298,14 +298,18 @@ function generateColumnSchema(raw: string): JsonSchema {
     case "decimal":
     case "date":
     case "datetime":
+    case "bit":
+    case "binary":
+    case "varbinary":
+    case "tinyblob":
     case "blob":
     case "mediumblob":
     case "longblob":
-      return generateStringFieldSchema(parsedFieldType)
+      return generateStringFieldSchema(parsedFieldType, defaultValue)
     case "enum":
-      return generateEnumFieldSchema(parsedFieldType)
+      return generateEnumFieldSchema(parsedFieldType, defaultValue)
     case "set":
-      return generateSetFieldSchema(parsedFieldType)
+      return generateSetFieldSchema(parsedFieldType, defaultValue)
     default:
       return {}
   }
@@ -339,9 +343,10 @@ function parseColumnKey(raw: string): SqlKeyType {
 /**
  * Generate JSON schema for boolean type
  */
-function generateBooleanFieldSchema(): JsonSchema {
+function generateBooleanFieldSchema(defaultValue?: string): JsonSchema {
   return {
-    type: "boolean"
+    type: "boolean",
+    default: defaultValue ? true : false
   }
 }
 
@@ -349,7 +354,10 @@ function generateBooleanFieldSchema(): JsonSchema {
  * Generate JSON schema for integer type
  * @param parsedFieldType
  */
-function generateIntegerFieldSchema(parsedFieldType: string[]): JsonSchema {
+function generateIntegerFieldSchema(
+  parsedFieldType: string[],
+  defaultValue?: string
+): JsonSchema {
   const [type, ...others] = parsedFieldType
   // Sadly JSON schema doesn't support unsigned ints and integer sizes
   // We can add bounds for the functionality though
@@ -369,11 +377,6 @@ function generateIntegerFieldSchema(parsedFieldType: string[]): JsonSchema {
       bounds = {
         maximum: 32767,
         minimum: -32768
-      }
-    else if (type === "tinyint")
-      bounds = {
-        maximum: 127,
-        minimum: -128
       }
     else if (type === "year")
       bounds = {
@@ -396,6 +399,7 @@ function generateIntegerFieldSchema(parsedFieldType: string[]): JsonSchema {
 
   return {
     type: "integer",
+    default: defaultValue !== undefined ? parseInt(defaultValue) : undefined,
     ...calculateBounds()
   }
 }
@@ -404,9 +408,10 @@ function generateIntegerFieldSchema(parsedFieldType: string[]): JsonSchema {
  * Generate JSON schema for number type
  * @param parsedFieldType
  */
-function generateNumberFieldSchema(): JsonSchema {
+function generateNumberFieldSchema(defaultValue?: string): JsonSchema {
   return {
-    type: "number"
+    type: "number",
+    default: defaultValue !== undefined ? parseFloat(defaultValue) : undefined
   }
 }
 
@@ -414,7 +419,10 @@ function generateNumberFieldSchema(): JsonSchema {
  * Generate JSON schema for string type
  * @param parsedFieldType
  */
-function generateStringFieldSchema(parsedFieldType: string[]): JsonSchema {
+function generateStringFieldSchema(
+  parsedFieldType: string[],
+  defaultValue?: string
+): JsonSchema {
   const [type, size, ...others] = parsedFieldType
   const base64len = (bytes: number) => 4 * (bytes / 3)
   const generateProps = () => {
@@ -483,6 +491,7 @@ function generateStringFieldSchema(parsedFieldType: string[]): JsonSchema {
   }
   return {
     type: "string",
+    default: defaultValue,
     ...generateProps()
   }
 }
@@ -491,10 +500,14 @@ function generateStringFieldSchema(parsedFieldType: string[]): JsonSchema {
  * Generate JSON schema for enum type
  * @param parsedFieldType
  */
-function generateEnumFieldSchema(parsedFieldType: string[]): JsonSchema {
+function generateEnumFieldSchema(
+  parsedFieldType: string[],
+  defaultValue?: string
+): JsonSchema {
   const [type, options, ...others] = parsedFieldType
   return {
     type: "string",
+    default: defaultValue,
     enum: options.split(",").map(x => x.trim().slice(1, -1))
   }
 }
@@ -503,11 +516,15 @@ function generateEnumFieldSchema(parsedFieldType: string[]): JsonSchema {
  * Generate JSON schema for set type
  * @param parsedFieldType
  */
-function generateSetFieldSchema(parsedFieldType: string[]): JsonSchema {
+function generateSetFieldSchema(
+  parsedFieldType: string[],
+  defaultValue?: string
+): JsonSchema {
   const [type, options, ...others] = parsedFieldType
   return {
     type: "array",
     uniqueItems: true,
+    default: defaultValue,
     items: {
       type: "string",
       enum: options.split(",").map(x => x.trim().slice(1, -1))
