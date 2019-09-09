@@ -1,6 +1,34 @@
 # TranSQL
 
-Utilities for data modeling around SQL database schemas.
+CLI and Node.js Library for data modeling around SQL database schemas
+
+[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
+[![Version](https://img.shields.io/npm/v/transql.svg)](https://npmjs.org/package/transql)
+[![Downloads/week](https://img.shields.io/npm/dw/transql.svg)](https://npmjs.org/package/transql)
+[![License](https://img.shields.io/npm/l/transql.svg)](https://github.com/https://github.com/yndc/transql.git/blob/master/package.json)
+
+<!-- toc -->
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
+# Usage
+<!-- usage -->
+```sh-session
+$ npm install -g transql
+$ transql COMMAND
+running command...
+$ transql (-v|--version|version)
+transql/0.0.1 darwin-x64 node-v12.8.0
+$ transql --help [COMMAND]
+USAGE
+  $ transql COMMAND
+...
+```
+<!-- usagestop -->
+# Commands
+<!-- commands -->
+
+<!-- commandsstop -->
 
 Features:
 

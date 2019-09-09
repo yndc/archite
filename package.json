@@ -1,35 +1,42 @@
 {
   "name": "transql",
-  "version": "0.0.1",
   "description": "CLI and Node.js Library for data modeling around SQL database schemas",
-  "main": "dist/index.js",
-  "repository": "https://github.com/yndc/transql.git",
+  "version": "0.0.1",
   "author": "Jonathan Steven <yondercode@gmail.com>",
-  "license": "GPL-3.0-or-later",
-  "prettier": {
-    "semi": false
-  },
-  "scripts": {
-    "test": "jest -i",
-    "build:libs": "webpack --config libs.webpack.js",
-    "build:cli": "webpack --config cli.webpack.js",
-    "build": "webpack --config cli.webpack.js && webpack --config libs.webpack.js"
-  },
   "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
     "js-yaml": "^3.13.1",
     "knex": "^0.19.3",
     "mysql": "^2.17.1",
     "mysql2": "^1.7.0",
-    "pluralize": "^8.0.0"
+    "pluralize": "^8.0.0",
+    "tslib": "^1"
   },
   "devDependencies": {
+    "@oclif/dev-cli": "^1",
     "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.4",
+    "@types/node": "^10",
+    "globby": "^10",
     "jest": "^24.9.0",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.4",
-    "typescript": "^3.6.2",
+    "ts-node": "^8",
+    "typescript": "^3.3",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8"
+  },
+  "license": "GPL-3.0-or-later",
+  "main": "dist/index.js",
+  "prettier": {
+    "semi": false
+  },
+  "repository": "https://github.com/yndc/transql.git",
+  "scripts": {
+    "build": "webpack --config cli.webpack.js && webpack --config libs.webpack.js",
+    "build:cli": "webpack --config cli.webpack.js",
+    "build:libs": "webpack --config libs.webpack.js",
+    "test": "jest -i"
   }
 }
