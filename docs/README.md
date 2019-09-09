@@ -5,7 +5,7 @@ CLI and Node.js Library for data modeling around SQL database schemas
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/transql.svg)](https://npmjs.org/package/transql)
 [![Downloads/week](https://img.shields.io/npm/dw/transql.svg)](https://npmjs.org/package/transql)
-[![License](https://img.shields.io/npm/l/transql.svg)](https://github.com/https://github.com/yndc/transql.git/blob/master/package.json)
+[![License](https://img.shields.io/npm/l/transql.svg)](https://github.com/yndc/transql.git/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
