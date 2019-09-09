@@ -18,7 +18,10 @@
     "noFallthroughCasesInSwitch": true,
     "outDir": "dist",
     "noEmitOnError": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src", "tests"],
   "exclude": ["node_modules"]

@@ -10,7 +10,10 @@
     "semi": false
   },
   "scripts": {
-    "test": "jest -i"
+    "test": "jest -i",
+    "build:libs": "webpack --config libs.webpack.js",
+    "build:cli": "webpack --config cli.webpack.js",
+    "build": "webpack --config cli.webpack.js && webpack --config libs.webpack.js"
   },
   "dependencies": {
     "js-yaml": "^3.13.1",
@@ -24,6 +27,9 @@
     "@types/node": "^12.7.4",
     "jest": "^24.9.0",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.6.2"
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8"
   }
 }

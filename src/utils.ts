@@ -544,71 +544,71 @@ export function objectWalk(value: any, steps: string[]): any | undefined {
  * found in another folder
  * @param options
  */
-export async function transformSchemaDirectory(options: {
-  sourceDir: string
-  outDir: string
-  /**
-   * Transform source file path into output file path.
-   * This will be applied to references too.
-   * Same as the sourcepath by default
-   */
-  transformerResolver: (
-    sourcePath: string
-  ) => Promise<((sourceSchema: JsonSchema) => JsonSchema) | undefined>
-  /**
-   * Transform source file path into output file path.
-   * This will be applied to references too.
-   * Same as the sourcepath by default
-   */
-  pathTransformer?: (sourcePath: string) => string
-  /**
-   * If set to true, schemas with unresolved transformers will be skipped entirely
-   * Otherwise they will be copied into the outDir
-   */
-  skipUnresolvedTransformer?: boolean
-}): Promise<void> {
-  const emptyTransformer = (sourceSchema: JsonSchema) => sourceSchema
-  const defaultTransformerResolver = async (
-    sourcePath: string
-  ): Promise<((sourceSchema: JsonSchema) => JsonSchema) | undefined> => {
-    if (fs.existsSync(sourcePath)) {
-      return (await import(sourcePath)) as ((
-        sourceSchema: JsonSchema
-      ) => JsonSchema)
-    } else {
-      return undefined
-    }
-  }
-  const {
-    sourceDir,
-    outDir,
-    transformerResolver = defaultTransformerResolver,
-    pathTransformer = (sourcePath: string) => sourcePath,
-    skipUnresolvedTransformer = false
-  } = options
-  await walk<void>({
-    dir: sourceDir,
-    filter: options => {
-      const { filename, type } = options
-      return type === "FILE" && filename.includes(".json")
-    },
-    callback: async options => {
-      const { entityPath } = options
-      const sourceSchema = JSON.parse(fs.readFileSync(entityPath).toString())
-      const transformer =
-        (await transformerResolver(entityPath)) ||
-        (skipUnresolvedTransformer ? undefined : emptyTransformer)
-      if (transformer === undefined) return
-      const outSchema = transformer(sourceSchema)
-      const outPath = path.resolve(
-        outDir,
-        pathTransformer(path.relative(sourceDir, entityPath))
-      )
-      fs.mkdirSync(path.dirname(outPath), { recursive: true })
-      fs.writeFileSync(outPath, JSON.stringify(outSchema, null, "\t"))
-    }
-  })
-}
+// export async function transformSchemaDirectory(options: {
+//   sourceDir: string
+//   outDir: string
+//   /**
+//    * Transform source file path into output file path.
+//    * This will be applied to references too.
+//    * Same as the sourcepath by default
+//    */
+//   transformerResolver: (
+//     sourcePath: string
+//   ) => Promise<((sourceSchema: JsonSchema) => JsonSchema) | undefined>
+//   /**
+//    * Transform source file path into output file path.
+//    * This will be applied to references too.
+//    * Same as the sourcepath by default
+//    */
+//   pathTransformer?: (sourcePath: string) => string
+//   /**
+//    * If set to true, schemas with unresolved transformers will be skipped entirely
+//    * Otherwise they will be copied into the outDir
+//    */
+//   skipUnresolvedTransformer?: boolean
+// }): Promise<void> {
+//   const emptyTransformer = (sourceSchema: JsonSchema) => sourceSchema
+//   const defaultTransformerResolver = async (
+//     sourcePath: string
+//   ): Promise<((sourceSchema: JsonSchema) => JsonSchema) | undefined> => {
+//     if (fs.existsSync(sourcePath)) {
+//       return (await import(sourcePath)) as ((
+//         sourceSchema: JsonSchema
+//       ) => JsonSchema)
+//     } else {
+//       return undefined
+//     }
+//   }
+//   const {
+//     sourceDir,
+//     outDir,
+//     transformerResolver = defaultTransformerResolver,
+//     pathTransformer = (sourcePath: string) => sourcePath,
+//     skipUnresolvedTransformer = false
+//   } = options
+//   await walk<void>({
+//     dir: sourceDir,
+//     filter: options => {
+//       const { filename, type } = options
+//       return type === "FILE" && filename.includes(".json")
+//     },
+//     callback: async options => {
+//       const { entityPath } = options
+//       const sourceSchema = JSON.parse(fs.readFileSync(entityPath).toString())
+//       const transformer =
+//         (await transformerResolver(entityPath)) ||
+//         (skipUnresolvedTransformer ? undefined : emptyTransformer)
+//       if (transformer === undefined) return
+//       const outSchema = transformer(sourceSchema)
+//       const outPath = path.resolve(
+//         outDir,
+//         pathTransformer(path.relative(sourceDir, entityPath))
+//       )
+//       fs.mkdirSync(path.dirname(outPath), { recursive: true })
+//       fs.writeFileSync(outPath, JSON.stringify(outSchema, null, "\t"))
+//     }
+//   })
+// }
 
 /**
  * Combine a list of schemas into one compound schema

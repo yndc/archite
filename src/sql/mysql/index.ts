@@ -5,6 +5,8 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
+export * from "./connection-parser"
+
 /**
  * Abstraction for MySQL column
  */

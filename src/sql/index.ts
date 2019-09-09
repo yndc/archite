@@ -5,6 +5,8 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
+export * from "sql/mysql"
+
 import { JsonSchema } from "json-schema"
 
 /**
