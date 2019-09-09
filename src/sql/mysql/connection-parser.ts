@@ -84,7 +84,7 @@ export async function parseDatabase(options: {
    */
   removeIntermediateTables?: boolean
 }): Promise<SqlDatabaseSchema> {
-  const { connection, database, removeIntermediateTables } = options
+  const { connection, database, removeIntermediateTables = false } = options
   const query = `
     SELECT
       TABLE_NAME as 'table',
@@ -106,21 +106,24 @@ export async function parseDatabase(options: {
         COLUMNS.TABLE_SCHEMA = '${database}'
         AND KEY_COLUMN_USAGE.TABLE_SCHEMA = '${database}'
         AND KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME IS NOT NULL
-      GROUP BY TABLE_NAME
+      GROUP BY name
       HAVING 
-        COUNT(DISTINCT COLUMNS.COLUMN_NAME) = COUNT(DISTINCT KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME)`
+        COUNT(DISTINCT COLUMNS.COLUMN_NAME) = COUNT(DISTINCT KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME)
+    )`
         : ``
     }
   ;`
   const tables: SqlTable[] = mapObject(
-    ((await connection.raw(query))[0] as object[]).map(cleanObject).reduce<{
-      [table: string]: MySqlColumnDescription[]
-    }>((r, x: any) => {
-      const { table, ...rest } = x
-      if (!r.hasOwnProperty(table)) r[table] = []
-      r[table] = [...r[table], rest]
-      return r
-    }, {}),
+    ((await connection.raw(query))[0] as object[])
+      .map(x => cleanObject(x, true))
+      .reduce<{
+        [table: string]: MySqlColumnDescription[]
+      }>((r, x: any) => {
+        const { table, ...rest } = x
+        if (!r.hasOwnProperty(table)) r[table] = []
+        r[table] = [...r[table], rest]
+        return r
+      }, {}),
     (tableName, columns) => ({
       name: tableName,
       columns: columns.map(parseColumn)
@@ -277,13 +280,16 @@ export async function getTableReferences(options: {
 function parseColumn(source: MySqlColumnDescription): SqlColumn {
   const { name, rawType, key, nullable, comment } = source
   const type = generateColumnSchema(rawType)
-  return {
-    name,
-    comment,
-    key: parseColumnKey(key),
-    type,
-    nullable: nullable === "YES" ? true : false
-  }
+  return cleanObject(
+    {
+      name,
+      comment,
+      key: parseColumnKey(key),
+      type,
+      nullable: nullable === "YES" ? true : false
+    },
+    true
+  )
 }
 
 /**

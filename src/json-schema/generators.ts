@@ -9,6 +9,7 @@ import * as pluralize from "pluralize"
 import { JsonSchema, JsonSchemaVersion } from "json-schema"
 import { SqlReference, SqlTable } from "sql"
 import { SqlDatabaseSchema } from "sql"
+import { generateFullId } from "utils"
 
 /**
  * Generate a compound JSON schema
@@ -21,17 +22,30 @@ export function generateFromSqlDatabaseSchema(options: {
    */
   source: SqlDatabaseSchema
   /**
-   * The ID to be used for the generated schema
+   * The ID to be used as a prefix for the resulted schema $id
+   * @default ""
    */
-  schemaId?: string
+  rootId?: string
+  /**
+   * Optional file extension for the Id (defaults to .json)
+   * @default json
+   */
+  extension?: string
   /**
    * Proceed to generate references in the schema
+   * @default true
    */
   withReferences?: boolean
   /**
    * Proceed to generate many to many relationships in the schema
+   * @default true
    */
   withManyToManyRelationships?: boolean
+  /**
+   * If withManyToManyRelationships is true, should the intermediate tables be generated too?
+   * @default false
+   */
+  generateIntermediateTables?: boolean
   /**
    * The function that provides the property name of a reference
    */
@@ -50,7 +64,8 @@ export function generateFromSqlDatabaseSchema(options: {
 }): JsonSchema {
   const {
     source,
-    schemaId,
+    rootId = "",
+    extension = "json",
     referencingPropertyNameTransformer = (ref: SqlReference) =>
       ref.referencingColumn.split("_id")[0],
     referencedPropertyNameTransformer = (ref: SqlReference) =>
@@ -58,9 +73,11 @@ export function generateFromSqlDatabaseSchema(options: {
     manyToManyPropertyNameTransformer = (_from: string, to: string) =>
       pluralize(to),
     withReferences = true,
-    withManyToManyRelationships = true
+    withManyToManyRelationships = true,
+    generateIntermediateTables = false,
   } = options
   const {
+    name,
     tables,
     references,
     manyToManyRelationships,
@@ -144,8 +161,8 @@ export function generateFromSqlDatabaseSchema(options: {
   }
 
   return {
-    $id: schemaId,
-    $schema: JsonSchemaVersion,
+    $id: generateFullId(rootId, name, extension),
+    $schema: "http://json-schema.org/draft-07/schema#",
     definitions
   }
 }
