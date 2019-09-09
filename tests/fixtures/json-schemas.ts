@@ -71,48 +71,56 @@ export const northwind = {
     customer: {
       required: ["id"],
       properties: {
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        company: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        first_name: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        job_title: { type: "string", maxLength: 50 },
+        address: { type: "string", maxLength: 4294967295 },
+        attachments: {
+          type: "string",
+          contentEncoding: "base64",
+          maxLength: 5726623060
+        },
         business_phone: { type: "string", maxLength: 25 },
-        home_phone: { type: "string", maxLength: 25 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        fax_number: { type: "string", maxLength: 25 },
-        address: {},
         city: { type: "string", maxLength: 50 },
-        state_province: { type: "string", maxLength: 50 },
-        zip_postal_code: { type: "string", maxLength: 15 },
+        company: { type: "string", maxLength: 50 },
         country_region: { type: "string", maxLength: 50 },
-        web_page: {},
-        notes: {},
-        attachments: { type: "string", contentEncoding: "base64" },
+        email_address: { type: "string", maxLength: 50 },
+        fax_number: { type: "string", maxLength: 25 },
+        first_name: { type: "string", maxLength: 50 },
+        home_phone: { type: "string", maxLength: 25 },
+        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        job_title: { type: "string", maxLength: 50 },
+        last_name: { type: "string", maxLength: 50 },
+        mobile_phone: { type: "string", maxLength: 25 },
+        notes: { type: "string", maxLength: 4294967295 },
+        state_province: { type: "string", maxLength: 50 },
+        web_page: { type: "string", maxLength: 4294967295 },
+        zip_postal_code: { type: "string", maxLength: 15 },
         orders: { type: "array", items: { $ref: "#/definitions/order" } }
       }
     },
     employee: {
       required: ["id"],
       properties: {
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        company: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        first_name: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        job_title: { type: "string", maxLength: 50 },
+        address: { type: "string", maxLength: 4294967295 },
+        attachments: {
+          type: "string",
+          contentEncoding: "base64",
+          maxLength: 5726623060
+        },
         business_phone: { type: "string", maxLength: 25 },
-        home_phone: { type: "string", maxLength: 25 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        fax_number: { type: "string", maxLength: 25 },
-        address: {},
         city: { type: "string", maxLength: 50 },
-        state_province: { type: "string", maxLength: 50 },
-        zip_postal_code: { type: "string", maxLength: 15 },
+        company: { type: "string", maxLength: 50 },
         country_region: { type: "string", maxLength: 50 },
-        web_page: {},
-        notes: {},
-        attachments: { type: "string", contentEncoding: "base64" },
+        email_address: { type: "string", maxLength: 50 },
+        fax_number: { type: "string", maxLength: 25 },
+        first_name: { type: "string", maxLength: 50 },
+        home_phone: { type: "string", maxLength: 25 },
+        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        job_title: { type: "string", maxLength: 50 },
+        last_name: { type: "string", maxLength: 50 },
+        mobile_phone: { type: "string", maxLength: 25 },
+        notes: { type: "string", maxLength: 4294967295 },
+        state_province: { type: "string", maxLength: 50 },
+        web_page: { type: "string", maxLength: 4294967295 },
+        zip_postal_code: { type: "string", maxLength: 15 },
         orders: { type: "array", items: { $ref: "#/definitions/order" } },
         purchase_orders: {
           type: "array",
@@ -125,18 +133,16 @@ export const northwind = {
       }
     },
     inventory_transaction: {
-      required: ["id", "transaction_type", "product_id", "quantity"],
+      required: ["id", "product_id", "quantity", "transaction_type"],
       properties: {
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        transaction_type: { $ref: "#/definitions/inventory_transaction_type" },
-        transaction_created_date: { type: "string", format: "date-time" },
-        transaction_modified_date: { type: "string", format: "date-time" },
-        product_id: {
+        comments: { type: "string", maxLength: 255 },
+        customer_order_id: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
-        quantity: {
+        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        product_id: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
@@ -146,12 +152,14 @@ export const northwind = {
           maximum: 2147483647,
           minimum: -2147483648
         },
-        customer_order_id: {
+        quantity: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
-        comments: { type: "string", maxLength: 255 },
+        transaction_created_date: { type: "string", format: "date-time" },
+        transaction_modified_date: { type: "string", format: "date-time" },
+        transaction_type: { $ref: "#/definitions/inventory_transaction_type" },
         purchase_order_details: {
           type: "array",
           items: { $ref: "#/definitions/purchase_order_detail" }
@@ -175,55 +183,55 @@ export const northwind = {
     invoice: {
       required: ["id"],
       properties: {
+        amount_due: { type: "string", maxLength: 19 },
+        due_date: { type: "string", format: "date-time" },
         id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        invoice_date: { type: "string", format: "date-time" },
         order_id: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
-        invoice_date: { type: "string", format: "date-time" },
-        due_date: { type: "string", format: "date-time" },
-        tax: { type: "string", maxLength: 19 },
         shipping: { type: "string", maxLength: 19 },
-        amount_due: { type: "string", maxLength: 19 },
+        tax: { type: "string", maxLength: 19 },
         order: { $ref: "#/definitions/order" }
       }
     },
     order: {
       required: ["id"],
       properties: {
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        employee_id: {
-          type: "integer",
-          maximum: 2147483647,
-          minimum: -2147483648
-        },
         customer_id: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
+        employee_id: {
+          type: "integer",
+          maximum: 2147483647,
+          minimum: -2147483648
+        },
+        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        notes: { type: "string", maxLength: 4294967295 },
         order_date: { type: "string", format: "date-time" },
+        paid_date: { type: "string", format: "date-time" },
+        payment_type: { type: "string", maxLength: 50 },
+        ship_address: { type: "string", maxLength: 4294967295 },
+        ship_city: { type: "string", maxLength: 50 },
+        ship_country_region: { type: "string", maxLength: 50 },
+        ship_name: { type: "string", maxLength: 50 },
+        ship_state_province: { type: "string", maxLength: 50 },
+        ship_zip_postal_code: { type: "string", maxLength: 50 },
         shipped_date: { type: "string", format: "date-time" },
         shipper_id: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
-        ship_name: { type: "string", maxLength: 50 },
-        ship_address: {},
-        ship_city: { type: "string", maxLength: 50 },
-        ship_state_province: { type: "string", maxLength: 50 },
-        ship_zip_postal_code: { type: "string", maxLength: 50 },
-        ship_country_region: { type: "string", maxLength: 50 },
         shipping_fee: { type: "string", maxLength: 19 },
-        taxes: { type: "string", maxLength: 19 },
-        payment_type: { type: "string", maxLength: 50 },
-        paid_date: { type: "string", format: "date-time" },
-        notes: {},
+        status_id: { type: "boolean" },
         tax_rate: { type: "number" },
         tax_status_id: { type: "boolean" },
-        status_id: { type: "boolean" },
+        taxes: { type: "string", maxLength: 19 },
         customer: { $ref: "#/definitions/customer" },
         employee: { $ref: "#/definitions/employee" },
         inventory_transactions: {
@@ -241,9 +249,16 @@ export const northwind = {
       }
     },
     order_detail: {
-      required: ["id", "order_id", "quantity", "discount"],
+      required: ["discount", "id", "order_id", "quantity"],
       properties: {
+        date_allocated: { type: "string", format: "date-time" },
+        discount: { type: "number" },
         id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        inventory_id: {
+          type: "integer",
+          maximum: 2147483647,
+          minimum: -2147483648
+        },
         order_id: {
           type: "integer",
           maximum: 2147483647,
@@ -254,25 +269,18 @@ export const northwind = {
           maximum: 2147483647,
           minimum: -2147483648
         },
-        quantity: { type: "string", maxLength: 18 },
-        unit_price: { type: "string", maxLength: 19 },
-        discount: { type: "number" },
-        status_id: {
-          type: "integer",
-          maximum: 2147483647,
-          minimum: -2147483648
-        },
-        date_allocated: { type: "string", format: "date-time" },
         purchase_order_id: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
-        inventory_id: {
+        quantity: { type: "string", maxLength: 18 },
+        status_id: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
+        unit_price: { type: "string", maxLength: 19 },
         order: { $ref: "#/definitions/order" },
         status: { $ref: "#/definitions/order_details_status" },
         product: { $ref: "#/definitions/product" }
@@ -314,34 +322,38 @@ export const northwind = {
       }
     },
     product: {
-      required: ["id", "list_price", "discontinued"],
+      required: ["discontinued", "id", "list_price"],
       properties: {
-        supplier_ids: {},
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        product_code: { type: "string", maxLength: 25 },
-        product_name: { type: "string", maxLength: 50 },
-        description: {},
-        standard_cost: { type: "string", maxLength: 19 },
-        list_price: { type: "string", maxLength: 19 },
-        reorder_level: {
-          type: "integer",
-          maximum: 2147483647,
-          minimum: -2147483648
+        attachments: {
+          type: "string",
+          contentEncoding: "base64",
+          maxLength: 5726623060
         },
-        target_level: {
-          type: "integer",
-          maximum: 2147483647,
-          minimum: -2147483648
-        },
-        quantity_per_unit: { type: "string", maxLength: 50 },
+        category: { type: "string", maxLength: 50 },
+        description: { type: "string", maxLength: 4294967295 },
         discontinued: { type: "boolean" },
+        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        list_price: { type: "string", maxLength: 19 },
         minimum_reorder_quantity: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
-        category: { type: "string", maxLength: 50 },
-        attachments: { type: "string", contentEncoding: "base64" },
+        product_code: { type: "string", maxLength: 25 },
+        product_name: { type: "string", maxLength: 50 },
+        quantity_per_unit: { type: "string", maxLength: 50 },
+        reorder_level: {
+          type: "integer",
+          maximum: 2147483647,
+          minimum: -2147483648
+        },
+        standard_cost: { type: "string", maxLength: 19 },
+        supplier_ids: { type: "string", maxLength: 4294967295 },
+        target_level: {
+          type: "integer",
+          maximum: 2147483647,
+          minimum: -2147483648
+        },
         inventory_transactions: {
           type: "array",
           items: { $ref: "#/definitions/inventory_transaction" }
@@ -359,38 +371,38 @@ export const northwind = {
     purchase_order: {
       required: ["id", "shipping_fee", "taxes"],
       properties: {
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        supplier_id: {
-          type: "integer",
-          maximum: 2147483647,
-          minimum: -2147483648
-        },
-        created_by: { $ref: "#/definitions/employee" },
-        submitted_date: { type: "string", format: "date-time" },
-        creation_date: { type: "string", format: "date-time" },
-        status_id: {
-          type: "integer",
-          maximum: 2147483647,
-          minimum: -2147483648
-        },
-        expected_date: { type: "string", format: "date-time" },
-        shipping_fee: { type: "string", maxLength: 19 },
-        taxes: { type: "string", maxLength: 19 },
-        payment_date: { type: "string", format: "date-time" },
-        payment_amount: { type: "string", maxLength: 19 },
-        payment_method: { type: "string", maxLength: 50 },
-        notes: {},
         approved_by: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
         approved_date: { type: "string", format: "date-time" },
+        created_by: { $ref: "#/definitions/employee" },
+        creation_date: { type: "string", format: "date-time" },
+        expected_date: { type: "string", format: "date-time" },
+        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        notes: { type: "string", maxLength: 4294967295 },
+        payment_amount: { type: "string", maxLength: 19 },
+        payment_date: { type: "string", format: "date-time" },
+        payment_method: { type: "string", maxLength: 50 },
+        shipping_fee: { type: "string", maxLength: 19 },
+        status_id: {
+          type: "integer",
+          maximum: 2147483647,
+          minimum: -2147483648
+        },
         submitted_by: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
+        submitted_date: { type: "string", format: "date-time" },
+        supplier_id: {
+          type: "integer",
+          maximum: 2147483647,
+          minimum: -2147483648
+        },
+        taxes: { type: "string", maxLength: 19 },
         inventory_transactions: {
           type: "array",
           items: { $ref: "#/definitions/inventory_transaction" }
@@ -406,32 +418,32 @@ export const northwind = {
     purchase_order_detail: {
       required: [
         "id",
+        "posted_to_inventory",
         "purchase_order_id",
         "quantity",
-        "unit_cost",
-        "posted_to_inventory"
+        "unit_cost"
       ],
       properties: {
+        date_received: { type: "string", format: "date-time" },
         id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        purchase_order_id: {
+        inventory_id: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
+        posted_to_inventory: { type: "boolean" },
         product_id: {
+          type: "integer",
+          maximum: 2147483647,
+          minimum: -2147483648
+        },
+        purchase_order_id: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
         },
         quantity: { type: "string", maxLength: 18 },
         unit_cost: { type: "string", maxLength: 19 },
-        date_received: { type: "string", format: "date-time" },
-        posted_to_inventory: { type: "boolean" },
-        inventory_id: {
-          type: "integer",
-          maximum: 2147483647,
-          minimum: -2147483648
-        },
         inventory: { $ref: "#/definitions/inventory_transaction" },
         product: { $ref: "#/definitions/product" },
         purchase_order: { $ref: "#/definitions/purchase_order" }
@@ -449,71 +461,79 @@ export const northwind = {
       }
     },
     sales_report: {
-      required: ["group_by", "default"],
+      required: ["default", "group_by"],
       properties: {
-        group_by: { type: "string", maxLength: 50 },
+        default: { type: "boolean" },
         display: { type: "string", maxLength: 50 },
-        title: { type: "string", maxLength: 50 },
-        filter_row_source: {},
-        default: { type: "boolean" }
+        filter_row_source: { type: "string", maxLength: 4294967295 },
+        group_by: { type: "string", maxLength: 50 },
+        title: { type: "string", maxLength: 50 }
       }
     },
     shipper: {
       required: ["id"],
       properties: {
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        company: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        first_name: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        job_title: { type: "string", maxLength: 50 },
+        address: { type: "string", maxLength: 4294967295 },
+        attachments: {
+          type: "string",
+          contentEncoding: "base64",
+          maxLength: 5726623060
+        },
         business_phone: { type: "string", maxLength: 25 },
-        home_phone: { type: "string", maxLength: 25 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        fax_number: { type: "string", maxLength: 25 },
-        address: {},
         city: { type: "string", maxLength: 50 },
-        state_province: { type: "string", maxLength: 50 },
-        zip_postal_code: { type: "string", maxLength: 15 },
+        company: { type: "string", maxLength: 50 },
         country_region: { type: "string", maxLength: 50 },
-        web_page: {},
-        notes: {},
-        attachments: { type: "string", contentEncoding: "base64" },
+        email_address: { type: "string", maxLength: 50 },
+        fax_number: { type: "string", maxLength: 25 },
+        first_name: { type: "string", maxLength: 50 },
+        home_phone: { type: "string", maxLength: 25 },
+        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        job_title: { type: "string", maxLength: 50 },
+        last_name: { type: "string", maxLength: 50 },
+        mobile_phone: { type: "string", maxLength: 25 },
+        notes: { type: "string", maxLength: 4294967295 },
+        state_province: { type: "string", maxLength: 50 },
+        web_page: { type: "string", maxLength: 4294967295 },
+        zip_postal_code: { type: "string", maxLength: 15 },
         orders: { type: "array", items: { $ref: "#/definitions/order" } }
       }
     },
     string: {
       required: ["string_id"],
       properties: {
+        string_data: { type: "string", maxLength: 255 },
         string_id: {
           type: "integer",
           maximum: 2147483647,
           minimum: -2147483648
-        },
-        string_data: { type: "string", maxLength: 255 }
+        }
       }
     },
     supplier: {
       required: ["id"],
       properties: {
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        company: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        first_name: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        job_title: { type: "string", maxLength: 50 },
+        address: { type: "string", maxLength: 4294967295 },
+        attachments: {
+          type: "string",
+          contentEncoding: "base64",
+          maxLength: 5726623060
+        },
         business_phone: { type: "string", maxLength: 25 },
-        home_phone: { type: "string", maxLength: 25 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        fax_number: { type: "string", maxLength: 25 },
-        address: {},
         city: { type: "string", maxLength: 50 },
-        state_province: { type: "string", maxLength: 50 },
-        zip_postal_code: { type: "string", maxLength: 15 },
+        company: { type: "string", maxLength: 50 },
         country_region: { type: "string", maxLength: 50 },
-        web_page: {},
-        notes: {},
-        attachments: { type: "string", contentEncoding: "base64" },
+        email_address: { type: "string", maxLength: 50 },
+        fax_number: { type: "string", maxLength: 25 },
+        first_name: { type: "string", maxLength: 50 },
+        home_phone: { type: "string", maxLength: 25 },
+        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        job_title: { type: "string", maxLength: 50 },
+        last_name: { type: "string", maxLength: 50 },
+        mobile_phone: { type: "string", maxLength: 25 },
+        notes: { type: "string", maxLength: 4294967295 },
+        state_province: { type: "string", maxLength: 50 },
+        web_page: { type: "string", maxLength: 4294967295 },
+        zip_postal_code: { type: "string", maxLength: 15 },
         purchase_orders: {
           type: "array",
           items: { $ref: "#/definitions/purchase_order" }

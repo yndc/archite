@@ -17,15 +17,14 @@ Features:
 <details><summary>Numeric types</summary>
 <p>
 
-- [x] int
 - [x] float
 - [x] double
 - [x] tinyint
-- [ ] smallint
-- [ ] mediumint
-- [ ] bigint
-- [ ] smallint
-- [ ] decimal
+- [x] smallint
+- [x] mediumint
+- [x] int
+- [x] bigint
+- [x] decimal
 
 </p>
 </details>
@@ -37,10 +36,10 @@ Features:
 - [x] varchar
 - [x] enum
 - [x] set
-- [ ] tinytext
-- [ ] text
-- [ ] mediumtext
-- [ ] longtext
+- [x] tinytext
+- [x] text
+- [x] mediumtext
+- [x] longtext
 
 </p>
 </details>
@@ -48,11 +47,11 @@ Features:
 <details><summary>Time types</summary>
 <p>
 
-- [ ] date
-- [ ] time
+- [x] date
+- [x] time
 - [x] datetime
 - [x] timestamp
-- [ ] year
+- [x] year
 
 </p>
 </details>
@@ -77,9 +76,10 @@ Features:
 
 - [ ] json
 - [ ] bit
-- [ ] mediumblob
-- [ ] blob
-- [ ] longblob
+- [x] tinyblob
+- [x] mediumblob
+- [x] blob
+- [x] longblob
 
 </p>
 </details>

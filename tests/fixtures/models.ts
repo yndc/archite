@@ -142,11 +142,20 @@ export const northwind = {
     {
       name: "customer",
       columns: [
-        { name: "address", comment: "", type: {}, nullable: true },
+        {
+          name: "address",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "attachments",
           comment: "",
-          type: { type: "string", contentEncoding: "base64" },
+          type: {
+            type: "string",
+            contentEncoding: "base64",
+            maxLength: 5726623060
+          },
           nullable: true
         },
         {
@@ -222,14 +231,24 @@ export const northwind = {
           type: { type: "string", maxLength: 25 },
           nullable: true
         },
-        { name: "notes", comment: "", type: {}, nullable: true },
+        {
+          name: "notes",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "state_province",
           comment: "",
           type: { type: "string", maxLength: 50 },
           nullable: true
         },
-        { name: "web_page", comment: "", type: {}, nullable: true },
+        {
+          name: "web_page",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "zip_postal_code",
           comment: "",
@@ -241,11 +260,20 @@ export const northwind = {
     {
       name: "employee",
       columns: [
-        { name: "address", comment: "", type: {}, nullable: true },
+        {
+          name: "address",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "attachments",
           comment: "",
-          type: { type: "string", contentEncoding: "base64" },
+          type: {
+            type: "string",
+            contentEncoding: "base64",
+            maxLength: 5726623060
+          },
           nullable: true
         },
         {
@@ -321,14 +349,24 @@ export const northwind = {
           type: { type: "string", maxLength: 25 },
           nullable: true
         },
-        { name: "notes", comment: "", type: {}, nullable: true },
+        {
+          name: "notes",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "state_province",
           comment: "",
           type: { type: "string", maxLength: 50 },
           nullable: true
         },
-        { name: "web_page", comment: "", type: {}, nullable: true },
+        {
+          name: "web_page",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "zip_postal_code",
           comment: "",
@@ -440,7 +478,11 @@ export const northwind = {
         {
           name: "amount_due",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: true
         },
         {
@@ -471,13 +513,21 @@ export const northwind = {
         {
           name: "shipping",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: true
         },
         {
           name: "tax",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: true
         }
       ]
@@ -504,7 +554,12 @@ export const northwind = {
           type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
           nullable: false
         },
-        { name: "notes", comment: "", type: {}, nullable: true },
+        {
+          name: "notes",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "order_date",
           comment: "",
@@ -523,7 +578,12 @@ export const northwind = {
           type: { type: "string", maxLength: 50 },
           nullable: true
         },
-        { name: "ship_address", comment: "", type: {}, nullable: true },
+        {
+          name: "ship_address",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "ship_city",
           comment: "",
@@ -569,7 +629,11 @@ export const northwind = {
         {
           name: "shipping_fee",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: true
         },
         {
@@ -593,7 +657,11 @@ export const northwind = {
         {
           name: "taxes",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: true
         }
       ]
@@ -647,7 +715,11 @@ export const northwind = {
         {
           name: "quantity",
           comment: "",
-          type: { type: "string", maxLength: 18 },
+          type: {
+            type: "string",
+            maxLength: 18,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: false
         },
         {
@@ -659,7 +731,11 @@ export const northwind = {
         {
           name: "unit_price",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: true
         }
       ]
@@ -742,7 +818,11 @@ export const northwind = {
         {
           name: "attachments",
           comment: "",
-          type: { type: "string", contentEncoding: "base64" },
+          type: {
+            type: "string",
+            contentEncoding: "base64",
+            maxLength: 5726623060
+          },
           nullable: true
         },
         {
@@ -751,7 +831,12 @@ export const northwind = {
           type: { type: "string", maxLength: 50 },
           nullable: true
         },
-        { name: "description", comment: "", type: {}, nullable: true },
+        {
+          name: "description",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "discontinued",
           comment: "",
@@ -768,7 +853,11 @@ export const northwind = {
         {
           name: "list_price",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: false
         },
         {
@@ -804,10 +893,19 @@ export const northwind = {
         {
           name: "standard_cost",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: true
         },
-        { name: "supplier_ids", comment: "", type: {}, nullable: true },
+        {
+          name: "supplier_ids",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "target_level",
           comment: "",
@@ -856,11 +954,20 @@ export const northwind = {
           type: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
           nullable: false
         },
-        { name: "notes", comment: "", type: {}, nullable: true },
+        {
+          name: "notes",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "payment_amount",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: true
         },
         {
@@ -878,7 +985,11 @@ export const northwind = {
         {
           name: "shipping_fee",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: false
         },
         {
@@ -908,7 +1019,11 @@ export const northwind = {
         {
           name: "taxes",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: false
         }
       ]
@@ -956,13 +1071,21 @@ export const northwind = {
         {
           name: "quantity",
           comment: "",
-          type: { type: "string", maxLength: 18 },
+          type: {
+            type: "string",
+            maxLength: 18,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: false
         },
         {
           name: "unit_cost",
           comment: "",
-          type: { type: "string", maxLength: 19 },
+          type: {
+            type: "string",
+            maxLength: 19,
+            pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          },
           nullable: false
         }
       ]
@@ -1000,7 +1123,12 @@ export const northwind = {
           type: { type: "string", maxLength: 50 },
           nullable: true
         },
-        { name: "filter_row_source", comment: "", type: {}, nullable: true },
+        {
+          name: "filter_row_source",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "group_by",
           comment: "",
@@ -1019,11 +1147,20 @@ export const northwind = {
     {
       name: "shipper",
       columns: [
-        { name: "address", comment: "", type: {}, nullable: true },
+        {
+          name: "address",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "attachments",
           comment: "",
-          type: { type: "string", contentEncoding: "base64" },
+          type: {
+            type: "string",
+            contentEncoding: "base64",
+            maxLength: 5726623060
+          },
           nullable: true
         },
         {
@@ -1099,14 +1236,24 @@ export const northwind = {
           type: { type: "string", maxLength: 25 },
           nullable: true
         },
-        { name: "notes", comment: "", type: {}, nullable: true },
+        {
+          name: "notes",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "state_province",
           comment: "",
           type: { type: "string", maxLength: 50 },
           nullable: true
         },
-        { name: "web_page", comment: "", type: {}, nullable: true },
+        {
+          name: "web_page",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "zip_postal_code",
           comment: "",
@@ -1136,11 +1283,20 @@ export const northwind = {
     {
       name: "supplier",
       columns: [
-        { name: "address", comment: "", type: {}, nullable: true },
+        {
+          name: "address",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "attachments",
           comment: "",
-          type: { type: "string", contentEncoding: "base64" },
+          type: {
+            type: "string",
+            contentEncoding: "base64",
+            maxLength: 5726623060
+          },
           nullable: true
         },
         {
@@ -1216,14 +1372,24 @@ export const northwind = {
           type: { type: "string", maxLength: 25 },
           nullable: true
         },
-        { name: "notes", comment: "", type: {}, nullable: true },
+        {
+          name: "notes",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "state_province",
           comment: "",
           type: { type: "string", maxLength: 50 },
           nullable: true
         },
-        { name: "web_page", comment: "", type: {}, nullable: true },
+        {
+          name: "web_page",
+          comment: "",
+          type: { type: "string", maxLength: 4294967295 },
+          nullable: true
+        },
         {
           name: "zip_postal_code",
           comment: "",

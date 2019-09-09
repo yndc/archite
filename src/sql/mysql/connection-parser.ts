@@ -278,14 +278,22 @@ function generateColumnSchema(raw: string): JsonSchema {
   switch (fieldType) {
     case "tinyint":
       return generateBooleanFieldSchema()
+    case "tinyint":
+    case "smallint":
+    case "mediumint":
     case "int":
     case "bigint":
+    case "year":
     case "timestamp":
       return generateIntegerFieldSchema(parsedFieldType)
     case "float":
     case "double":
       return generateNumberFieldSchema()
     case "varchar":
+    case "tinytext":
+    case "text":
+    case "mediumtext":
+    case "longtext":
     case "char":
     case "decimal":
     case "date":
@@ -346,28 +354,46 @@ function generateIntegerFieldSchema(parsedFieldType: string[]): JsonSchema {
   // Sadly JSON schema doesn't support unsigned ints and integer sizes
   // We can add bounds for the functionality though
   const calculateBounds = () => {
+    let bounds: { maximum: number; minimum: number }
+    if (type === "bigint" || type === "timestamp")
+      bounds = {
+        maximum: 9223372036854776000,
+        minimum: -9223372036854776000
+      }
+    else if (type === "mediumint")
+      bounds = {
+        maximum: 8388607,
+        minimum: -8388608
+      }
+    else if (type === "smallint")
+      bounds = {
+        maximum: 32767,
+        minimum: -32768
+      }
+    else if (type === "tinyint")
+      bounds = {
+        maximum: 127,
+        minimum: -128
+      }
+    else if (type === "year")
+      bounds = {
+        maximum: 9999,
+        minimum: 0
+      }
+    else
+      bounds = {
+        maximum: 2147483647,
+        minimum: -2147483648
+      }
     if (others.includes("unsigned") || type === "timestamp") {
-      return type === "bigint" || type === "timestamp"
-        ? {
-            maximum: 18446744073709552000,
-            minimum: 0
-          }
-        : {
-            maximum: 4294967295,
-            minimum: 0
-          }
-    } else {
-      return type === "bigint"
-        ? {
-            maximum: 9223372036854776000,
-            minimum: -9223372036854776000
-          }
-        : {
-            maximum: 2147483647,
-            minimum: -2147483648
-          }
+      bounds = {
+        maximum: bounds.maximum - bounds.minimum,
+        minimum: 0
+      }
     }
+    return bounds
   }
+
   return {
     type: "integer",
     ...calculateBounds()
@@ -390,22 +416,65 @@ function generateNumberFieldSchema(): JsonSchema {
  */
 function generateStringFieldSchema(parsedFieldType: string[]): JsonSchema {
   const [type, size, ...others] = parsedFieldType
+  const base64len = (bytes: number) => 4 * (bytes / 3)
   const generateProps = () => {
     switch (type) {
+      case "tinytext":
+        return {
+          maxLength: 255
+        }
+      case "text":
+        return {
+          maxLength: 65535
+        }
+      case "mediumtext":
+        return {
+          maxLength: 16777215
+        }
+      case "longtext":
+        return {
+          maxLength: 4294967295
+        }
       case "date":
         return {
           format: "date"
+        }
+      case "time":
+        return {
+          format: "time"
         }
       case "datetime":
         return {
           format: "date-time"
         }
+      case "tinyblob":
+        return {
+          contentEncoding: "base64",
+          maxLength: base64len(255)
+        }
       case "blob":
+        return {
+          contentEncoding: "base64",
+          maxLength: base64len(65535)
+        }
       case "mediumblob":
+        return {
+          contentEncoding: "base64",
+          maxLength: base64len(16777215)
+        }
       case "longblob":
         return {
-          contentEncoding: "base64"
+          contentEncoding: "base64",
+          maxLength: base64len(4294967295)
         }
+      case "decimal": {
+        const [len, precision] = size.split(",")
+        const regExp = `^[-]?(\\d+\\.?\\d{0,${precision}})$`
+        return {
+          maxLength: parseInt(len),
+          pattern: regExp
+        }
+      }
       default:
         return {
           maxLength: parseInt(size)
