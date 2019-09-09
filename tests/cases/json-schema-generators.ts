@@ -3,7 +3,6 @@
  * License  : MIT
  */
 
-import * as knex from "knex"
 import {
   generateFromSqlTableSchema,
   generateFromSqlDatabaseSchema
@@ -14,8 +13,8 @@ import {
   northwind as northwindModel
 } from "../fixtures/models"
 import {
-  allTypes as allTypesJsonSchema,
-  northwind as northwindJsonSchema
+  allTypesCombined as allTypesJsonSchema,
+  northwindCombined as northwindJsonSchema
 } from "../fixtures/json-schemas"
 import { SqlTable, SqlDatabaseSchema } from "sql"
 

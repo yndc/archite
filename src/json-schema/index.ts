@@ -22,7 +22,7 @@ export interface JsonSchemaPackage {
   /**
    * The root identifier of the package
    */
-  id: string
+  rootId: string
   /**
    * Collection of schemas under the package
    * All $id is relative to the package's id (rootId)

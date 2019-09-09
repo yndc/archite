@@ -4,3 +4,4 @@ dist
 build
 tmp
 tests/config.json
+.last_results
