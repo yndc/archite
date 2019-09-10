@@ -1,11 +1,10 @@
 /**
- * CLI entry
+ * CLI utils
  *
  * Author   : Jonathan Steven (yondercode@gmail.com)
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-import * as transql from "../index"
 import * as fs from "fs"
 import * as path from "path"
 import { DatabaseConnectionConfiguration } from "~/libs/sql"

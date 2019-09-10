@@ -1,6 +1,6 @@
 import { Command, flags } from "@oclif/command"
 import * as dedent from "dedent-js"
-import * as libs from "~/index"
+import * as libs from "~/libs"
 import { loadConfig } from "~/cli/utils"
 import { createConnection } from "~/libs/sql"
 
