@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "baseUrl": ".",
     "resolveJsonModule": true,
     "lib": ["es2015", "dom"],
-    "baseUrl": "src",
     "rootDirs": ["src", "tests", ""],
     "alwaysStrict": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationDir": "dist",
+    "declarationDir": "dist/lib",
     "target": "es5",
     "removeComments": true,
     "noImplicitReturns": true,
@@ -16,11 +16,11 @@
     "strictNullChecks": true,
     "stripInternal": true,
     "noFallthroughCasesInSwitch": true,
-    "outDir": "dist",
+    "outDir": "dist/lib",
     "noEmitOnError": true,
     "downlevelIteration": true,
     "paths": {
-      "@/*": ["src/*"]
+      "~/*": ["src/*"]
     }
   },
   "include": ["src", "tests"],

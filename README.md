@@ -8,8 +8,10 @@ CLI and Node.js Library for data modeling around SQL database schemas
 [![License](https://img.shields.io/npm/l/transql.svg)](https://github.com/yndc/transql.git/blob/master/package.json)
 
 <!-- toc -->
+* [TranSQL](#transql)
 * [Usage](#usage)
 * [Commands](#commands)
+* [Supported RDMBS Check List](#supported-rdmbs-check-list)
 <!-- tocstop -->
 # Usage
 <!-- usage -->

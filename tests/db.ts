@@ -41,23 +41,6 @@ export function loadConfig(
   }
 }
 
-export async function createMySqlConnection(config: TestConfig): Promise<knex> {
-  const mysqlConfig = config.mysql
-  const connection = knex({
-    client: "mysql",
-    connection: {
-      host: mysqlConfig.host,
-      port: mysqlConfig.port,
-      user: mysqlConfig.user,
-      password: mysqlConfig.password,
-      multipleStatements: true
-    }
-  })
-  if ((await connection.raw("SELECT 1"))[0][0][1] !== 1)
-    throw "Failed to initialize SQL connection!"
-  return connection
-}
-
 export async function createMySqlDatabase(
   config: TestConfig,
   connection: knex,

@@ -6,7 +6,7 @@
  */
 
 import * as knex from "knex"
-import { mapAsync, mapObject, cleanObject } from "utils"
+import { mapAsync, mapObject, cleanObject } from "~/utils"
 import {
   SqlColumn,
   SqlReference,
@@ -14,8 +14,8 @@ import {
   SqlTable,
   SqlKeyType,
   SqlDatabaseSchema
-} from "sql"
-import { MySqlColumnDescription } from "sql/mysql"
+} from "~/sql"
+import { MySqlColumnDescription } from "~/sql/mysql"
 import { JsonSchema } from "json-schema"
 
 const SQLSelectTableColumns = `COLUMN_NAME as name,
@@ -31,23 +31,44 @@ const SQLSelectTableColumns = `COLUMN_NAME as name,
  * Retrieve the list of tables within a database
  * @param options
  */
-export async function getTableList(options: {
+export async function showDatabases(options: {
+  connection: knex
+}): Promise<string[]> {
+  const { connection } = options
+  const exclusions = [
+    "sys",
+    "mysql",
+    "information_schema",
+    "performance_schema"
+  ]
+  return (await connection.raw(
+    `SELECT DISTINCT TABLE_SCHEMA as db FROM INFORMATION_SCHEMA.TABLES;`
+  ))[0]
+    .map((x: any) => x.db)
+    .filter(x => !exclusions.includes(x))
+}
+
+/**
+ * Retrieve the list of tables within a database
+ * @param options
+ */
+export async function showTables(options: {
   connection: knex
   database: string
 }): Promise<string[]> {
   const { connection, database } = options
   return (await connection.raw(
-    `SELECT TABLE_NAME AS tables
+    `SELECT TABLE_NAME AS 'table'
       FROM INFORMATION_SCHEMA.TABLES 
       WHERE TABLE_SCHEMA = '${database}';`
-  ))[0].map((x: any) => x.tables)
+  ))[0].map((x: any) => x.table)
 }
 
 /**
  * Get a list of intermediate table names from a database
  * @param options
  */
-export async function getIntermediateTables(options: {
+export async function showIntermediateTables(options: {
   connection: knex
   database: string
 }): Promise<string[]> {
@@ -150,7 +171,7 @@ export async function isIntermediateTable(options: {
   table: string
 }): Promise<boolean> {
   const { table } = options
-  const intermediateTables = await getIntermediateTables(options)
+  const intermediateTables = await showIntermediateTables(options)
   return intermediateTables.includes(table)
 }
 
@@ -185,7 +206,7 @@ export async function getManyToManyRelationships(options: {
   connection: knex
   database: string
 }): Promise<SqlManyToManyRelationship[]> {
-  const intermediateTables = await getIntermediateTables(options)
+  const intermediateTables = await showIntermediateTables(options)
   if (intermediateTables.length && intermediateTables.length >= 0) {
     return await mapAsync<string, SqlManyToManyRelationship>(
       intermediateTables,

@@ -8,7 +8,7 @@
  * License  : MIT
  */
 
-import { combineSchemas } from "json-schema/transformers"
+import { combineSchemas } from "~/json-schema/transformers"
 import { deepRecursiveSort, writeResult } from "../utils"
 import {
   allTypesCombined,

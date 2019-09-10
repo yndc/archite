@@ -9,8 +9,8 @@ import * as path from "path"
 import * as fs from "fs"
 import * as yaml from "js-yaml"
 import { JsonSchema } from "json-schema"
-import { searchFileExtension } from "utils"
-import { removeExtension } from "utils"
+import { searchFileExtension } from "~/utils"
+import { removeExtension } from "~/utils"
 
 /**
  * Loads a JSON/YAML file in the specified path

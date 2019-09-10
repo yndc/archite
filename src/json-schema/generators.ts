@@ -7,9 +7,9 @@
 
 import * as pluralize from "pluralize"
 import { JsonSchema, JsonSchemaVersion } from "json-schema"
-import { SqlReference, SqlTable } from "sql"
-import { SqlDatabaseSchema } from "sql"
-import { generateFullId } from "utils"
+import { SqlReference, SqlTable } from "~/sql"
+import { SqlDatabaseSchema } from "~/sql"
+import { generateFullId } from "~/utils"
 
 /**
  * Generate a compound JSON schema

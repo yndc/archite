@@ -17,7 +17,7 @@ import {
   getExtension,
   generateFullId,
   generateRelativeReference
-} from "utils"
+} from "~/utils"
 
 /**
  * Combine a list of schemas into one compound schema

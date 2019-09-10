@@ -7,19 +7,19 @@ import {
   TestConfig,
   loadConfig,
   createMySqlDatabase,
-  destroyMySqlDatabase,
-  createMySqlConnection
+  destroyMySqlDatabase
 } from "../db"
 import * as knex from "knex"
 import {
   parseTable,
   parseDatabase,
   getDatabaseReferences,
-  getIntermediateTables,
+  showIntermediateTables,
   getManyToManyRelationships,
-  getTableList,
+  showTables,
   getTableReferences
-} from "sql/mysql/connection-parser"
+} from "~/sql/mysql/connection-parser"
+import { createConnection } from "~/sql"
 import { allTypes, northwind } from "../fixtures/models"
 import { sortComparer, normalizeObject, deepRecursiveSort } from "../utils"
 
@@ -30,7 +30,7 @@ describe("mysql connection parser", () => {
   let northwindDbName: string
   beforeAll(async () => {
     config = loadConfig()
-    connection = await createMySqlConnection(config)
+    connection = await createConnection("mysql", config.mysql)
     typesDbName = await createMySqlDatabase(config, connection, "all_types")
     northwindDbName = await createMySqlDatabase(config, connection, "northwind")
   })
@@ -42,7 +42,7 @@ describe("mysql connection parser", () => {
 
   test("getTableList all_types", async () => {
     const expected_1 = ["all_types_table"]
-    const actual_1 = await getTableList({
+    const actual_1 = await showTables({
       connection,
       database: typesDbName
     })
@@ -73,7 +73,7 @@ describe("mysql connection parser", () => {
       "supplier"
     ]
 
-    const actual_1 = await getTableList({
+    const actual_1 = await showTables({
       connection,
       database: northwindDbName
     })
@@ -378,7 +378,7 @@ describe("mysql connection parser", () => {
 
   test("getIntermediateTables all_types", async () => {
     const expected_1 = []
-    const actual_1 = await getIntermediateTables({
+    const actual_1 = await showIntermediateTables({
       connection,
       database: typesDbName
     })
@@ -387,7 +387,7 @@ describe("mysql connection parser", () => {
 
   test("getIntermediateTables northwind", async () => {
     const expected_1 = ["employee_privilege"]
-    const actual_1 = await getIntermediateTables({
+    const actual_1 = await showIntermediateTables({
       connection,
       database: northwindDbName
     })
