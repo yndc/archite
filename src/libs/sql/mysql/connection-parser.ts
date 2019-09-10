@@ -6,7 +6,7 @@
  */
 
 import * as knex from "knex"
-import { mapAsync, mapObject, cleanObject } from "~/utils"
+import { mapAsync, mapObject, cleanObject } from "~/libs/utils"
 import {
   SqlColumn,
   SqlReference,
@@ -14,8 +14,8 @@ import {
   SqlTable,
   SqlKeyType,
   SqlDatabaseSchema
-} from "~/sql"
-import { MySqlColumnDescription } from "~/sql/mysql"
+} from "~/libs/sql"
+import { MySqlColumnDescription } from "~/libs/sql/mysql"
 import { JsonSchema } from "json-schema"
 
 const SQLSelectTableColumns = `COLUMN_NAME as name,

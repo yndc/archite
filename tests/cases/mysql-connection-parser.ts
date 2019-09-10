@@ -18,8 +18,8 @@ import {
   getManyToManyRelationships,
   showTables,
   getTableReferences
-} from "~/sql/mysql/connection-parser"
-import { createConnection } from "~/sql"
+} from "~/libs/sql/mysql/connection-parser"
+import { createConnection } from "~/libs/sql"
 import { allTypes, northwind } from "../fixtures/models"
 import { sortComparer, normalizeObject, deepRecursiveSort } from "../utils"
 

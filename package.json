@@ -28,7 +28,7 @@
     "typescript": "^3.3"
   },
   "license": "GPL-3.0-or-later",
-  "main": "dist/lib/index.js",
+  "main": "dist/libs/index.js",
   "prettier": {
     "semi": false
   },
@@ -39,7 +39,7 @@
     "transql": "./dist/run"
   },
   "oclif": {
-    "commands": "./dist/commands",
+    "commands": "./dist/cli/commands",
     "bin": "oclif-test",
     "plugins": [
       "@oclif/plugin-help"
@@ -47,7 +47,9 @@
   },
   "repository": "https://github.com/yndc/transql.git",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && tspath -f",
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "rm -rf dist && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && tspath -f",
     "test": "jest -i"
   }
 }

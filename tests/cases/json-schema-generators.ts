@@ -6,7 +6,7 @@
 import {
   generateFromSqlTableSchema,
   generateFromSqlDatabaseSchema
-} from "~/json-schema/generators"
+} from "~/libs/json-schema/generators"
 import { deepRecursiveSort } from "../utils"
 import {
   allTypes as allTypesModel,
@@ -16,7 +16,7 @@ import {
   allTypesCombined as allTypesJsonSchema,
   northwindCombined as northwindJsonSchema
 } from "../fixtures/json-schemas"
-import { SqlTable, SqlDatabaseSchema } from "~/sql"
+import { SqlTable, SqlDatabaseSchema } from "~/libs/sql"
 
 describe("json schema generator from sql schema", () => {
   test("all_types_table table", async () => {

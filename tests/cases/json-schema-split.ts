@@ -8,7 +8,7 @@
  * License  : MIT
  */
 
-import { splitSchema } from "~/json-schema/transformers"
+import { splitSchema } from "~/libs/json-schema/transformers"
 import { deepRecursiveSort, writeResult } from "../utils"
 import {
   allTypesCombined,

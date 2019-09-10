@@ -1,8 +1,8 @@
 import { Command, flags } from "@oclif/command"
 import * as dedent from "dedent-js"
-import * as lib from "~/index"
-import { loadConfig } from "~/cli"
-import { createConnection } from "~/sql"
+import * as libs from "~/index"
+import { loadConfig } from "~/cli/utils"
+import { createConnection } from "~/libs/sql"
 
 export default class MySql extends Command {
   static description = "MySQL commands control"
@@ -24,7 +24,7 @@ export default class MySql extends Command {
     const config = loadConfig(args, flags)
     const connection = await createConnection("mysql", config)
     this.log(
-      (await lib.showDatabases({
+      (await libs.showDatabases({
         connection
       })).join(", ")
     )

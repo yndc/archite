@@ -8,8 +8,8 @@
 import * as fs from "fs"
 import * as path from "path"
 import * as yaml from "js-yaml"
-import { JsonSchemaPackage, JsonSchema } from "~/json-schema"
-import { getRelativeId, getExtension, removeExtension } from "~/utils"
+import { JsonSchemaPackage, JsonSchema } from "~/libs/json-schema"
+import { getRelativeId, getExtension, removeExtension } from "~/libs/utils"
 
 /**
  * Export the given schemas as multiple, single schema files

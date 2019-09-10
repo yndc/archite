@@ -8,7 +8,7 @@
 export * from "./mysql"
 
 import * as knex from "knex"
-import { JsonSchema } from "~/json-schema"
+import { JsonSchema } from "~/libs/json-schema"
 
 /**
  * Supported database drivers

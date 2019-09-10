@@ -5,10 +5,10 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-import * as transql from "./index"
+import * as transql from "../index"
 import * as fs from "fs"
 import * as path from "path"
-import { DatabaseConnectionConfiguration } from "~/sql"
+import { DatabaseConnectionConfiguration } from "~/libs/sql"
 export { run } from "@oclif/command"
 
 /**
