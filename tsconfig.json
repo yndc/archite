@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "resolveJsonModule": true,
     "lib": ["es2015", "dom"],
-    "rootDirs": ["src", "tests", ""],
+    "rootDirs": ["./src"],
     "alwaysStrict": true,
     "sourceMap": true,
     "declaration": true,
