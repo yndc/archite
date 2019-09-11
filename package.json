@@ -47,7 +47,7 @@
   },
   "repository": "https://github.com/yndc/transql.git",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && tspath -f",
+    "build": "rm -rf ./dist && tsc -p tsconfig.build.json && tspath -f",
     "test": "jest -i"
   }
 }
