@@ -1,12 +1,9 @@
 {
-  "name": "transql",
-  "description": "CLI and Node.js Library for data modeling around SQL database schemas",
+  "name": "sql-inspector",
+  "description": "Node.js library for inspecting SQL database schemas.",
   "version": "0.0.1",
   "author": "Jonathan Steven <yondercode@gmail.com>",
   "dependencies": {
-    "@oclif/command": "^1",
-    "@oclif/config": "^1",
-    "@oclif/plugin-help": "^2",
     "dedent-js": "^1.0.1",
     "js-yaml": "^3.13.1",
     "knex": "^0.19.3",
@@ -16,7 +13,6 @@
     "tslib": "^1"
   },
   "devDependencies": {
-    "@oclif/dev-cli": "^1",
     "@types/jest": "^24.0.18",
     "@types/node": "^10",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
@@ -24,7 +20,6 @@
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "globby": "^10",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
@@ -34,21 +29,11 @@
     "typescript": "^3.3"
   },
   "license": "GPL-3.0-or-later",
-  "main": "dist/lib/index.js",
+  "main": "dist/index.js",
   "files": [
     "/dist"
   ],
-  "bin": {
-    "transql": "./dist/run"
-  },
-  "oclif": {
-    "commands": "./dist/commands",
-    "bin": "oclif-test",
-    "plugins": [
-      "@oclif/plugin-help"
-    ]
-  },
-  "repository": "https://github.com/yndc/transql.git",
+  "repository": "https://github.com/yndc/sql-inspector.git",
   "scripts": {
     "build": "rm -rf ./dist && tsc -p tsconfig.build.json && tspath -f",
     "test": "yarn lint && jest -i",
