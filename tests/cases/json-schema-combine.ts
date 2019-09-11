@@ -9,7 +9,8 @@
  */
 
 import { combineSchemas } from "~/json-schema/transformers"
-import { deepRecursiveSort, writeResult } from "../utils"
+import { deepRecursiveSort } from "~/utils"
+import { writeResult } from "../utils"
 import {
   allTypesCombined,
   allTypesSplitted,

@@ -7,7 +7,7 @@ import {
   generateFromSqlTableSchema,
   generateFromSqlDatabaseSchema
 } from "~/json-schema/generators"
-import { deepRecursiveSort } from "../utils"
+import { deepRecursiveSort } from "~/utils"
 import {
   allTypes as allTypesModel,
   northwind as northwindModel

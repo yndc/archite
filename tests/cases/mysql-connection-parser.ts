@@ -21,7 +21,8 @@ import {
 } from "~/sql/mysql/connection-parser"
 import { createConnection } from "~/sql"
 import { allTypes, northwind } from "../fixtures/models"
-import { sortComparer, normalizeObject, deepRecursiveSort } from "../utils"
+import { sortComparer, deepRecursiveSort } from "~/utils"
+import { normalizeObject } from "../utils"
 
 describe("mysql connection parser", () => {
   let connection: knex
