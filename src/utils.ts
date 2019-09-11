@@ -5,17 +5,17 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-import * as path from "path"
-import * as url from "url"
-import * as fs from "fs"
-import { JsonSchema } from "json-schema"
+import * as path from 'path'
+import * as url from 'url'
+import * as fs from 'fs'
+import { JsonSchema } from '~/json-schema'
 
 /**
- * Maps over an object
+ * Maps over an object properties with a function
  * @param obj
  * @param fn
  */
-export function mapObject<T>(obj: object, fn: (key: string, value: any) => T) {
+export function mapObject<T1, T2>(obj: object, fn: (key: string, value: T2) => T1): T1[] {
   return Object.keys(obj).map(k => fn(k, obj[k]))
 }
 
@@ -27,7 +27,7 @@ export function mapObject<T>(obj: object, fn: (key: string, value: any) => T) {
  */
 export async function mapAsync<T, U>(
   array: T[],
-  callbackfn: (value: T, index: number, array: T[]) => Promise<U>
+  callbackfn: (value: T, index: number, array: T[]) => Promise<U>,
 ): Promise<U[]> {
   return Promise.all(array.map(callbackfn))
 }
@@ -40,7 +40,7 @@ export async function mapAsync<T, U>(
  */
 export async function forEachAsync<T>(
   array: T[],
-  callbackfn: (value: T, index: number, array: T[]) => Promise<boolean | void>
+  callbackfn: (value: T, index: number, array: T[]) => Promise<boolean | void>,
 ): Promise<void> {
   for (let i = 0; i < array.length; i++) {
     if ((await callbackfn(array[i], i, array)) === false) break
@@ -54,52 +54,52 @@ export async function forEachAsync<T>(
  */
 export async function filterAsync<T>(
   array: T[],
-  callbackfn: (value: T, index: number, array: T[]) => Promise<boolean>
+  callbackfn: (value: T, index: number, array: T[]) => Promise<boolean>,
 ): Promise<T[]> {
   const filterMap = await mapAsync(array, callbackfn)
   return array.filter((_v, index) => filterMap[index])
 }
 
 /**
+ * Get the first letter as uppercase
+ * @param str
+ */
+export function upperFirst(str: string): string {
+  return str.slice(0, 1).toUpperCase() + str.slice(1, str.length)
+}
+
+/**
  * Converts snake_case string to PascalCase
  * @param str
  */
-export function snakeToPascal(str: string) {
+export function snakeToPascal(str: string): string {
   return str
-    .split("_")
+    .split('_')
     .map(s =>
       upperFirst(
         s
-          .split("/")
+          .split('/')
           .map(upperFirst)
-          .join("/")
-      )
+          .join('/'),
+      ),
     )
-    .join("")
+    .join('')
 }
 
 /**
  * Converts snake_case string to camelCase
  * @param str
  */
-export function snakeToCamel(str: string) {
+export function snakeToCamel(str: string): string {
   return str
-    .split("_")
+    .split('_')
     .map(s =>
       s
-        .split("/")
+        .split('/')
         .map(upperFirst)
-        .join("/")
+        .join('/'),
     )
-    .join("")
-}
-
-/**
- * Get the first letter as uppercase
- * @param str
- */
-export function upperFirst(str: string) {
-  return str.slice(0, 1).toUpperCase() + str.slice(1, str.length)
+    .join('')
 }
 
 /**
@@ -107,10 +107,10 @@ export function upperFirst(str: string) {
  * @param str
  */
 export function removeExtension(str: string): string {
-  const splitted = str.split(".")
+  const splitted = str.split('.')
   if (splitted.length <= 1) return str
-  if (splitted[splitted.length - 1].includes("/")) return str
-  return splitted.slice(0, -1).join(".")
+  if (splitted[splitted.length - 1].includes('/')) return str
+  return splitted.slice(0, -1).join('.')
 }
 
 /**
@@ -118,9 +118,9 @@ export function removeExtension(str: string): string {
  * @param str
  */
 export function getExtension(str: string): string {
-  const splitted = str.split(".")
-  if (splitted.length <= 1) return ""
-  if (splitted[splitted.length - 1].includes("/")) return ""
+  const splitted = str.split('.')
+  if (splitted.length <= 1) return ''
+  if (splitted[splitted.length - 1].includes('/')) return ''
   return splitted[splitted.length - 1].toLowerCase()
 }
 
@@ -128,9 +128,8 @@ export function getExtension(str: string): string {
  * Get a Java-class-like type name from path/string
  * @param ref
  */
-export function generateTypeName(ref: string) {
-  if (!ref) return undefined
-  return snakeToPascal(path.basename(removeExtension(ref.replace(" ", ""))))
+export function generateTypeName(ref: string): string {
+  return snakeToPascal(path.basename(removeExtension(ref.replace(' ', ''))))
 }
 
 /**
@@ -141,17 +140,8 @@ export function generateTypeName(ref: string) {
  */
 export async function walk<T>(options: {
   dir: string
-  callback: (options: {
-    result?: T
-    filename: string
-    entityPath: string
-    type: "DIRECTORY" | "FILE"
-  }) => Promise<T>
-  filter?: (options: {
-    filename: string
-    entityPath: string
-    type: "DIRECTORY" | "FILE"
-  }) => boolean
+  callback: (options: { result?: T; filename: string; entityPath: string; type: 'DIRECTORY' | 'FILE' }) => Promise<T>
+  filter?: (options: { filename: string; entityPath: string; type: 'DIRECTORY' | 'FILE' }) => boolean
   filterDirectory?: boolean
   callbackDirectory?: boolean
   initialValue?: T
@@ -163,40 +153,39 @@ export async function walk<T>(options: {
     dir,
     callback,
     initialValue,
-    filter = () => true,
+    filter = (): boolean => true,
     filterDirectory = false,
     callbackDirectory = false,
     depth = -1,
     max = -1,
-    concurrent = true
+    concurrent = true,
   } = options
   if (depth === 0 || max === 0) return undefined
   let counter = max
   let result = initialValue
   const entities = fs.readdirSync(dir)
-  const worker = async (entity: string) => {
+  const worker = async (entity: string): Promise<void> => {
     const entityPath = path.resolve(dir, entity)
-    const type = fs.statSync(entityPath).isDirectory() ? "DIRECTORY" : "FILE"
-    const executeCallback = async () => {
+    const type = fs.statSync(entityPath).isDirectory() ? 'DIRECTORY' : 'FILE'
+    const executeCallback = async (): Promise<void> => {
       result = await callback({
         result,
         filename: entity,
         entityPath,
-        type
+        type,
       })
       counter--
     }
     if (counter === 0) return
-    if (type === "DIRECTORY") {
-      if (filterDirectory && !filter({ filename: entity, entityPath, type }))
-        return
+    if (type === 'DIRECTORY') {
+      if (filterDirectory && !filter({ filename: entity, entityPath, type })) return
       if (callbackDirectory) await executeCallback()
       result = await walk({
         ...options,
         initialValue: result,
         dir: entityPath,
         depth: depth - 1,
-        max: counter
+        max: counter,
       })
     } else {
       if (!filter({ filename: entity, entityPath, type })) return
@@ -212,42 +201,37 @@ export async function walk<T>(options: {
  * Checks if a directory's all file contents is deep equal with another
  * @param options
  */
-export async function isDirDeepEqual(options: {
-  /**
-   * Source dir path to check for deep equality
-   */
-  sourceDir: string
-  /**
-   * Target dir path to check for deep equality
-   */
-  targetDir: string
-  /**
-   * If true, method will return false when a file in targetDir doesn't exists in sourceDir
-   * @default true
-   */
-  checkExists?: boolean
-  /**
-   * If true, method will return false when a file in sourceDir doesn't exists in targetDir
-   * @default true
-   */
-  checkExcess?: boolean
-}): Promise<boolean> {
-  const {
-    sourceDir,
-    targetDir,
-    checkExists = true,
-    checkExcess = true
-  } = options
-  // Begin walking through the target dir
-  await walk<void>({
-    dir: targetDir,
-    callback: async ({ filename }) => {
-      console.log(filename)
-      console.log(path)
-    }
-  })
-  return false
-}
+// export async function isDirDeepEqual(options: {
+//   /**
+//    * Source dir path to check for deep equality
+//    */
+//   sourceDir: string
+//   /**
+//    * Target dir path to check for deep equality
+//    */
+//   targetDir: string
+//   /**
+//    * If true, method will return false when a file in targetDir doesn't exists in sourceDir
+//    * @default true
+//    */
+//   checkExists?: boolean
+//   /**
+//    * If true, method will return false when a file in sourceDir doesn't exists in targetDir
+//    * @default true
+//    */
+//   checkExcess?: boolean
+// }): Promise<boolean> {
+//   const { sourceDir, targetDir, checkExists = true, checkExcess = true } = options
+//   // Begin walking through the target dir
+//   await walk<void>({
+//     dir: targetDir,
+//     callback: async ({ filename }) => {
+//       console.log(filename)
+//       console.log(path)
+//     },
+//   })
+//   return false
+// }
 
 /**
  * Search the correct extensions of the given path
@@ -255,15 +239,13 @@ export async function isDirDeepEqual(options: {
  * @param filePath
  */
 export async function searchFileExtension(filePath: string): Promise<string[]> {
-  return new Promise(resolve => {
+  return new Promise((resolve): void => {
     const dirPath = path.dirname(filePath)
     const fileName = removeExtension(path.basename(filePath))
     fs.exists(dirPath, exists => {
       if (exists === false) resolve([])
       fs.readdir(dirPath, (_err, files) => {
-        resolve(
-          files.filter(x => removeExtension(x) === fileName).map(getExtension)
-        )
+        resolve(files.filter(x => removeExtension(x) === fileName).map(getExtension))
       })
     })
   })
@@ -274,7 +256,7 @@ export async function searchFileExtension(filePath: string): Promise<string[]> {
  * @param value
  */
 export function clean<T>(value: T): T | undefined {
-  if (typeof value === "object" && value === null) return undefined
+  if (typeof value === 'object' && value === null) return undefined
   if (value === null) return undefined
   return value as T
 }
@@ -283,14 +265,13 @@ export function clean<T>(value: T): T | undefined {
  * Same like clean<T> but this is for objects (deep)
  * @param value
  */
-export function cleanObject<T extends object>(
-  value: T,
-  deleteUndefined: boolean = false
-): T {
-  for (let k in value) {
+export function cleanObject<T extends object>(value: T, deleteUndefined = false): T {
+  for (const k in value) {
     if (value.hasOwnProperty(k)) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       value[k] = clean(value[k]) as any
-      if (typeof value[k] === "object") value[k] = cleanObject(value[k] as any)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (typeof value[k] === 'object') value[k] = cleanObject(value[k] as any)
       else if (deleteUndefined && value[k] === undefined) delete value[k]
     }
   }
@@ -303,8 +284,8 @@ export function cleanObject<T extends object>(
  * @param param1
  */
 export function omit<T extends object>(original: T, omits: string[]): T {
-  let result = {}
-  for (var key in original) {
+  const result = {}
+  for (const key in original) {
     if (omits.includes(key)) continue
     result[key as string] = original[key]
   }
@@ -334,18 +315,10 @@ export function isSimple(schema: JsonSchema): boolean {
  * @param rootId
  * @param id
  */
-export function generateFullId(
-  rootId: string = "",
-  relativeId: string,
-  extension: string = ""
-): string {
-  const addExtension = (name: string) =>
-    name + (extension.charAt(0) === "." ? extension : `.${extension}`)
-  let fullId = rootId.includes("://")
-    ? url.resolve(
-        rootId.charAt(rootId.length - 1) === "/" ? rootId : rootId + "/",
-        relativeId
-      )
+export function generateFullId(rootId = '', relativeId: string, extension = ''): string {
+  const addExtension = (name: string): string => name + (extension.charAt(0) === '.' ? extension : `.${extension}`)
+  const fullId = rootId.includes('://')
+    ? url.resolve(rootId.charAt(rootId.length - 1) === '/' ? rootId : rootId + '/', relativeId)
     : path.join(rootId, relativeId)
   return extension ? addExtension(fullId) : fullId
 }
@@ -358,7 +331,7 @@ export function generateFullId(
  */
 export function getBaseId(fullId: string, withExt?: boolean): string {
   const baseIdWithExtension = path.basename(fullId)
-  return withExt ? baseIdWithExtension : baseIdWithExtension.split(".")[0]
+  return withExt ? baseIdWithExtension : baseIdWithExtension.split('.')[0]
 }
 
 /**
@@ -369,7 +342,7 @@ export function getBaseId(fullId: string, withExt?: boolean): string {
  */
 export function getDirId(fullId: string): string {
   const baseId = getBaseId(fullId, true)
-  return fullId.replace(baseId, "")
+  return fullId.replace(baseId, '')
 }
 
 /**
@@ -379,17 +352,13 @@ export function getDirId(fullId: string): string {
  * @param rootId
  * @param id
  */
-export function getRelativeId(
-  fullId: string,
-  rootId: string,
-  withExt?: boolean
-): string {
-  const relativeIdWithExt = ((s: string) => {
-    s = s.replace(rootId, "")
-    if (s.charAt(0) === "/") return s.slice(1)
+export function getRelativeId(fullId: string, rootId: string, withExt?: boolean): string {
+  const relativeIdWithExt = ((s: string): string => {
+    s = s.replace(rootId, '')
+    if (s.charAt(0) === '/') return s.slice(1)
     else return s
   })(fullId)
-  return withExt ? relativeIdWithExt : relativeIdWithExt.split(".")[0]
+  return withExt ? relativeIdWithExt : relativeIdWithExt.split('.')[0]
 }
 
 /**
@@ -398,11 +367,7 @@ export function getRelativeId(
  * @param relativeReference
  * @param rootId
  */
-export function generateRelativeResolver(
-  sourceFullId: string,
-  relativeReference: string,
-  rootId: string = ""
-) {
+export function generateRelativeResolver(sourceFullId: string, relativeReference: string, rootId = ''): string {
   const sourceRelativeId = getRelativeId(sourceFullId, rootId)
   const resolvedRelativeId = path.join(sourceRelativeId, relativeReference)
   return generateFullId(resolvedRelativeId, rootId)
@@ -414,19 +379,14 @@ export function generateRelativeResolver(
  * @param destinationFullId
  * @param rootId
  */
-export function generateRelativeReference(
-  sourceFullId: string,
-  destinationFullId: string,
-  rootId: string = ""
-) {
+export function generateRelativeReference(sourceFullId: string, destinationFullId: string, rootId = ''): string {
   const sourceRelativeId = getRelativeId(sourceFullId, rootId)
   const destinationRelativeId = getRelativeId(destinationFullId, rootId, true)
   let resolvedReference = path.relative(
     path.dirname(path.resolve(sourceRelativeId)),
-    path.resolve(destinationRelativeId)
+    path.resolve(destinationRelativeId),
   )
-  if (resolvedReference.charAt(0) !== ".")
-    resolvedReference = "./" + resolvedReference
+  if (resolvedReference.charAt(0) !== '.') resolvedReference = './' + resolvedReference
   return resolvedReference
 }
 
@@ -435,19 +395,16 @@ export function generateRelativeReference(
  * @param schema
  * @param converter
  */
-export function convertRefs(
-  schema: JsonSchema,
-  converter: (ref: string, fullId: string) => string
-): JsonSchema {
-  let copy: JsonSchema = { ...schema }
+export function convertRefs(schema: JsonSchema, converter: (ref: string, fullId: string) => string): JsonSchema {
+  const copy: JsonSchema = { ...schema }
   const fullId = schema.$id as string
-  const walk = (obj: object) => {
-    let key: string,
-      has = Object.prototype.hasOwnProperty.bind(obj)
+  const walk = (obj: object): void => {
+    let key: string
+    const has = Object.prototype.hasOwnProperty.bind(obj)
     for (key in obj)
       if (has(key)) {
-        if (typeof obj[key] === "object") walk(obj[key])
-        else if (key === "$ref") obj[key] = converter(obj[key], fullId)
+        if (typeof obj[key] === 'object') walk(obj[key])
+        else if (key === '$ref') obj[key] = converter(obj[key], fullId)
       }
   }
   walk(copy as object)
@@ -459,11 +416,11 @@ export function convertRefs(
  * @param value
  * @param steps
  */
-export function objectWalk(value: any, steps: string[]): any | undefined {
+export function objectWalk(value: object, steps: string[]): object | undefined {
   if (steps.length === 0) return value
   const [step, ...rest] = steps
-  if (step === "") return objectWalk(value, rest)
-  if (typeof value === "object" && value.hasOwnProperty(step)) {
+  if (step === '') return objectWalk(value, rest)
+  if (typeof value === 'object' && value.hasOwnProperty(step)) {
     return objectWalk(value[step], rest)
   }
   return undefined
@@ -624,29 +581,29 @@ export function combineSchemas(options: {
    */
   id?: string
 }): JsonSchema {
-  const { schemas, id = "" } = options
-  const converter = (ref: string, sourceFullId: string) => {
+  const { schemas, id = '' } = options
+  const converter = (ref: string, sourceFullId: string): string => {
     const fullRef = generateRelativeResolver(getDirId(sourceFullId), ref, id)
     const relativeRef = getRelativeId(fullRef, id, false)
-    return `#/${path.join(`definitions`, relativeRef)}`
+    return `#/${path.join('definitions', relativeRef)}`
   }
   return {
     ...(id ? { $id: id } : {}),
-    $schema: "http://json-schema.org/draft-07/schema#",
+    $schema: 'http://json-schema.org/draft-07/schema#',
     definitions: {
       ...schemas.reduce(
         (result, schema) => {
-          const { $id, ...localRefSchema } = convertRefs(schema, converter)
+          const { $id: _, ...localRefSchema } = convertRefs(schema, converter)
           return {
             ...result,
             [removeExtension(getBaseId(schema.$id as string))]: {
-              ...(localRefSchema as JsonSchema)
-            }
+              ...(localRefSchema as JsonSchema),
+            },
           }
         },
-        {} as { [key: string]: JsonSchema }
-      )
-    }
+        {} as { [key: string]: JsonSchema },
+      ),
+    },
   }
 }
 
@@ -666,30 +623,25 @@ export function splitSchema(options: {
    */
   extension?: string
 }): JsonSchema[] {
-  const { compoundSchema, extension = "json" } = options
-  const rootId = removeExtension(compoundSchema.$id || "")
-  const usedExtension =
-    extension.replace(".", "") || getExtension(compoundSchema.$id || "")
+  const { compoundSchema, extension = 'json' } = options
+  const rootId = removeExtension(compoundSchema.$id || '')
+  const usedExtension = extension.replace('.', '') || getExtension(compoundSchema.$id || '')
   let result: JsonSchema[] = []
   if (compoundSchema.definitions) {
     const definitions = compoundSchema.definitions
     result = Object.keys(compoundSchema.definitions).map(key => {
       const sourceSchema = definitions[key] as JsonSchema
       const fullId = generateFullId(key, rootId, usedExtension)
-      const converter = (pointerRef: string) => {
+      const converter = (pointerRef: string): string => {
         // TODO: use proper path resolver
         const destinationRelativeId =
-          pointerRef.replace("#/definitions/", "./") +
-          (usedExtension ? `.${usedExtension}` : "")
+          pointerRef.replace('#/definitions/', './') + (usedExtension ? `.${usedExtension}` : '')
         return generateRelativeReference(fullId, destinationRelativeId, rootId)
       }
-      const { $id, ...modifiedRefsSchema } = convertRefs(
-        { ...sourceSchema, $id: fullId },
-        converter
-      )
+      const { $id: _, ...modifiedRefsSchema } = convertRefs({ ...sourceSchema, $id: fullId }, converter)
       return {
         ...modifiedRefsSchema,
-        $id: fullId
+        $id: fullId,
       }
     })
   }
@@ -701,11 +653,11 @@ export function splitSchema(options: {
  * @param value
  */
 export function sortComparer(value: object): string {
-  let res = ""
-  for (let k in value) {
+  let res = ''
+  for (const k in value) {
     if (value.hasOwnProperty(k)) {
       if (!value[k]) break
-      if (typeof value[k] === "object") res += sortComparer(value[k])
+      if (typeof value[k] === 'object') res += sortComparer(value[k])
       else if (Array.isArray(value[k])) res += JSON.stringify(value[k].sort())
       else res += value[k]
     }
@@ -717,29 +669,27 @@ export function sortComparer(value: object): string {
  * Recursively sort all arrays if found
  * @param value[k]
  */
-export function deepRecursiveSort<T>(value: T): T {
+export function deepRecursiveSort<T extends object>(value: T): T {
   if (!value) return value
-  if (typeof value === "object") {
-    for (let k in value) {
-      if ((value as any).hasOwnProperty(k)) {
-        // If an element of o is an array
-        if (Array.isArray(value[k])) {
-          if (typeof value[k][0] === "object") {
-            // If it's an array of objects
-            // Sort all arrays inside the object first
-            // Then sort the result
-            value[k] = (value[k] as any).map(x => deepRecursiveSort(x)) as any
-            value[k] = (value[k] as any).sort((a, b) => {
-              return sortComparer(a).localeCompare(sortComparer(b))
-            })
-          } else if (Array.isArray(value[k][0])) {
-            value[k] = (value[k] as any).map(x => deepRecursiveSort(x)) as any
-          } else {
-            value[k] = (value[k] as any).sort()
-          }
-        } else if (typeof value[k] === "object")
-          value[k] = deepRecursiveSort(value[k] as any)
-      }
+  for (const k in value) {
+    if (value.hasOwnProperty(k)) {
+      // If an element of o is an array
+      if (Array.isArray(value[k])) {
+        if (typeof value[k][0] === 'object') {
+          // If it's an array of objects
+          // Sort all arrays inside the object first
+          // Then sort the result
+          /* eslint-disable @typescript-eslint/no-explicit-any */
+          value[k] = (value[k] as any).map(x => deepRecursiveSort(x)) as any
+          value[k] = (value[k] as any).sort((a, b) => {
+            return sortComparer(a).localeCompare(sortComparer(b))
+          })
+        } else if (Array.isArray(value[k][0])) {
+          value[k] = (value[k] as any).map(x => deepRecursiveSort(x)) as any
+        } else {
+          value[k] = (value[k] as any).sort()
+        }
+      } else if (typeof value[k] === 'object') value[k] = deepRecursiveSort(value[k] as any)
     }
   }
   return value

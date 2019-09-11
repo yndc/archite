@@ -8,9 +8,9 @@
 /**
  * Exports the Json Schema library
  */
-export * from "./json-schema"
+export * from './json-schema'
 
 /**
  * Exports the SQL library
  */
-export * from "./sql"
+export * from './sql'

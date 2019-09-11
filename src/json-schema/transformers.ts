@@ -5,8 +5,8 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-import * as path from "path"
-import { JsonSchema, JsonSchemaPackage } from "json-schema"
+import * as path from 'path'
+import { JsonSchema, JsonSchemaPackage } from '~/json-schema'
 import {
   generateRelativeResolver,
   getDirId,
@@ -16,8 +16,8 @@ import {
   getBaseId,
   getExtension,
   generateFullId,
-  generateRelativeReference
-} from "~/utils"
+  generateRelativeReference,
+} from '~/utils'
 
 /**
  * Combine a list of schemas into one compound schema
@@ -32,39 +32,32 @@ export function combineSchemas(
    * Resulting file extension
    * @default "json"
    */
-  extension: string = "json"
+  extension = 'json',
 ): JsonSchema {
   const { schemas, rootId } = pkg
-  const usedExtension = extension.replace(".", "") || getExtension(rootId)
-  const converter = (ref: string, sourceFullId: string) => {
-    const fullRef = generateRelativeResolver(
-      getDirId(sourceFullId),
-      ref,
-      rootId
-    )
+  const usedExtension = extension.replace('.', '') || getExtension(rootId)
+  const converter = (ref: string, sourceFullId: string): string => {
+    const fullRef = generateRelativeResolver(getDirId(sourceFullId), ref, rootId)
     const relativeRef = getRelativeId(fullRef, rootId, false)
-    return `#/${path.join(`definitions`, relativeRef)}`
+    return `#/${path.join('definitions', relativeRef)}`
   }
   return {
-    $id: removeExtension(rootId) + "." + usedExtension,
-    $schema: "http://json-schema.org/draft-07/schema#",
+    $id: removeExtension(rootId) + '.' + usedExtension,
+    $schema: 'http://json-schema.org/draft-07/schema#',
     definitions: {
       ...schemas.reduce(
         (result, schema) => {
-          const { $id, $schema, ...localRefSchema } = convertRefs(
-            schema,
-            converter
-          )
+          const { $id: _, $schema: __, ...localRefSchema } = convertRefs(schema, converter)
           return {
             ...result,
             [removeExtension(getBaseId(schema.$id as string))]: {
-              ...(localRefSchema as JsonSchema)
-            }
+              ...(localRefSchema as JsonSchema),
+            },
           }
         },
-        {} as { [key: string]: JsonSchema }
-      )
-    }
+        {} as { [key: string]: JsonSchema },
+      ),
+    },
   }
 }
 
@@ -83,37 +76,31 @@ export function splitSchema(
    * You can set for empty string ("") to have no extension.
    * @default "json"
    */
-  extension: string = ""
+  extension = '',
 ): JsonSchemaPackage {
-  if (!schema.definitions)
-    throw "The given Json Schema isn't a compound schema."
-  const rootId = removeExtension(schema.$id || "")
-  const usedExtension =
-    extension.replace(".", "") || getExtension(schema.$id || "")
+  if (!schema.definitions) throw "The given Json Schema isn't a compound schema."
+  const rootId = removeExtension(schema.$id || '')
+  const usedExtension = extension.replace('.', '') || getExtension(schema.$id || '')
   let schemas: JsonSchema[] = []
   const definitions = schema.definitions
   schemas = Object.keys(schema.definitions).map(key => {
     const sourceSchema = definitions[key] as JsonSchema
     const fullId = generateFullId(rootId, key, usedExtension)
-    const converter = (pointerRef: string) => {
+    const converter = (pointerRef: string): string => {
       // TODO: use proper path resolver
       const destinationRelativeId =
-        pointerRef.replace("#/definitions/", "./") +
-        (usedExtension ? `.${usedExtension}` : "")
+        pointerRef.replace('#/definitions/', './') + (usedExtension ? `.${usedExtension}` : '')
       return generateRelativeReference(fullId, destinationRelativeId, rootId)
     }
-    const { $id, ...modifiedRefsSchema } = convertRefs(
-      { ...sourceSchema, $id: fullId },
-      converter
-    )
+    const { $id: _, ...modifiedRefsSchema } = convertRefs({ ...sourceSchema, $id: fullId }, converter)
     return {
       ...modifiedRefsSchema,
       $id: fullId,
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $schema: 'http://json-schema.org/draft-07/schema#',
     }
   })
   return {
     rootId,
-    schemas
+    schemas,
   }
 }

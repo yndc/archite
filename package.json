@@ -19,8 +19,14 @@
     "@oclif/dev-cli": "^1",
     "@types/jest": "^24.0.18",
     "@types/node": "^10",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "globby": "^10",
     "jest": "^24.9.0",
+    "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.4",
     "ts-node": "^8",
@@ -29,9 +35,6 @@
   },
   "license": "GPL-3.0-or-later",
   "main": "dist/lib/index.js",
-  "prettier": {
-    "semi": false
-  },
   "files": [
     "/dist"
   ],
@@ -48,6 +51,7 @@
   "repository": "https://github.com/yndc/transql.git",
   "scripts": {
     "build": "rm -rf ./dist && tsc -p tsconfig.build.json && tspath -f",
-    "test": "jest -i"
+    "test": "yarn lint && jest -i",
+    "lint": "./node_modules/.bin/eslint --ext .ts ./src/."
   }
 }

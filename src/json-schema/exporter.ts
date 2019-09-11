@@ -5,11 +5,11 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-import * as fs from "fs"
-import * as path from "path"
-import * as yaml from "js-yaml"
-import { JsonSchemaPackage, JsonSchema } from "~/json-schema"
-import { getRelativeId, getExtension, removeExtension } from "~/utils"
+import * as fs from 'fs'
+import * as path from 'path'
+import * as yaml from 'js-yaml'
+import { JsonSchemaPackage, JsonSchema } from '~/json-schema'
+import { getRelativeId, getExtension, removeExtension } from '~/utils'
 
 /**
  * Export the given schemas as multiple, single schema files
@@ -33,27 +33,26 @@ export function exportSimpleSchemas(options: {
    * default: everything after rootId is treated like a file system path
    */
   pathTransformer?: (id: string) => string
-}) {
-  const { schemaPackage, outDir, defaultExtension = "json" } = options
+}): void {
+  const { schemaPackage, outDir, defaultExtension = 'json' } = options
   const { schemas, rootId: rootId } = schemaPackage
   const {
-    pathTransformer = (id: string) => {
+    pathTransformer = (id: string): string => {
       const extension = getExtension(id) || defaultExtension
       const relativeId = getRelativeId(id, rootId)
-      return removeExtension(path.join(outDir, relativeId)) + "." + extension
-    }
+      return removeExtension(path.join(outDir, relativeId)) + '.' + extension
+    },
   } = options
   schemas.forEach(schema => {
     if (schema.$id === undefined) return
     const extension = getExtension(schema.$id) || defaultExtension
     const filePath = pathTransformer(schema.$id)
-    const write = (content: string) => {
+    const write = (content: string): void => {
       fs.mkdirSync(outDir, { recursive: true })
       fs.writeFileSync(filePath, content)
     }
-    if (extension === "yaml" || extension === "yml")
-      write(yaml.safeDump(schema))
-    else write(JSON.stringify(schema, null, "\t"))
+    if (extension === 'yaml' || extension === 'yml') write(yaml.safeDump(schema))
+    else write(JSON.stringify(schema, null, '\t'))
   })
 }
 
@@ -74,19 +73,16 @@ export function exportCompoundSchema(options: {
    * Defaults to this format if can't detected from the ID
    */
   defaultExtension?: string
-}) {
-  const { schema, outDir, defaultExtension = "json" } = options
-  if (!schema.definitions) throw "is simple"
-  if (schema.$id === undefined) throw "id undefined"
+}): void {
+  const { schema, outDir, defaultExtension = 'json' } = options
+  if (!schema.definitions) throw 'is simple'
+  if (schema.$id === undefined) throw 'id undefined'
   const baseId = schema.$id
   const extension = getExtension(baseId) || defaultExtension
-  const write = (content: string) => {
+  const write = (content: string): void => {
     fs.mkdirSync(outDir, { recursive: true })
-    fs.writeFileSync(
-      removeExtension(path.join(outDir, baseId)) + "." + extension,
-      content
-    )
+    fs.writeFileSync(removeExtension(path.join(outDir, baseId)) + '.' + extension, content)
   }
-  if (extension === "yaml" || extension === "yml") write(yaml.safeDump(schema))
-  else write(JSON.stringify(schema, null, "\t"))
+  if (extension === 'yaml' || extension === 'yml') write(yaml.safeDump(schema))
+  else write(JSON.stringify(schema, null, '\t'))
 }

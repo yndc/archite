@@ -5,7 +5,7 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-export * from "./connection-parser"
+export * from './connection-parser'
 
 /**
  * Abstraction for MySQL column
@@ -24,6 +24,10 @@ export interface MySqlColumnDescription {
    */
   nullable: string
   /**
+   * Source table this column is from
+   */
+  table: string
+  /**
    * Key of the column
    */
   key: string
@@ -34,11 +38,11 @@ export interface MySqlColumnDescription {
   /**
    * Default value of the column
    */
-  defaultValue?: any
+  defaultValue?: string | number
   /**
    * Extra information from MySQL
    */
-  extra?: any
+  extra?: string
   /**
    * Column comment
    */

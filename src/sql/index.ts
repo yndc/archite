@@ -5,43 +5,39 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-export * from "./mysql"
+export * from './mysql'
 
-import * as knex from "knex"
-import { JsonSchema } from "~/json-schema"
+import * as knex from 'knex'
+import { JsonSchema } from '~/json-schema'
 
 /**
  * Supported database drivers
  */
-export type DatabaseDriver = "mysql" | "postgresql"
+export type DatabaseDriver = 'mysql' | 'postgresql'
 
 /**
  * Interface for database connection configuration
  */
 export interface DatabaseConnectionConfiguration {
-  host: string
-  port: number
-  user: string
-  password: string
+  host?: string
+  port?: number
+  user?: string
+  password?: string
 }
 
 /**
  * Creates a connection to a database wtih knex
  * @param config
  */
-export async function createConnection(
-  driver: DatabaseDriver,
-  config: DatabaseConnectionConfiguration
-): Promise<knex> {
+export async function createConnection(driver: DatabaseDriver, config: DatabaseConnectionConfiguration): Promise<knex> {
   const connection = knex({
     client: driver,
     connection: {
       ...config,
-      multipleStatements: true
-    }
+      multipleStatements: true,
+    },
   })
-  if ((await connection.raw("SELECT 1"))[0][0][1] !== 1)
-    throw "Failed to initialize SQL connection!"
+  if ((await connection.raw('SELECT 1'))[0][0][1] !== 1) throw 'Failed to initialize SQL connection!'
   return connection
 }
 
@@ -154,11 +150,8 @@ export interface SqlReference {
  * will be modeled instead
  */
 export interface SqlManyToManyRelationship {
-  pair: [
-    { table: string; column: string; key?: string },
-    { table: string; column: string; key?: string } | undefined
-  ]
+  pair: [{ table: string; column: string; key?: string }, { table: string; column: string; key?: string } | undefined]
   intermediateTable: string
 }
 
-export type SqlKeyType = "PRIMARY" | "UNIQUE" | "INDEX" | undefined
+export type SqlKeyType = 'PRIMARY' | 'UNIQUE' | 'INDEX' | undefined

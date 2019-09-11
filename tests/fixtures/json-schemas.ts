@@ -1,1512 +1,1500 @@
-import { JsonSchema, JsonSchemaPackage } from "json-schema"
+import { JsonSchema, JsonSchemaPackage } from '~/json-schema'
 
 export const allTypesCombined = {
-  $id: "___transql___test_all_types.json",
-  $schema: "http://json-schema.org/draft-07/schema#",
+  $id: '___transql___test_all_types.json',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   definitions: {
     all_types_table: {
       required: [
-        "col_bigint",
-        "col_binary",
-        "col_bit",
-        "col_blob",
-        "col_char",
-        "col_date",
-        "col_datetime",
-        "col_decimal",
-        "col_default_decimal",
-        "col_default_integer",
-        "col_default_varchar",
-        "col_double",
-        "col_enum",
-        "col_float",
-        "col_int",
-        "col_longblob",
-        "col_longtext",
-        "col_mediumblob",
-        "col_mediumint",
-        "col_mediumtext",
-        "col_set",
-        "col_smallint",
-        "col_text",
-        "col_timestamp",
-        "col_tinyblob",
-        "col_tinyint",
-        "col_tinytext",
-        "col_ubigint",
-        "col_uint",
-        "col_varbinary",
-        "col_varchar",
-        "col_year"
+        'col_bigint',
+        'col_binary',
+        'col_bit',
+        'col_blob',
+        'col_char',
+        'col_date',
+        'col_datetime',
+        'col_decimal',
+        'col_default_decimal',
+        'col_default_integer',
+        'col_default_varchar',
+        'col_double',
+        'col_enum',
+        'col_float',
+        'col_int',
+        'col_longblob',
+        'col_longtext',
+        'col_mediumblob',
+        'col_mediumint',
+        'col_mediumtext',
+        'col_set',
+        'col_smallint',
+        'col_text',
+        'col_timestamp',
+        'col_tinyblob',
+        'col_tinyint',
+        'col_tinytext',
+        'col_ubigint',
+        'col_uint',
+        'col_varbinary',
+        'col_varchar',
+        'col_year',
       ],
       properties: {
         col_bigint: {
-          type: "integer",
+          type: 'integer',
           maximum: 9223372036854776000,
-          minimum: -9223372036854776000
+          minimum: -9223372036854776000,
         },
-        col_binary: { type: "string", maxLength: 123 },
-        col_bit: { type: "string", maxLength: 4 },
+        col_binary: { type: 'string', maxLength: 123 },
+        col_bit: { type: 'string', maxLength: 4 },
         col_blob: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 87380
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 87380,
         },
-        col_char: { type: "string", maxLength: 1 },
-        col_date: { type: "string", format: "date" },
-        col_datetime: { type: "string", format: "date-time" },
+        col_char: { type: 'string', maxLength: 1 },
+        col_date: { type: 'string', format: 'date' },
+        col_datetime: { type: 'string', format: 'date-time' },
         col_decimal: {
-          type: "string",
+          type: 'string',
           maxLength: 10,
-          pattern: "^[-]?(\\d+\\.?\\d{0,5})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,5})$',
         },
         col_default_decimal: {
-          description: "This is a decimal, the default should be 5",
-          type: "string",
-          default: "5.00000",
+          description: 'This is a decimal, the default should be 5',
+          type: 'string',
+          default: '5.00000',
           maxLength: 10,
-          pattern: "^[-]?(\\d+\\.?\\d{0,5})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,5})$',
         },
         col_default_integer: {
-          type: "integer",
+          type: 'integer',
           default: 123,
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         col_default_varchar: {
-          type: "string",
-          default: "ayy lmao",
-          maxLength: 11
+          type: 'string',
+          default: 'ayy lmao',
+          maxLength: 11,
         },
-        col_double: { type: "number" },
-        col_enum: { type: "string", enum: ["ONE", "THREE", "TWO"] },
-        col_float: { type: "number" },
+        col_double: { type: 'number' },
+        col_enum: { type: 'string', enum: ['ONE', 'THREE', 'TWO'] },
+        col_float: { type: 'number' },
         col_int: {
-          description: "This is an integer",
-          type: "integer",
+          description: 'This is an integer',
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         col_longblob: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        col_longtext: { type: "string", maxLength: 4294967295 },
+        col_longtext: { type: 'string', maxLength: 4294967295 },
         col_mediumblob: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 22369620
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 22369620,
         },
         col_mediumint: {
-          description: "This is a medium integer",
-          type: "integer",
+          description: 'This is a medium integer',
+          type: 'integer',
           maximum: 8388607,
-          minimum: -8388608
+          minimum: -8388608,
         },
-        col_mediumtext: { type: "string", maxLength: 16777215 },
-        col_nullable_double: { type: "number" },
+        col_mediumtext: { type: 'string', maxLength: 16777215 },
+        col_nullable_double: { type: 'number' },
         col_nullable_integer: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        col_nullable_varchar: { type: "string", maxLength: 255 },
+        col_nullable_varchar: { type: 'string', maxLength: 255 },
         col_set: {
-          type: "array",
+          type: 'array',
           uniqueItems: true,
-          items: { type: "string", enum: ["ONE", "THREE", "TWO"] }
+          items: { type: 'string', enum: ['ONE', 'THREE', 'TWO'] },
         },
         col_smallint: {
-          description: "This is a smol integer",
-          type: "integer",
+          description: 'This is a smol integer',
+          type: 'integer',
           maximum: 32767,
-          minimum: -32768
+          minimum: -32768,
         },
-        col_text: { type: "string", maxLength: 65535 },
+        col_text: { type: 'string', maxLength: 65535 },
         col_timestamp: {
-          type: "integer",
+          type: 'integer',
           maximum: 18446744073709552000,
-          minimum: 0
+          minimum: 0,
         },
         col_tinyblob: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 340
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 340,
         },
         col_tinyint: {
-          description: "A boolean value",
-          type: "boolean",
-          default: false
+          description: 'A boolean value',
+          type: 'boolean',
+          default: false,
         },
-        col_tinytext: { type: "string", maxLength: 255 },
+        col_tinytext: { type: 'string', maxLength: 255 },
         col_ubigint: {
-          type: "integer",
+          type: 'integer',
           maximum: 18446744073709552000,
-          minimum: 0
+          minimum: 0,
         },
         col_uint: {
-          description: "This is an unsigned integer",
-          type: "integer",
+          description: 'This is an unsigned integer',
+          type: 'integer',
           maximum: 4294967295,
-          minimum: 0
+          minimum: 0,
         },
-        col_varbinary: { type: "string", maxLength: 500 },
-        col_varchar: { type: "string", maxLength: 255 },
-        col_year: { type: "integer", maximum: 9999, minimum: 0 }
-      }
-    }
-  }
+        col_varbinary: { type: 'string', maxLength: 500 },
+        col_varchar: { type: 'string', maxLength: 255 },
+        col_year: { type: 'integer', maximum: 9999, minimum: 0 },
+      },
+    },
+  },
 }
 
 export const allTypesSplitted = {
-  rootId: "___transql___test_all_types",
+  rootId: '___transql___test_all_types',
   schemas: [
     {
-      $id: "___transql___test_all_types/all_types_table.json",
-      $schema: "http://json-schema.org/draft-07/schema#",
+      $id: '___transql___test_all_types/all_types_table.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
       required: [
-        "col_bigint",
-        "col_binary",
-        "col_bit",
-        "col_blob",
-        "col_char",
-        "col_date",
-        "col_datetime",
-        "col_decimal",
-        "col_default_decimal",
-        "col_default_integer",
-        "col_default_varchar",
-        "col_double",
-        "col_enum",
-        "col_float",
-        "col_int",
-        "col_longblob",
-        "col_longtext",
-        "col_mediumblob",
-        "col_mediumint",
-        "col_mediumtext",
-        "col_set",
-        "col_smallint",
-        "col_text",
-        "col_timestamp",
-        "col_tinyblob",
-        "col_tinyint",
-        "col_tinytext",
-        "col_ubigint",
-        "col_uint",
-        "col_varbinary",
-        "col_varchar",
-        "col_year"
+        'col_bigint',
+        'col_binary',
+        'col_bit',
+        'col_blob',
+        'col_char',
+        'col_date',
+        'col_datetime',
+        'col_decimal',
+        'col_default_decimal',
+        'col_default_integer',
+        'col_default_varchar',
+        'col_double',
+        'col_enum',
+        'col_float',
+        'col_int',
+        'col_longblob',
+        'col_longtext',
+        'col_mediumblob',
+        'col_mediumint',
+        'col_mediumtext',
+        'col_set',
+        'col_smallint',
+        'col_text',
+        'col_timestamp',
+        'col_tinyblob',
+        'col_tinyint',
+        'col_tinytext',
+        'col_ubigint',
+        'col_uint',
+        'col_varbinary',
+        'col_varchar',
+        'col_year',
       ],
       properties: {
         col_bigint: {
-          type: "integer",
+          type: 'integer',
           maximum: 9223372036854776000,
-          minimum: -9223372036854776000
+          minimum: -9223372036854776000,
         },
-        col_binary: { type: "string", maxLength: 123 },
-        col_bit: { type: "string", maxLength: 4 },
+        col_binary: { type: 'string', maxLength: 123 },
+        col_bit: { type: 'string', maxLength: 4 },
         col_blob: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 87380
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 87380,
         },
-        col_char: { type: "string", maxLength: 1 },
-        col_date: { type: "string", format: "date" },
-        col_datetime: { type: "string", format: "date-time" },
+        col_char: { type: 'string', maxLength: 1 },
+        col_date: { type: 'string', format: 'date' },
+        col_datetime: { type: 'string', format: 'date-time' },
         col_decimal: {
-          type: "string",
+          type: 'string',
           maxLength: 10,
-          pattern: "^[-]?(\\d+\\.?\\d{0,5})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,5})$',
         },
         col_default_decimal: {
-          description: "This is a decimal, the default should be 5",
-          type: "string",
-          default: "5.00000",
+          description: 'This is a decimal, the default should be 5',
+          type: 'string',
+          default: '5.00000',
           maxLength: 10,
-          pattern: "^[-]?(\\d+\\.?\\d{0,5})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,5})$',
         },
         col_default_integer: {
-          type: "integer",
+          type: 'integer',
           default: 123,
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         col_default_varchar: {
-          type: "string",
-          default: "ayy lmao",
-          maxLength: 11
+          type: 'string',
+          default: 'ayy lmao',
+          maxLength: 11,
         },
-        col_double: { type: "number" },
-        col_enum: { type: "string", enum: ["ONE", "THREE", "TWO"] },
-        col_float: { type: "number" },
+        col_double: { type: 'number' },
+        col_enum: { type: 'string', enum: ['ONE', 'THREE', 'TWO'] },
+        col_float: { type: 'number' },
         col_int: {
-          description: "This is an integer",
-          type: "integer",
+          description: 'This is an integer',
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         col_longblob: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        col_longtext: { type: "string", maxLength: 4294967295 },
+        col_longtext: { type: 'string', maxLength: 4294967295 },
         col_mediumblob: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 22369620
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 22369620,
         },
         col_mediumint: {
-          description: "This is a medium integer",
-          type: "integer",
+          description: 'This is a medium integer',
+          type: 'integer',
           maximum: 8388607,
-          minimum: -8388608
+          minimum: -8388608,
         },
-        col_mediumtext: { type: "string", maxLength: 16777215 },
-        col_nullable_double: { type: "number" },
+        col_mediumtext: { type: 'string', maxLength: 16777215 },
+        col_nullable_double: { type: 'number' },
         col_nullable_integer: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        col_nullable_varchar: { type: "string", maxLength: 255 },
+        col_nullable_varchar: { type: 'string', maxLength: 255 },
         col_set: {
-          type: "array",
+          type: 'array',
           uniqueItems: true,
-          items: { type: "string", enum: ["ONE", "THREE", "TWO"] }
+          items: { type: 'string', enum: ['ONE', 'THREE', 'TWO'] },
         },
         col_smallint: {
-          description: "This is a smol integer",
-          type: "integer",
+          description: 'This is a smol integer',
+          type: 'integer',
           maximum: 32767,
-          minimum: -32768
+          minimum: -32768,
         },
-        col_text: { type: "string", maxLength: 65535 },
+        col_text: { type: 'string', maxLength: 65535 },
         col_timestamp: {
-          type: "integer",
+          type: 'integer',
           maximum: 18446744073709552000,
-          minimum: 0
+          minimum: 0,
         },
         col_tinyblob: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 340
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 340,
         },
         col_tinyint: {
-          description: "A boolean value",
-          type: "boolean",
-          default: false
+          description: 'A boolean value',
+          type: 'boolean',
+          default: false,
         },
-        col_tinytext: { type: "string", maxLength: 255 },
+        col_tinytext: { type: 'string', maxLength: 255 },
         col_ubigint: {
-          type: "integer",
+          type: 'integer',
           maximum: 18446744073709552000,
-          minimum: 0
+          minimum: 0,
         },
         col_uint: {
-          description: "This is an unsigned integer",
-          type: "integer",
+          description: 'This is an unsigned integer',
+          type: 'integer',
           maximum: 4294967295,
-          minimum: 0
+          minimum: 0,
         },
-        col_varbinary: { type: "string", maxLength: 500 },
-        col_varchar: { type: "string", maxLength: 255 },
-        col_year: { type: "integer", maximum: 9999, minimum: 0 }
-      }
-    }
-  ]
+        col_varbinary: { type: 'string', maxLength: 500 },
+        col_varchar: { type: 'string', maxLength: 255 },
+        col_year: { type: 'integer', maximum: 9999, minimum: 0 },
+      },
+    },
+  ],
 }
 
 export const northwindCombined = {
-  $id: "___transql___test_northwind.json",
-  $schema: "http://json-schema.org/draft-07/schema#",
+  $id: '___transql___test_northwind.json',
+  $schema: 'http://json-schema.org/draft-07/schema#',
   definitions: {
     customer: {
-      required: ["id"],
+      required: ['id'],
       properties: {
-        address: { type: "string", maxLength: 4294967295 },
+        address: { type: 'string', maxLength: 4294967295 },
         attachments: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        business_phone: { type: "string", maxLength: 25 },
-        city: { type: "string", maxLength: 50 },
-        company: { type: "string", maxLength: 50 },
-        country_region: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        fax_number: { type: "string", maxLength: 25 },
-        first_name: { type: "string", maxLength: 50 },
-        home_phone: { type: "string", maxLength: 25 },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        job_title: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        notes: { type: "string", maxLength: 4294967295 },
-        state_province: { type: "string", maxLength: 50 },
-        web_page: { type: "string", maxLength: 4294967295 },
-        zip_postal_code: { type: "string", maxLength: 15 },
-        orders: { type: "array", items: { $ref: "#/definitions/order" } }
-      }
+        business_phone: { type: 'string', maxLength: 25 },
+        city: { type: 'string', maxLength: 50 },
+        company: { type: 'string', maxLength: 50 },
+        country_region: { type: 'string', maxLength: 50 },
+        email_address: { type: 'string', maxLength: 50 },
+        fax_number: { type: 'string', maxLength: 25 },
+        first_name: { type: 'string', maxLength: 50 },
+        home_phone: { type: 'string', maxLength: 25 },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
+        job_title: { type: 'string', maxLength: 50 },
+        last_name: { type: 'string', maxLength: 50 },
+        mobile_phone: { type: 'string', maxLength: 25 },
+        notes: { type: 'string', maxLength: 4294967295 },
+        state_province: { type: 'string', maxLength: 50 },
+        web_page: { type: 'string', maxLength: 4294967295 },
+        zip_postal_code: { type: 'string', maxLength: 15 },
+        orders: { type: 'array', items: { $ref: '#/definitions/order' } },
+      },
     },
     employee: {
-      required: ["id"],
+      required: ['id'],
       properties: {
-        address: { type: "string", maxLength: 4294967295 },
+        address: { type: 'string', maxLength: 4294967295 },
         attachments: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        business_phone: { type: "string", maxLength: 25 },
-        city: { type: "string", maxLength: 50 },
-        company: { type: "string", maxLength: 50 },
-        country_region: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        fax_number: { type: "string", maxLength: 25 },
-        first_name: { type: "string", maxLength: 50 },
-        home_phone: { type: "string", maxLength: 25 },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        job_title: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        notes: { type: "string", maxLength: 4294967295 },
-        state_province: { type: "string", maxLength: 50 },
-        web_page: { type: "string", maxLength: 4294967295 },
-        zip_postal_code: { type: "string", maxLength: 15 },
-        orders: { type: "array", items: { $ref: "#/definitions/order" } },
+        business_phone: { type: 'string', maxLength: 25 },
+        city: { type: 'string', maxLength: 50 },
+        company: { type: 'string', maxLength: 50 },
+        country_region: { type: 'string', maxLength: 50 },
+        email_address: { type: 'string', maxLength: 50 },
+        fax_number: { type: 'string', maxLength: 25 },
+        first_name: { type: 'string', maxLength: 50 },
+        home_phone: { type: 'string', maxLength: 25 },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
+        job_title: { type: 'string', maxLength: 50 },
+        last_name: { type: 'string', maxLength: 50 },
+        mobile_phone: { type: 'string', maxLength: 25 },
+        notes: { type: 'string', maxLength: 4294967295 },
+        state_province: { type: 'string', maxLength: 50 },
+        web_page: { type: 'string', maxLength: 4294967295 },
+        zip_postal_code: { type: 'string', maxLength: 15 },
+        orders: { type: 'array', items: { $ref: '#/definitions/order' } },
         purchase_orders: {
-          type: "array",
-          items: { $ref: "#/definitions/purchase_order" }
+          type: 'array',
+          items: { $ref: '#/definitions/purchase_order' },
         },
         privileges: {
-          type: "array",
-          items: { $ref: "#/definitions/privilege" }
-        }
-      }
+          type: 'array',
+          items: { $ref: '#/definitions/privilege' },
+        },
+      },
     },
     inventory_transaction: {
-      required: ["id", "product_id", "quantity", "transaction_type"],
+      required: ['id', 'product_id', 'quantity', 'transaction_type'],
       properties: {
-        comments: { type: "string", maxLength: 255 },
+        comments: { type: 'string', maxLength: 255 },
         customer_order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
         product_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         purchase_order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         quantity: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        transaction_created_date: { type: "string", format: "date-time" },
-        transaction_modified_date: { type: "string", format: "date-time" },
-        transaction_type: { $ref: "#/definitions/inventory_transaction_type" },
+        transaction_created_date: { type: 'string', format: 'date-time' },
+        transaction_modified_date: { type: 'string', format: 'date-time' },
+        transaction_type: { $ref: '#/definitions/inventory_transaction_type' },
         purchase_order_details: {
-          type: "array",
-          items: { $ref: "#/definitions/purchase_order_detail" }
+          type: 'array',
+          items: { $ref: '#/definitions/purchase_order_detail' },
         },
-        customer_order: { $ref: "#/definitions/order" },
-        product: { $ref: "#/definitions/product" },
-        purchase_order: { $ref: "#/definitions/purchase_order" }
-      }
+        customer_order: { $ref: '#/definitions/order' },
+        product: { $ref: '#/definitions/product' },
+        purchase_order: { $ref: '#/definitions/purchase_order' },
+      },
     },
     inventory_transaction_type: {
-      required: ["id", "type_name"],
+      required: ['id', 'type_name'],
       properties: {
-        id: { type: "boolean", default: false },
-        type_name: { type: "string", maxLength: 50 },
+        id: { type: 'boolean', default: false },
+        type_name: { type: 'string', maxLength: 50 },
         inventory_transactions: {
-          type: "array",
-          items: { $ref: "#/definitions/inventory_transaction" }
-        }
-      }
+          type: 'array',
+          items: { $ref: '#/definitions/inventory_transaction' },
+        },
+      },
     },
     invoice: {
-      required: ["id"],
+      required: ['id'],
       properties: {
         amount_due: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        due_date: { type: "string", format: "date-time" },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        invoice_date: { type: "string", format: "date-time" },
+        due_date: { type: 'string', format: 'date-time' },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
+        invoice_date: { type: 'string', format: 'date-time' },
         order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         shipping: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         tax: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        order: { $ref: "#/definitions/order" }
-      }
+        order: { $ref: '#/definitions/order' },
+      },
     },
     order: {
-      required: ["id"],
+      required: ['id'],
       properties: {
         customer_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         employee_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        notes: { type: "string", maxLength: 4294967295 },
-        order_date: { type: "string", format: "date-time" },
-        paid_date: { type: "string", format: "date-time" },
-        payment_type: { type: "string", maxLength: 50 },
-        ship_address: { type: "string", maxLength: 4294967295 },
-        ship_city: { type: "string", maxLength: 50 },
-        ship_country_region: { type: "string", maxLength: 50 },
-        ship_name: { type: "string", maxLength: 50 },
-        ship_state_province: { type: "string", maxLength: 50 },
-        ship_zip_postal_code: { type: "string", maxLength: 50 },
-        shipped_date: { type: "string", format: "date-time" },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
+        notes: { type: 'string', maxLength: 4294967295 },
+        order_date: { type: 'string', format: 'date-time' },
+        paid_date: { type: 'string', format: 'date-time' },
+        payment_type: { type: 'string', maxLength: 50 },
+        ship_address: { type: 'string', maxLength: 4294967295 },
+        ship_city: { type: 'string', maxLength: 50 },
+        ship_country_region: { type: 'string', maxLength: 50 },
+        ship_name: { type: 'string', maxLength: 50 },
+        ship_state_province: { type: 'string', maxLength: 50 },
+        ship_zip_postal_code: { type: 'string', maxLength: 50 },
+        shipped_date: { type: 'string', format: 'date-time' },
         shipper_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         shipping_fee: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        status_id: { type: "boolean", default: true },
-        tax_rate: { type: "number", default: 0 },
-        tax_status_id: { type: "boolean", default: false },
+        status_id: { type: 'boolean', default: true },
+        tax_rate: { type: 'number', default: 0 },
+        tax_status_id: { type: 'boolean', default: false },
         taxes: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        customer: { $ref: "#/definitions/customer" },
-        employee: { $ref: "#/definitions/employee" },
+        customer: { $ref: '#/definitions/customer' },
+        employee: { $ref: '#/definitions/employee' },
         inventory_transactions: {
-          type: "array",
-          items: { $ref: "#/definitions/inventory_transaction" }
+          type: 'array',
+          items: { $ref: '#/definitions/inventory_transaction' },
         },
-        invoices: { type: "array", items: { $ref: "#/definitions/invoice" } },
+        invoices: { type: 'array', items: { $ref: '#/definitions/invoice' } },
         order_details: {
-          type: "array",
-          items: { $ref: "#/definitions/order_detail" }
+          type: 'array',
+          items: { $ref: '#/definitions/order_detail' },
         },
-        status: { $ref: "#/definitions/orders_status" },
-        tax_status: { $ref: "#/definitions/orders_tax_status" },
-        shipper: { $ref: "#/definitions/shipper" }
-      }
+        status: { $ref: '#/definitions/orders_status' },
+        tax_status: { $ref: '#/definitions/orders_tax_status' },
+        shipper: { $ref: '#/definitions/shipper' },
+      },
     },
     order_detail: {
-      required: ["discount", "id", "order_id", "quantity"],
+      required: ['discount', 'id', 'order_id', 'quantity'],
       properties: {
-        date_allocated: { type: "string", format: "date-time" },
-        discount: { type: "number", default: 0 },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        date_allocated: { type: 'string', format: 'date-time' },
+        discount: { type: 'number', default: 0 },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
         inventory_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         product_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         purchase_order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         quantity: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 18,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         status_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         unit_price: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        order: { $ref: "#/definitions/order" },
-        status: { $ref: "#/definitions/order_details_status" },
-        product: { $ref: "#/definitions/product" }
-      }
+        order: { $ref: '#/definitions/order' },
+        status: { $ref: '#/definitions/order_details_status' },
+        product: { $ref: '#/definitions/product' },
+      },
     },
     order_details_status: {
-      required: ["id", "status_name"],
+      required: ['id', 'status_name'],
       properties: {
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        status_name: { type: "string", maxLength: 50 },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
+        status_name: { type: 'string', maxLength: 50 },
         order_details: {
-          type: "array",
-          items: { $ref: "#/definitions/order_detail" }
-        }
-      }
+          type: 'array',
+          items: { $ref: '#/definitions/order_detail' },
+        },
+      },
     },
     orders_status: {
-      required: ["id", "status_name"],
+      required: ['id', 'status_name'],
       properties: {
-        id: { type: "boolean", default: false },
-        status_name: { type: "string", maxLength: 50 },
-        orders: { type: "array", items: { $ref: "#/definitions/order" } }
-      }
+        id: { type: 'boolean', default: false },
+        status_name: { type: 'string', maxLength: 50 },
+        orders: { type: 'array', items: { $ref: '#/definitions/order' } },
+      },
     },
     orders_tax_status: {
-      required: ["id", "tax_status_name"],
+      required: ['id', 'tax_status_name'],
       properties: {
-        id: { type: "boolean", default: false },
-        tax_status_name: { type: "string", maxLength: 50 },
-        orders: { type: "array", items: { $ref: "#/definitions/order" } }
-      }
+        id: { type: 'boolean', default: false },
+        tax_status_name: { type: 'string', maxLength: 50 },
+        orders: { type: 'array', items: { $ref: '#/definitions/order' } },
+      },
     },
     privilege: {
-      required: ["id"],
+      required: ['id'],
       properties: {
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        privilege_name: { type: "string", maxLength: 50 },
-        employees: { type: "array", items: { $ref: "#/definitions/employee" } }
-      }
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
+        privilege_name: { type: 'string', maxLength: 50 },
+        employees: { type: 'array', items: { $ref: '#/definitions/employee' } },
+      },
     },
     product: {
-      required: ["discontinued", "id", "list_price"],
+      required: ['discontinued', 'id', 'list_price'],
       properties: {
         attachments: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        category: { type: "string", maxLength: 50 },
-        description: { type: "string", maxLength: 4294967295 },
-        discontinued: { type: "boolean", default: true },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        category: { type: 'string', maxLength: 50 },
+        description: { type: 'string', maxLength: 4294967295 },
+        discontinued: { type: 'boolean', default: true },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
         list_price: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         minimum_reorder_quantity: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        product_code: { type: "string", maxLength: 25 },
-        product_name: { type: "string", maxLength: 50 },
-        quantity_per_unit: { type: "string", maxLength: 50 },
+        product_code: { type: 'string', maxLength: 25 },
+        product_name: { type: 'string', maxLength: 50 },
+        quantity_per_unit: { type: 'string', maxLength: 50 },
         reorder_level: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         standard_cost: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        supplier_ids: { type: "string", maxLength: 4294967295 },
+        supplier_ids: { type: 'string', maxLength: 4294967295 },
         target_level: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         inventory_transactions: {
-          type: "array",
-          items: { $ref: "#/definitions/inventory_transaction" }
+          type: 'array',
+          items: { $ref: '#/definitions/inventory_transaction' },
         },
         order_details: {
-          type: "array",
-          items: { $ref: "#/definitions/order_detail" }
+          type: 'array',
+          items: { $ref: '#/definitions/order_detail' },
         },
         purchase_order_details: {
-          type: "array",
-          items: { $ref: "#/definitions/purchase_order_detail" }
-        }
-      }
+          type: 'array',
+          items: { $ref: '#/definitions/purchase_order_detail' },
+        },
+      },
     },
     purchase_order: {
-      required: ["id", "shipping_fee", "taxes"],
+      required: ['id', 'shipping_fee', 'taxes'],
       properties: {
         approved_by: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        approved_date: { type: "string", format: "date-time" },
-        created_by: { $ref: "#/definitions/employee" },
-        creation_date: { type: "string", format: "date-time" },
-        expected_date: { type: "string", format: "date-time" },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        notes: { type: "string", maxLength: 4294967295 },
+        approved_date: { type: 'string', format: 'date-time' },
+        created_by: { $ref: '#/definitions/employee' },
+        creation_date: { type: 'string', format: 'date-time' },
+        expected_date: { type: 'string', format: 'date-time' },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
+        notes: { type: 'string', maxLength: 4294967295 },
         payment_amount: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        payment_date: { type: "string", format: "date-time" },
-        payment_method: { type: "string", maxLength: 50 },
+        payment_date: { type: 'string', format: 'date-time' },
+        payment_method: { type: 'string', maxLength: 50 },
         shipping_fee: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         status_id: {
-          type: "integer",
+          type: 'integer',
           default: 0,
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         submitted_by: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        submitted_date: { type: "string", format: "date-time" },
+        submitted_date: { type: 'string', format: 'date-time' },
         supplier_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         taxes: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         inventory_transactions: {
-          type: "array",
-          items: { $ref: "#/definitions/inventory_transaction" }
+          type: 'array',
+          items: { $ref: '#/definitions/inventory_transaction' },
         },
         purchase_order_details: {
-          type: "array",
-          items: { $ref: "#/definitions/purchase_order_detail" }
+          type: 'array',
+          items: { $ref: '#/definitions/purchase_order_detail' },
         },
-        status: { $ref: "#/definitions/purchase_order_status" },
-        supplier: { $ref: "#/definitions/supplier" }
-      }
+        status: { $ref: '#/definitions/purchase_order_status' },
+        supplier: { $ref: '#/definitions/supplier' },
+      },
     },
     purchase_order_detail: {
-      required: [
-        "id",
-        "posted_to_inventory",
-        "purchase_order_id",
-        "quantity",
-        "unit_cost"
-      ],
+      required: ['id', 'posted_to_inventory', 'purchase_order_id', 'quantity', 'unit_cost'],
       properties: {
-        date_received: { type: "string", format: "date-time" },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
+        date_received: { type: 'string', format: 'date-time' },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
         inventory_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        posted_to_inventory: { type: "boolean", default: true },
+        posted_to_inventory: { type: 'boolean', default: true },
         product_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         purchase_order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         quantity: {
-          type: "string",
+          type: 'string',
           maxLength: 18,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         unit_cost: {
-          type: "string",
+          type: 'string',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        inventory: { $ref: "#/definitions/inventory_transaction" },
-        product: { $ref: "#/definitions/product" },
-        purchase_order: { $ref: "#/definitions/purchase_order" }
-      }
+        inventory: { $ref: '#/definitions/inventory_transaction' },
+        product: { $ref: '#/definitions/product' },
+        purchase_order: { $ref: '#/definitions/purchase_order' },
+      },
     },
     purchase_order_status: {
-      required: ["id"],
+      required: ['id'],
       properties: {
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        status: { type: "string", maxLength: 50 },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
+        status: { type: 'string', maxLength: 50 },
         purchase_orders: {
-          type: "array",
-          items: { $ref: "#/definitions/purchase_order" }
-        }
-      }
+          type: 'array',
+          items: { $ref: '#/definitions/purchase_order' },
+        },
+      },
     },
     sales_report: {
-      required: ["default", "group_by"],
+      required: ['default', 'group_by'],
       properties: {
-        default: { type: "boolean", default: true },
-        display: { type: "string", maxLength: 50 },
-        filter_row_source: { type: "string", maxLength: 4294967295 },
-        group_by: { type: "string", maxLength: 50 },
-        title: { type: "string", maxLength: 50 }
-      }
+        default: { type: 'boolean', default: true },
+        display: { type: 'string', maxLength: 50 },
+        filter_row_source: { type: 'string', maxLength: 4294967295 },
+        group_by: { type: 'string', maxLength: 50 },
+        title: { type: 'string', maxLength: 50 },
+      },
     },
     shipper: {
-      required: ["id"],
+      required: ['id'],
       properties: {
-        address: { type: "string", maxLength: 4294967295 },
+        address: { type: 'string', maxLength: 4294967295 },
         attachments: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        business_phone: { type: "string", maxLength: 25 },
-        city: { type: "string", maxLength: 50 },
-        company: { type: "string", maxLength: 50 },
-        country_region: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        fax_number: { type: "string", maxLength: 25 },
-        first_name: { type: "string", maxLength: 50 },
-        home_phone: { type: "string", maxLength: 25 },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        job_title: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        notes: { type: "string", maxLength: 4294967295 },
-        state_province: { type: "string", maxLength: 50 },
-        web_page: { type: "string", maxLength: 4294967295 },
-        zip_postal_code: { type: "string", maxLength: 15 },
-        orders: { type: "array", items: { $ref: "#/definitions/order" } }
-      }
+        business_phone: { type: 'string', maxLength: 25 },
+        city: { type: 'string', maxLength: 50 },
+        company: { type: 'string', maxLength: 50 },
+        country_region: { type: 'string', maxLength: 50 },
+        email_address: { type: 'string', maxLength: 50 },
+        fax_number: { type: 'string', maxLength: 25 },
+        first_name: { type: 'string', maxLength: 50 },
+        home_phone: { type: 'string', maxLength: 25 },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
+        job_title: { type: 'string', maxLength: 50 },
+        last_name: { type: 'string', maxLength: 50 },
+        mobile_phone: { type: 'string', maxLength: 25 },
+        notes: { type: 'string', maxLength: 4294967295 },
+        state_province: { type: 'string', maxLength: 50 },
+        web_page: { type: 'string', maxLength: 4294967295 },
+        zip_postal_code: { type: 'string', maxLength: 15 },
+        orders: { type: 'array', items: { $ref: '#/definitions/order' } },
+      },
     },
     string: {
-      required: ["string_id"],
+      required: ['string_id'],
       properties: {
-        string_data: { type: "string", maxLength: 255 },
+        string_data: { type: 'string', maxLength: 255 },
         string_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
-        }
-      }
+          minimum: -2147483648,
+        },
+      },
     },
     supplier: {
-      required: ["id"],
+      required: ['id'],
       properties: {
-        address: { type: "string", maxLength: 4294967295 },
+        address: { type: 'string', maxLength: 4294967295 },
         attachments: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        business_phone: { type: "string", maxLength: 25 },
-        city: { type: "string", maxLength: 50 },
-        company: { type: "string", maxLength: 50 },
-        country_region: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        fax_number: { type: "string", maxLength: 25 },
-        first_name: { type: "string", maxLength: 50 },
-        home_phone: { type: "string", maxLength: 25 },
-        id: { type: "integer", maximum: 2147483647, minimum: -2147483648 },
-        job_title: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        notes: { type: "string", maxLength: 4294967295 },
-        state_province: { type: "string", maxLength: 50 },
-        web_page: { type: "string", maxLength: 4294967295 },
-        zip_postal_code: { type: "string", maxLength: 15 },
+        business_phone: { type: 'string', maxLength: 25 },
+        city: { type: 'string', maxLength: 50 },
+        company: { type: 'string', maxLength: 50 },
+        country_region: { type: 'string', maxLength: 50 },
+        email_address: { type: 'string', maxLength: 50 },
+        fax_number: { type: 'string', maxLength: 25 },
+        first_name: { type: 'string', maxLength: 50 },
+        home_phone: { type: 'string', maxLength: 25 },
+        id: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
+        job_title: { type: 'string', maxLength: 50 },
+        last_name: { type: 'string', maxLength: 50 },
+        mobile_phone: { type: 'string', maxLength: 25 },
+        notes: { type: 'string', maxLength: 4294967295 },
+        state_province: { type: 'string', maxLength: 50 },
+        web_page: { type: 'string', maxLength: 4294967295 },
+        zip_postal_code: { type: 'string', maxLength: 15 },
         purchase_orders: {
-          type: "array",
-          items: { $ref: "#/definitions/purchase_order" }
-        }
-      }
-    }
-  }
+          type: 'array',
+          items: { $ref: '#/definitions/purchase_order' },
+        },
+      },
+    },
+  },
 }
 
 export const northwindSplitted: JsonSchemaPackage = {
-  rootId: "___transql___test_northwind",
+  rootId: '___transql___test_northwind',
   schemas: [
     {
-      required: ["id"],
+      required: ['id'],
       properties: {
-        address: { type: "string", maxLength: 4294967295 },
+        address: { type: 'string', maxLength: 4294967295 },
         attachments: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        business_phone: { type: "string", maxLength: 25 },
-        city: { type: "string", maxLength: 50 },
-        company: { type: "string", maxLength: 50 },
-        country_region: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        fax_number: { type: "string", maxLength: 25 },
-        first_name: { type: "string", maxLength: 50 },
-        home_phone: { type: "string", maxLength: 25 },
+        business_phone: { type: 'string', maxLength: 25 },
+        city: { type: 'string', maxLength: 50 },
+        company: { type: 'string', maxLength: 50 },
+        country_region: { type: 'string', maxLength: 50 },
+        email_address: { type: 'string', maxLength: 50 },
+        fax_number: { type: 'string', maxLength: 25 },
+        first_name: { type: 'string', maxLength: 50 },
+        home_phone: { type: 'string', maxLength: 25 },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        job_title: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        notes: { type: "string", maxLength: 4294967295 },
-        state_province: { type: "string", maxLength: 50 },
-        web_page: { type: "string", maxLength: 4294967295 },
-        zip_postal_code: { type: "string", maxLength: 15 },
-        orders: { type: "array", items: { $ref: "./order.json" } }
+        job_title: { type: 'string', maxLength: 50 },
+        last_name: { type: 'string', maxLength: 50 },
+        mobile_phone: { type: 'string', maxLength: 25 },
+        notes: { type: 'string', maxLength: 4294967295 },
+        state_province: { type: 'string', maxLength: 50 },
+        web_page: { type: 'string', maxLength: 4294967295 },
+        zip_postal_code: { type: 'string', maxLength: 15 },
+        orders: { type: 'array', items: { $ref: './order.json' } },
       },
-      $id: "___transql___test_northwind/customer.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/customer.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id"],
+      required: ['id'],
       properties: {
-        address: { type: "string", maxLength: 4294967295 },
+        address: { type: 'string', maxLength: 4294967295 },
         attachments: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        business_phone: { type: "string", maxLength: 25 },
-        city: { type: "string", maxLength: 50 },
-        company: { type: "string", maxLength: 50 },
-        country_region: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        fax_number: { type: "string", maxLength: 25 },
-        first_name: { type: "string", maxLength: 50 },
-        home_phone: { type: "string", maxLength: 25 },
+        business_phone: { type: 'string', maxLength: 25 },
+        city: { type: 'string', maxLength: 50 },
+        company: { type: 'string', maxLength: 50 },
+        country_region: { type: 'string', maxLength: 50 },
+        email_address: { type: 'string', maxLength: 50 },
+        fax_number: { type: 'string', maxLength: 25 },
+        first_name: { type: 'string', maxLength: 50 },
+        home_phone: { type: 'string', maxLength: 25 },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        job_title: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        notes: { type: "string", maxLength: 4294967295 },
-        state_province: { type: "string", maxLength: 50 },
-        web_page: { type: "string", maxLength: 4294967295 },
-        zip_postal_code: { type: "string", maxLength: 15 },
-        orders: { type: "array", items: { $ref: "./order.json" } },
+        job_title: { type: 'string', maxLength: 50 },
+        last_name: { type: 'string', maxLength: 50 },
+        mobile_phone: { type: 'string', maxLength: 25 },
+        notes: { type: 'string', maxLength: 4294967295 },
+        state_province: { type: 'string', maxLength: 50 },
+        web_page: { type: 'string', maxLength: 4294967295 },
+        zip_postal_code: { type: 'string', maxLength: 15 },
+        orders: { type: 'array', items: { $ref: './order.json' } },
         purchase_orders: {
-          type: "array",
-          items: { $ref: "./purchase_order.json" }
+          type: 'array',
+          items: { $ref: './purchase_order.json' },
         },
         privileges: {
-          type: "array",
-          items: { $ref: "./privilege.json" }
-        }
+          type: 'array',
+          items: { $ref: './privilege.json' },
+        },
       },
-      $id: "___transql___test_northwind/employee.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/employee.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id", "product_id", "quantity", "transaction_type"],
+      required: ['id', 'product_id', 'quantity', 'transaction_type'],
       properties: {
-        comments: { type: "string", maxLength: 255 },
+        comments: { type: 'string', maxLength: 255 },
         customer_order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         product_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         purchase_order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         quantity: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        transaction_created_date: { type: "string", format: "date-time" },
+        transaction_created_date: { type: 'string', format: 'date-time' },
         transaction_modified_date: {
-          type: "string",
-          format: "date-time"
+          type: 'string',
+          format: 'date-time',
         },
-        transaction_type: { $ref: "./inventory_transaction_type.json" },
+        transaction_type: { $ref: './inventory_transaction_type.json' },
         purchase_order_details: {
-          type: "array",
-          items: { $ref: "./purchase_order_detail.json" }
+          type: 'array',
+          items: { $ref: './purchase_order_detail.json' },
         },
-        customer_order: { $ref: "./order.json" },
-        product: { $ref: "./product.json" },
-        purchase_order: { $ref: "./purchase_order.json" }
+        customer_order: { $ref: './order.json' },
+        product: { $ref: './product.json' },
+        purchase_order: { $ref: './purchase_order.json' },
       },
-      $id: "___transql___test_northwind/inventory_transaction.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/inventory_transaction.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id", "type_name"],
+      required: ['id', 'type_name'],
       properties: {
-        id: { type: "boolean", default: false },
-        type_name: { type: "string", maxLength: 50 },
+        id: { type: 'boolean', default: false },
+        type_name: { type: 'string', maxLength: 50 },
         inventory_transactions: {
-          type: "array",
-          items: { $ref: "./inventory_transaction.json" }
-        }
+          type: 'array',
+          items: { $ref: './inventory_transaction.json' },
+        },
       },
-      $id: "___transql___test_northwind/inventory_transaction_type.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/inventory_transaction_type.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id"],
+      required: ['id'],
       properties: {
         amount_due: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        due_date: { type: "string", format: "date-time" },
+        due_date: { type: 'string', format: 'date-time' },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        invoice_date: { type: "string", format: "date-time" },
+        invoice_date: { type: 'string', format: 'date-time' },
         order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         shipping: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         tax: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        order: { $ref: "./order.json" }
+        order: { $ref: './order.json' },
       },
-      $id: "___transql___test_northwind/invoice.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/invoice.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id"],
+      required: ['id'],
       properties: {
         customer_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         employee_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        notes: { type: "string", maxLength: 4294967295 },
-        order_date: { type: "string", format: "date-time" },
-        paid_date: { type: "string", format: "date-time" },
-        payment_type: { type: "string", maxLength: 50 },
-        ship_address: { type: "string", maxLength: 4294967295 },
-        ship_city: { type: "string", maxLength: 50 },
-        ship_country_region: { type: "string", maxLength: 50 },
-        ship_name: { type: "string", maxLength: 50 },
-        ship_state_province: { type: "string", maxLength: 50 },
-        ship_zip_postal_code: { type: "string", maxLength: 50 },
-        shipped_date: { type: "string", format: "date-time" },
+        notes: { type: 'string', maxLength: 4294967295 },
+        order_date: { type: 'string', format: 'date-time' },
+        paid_date: { type: 'string', format: 'date-time' },
+        payment_type: { type: 'string', maxLength: 50 },
+        ship_address: { type: 'string', maxLength: 4294967295 },
+        ship_city: { type: 'string', maxLength: 50 },
+        ship_country_region: { type: 'string', maxLength: 50 },
+        ship_name: { type: 'string', maxLength: 50 },
+        ship_state_province: { type: 'string', maxLength: 50 },
+        ship_zip_postal_code: { type: 'string', maxLength: 50 },
+        shipped_date: { type: 'string', format: 'date-time' },
         shipper_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         shipping_fee: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        status_id: { type: "boolean", default: true },
-        tax_rate: { type: "number", default: 0 },
-        tax_status_id: { type: "boolean", default: false },
+        status_id: { type: 'boolean', default: true },
+        tax_rate: { type: 'number', default: 0 },
+        tax_status_id: { type: 'boolean', default: false },
         taxes: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        customer: { $ref: "./customer.json" },
-        employee: { $ref: "./employee.json" },
+        customer: { $ref: './customer.json' },
+        employee: { $ref: './employee.json' },
         inventory_transactions: {
-          type: "array",
-          items: { $ref: "./inventory_transaction.json" }
+          type: 'array',
+          items: { $ref: './inventory_transaction.json' },
         },
-        invoices: { type: "array", items: { $ref: "./invoice.json" } },
+        invoices: { type: 'array', items: { $ref: './invoice.json' } },
         order_details: {
-          type: "array",
-          items: { $ref: "./order_detail.json" }
+          type: 'array',
+          items: { $ref: './order_detail.json' },
         },
-        status: { $ref: "./orders_status.json" },
-        tax_status: { $ref: "./orders_tax_status.json" },
-        shipper: { $ref: "./shipper.json" }
+        status: { $ref: './orders_status.json' },
+        tax_status: { $ref: './orders_tax_status.json' },
+        shipper: { $ref: './shipper.json' },
       },
-      $id: "___transql___test_northwind/order.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/order.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["discount", "id", "order_id", "quantity"],
+      required: ['discount', 'id', 'order_id', 'quantity'],
       properties: {
-        date_allocated: { type: "string", format: "date-time" },
-        discount: { type: "number", default: 0 },
+        date_allocated: { type: 'string', format: 'date-time' },
+        discount: { type: 'number', default: 0 },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         inventory_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         product_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         purchase_order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         quantity: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 18,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         status_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         unit_price: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        order: { $ref: "./order.json" },
-        status: { $ref: "./order_details_status.json" },
-        product: { $ref: "./product.json" }
+        order: { $ref: './order.json' },
+        status: { $ref: './order_details_status.json' },
+        product: { $ref: './product.json' },
       },
-      $id: "___transql___test_northwind/order_detail.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/order_detail.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id", "status_name"],
+      required: ['id', 'status_name'],
       properties: {
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        status_name: { type: "string", maxLength: 50 },
+        status_name: { type: 'string', maxLength: 50 },
         order_details: {
-          type: "array",
-          items: { $ref: "./order_detail.json" }
-        }
+          type: 'array',
+          items: { $ref: './order_detail.json' },
+        },
       },
-      $id: "___transql___test_northwind/order_details_status.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/order_details_status.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id", "status_name"],
+      required: ['id', 'status_name'],
       properties: {
-        id: { type: "boolean", default: false },
-        status_name: { type: "string", maxLength: 50 },
-        orders: { type: "array", items: { $ref: "./order.json" } }
+        id: { type: 'boolean', default: false },
+        status_name: { type: 'string', maxLength: 50 },
+        orders: { type: 'array', items: { $ref: './order.json' } },
       },
-      $id: "___transql___test_northwind/orders_status.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/orders_status.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id", "tax_status_name"],
+      required: ['id', 'tax_status_name'],
       properties: {
-        id: { type: "boolean", default: false },
-        tax_status_name: { type: "string", maxLength: 50 },
-        orders: { type: "array", items: { $ref: "./order.json" } }
+        id: { type: 'boolean', default: false },
+        tax_status_name: { type: 'string', maxLength: 50 },
+        orders: { type: 'array', items: { $ref: './order.json' } },
       },
-      $id: "___transql___test_northwind/orders_tax_status.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/orders_tax_status.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id"],
+      required: ['id'],
       properties: {
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        privilege_name: { type: "string", maxLength: 50 },
-        employees: { type: "array", items: { $ref: "./employee.json" } }
+        privilege_name: { type: 'string', maxLength: 50 },
+        employees: { type: 'array', items: { $ref: './employee.json' } },
       },
-      $id: "___transql___test_northwind/privilege.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/privilege.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["discontinued", "id", "list_price"],
+      required: ['discontinued', 'id', 'list_price'],
       properties: {
         attachments: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        category: { type: "string", maxLength: 50 },
-        description: { type: "string", maxLength: 4294967295 },
-        discontinued: { type: "boolean", default: true },
+        category: { type: 'string', maxLength: 50 },
+        description: { type: 'string', maxLength: 4294967295 },
+        discontinued: { type: 'boolean', default: true },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         list_price: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         minimum_reorder_quantity: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        product_code: { type: "string", maxLength: 25 },
-        product_name: { type: "string", maxLength: 50 },
-        quantity_per_unit: { type: "string", maxLength: 50 },
+        product_code: { type: 'string', maxLength: 25 },
+        product_name: { type: 'string', maxLength: 50 },
+        quantity_per_unit: { type: 'string', maxLength: 50 },
         reorder_level: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         standard_cost: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        supplier_ids: { type: "string", maxLength: 4294967295 },
+        supplier_ids: { type: 'string', maxLength: 4294967295 },
         target_level: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         inventory_transactions: {
-          type: "array",
-          items: { $ref: "./inventory_transaction.json" }
+          type: 'array',
+          items: { $ref: './inventory_transaction.json' },
         },
         order_details: {
-          type: "array",
-          items: { $ref: "./order_detail.json" }
+          type: 'array',
+          items: { $ref: './order_detail.json' },
         },
         purchase_order_details: {
-          type: "array",
-          items: { $ref: "./purchase_order_detail.json" }
-        }
+          type: 'array',
+          items: { $ref: './purchase_order_detail.json' },
+        },
       },
-      $id: "___transql___test_northwind/product.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/product.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id", "shipping_fee", "taxes"],
+      required: ['id', 'shipping_fee', 'taxes'],
       properties: {
         approved_by: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        approved_date: { type: "string", format: "date-time" },
-        created_by: { $ref: "./employee.json" },
-        creation_date: { type: "string", format: "date-time" },
-        expected_date: { type: "string", format: "date-time" },
+        approved_date: { type: 'string', format: 'date-time' },
+        created_by: { $ref: './employee.json' },
+        creation_date: { type: 'string', format: 'date-time' },
+        expected_date: { type: 'string', format: 'date-time' },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        notes: { type: "string", maxLength: 4294967295 },
+        notes: { type: 'string', maxLength: 4294967295 },
         payment_amount: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        payment_date: { type: "string", format: "date-time" },
-        payment_method: { type: "string", maxLength: 50 },
+        payment_date: { type: 'string', format: 'date-time' },
+        payment_method: { type: 'string', maxLength: 50 },
         shipping_fee: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         status_id: {
-          type: "integer",
+          type: 'integer',
           default: 0,
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         submitted_by: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        submitted_date: { type: "string", format: "date-time" },
+        submitted_date: { type: 'string', format: 'date-time' },
         supplier_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         taxes: {
-          type: "string",
-          default: "0.0000",
+          type: 'string',
+          default: '0.0000',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         inventory_transactions: {
-          type: "array",
-          items: { $ref: "./inventory_transaction.json" }
+          type: 'array',
+          items: { $ref: './inventory_transaction.json' },
         },
         purchase_order_details: {
-          type: "array",
-          items: { $ref: "./purchase_order_detail.json" }
+          type: 'array',
+          items: { $ref: './purchase_order_detail.json' },
         },
-        status: { $ref: "./purchase_order_status.json" },
-        supplier: { $ref: "./supplier.json" }
+        status: { $ref: './purchase_order_status.json' },
+        supplier: { $ref: './supplier.json' },
       },
-      $id: "___transql___test_northwind/purchase_order.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/purchase_order.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: [
-        "id",
-        "posted_to_inventory",
-        "purchase_order_id",
-        "quantity",
-        "unit_cost"
-      ],
+      required: ['id', 'posted_to_inventory', 'purchase_order_id', 'quantity', 'unit_cost'],
       properties: {
-        date_received: { type: "string", format: "date-time" },
+        date_received: { type: 'string', format: 'date-time' },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         inventory_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        posted_to_inventory: { type: "boolean", default: true },
+        posted_to_inventory: { type: 'boolean', default: true },
         product_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         purchase_order_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
         quantity: {
-          type: "string",
+          type: 'string',
           maxLength: 18,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
         unit_cost: {
-          type: "string",
+          type: 'string',
           maxLength: 19,
-          pattern: "^[-]?(\\d+\\.?\\d{0,4})$"
+          pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
         },
-        inventory: { $ref: "./inventory_transaction.json" },
-        product: { $ref: "./product.json" },
-        purchase_order: { $ref: "./purchase_order.json" }
+        inventory: { $ref: './inventory_transaction.json' },
+        product: { $ref: './product.json' },
+        purchase_order: { $ref: './purchase_order.json' },
       },
-      $id: "___transql___test_northwind/purchase_order_detail.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/purchase_order_detail.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id"],
+      required: ['id'],
       properties: {
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        status: { type: "string", maxLength: 50 },
+        status: { type: 'string', maxLength: 50 },
         purchase_orders: {
-          type: "array",
-          items: { $ref: "./purchase_order.json" }
-        }
+          type: 'array',
+          items: { $ref: './purchase_order.json' },
+        },
       },
-      $id: "___transql___test_northwind/purchase_order_status.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/purchase_order_status.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["default", "group_by"],
+      required: ['default', 'group_by'],
       properties: {
-        default: { type: "boolean", default: true },
-        display: { type: "string", maxLength: 50 },
-        filter_row_source: { type: "string", maxLength: 4294967295 },
-        group_by: { type: "string", maxLength: 50 },
-        title: { type: "string", maxLength: 50 }
+        default: { type: 'boolean', default: true },
+        display: { type: 'string', maxLength: 50 },
+        filter_row_source: { type: 'string', maxLength: 4294967295 },
+        group_by: { type: 'string', maxLength: 50 },
+        title: { type: 'string', maxLength: 50 },
       },
-      $id: "___transql___test_northwind/sales_report.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/sales_report.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id"],
+      required: ['id'],
       properties: {
-        address: { type: "string", maxLength: 4294967295 },
+        address: { type: 'string', maxLength: 4294967295 },
         attachments: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        business_phone: { type: "string", maxLength: 25 },
-        city: { type: "string", maxLength: 50 },
-        company: { type: "string", maxLength: 50 },
-        country_region: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        fax_number: { type: "string", maxLength: 25 },
-        first_name: { type: "string", maxLength: 50 },
-        home_phone: { type: "string", maxLength: 25 },
+        business_phone: { type: 'string', maxLength: 25 },
+        city: { type: 'string', maxLength: 50 },
+        company: { type: 'string', maxLength: 50 },
+        country_region: { type: 'string', maxLength: 50 },
+        email_address: { type: 'string', maxLength: 50 },
+        fax_number: { type: 'string', maxLength: 25 },
+        first_name: { type: 'string', maxLength: 50 },
+        home_phone: { type: 'string', maxLength: 25 },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        job_title: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        notes: { type: "string", maxLength: 4294967295 },
-        state_province: { type: "string", maxLength: 50 },
-        web_page: { type: "string", maxLength: 4294967295 },
-        zip_postal_code: { type: "string", maxLength: 15 },
-        orders: { type: "array", items: { $ref: "./order.json" } }
+        job_title: { type: 'string', maxLength: 50 },
+        last_name: { type: 'string', maxLength: 50 },
+        mobile_phone: { type: 'string', maxLength: 25 },
+        notes: { type: 'string', maxLength: 4294967295 },
+        state_province: { type: 'string', maxLength: 50 },
+        web_page: { type: 'string', maxLength: 4294967295 },
+        zip_postal_code: { type: 'string', maxLength: 15 },
+        orders: { type: 'array', items: { $ref: './order.json' } },
       },
-      $id: "___transql___test_northwind/shipper.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/shipper.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["string_id"],
+      required: ['string_id'],
       properties: {
-        string_data: { type: "string", maxLength: 255 },
+        string_data: { type: 'string', maxLength: 255 },
         string_id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
-        }
+          minimum: -2147483648,
+        },
       },
-      $id: "___transql___test_northwind/string.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
+      $id: '___transql___test_northwind/string.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
-      required: ["id"],
+      required: ['id'],
       properties: {
-        address: { type: "string", maxLength: 4294967295 },
+        address: { type: 'string', maxLength: 4294967295 },
         attachments: {
-          type: "string",
-          contentEncoding: "base64",
-          maxLength: 5726623060
+          type: 'string',
+          contentEncoding: 'base64',
+          maxLength: 5726623060,
         },
-        business_phone: { type: "string", maxLength: 25 },
-        city: { type: "string", maxLength: 50 },
-        company: { type: "string", maxLength: 50 },
-        country_region: { type: "string", maxLength: 50 },
-        email_address: { type: "string", maxLength: 50 },
-        fax_number: { type: "string", maxLength: 25 },
-        first_name: { type: "string", maxLength: 50 },
-        home_phone: { type: "string", maxLength: 25 },
+        business_phone: { type: 'string', maxLength: 25 },
+        city: { type: 'string', maxLength: 50 },
+        company: { type: 'string', maxLength: 50 },
+        country_region: { type: 'string', maxLength: 50 },
+        email_address: { type: 'string', maxLength: 50 },
+        fax_number: { type: 'string', maxLength: 25 },
+        first_name: { type: 'string', maxLength: 50 },
+        home_phone: { type: 'string', maxLength: 25 },
         id: {
-          type: "integer",
+          type: 'integer',
           maximum: 2147483647,
-          minimum: -2147483648
+          minimum: -2147483648,
         },
-        job_title: { type: "string", maxLength: 50 },
-        last_name: { type: "string", maxLength: 50 },
-        mobile_phone: { type: "string", maxLength: 25 },
-        notes: { type: "string", maxLength: 4294967295 },
-        state_province: { type: "string", maxLength: 50 },
-        web_page: { type: "string", maxLength: 4294967295 },
-        zip_postal_code: { type: "string", maxLength: 15 },
+        job_title: { type: 'string', maxLength: 50 },
+        last_name: { type: 'string', maxLength: 50 },
+        mobile_phone: { type: 'string', maxLength: 25 },
+        notes: { type: 'string', maxLength: 4294967295 },
+        state_province: { type: 'string', maxLength: 50 },
+        web_page: { type: 'string', maxLength: 4294967295 },
+        zip_postal_code: { type: 'string', maxLength: 15 },
         purchase_orders: {
-          type: "array",
-          items: { $ref: "./purchase_order.json" }
-        }
+          type: 'array',
+          items: { $ref: './purchase_order.json' },
+        },
       },
-      $id: "___transql___test_northwind/supplier.json",
-      $schema: "http://json-schema.org/draft-07/schema#"
-    }
-  ]
+      $id: '___transql___test_northwind/supplier.json',
+      $schema: 'http://json-schema.org/draft-07/schema#',
+    },
+  ],
 }

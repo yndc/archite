@@ -5,20 +5,20 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-export * from "./transformers"
-export * from "./generators"
-export * from "./exporter"
-export * from "./parsers"
+export * from './transformers'
+export * from './generators'
+export * from './exporter'
+export * from './parsers'
 
 /**
  * Alias for JSON schema draft 07
  */
-export interface JsonSchema extends JSONSchema7 {}
+export type JsonSchema = JSONSchema7
 
 /**
  * JSON schema version
  */
-export const JsonSchemaVersion = "http://json-schema.org/draft-07/schema#"
+export const JsonSchemaVersion = 'http://json-schema.org/draft-07/schema#'
 
 /**
  * Collection of JSON schemas under a same root ID
@@ -45,24 +45,12 @@ export interface JsonSchemaPackage {
  * Primitive type
  * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.1.1
  */
-type JSONSchema7TypeName =
-  | "string"
-  | "number"
-  | "integer"
-  | "boolean"
-  | "object"
-  | "array"
-  | "null"
-type JSONSchema7Type =
-  | JSONSchema7Array[]
-  | boolean
-  | number
-  | null
-  | object
-  | string
+type JSONSchema7TypeName = 'string' | 'number' | 'integer' | 'boolean' | 'object' | 'array' | 'null'
+type JSONSchema7Type = JSONSchema7Array[] | boolean | number | null | object | string
 
 // Workaround for infinite type recursion
 // https://github.com/Microsoft/TypeScript/issues/3496#issuecomment-128553540
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface JSONSchema7Array extends Array<JSONSchema7Type> {}
 
 /**
