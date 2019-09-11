@@ -8,6 +8,7 @@
 import * as path from 'path'
 import * as url from 'url'
 import * as fs from 'fs'
+import * as v8 from 'v8'
 import { JsonSchema } from '~/json-schema'
 
 /**
@@ -391,12 +392,21 @@ export function generateRelativeReference(sourceFullId: string, destinationFullI
 }
 
 /**
+ * Returns a deep copy of an object using v8
+ * @param value
+ */
+export function deepCopy(value: object): object {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  return (v8 as any).deserialize((v8 as any).serialize(value))
+}
+
+/**
  * Returns a copy of schema with all $refs converted with the converter function
  * @param schema
  * @param converter
  */
 export function convertRefs(schema: JsonSchema, converter: (ref: string, fullId: string) => string): JsonSchema {
-  const copy: JsonSchema = { ...schema }
+  const copy = deepCopy(schema)
   const fullId = schema.$id as string
   const walk = (obj: object): void => {
     let key: string
@@ -566,87 +576,6 @@ export function objectWalk(value: object, steps: string[]): object | undefined {
 //     }
 //   })
 // }
-
-/**
- * Combine a list of schemas into one compound schema
- * @param options
- */
-export function combineSchemas(options: {
-  /**
-   * List of schemas to combine as a compound schema
-   */
-  schemas: JsonSchema[]
-  /**
-   * The schema ID for the combined compound schema
-   */
-  id?: string
-}): JsonSchema {
-  const { schemas, id = '' } = options
-  const converter = (ref: string, sourceFullId: string): string => {
-    const fullRef = generateRelativeResolver(getDirId(sourceFullId), ref, id)
-    const relativeRef = getRelativeId(fullRef, id, false)
-    return `#/${path.join('definitions', relativeRef)}`
-  }
-  return {
-    ...(id ? { $id: id } : {}),
-    $schema: 'http://json-schema.org/draft-07/schema#',
-    definitions: {
-      ...schemas.reduce(
-        (result, schema) => {
-          const { $id: _, ...localRefSchema } = convertRefs(schema, converter)
-          return {
-            ...result,
-            [removeExtension(getBaseId(schema.$id as string))]: {
-              ...(localRefSchema as JsonSchema),
-            },
-          }
-        },
-        {} as { [key: string]: JsonSchema },
-      ),
-    },
-  }
-}
-
-/**
- * Splits given compoint schema into multiple schemas
- * The $id of the compoundSchema will be used as the rootId of the splitted schemas
- * @param options
- */
-export function splitSchema(options: {
-  /**
-   * Compund schema to split
-   */
-  compoundSchema: JsonSchema
-  /**
-   * Enforces $id to use this extension. You can set for empty string ("") to have no extension.
-   * @default "json"
-   */
-  extension?: string
-}): JsonSchema[] {
-  const { compoundSchema, extension = 'json' } = options
-  const rootId = removeExtension(compoundSchema.$id || '')
-  const usedExtension = extension.replace('.', '') || getExtension(compoundSchema.$id || '')
-  let result: JsonSchema[] = []
-  if (compoundSchema.definitions) {
-    const definitions = compoundSchema.definitions
-    result = Object.keys(compoundSchema.definitions).map(key => {
-      const sourceSchema = definitions[key] as JsonSchema
-      const fullId = generateFullId(key, rootId, usedExtension)
-      const converter = (pointerRef: string): string => {
-        // TODO: use proper path resolver
-        const destinationRelativeId =
-          pointerRef.replace('#/definitions/', './') + (usedExtension ? `.${usedExtension}` : '')
-        return generateRelativeReference(fullId, destinationRelativeId, rootId)
-      }
-      const { $id: _, ...modifiedRefsSchema } = convertRefs({ ...sourceSchema, $id: fullId }, converter)
-      return {
-        ...modifiedRefsSchema,
-        $id: fullId,
-      }
-    })
-  }
-  return result
-}
 
 /**
  * Generates a sort comparer string from an object
