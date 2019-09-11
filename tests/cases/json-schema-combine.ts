@@ -3,11 +3,6 @@
  * License  : MIT
  */
 
-/**
- * Author   : Jonathan Steven (yondercode@gmail.com)
- * License  : MIT
- */
-
 import { combineSchemas } from '~/json-schema/transformers'
 import { deepRecursiveSort } from '~/utils'
 import { writeResult } from '../utils'
