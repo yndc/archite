@@ -4,11 +4,6 @@ import { DatabaseSchema } from '~/model/database'
 import { TableSchema } from '~/model/table'
 
 /**
- * Exports all parsers
- */
-export * from '~/drivers/mysql/parsers/connection'
-
-/**
  * Interface for database connection parsers
  */
 export interface DatabaseConnectionParser {

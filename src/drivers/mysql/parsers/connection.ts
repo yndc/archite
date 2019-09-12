@@ -6,7 +6,7 @@
  */
 
 import * as knex from 'knex'
-import { DatabaseConnectionParser } from '~/drivers/parser'
+import { DatabaseConnectionParser } from '~/parsers'
 import { DatabaseSchema } from '~/model/database'
 import { TableSchema } from '~/model/table'
 import { ColumnSchema, KeyType, StringFormat } from '~/model/column'
