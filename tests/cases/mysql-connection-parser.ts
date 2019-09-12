@@ -13,7 +13,7 @@ import {
   getManyToManyRelationships,
   listTables,
   getTableReferences,
-} from '~/drivers/mysql/parsers/connection'
+} from '~/sql/drivers/mysql/parsers/connection'
 import { createConnection } from '../db'
 import { allTypes, northwind } from '../fixtures/models'
 import { sortComparer, deepRecursiveSort } from '~/utils'

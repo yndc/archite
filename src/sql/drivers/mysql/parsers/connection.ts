@@ -6,11 +6,11 @@
  */
 
 import * as knex from 'knex'
-import { DatabaseConnectionParser } from '~/parsers'
-import { DatabaseSchema } from '~/model/database'
-import { TableSchema } from '~/model/table'
-import { ColumnSchema, KeyType, StringFormat } from '~/model/column'
-import { Reference, ManyToManyRelationship, ConstraintRule } from '~/model/references'
+import { DatabaseConnectionParser } from '~/sql/parsers'
+import { DatabaseSchema } from '~/sql/model/database'
+import { TableSchema } from '~/sql/model/table'
+import { ColumnSchema, KeyType, StringFormat } from '~/sql/model/column'
+import { Reference, ManyToManyRelationship, ConstraintRule } from '~/sql/model/references'
 import { mapAsync, mapObject, cleanObject } from '~/utils'
 
 /**

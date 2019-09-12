@@ -1,7 +1,7 @@
 import * as knex from 'knex'
-import { Reference, ManyToManyRelationship } from '~/model/references'
-import { DatabaseSchema } from '~/model/database'
-import { TableSchema } from '~/model/table'
+import { Reference, ManyToManyRelationship } from '~/sql/model/references'
+import { DatabaseSchema } from '~/sql/model/database'
+import { TableSchema } from '~/sql/model/table'
 
 /**
  * Interface for database connection parsers
