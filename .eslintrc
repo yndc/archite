@@ -11,6 +11,7 @@
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
     "semi": ["error", "never"],
+    "@typescript-eslint/no-empty-interface": 0,
     "@typescript-eslint/no-unused-vars": [
       "error",
       { "vars": "all", "args": "all", "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }

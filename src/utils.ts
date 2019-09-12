@@ -9,7 +9,6 @@ import * as path from 'path'
 import * as url from 'url'
 import * as fs from 'fs'
 import * as v8 from 'v8'
-import { JsonSchema } from '~/json-schema'
 
 /**
  * Maps over an object properties with a function
@@ -294,24 +293,6 @@ export function omit<T extends object>(original: T, omits: string[]): T {
 }
 
 /**
- * Checks if the given schema is a compound schema
- * @param schema
- */
-export function isCompound(schema: JsonSchema): boolean {
-  if (schema.$schema && schema.$id && schema.definitions) return true
-  return false
-}
-
-/**
- * Checks if the given schema is a simple schema
- * @param schema
- */
-export function isSimple(schema: JsonSchema): boolean {
-  if (schema.$schema && schema.$id && schema.properties) return true
-  return false
-}
-
-/**
  * Joins rootId to an $id
  * @param rootId
  * @param id
@@ -398,27 +379,6 @@ export function generateRelativeReference(sourceFullId: string, destinationFullI
 export function deepCopy(value: object): object {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   return (v8 as any).deserialize((v8 as any).serialize(value))
-}
-
-/**
- * Returns a copy of schema with all $refs converted with the converter function
- * @param schema
- * @param converter
- */
-export function convertRefs(schema: JsonSchema, converter: (ref: string, fullId: string) => string): JsonSchema {
-  const copy = deepCopy(schema)
-  const fullId = schema.$id as string
-  const walk = (obj: object): void => {
-    let key: string
-    const has = Object.prototype.hasOwnProperty.bind(obj)
-    for (key in obj)
-      if (has(key)) {
-        if (typeof obj[key] === 'object') walk(obj[key])
-        else if (key === '$ref') obj[key] = converter(obj[key], fullId)
-      }
-  }
-  walk(copy as object)
-  return copy
 }
 
 /**

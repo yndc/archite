@@ -6,11 +6,11 @@
  */
 
 /**
- * Exports the Json Schema library
+ * Supported database drivers
  */
-export * from './json-schema'
+export type DatabaseDriver = 'mysql' | 'postgresql' | 'sql-server' | 'oracle'
 
 /**
- * Exports the SQL library
+ * Exports all parsers
  */
-export * from './sql'
+export * from '~/drivers/parser'

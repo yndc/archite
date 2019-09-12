@@ -1,1671 +1,2687 @@
 export const allTypes = {
-  name: '___transql___test_all_types',
-  tables: [
-    {
-      name: 'all_types_table',
-      columns: [
-        {
-          name: 'col_bigint',
-          comment: '',
-          type: {
-            type: 'integer',
-            maximum: 9223372036854776000,
-            minimum: -9223372036854776000,
-          },
-          nullable: false,
-        },
-        {
-          name: 'col_binary',
-          comment: '',
-          type: { type: 'string', maxLength: 123 },
-          nullable: false,
-        },
-        {
-          name: 'col_bit',
-          comment: '',
-          type: { type: 'string', maxLength: 4 },
-          nullable: false,
-        },
-        {
-          name: 'col_blob',
-          comment: '',
-          type: { type: 'string', contentEncoding: 'base64', maxLength: 87380 },
-          nullable: false,
-        },
-        {
-          name: 'col_char',
-          comment: '',
-          type: { type: 'string', maxLength: 1 },
-          nullable: false,
-        },
-        {
-          name: 'col_date',
-          comment: '',
-          type: { type: 'string', format: 'date' },
-          nullable: false,
-        },
-        {
-          name: 'col_datetime',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: false,
-        },
-        {
-          name: 'col_decimal',
-          comment: '',
-          type: {
-            type: 'string',
-            maxLength: 10,
-            pattern: '^[-]?(\\d+\\.?\\d{0,5})$',
-          },
-          nullable: false,
-        },
-        {
-          name: 'col_default_decimal',
-          comment: 'This is a decimal, the default should be 5',
-          type: {
-            type: 'string',
-            default: '5.00000',
-            maxLength: 10,
-            pattern: '^[-]?(\\d+\\.?\\d{0,5})$',
-          },
-          nullable: false,
-        },
-        {
-          name: 'col_default_integer',
-          comment: '',
-          type: {
-            type: 'integer',
-            default: 123,
-            maximum: 2147483647,
-            minimum: -2147483648,
-          },
-          nullable: false,
-        },
-        {
-          name: 'col_default_varchar',
-          comment: '',
-          type: { type: 'string', default: 'ayy lmao', maxLength: 11 },
-          nullable: false,
-        },
-        {
-          name: 'col_double',
-          comment: '',
-          type: { type: 'number' },
-          nullable: false,
-        },
-        {
-          name: 'col_enum',
-          comment: '',
-          type: { type: 'string', enum: ['ONE', 'TWO', 'THREE'] },
-          nullable: false,
-        },
-        {
-          name: 'col_float',
-          comment: '',
-          type: { type: 'number' },
-          nullable: false,
-        },
-        {
-          name: 'col_int',
-          comment: 'This is an integer',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'col_longblob',
-          comment: '',
-          type: {
-            type: 'string',
-            contentEncoding: 'base64',
-            maxLength: 5726623060,
-          },
-          nullable: false,
-        },
-        {
-          name: 'col_longtext',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: false,
-        },
-        {
-          name: 'col_mediumblob',
-          comment: '',
-          type: {
-            type: 'string',
-            contentEncoding: 'base64',
-            maxLength: 22369620,
-          },
-          nullable: false,
-        },
-        {
-          name: 'col_mediumint',
-          comment: 'This is a medium integer',
-          type: { type: 'integer', maximum: 8388607, minimum: -8388608 },
-          nullable: false,
-        },
-        {
-          name: 'col_mediumtext',
-          comment: '',
-          type: { type: 'string', maxLength: 16777215 },
-          nullable: false,
-        },
-        {
-          name: 'col_nullable_double',
-          comment: '',
-          type: { type: 'number' },
-          nullable: true,
-        },
-        {
-          name: 'col_nullable_integer',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'col_nullable_varchar',
-          comment: '',
-          type: { type: 'string', maxLength: 255 },
-          nullable: true,
-        },
-        {
-          name: 'col_set',
-          comment: '',
-          type: {
-            type: 'array',
-            uniqueItems: true,
-            items: { type: 'string', enum: ['ONE', 'TWO', 'THREE'] },
-          },
-          nullable: false,
-        },
-        {
-          name: 'col_smallint',
-          comment: 'This is a smol integer',
-          type: { type: 'integer', maximum: 32767, minimum: -32768 },
-          nullable: false,
-        },
-        {
-          name: 'col_text',
-          comment: '',
-          type: { type: 'string', maxLength: 65535 },
-          nullable: false,
-        },
-        {
-          name: 'col_timestamp',
-          comment: '',
-          type: { type: 'integer', maximum: 18446744073709552000, minimum: 0 },
-          nullable: false,
-        },
-        {
-          name: 'col_tinyblob',
-          comment: '',
-          type: { type: 'string', contentEncoding: 'base64', maxLength: 340 },
-          nullable: false,
-        },
-        {
-          name: 'col_tinyint',
-          comment: 'A boolean value',
-          type: { type: 'boolean', default: false },
-          nullable: false,
-        },
-        {
-          name: 'col_tinytext',
-          comment: '',
-          type: { type: 'string', maxLength: 255 },
-          nullable: false,
-        },
-        {
-          name: 'col_ubigint',
-          comment: '',
-          type: { type: 'integer', maximum: 18446744073709552000, minimum: 0 },
-          nullable: false,
-        },
-        {
-          name: 'col_uint',
-          comment: 'This is an unsigned integer',
-          type: { type: 'integer', maximum: 4294967295, minimum: 0 },
-          nullable: false,
-        },
-        {
-          name: 'col_varbinary',
-          comment: '',
-          type: { type: 'string', maxLength: 500 },
-          nullable: false,
-        },
-        {
-          name: 'col_varchar',
-          comment: '',
-          type: { type: 'string', maxLength: 255 },
-          nullable: false,
-        },
-        {
-          name: 'col_year',
-          comment: '',
-          type: { type: 'integer', maximum: 9999, minimum: 0 },
-          nullable: false,
-        },
-      ],
-    },
-  ],
-  references: [],
-  manyToManyRelationships: [],
+	"name": "___transql___test_all_types",
+	"tables": [
+		{
+			"name": "all_types_table",
+			"columns": [
+				{
+					"name": "col_bigint",
+					"comment": "",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 8,
+						"maxLength": 20
+					}
+				},
+				{
+					"name": "col_binary",
+					"comment": "",
+					"nullable": false,
+					"type": "binary",
+					"description": {
+						"bits": 984
+					}
+				},
+				{
+					"name": "col_bit",
+					"comment": "",
+					"nullable": false,
+					"type": "binary",
+					"description": {
+						"bits": 4
+					}
+				},
+				{
+					"name": "col_blob",
+					"comment": "",
+					"nullable": false,
+					"type": "binary",
+					"description": {
+						"bits": null
+					}
+				},
+				{
+					"name": "col_char",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 1,
+						"format": "none",
+						"collation": "utf8mb4_0900_ai_ci"
+					}
+				},
+				{
+					"name": "col_date",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"format": "date"
+					}
+				},
+				{
+					"name": "col_datetime",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "col_decimal",
+					"comment": "",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "10",
+						"precision": "5"
+					}
+				},
+				{
+					"name": "col_default_decimal",
+					"comment": "This is a decimal, the default should be 5",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "10",
+						"precision": "5",
+						"defaultValue": "5.00000"
+					}
+				},
+				{
+					"name": "col_default_integer",
+					"comment": "",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"defaultValue": 123,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "col_default_varchar",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 11,
+						"format": "none",
+						"collation": "utf8mb4_0900_ai_ci",
+						"defaultValue": "ayy lmao"
+					}
+				},
+				{
+					"name": "col_double",
+					"comment": "",
+					"nullable": false,
+					"type": "float",
+					"description": {
+						"precision": "double"
+					}
+				},
+				{
+					"name": "col_enum",
+					"comment": "",
+					"nullable": false,
+					"type": "enum",
+					"array": false,
+					"description": {
+						"options": [
+							"ONE",
+							"TWO",
+							"THREE"
+						]
+					}
+				},
+				{
+					"name": "col_float",
+					"comment": "",
+					"nullable": false,
+					"type": "float",
+					"description": {
+						"precision": "float"
+					}
+				},
+				{
+					"name": "col_int",
+					"comment": "This is an integer",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "col_longblob",
+					"comment": "",
+					"nullable": false,
+					"type": "binary",
+					"description": {
+						"bits": null
+					}
+				},
+				{
+					"name": "col_longtext",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8mb4_0900_ai_ci"
+					}
+				},
+				{
+					"name": "col_mediumblob",
+					"comment": "",
+					"nullable": false,
+					"type": "binary",
+					"description": {
+						"bits": null
+					}
+				},
+				{
+					"name": "col_mediumint",
+					"comment": "This is a medium integer",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 3,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "col_mediumtext",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 16777215,
+						"format": "none",
+						"collation": "utf8mb4_0900_ai_ci"
+					}
+				},
+				{
+					"name": "col_nullable_double",
+					"comment": "",
+					"nullable": true,
+					"type": "float",
+					"description": {
+						"precision": "double"
+					}
+				},
+				{
+					"name": "col_nullable_integer",
+					"comment": "",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "col_nullable_varchar",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 255,
+						"format": "none",
+						"collation": "utf8mb4_0900_ai_ci"
+					}
+				},
+				{
+					"name": "col_set",
+					"comment": "",
+					"nullable": false,
+					"type": "enum",
+					"array": true,
+					"description": {
+						"options": [
+							"ONE",
+							"TWO",
+							"THREE"
+						]
+					}
+				},
+				{
+					"name": "col_smallint",
+					"comment": "This is a smol integer",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 2,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "col_text",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 65535,
+						"format": "none",
+						"collation": "utf8mb4_0900_ai_ci"
+					}
+				},
+				{
+					"name": "col_timestamp",
+					"comment": "",
+					"nullable": false,
+					"type": "timestamp",
+					"description": {}
+				},
+				{
+					"name": "col_tinyblob",
+					"comment": "",
+					"nullable": false,
+					"type": "binary",
+					"description": {
+						"bits": null
+					}
+				},
+				{
+					"name": "col_tinyint",
+					"comment": "A boolean value",
+					"nullable": false,
+					"type": "boolean",
+					"description": {
+						"defaultValue": false
+					}
+				},
+				{
+					"name": "col_tinytext",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 255,
+						"format": "none",
+						"collation": "utf8mb4_0900_ai_ci"
+					}
+				},
+				{
+					"name": "col_ubigint",
+					"comment": "",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": true,
+						"byteSize": 8,
+						"maxLength": 20
+					}
+				},
+				{
+					"name": "col_uint",
+					"comment": "This is an unsigned integer",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": true,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "col_varbinary",
+					"comment": "",
+					"nullable": false,
+					"type": "binary",
+					"description": {
+						"bits": 4000
+					}
+				},
+				{
+					"name": "col_varchar",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 255,
+						"format": "none",
+						"collation": "utf8mb4_0900_ai_ci"
+					}
+				},
+				{
+					"name": "col_year",
+					"comment": "",
+					"nullable": false,
+					"type": "year",
+					"description": {}
+				}
+			]
+		}
+	],
+	"references": [],
+	"manyToManyRelationships": []
 }
 
 export const northwind = {
-  name: '___transql___test_northwind',
-  tables: [
-    {
-      name: 'customer',
-      columns: [
-        {
-          name: 'address',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'attachments',
-          comment: '',
-          type: {
-            type: 'string',
-            contentEncoding: 'base64',
-            maxLength: 5726623060,
-          },
-          nullable: true,
-        },
-        {
-          name: 'business_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'city',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'company',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'country_region',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'email_address',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'fax_number',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'first_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'home_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'job_title',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'last_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'mobile_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'notes',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'state_province',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'web_page',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'zip_postal_code',
-          comment: '',
-          type: { type: 'string', maxLength: 15 },
-          nullable: true,
-        },
-      ],
-    },
-    {
-      name: 'employee',
-      columns: [
-        {
-          name: 'address',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'attachments',
-          comment: '',
-          type: {
-            type: 'string',
-            contentEncoding: 'base64',
-            maxLength: 5726623060,
-          },
-          nullable: true,
-        },
-        {
-          name: 'business_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'city',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'company',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'country_region',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'email_address',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'fax_number',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'first_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'home_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'job_title',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'last_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'mobile_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'notes',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'state_province',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'web_page',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'zip_postal_code',
-          comment: '',
-          type: { type: 'string', maxLength: 15 },
-          nullable: true,
-        },
-      ],
-    },
-    {
-      name: 'employee_privilege',
-      columns: [
-        {
-          name: 'employee_id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'privilege_id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-      ],
-    },
-    {
-      name: 'inventory_transaction',
-      columns: [
-        {
-          name: 'comments',
-          comment: '',
-          type: { type: 'string', maxLength: 255 },
-          nullable: true,
-        },
-        {
-          name: 'customer_order_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'product_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'purchase_order_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'quantity',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'transaction_created_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'transaction_modified_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'transaction_type',
-          comment: '',
-          type: { type: 'boolean', default: false },
-          nullable: false,
-        },
-      ],
-    },
-    {
-      name: 'inventory_transaction_type',
-      columns: [
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'boolean', default: false },
-          nullable: false,
-        },
-        {
-          name: 'type_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: false,
-        },
-      ],
-    },
-    {
-      name: 'invoice',
-      columns: [
-        {
-          name: 'amount_due',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: true,
-        },
-        {
-          name: 'due_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'invoice_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'order_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'shipping',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: true,
-        },
-        {
-          name: 'tax',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: true,
-        },
-      ],
-    },
-    {
-      name: 'order',
-      columns: [
-        {
-          name: 'customer_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'employee_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'notes',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'order_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'paid_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'payment_type',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'ship_address',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'ship_city',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'ship_country_region',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'ship_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'ship_state_province',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'ship_zip_postal_code',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'shipped_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'shipper_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'shipping_fee',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: true,
-        },
-        {
-          name: 'status_id',
-          comment: '',
-          type: { type: 'boolean', default: true },
-          nullable: true,
-        },
-        {
-          name: 'tax_rate',
-          comment: '',
-          type: { type: 'number', default: 0 },
-          nullable: true,
-        },
-        {
-          name: 'tax_status_id',
-          comment: '',
-          type: { type: 'boolean', default: false },
-          nullable: true,
-        },
-        {
-          name: 'taxes',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: true,
-        },
-      ],
-    },
-    {
-      name: 'order_detail',
-      columns: [
-        {
-          name: 'date_allocated',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'discount',
-          comment: '',
-          type: { type: 'number', default: 0 },
-          nullable: false,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'inventory_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'order_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'product_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'purchase_order_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'quantity',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 18,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: false,
-        },
-        {
-          name: 'status_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'unit_price',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: true,
-        },
-      ],
-    },
-    {
-      name: 'order_details_status',
-      columns: [
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'status_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: false,
-        },
-      ],
-    },
-    {
-      name: 'orders_status',
-      columns: [
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'boolean', default: false },
-          nullable: false,
-        },
-        {
-          name: 'status_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: false,
-        },
-      ],
-    },
-    {
-      name: 'orders_tax_status',
-      columns: [
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'boolean', default: false },
-          nullable: false,
-        },
-        {
-          name: 'tax_status_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: false,
-        },
-      ],
-    },
-    {
-      name: 'privilege',
-      columns: [
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'privilege_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-      ],
-    },
-    {
-      name: 'product',
-      columns: [
-        {
-          name: 'attachments',
-          comment: '',
-          type: {
-            type: 'string',
-            contentEncoding: 'base64',
-            maxLength: 5726623060,
-          },
-          nullable: true,
-        },
-        {
-          name: 'category',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'description',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'discontinued',
-          comment: '',
-          type: { type: 'boolean', default: true },
-          nullable: false,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'list_price',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: false,
-        },
-        {
-          name: 'minimum_reorder_quantity',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'product_code',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'product_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'quantity_per_unit',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'reorder_level',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'standard_cost',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: true,
-        },
-        {
-          name: 'supplier_ids',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'target_level',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-      ],
-    },
-    {
-      name: 'purchase_order',
-      columns: [
-        {
-          name: 'approved_by',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'approved_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'created_by',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'creation_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'expected_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'notes',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'payment_amount',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: true,
-        },
-        {
-          name: 'payment_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'payment_method',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'shipping_fee',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: false,
-        },
-        {
-          name: 'status_id',
-          comment: '',
-          type: {
-            type: 'integer',
-            default: 0,
-            maximum: 2147483647,
-            minimum: -2147483648,
-          },
-          nullable: true,
-        },
-        {
-          name: 'submitted_by',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'submitted_date',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'supplier_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'taxes',
-          comment: '',
-          type: {
-            type: 'string',
-            default: '0.0000',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: false,
-        },
-      ],
-    },
-    {
-      name: 'purchase_order_detail',
-      columns: [
-        {
-          name: 'date_received',
-          comment: '',
-          type: { type: 'string', format: 'date-time' },
-          nullable: true,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'inventory_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'posted_to_inventory',
-          comment: '',
-          type: { type: 'boolean', default: true },
-          nullable: false,
-        },
-        {
-          name: 'product_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: true,
-        },
-        {
-          name: 'purchase_order_id',
-          comment: '',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'quantity',
-          comment: '',
-          type: {
-            type: 'string',
-            maxLength: 18,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: false,
-        },
-        {
-          name: 'unit_cost',
-          comment: '',
-          type: {
-            type: 'string',
-            maxLength: 19,
-            pattern: '^[-]?(\\d+\\.?\\d{0,4})$',
-          },
-          nullable: false,
-        },
-      ],
-    },
-    {
-      name: 'purchase_order_status',
-      columns: [
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'status',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-      ],
-    },
-    {
-      name: 'sales_report',
-      columns: [
-        {
-          name: 'default',
-          comment: '',
-          type: { type: 'boolean', default: true },
-          nullable: false,
-        },
-        {
-          name: 'display',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'filter_row_source',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'group_by',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'string', maxLength: 50 },
-          nullable: false,
-        },
-        {
-          name: 'title',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-      ],
-    },
-    {
-      name: 'shipper',
-      columns: [
-        {
-          name: 'address',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'attachments',
-          comment: '',
-          type: {
-            type: 'string',
-            contentEncoding: 'base64',
-            maxLength: 5726623060,
-          },
-          nullable: true,
-        },
-        {
-          name: 'business_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'city',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'company',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'country_region',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'email_address',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'fax_number',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'first_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'home_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'job_title',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'last_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'mobile_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'notes',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'state_province',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'web_page',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'zip_postal_code',
-          comment: '',
-          type: { type: 'string', maxLength: 15 },
-          nullable: true,
-        },
-      ],
-    },
-    {
-      name: 'string',
-      columns: [
-        {
-          name: 'string_data',
-          comment: '',
-          type: { type: 'string', maxLength: 255 },
-          nullable: true,
-        },
-        {
-          name: 'string_id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-      ],
-    },
-    {
-      name: 'supplier',
-      columns: [
-        {
-          name: 'address',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'attachments',
-          comment: '',
-          type: {
-            type: 'string',
-            contentEncoding: 'base64',
-            maxLength: 5726623060,
-          },
-          nullable: true,
-        },
-        {
-          name: 'business_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'city',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'company',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'country_region',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'email_address',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'fax_number',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'first_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'home_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'id',
-          comment: '',
-          key: 'PRIMARY',
-          type: { type: 'integer', maximum: 2147483647, minimum: -2147483648 },
-          nullable: false,
-        },
-        {
-          name: 'job_title',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'last_name',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'mobile_phone',
-          comment: '',
-          type: { type: 'string', maxLength: 25 },
-          nullable: true,
-        },
-        {
-          name: 'notes',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'state_province',
-          comment: '',
-          type: { type: 'string', maxLength: 50 },
-          nullable: true,
-        },
-        {
-          name: 'web_page',
-          comment: '',
-          type: { type: 'string', maxLength: 4294967295 },
-          nullable: true,
-        },
-        {
-          name: 'zip_postal_code',
-          comment: '',
-          type: { type: 'string', maxLength: 15 },
-          nullable: true,
-        },
-      ],
-    },
-  ],
-  references: [
-    {
-      referencingTable: 'order',
-      referencedTable: 'customer',
-      referencingColumn: 'customer_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'employee_privilege',
-      referencedTable: 'employee',
-      referencingColumn: 'employee_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'order',
-      referencedTable: 'employee',
-      referencingColumn: 'employee_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'purchase_order',
-      referencedTable: 'employee',
-      referencingColumn: 'created_by',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'purchase_order_detail',
-      referencedTable: 'inventory_transaction',
-      referencingColumn: 'inventory_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'inventory_transaction',
-      referencedTable: 'inventory_transaction_type',
-      referencingColumn: 'transaction_type',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'inventory_transaction',
-      referencedTable: 'order',
-      referencingColumn: 'customer_order_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'invoice',
-      referencedTable: 'order',
-      referencingColumn: 'order_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'order_detail',
-      referencedTable: 'order',
-      referencingColumn: 'order_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'order_detail',
-      referencedTable: 'order_details_status',
-      referencingColumn: 'status_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'order',
-      referencedTable: 'orders_status',
-      referencingColumn: 'status_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'order',
-      referencedTable: 'orders_tax_status',
-      referencingColumn: 'tax_status_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'employee_privilege',
-      referencedTable: 'privilege',
-      referencingColumn: 'privilege_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'inventory_transaction',
-      referencedTable: 'product',
-      referencingColumn: 'product_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'order_detail',
-      referencedTable: 'product',
-      referencingColumn: 'product_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'purchase_order_detail',
-      referencedTable: 'product',
-      referencingColumn: 'product_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'inventory_transaction',
-      referencedTable: 'purchase_order',
-      referencingColumn: 'purchase_order_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'purchase_order_detail',
-      referencedTable: 'purchase_order',
-      referencingColumn: 'purchase_order_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'purchase_order',
-      referencedTable: 'purchase_order_status',
-      referencingColumn: 'status_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'order',
-      referencedTable: 'shipper',
-      referencingColumn: 'shipper_id',
-      referencedColumn: 'id',
-    },
-    {
-      referencingTable: 'purchase_order',
-      referencedTable: 'supplier',
-      referencingColumn: 'supplier_id',
-      referencedColumn: 'id',
-    },
-  ],
-  manyToManyRelationships: [
-    {
-      pair: [
-        { table: 'employee', column: 'employee_id', key: 'id' },
-        { table: 'privilege', column: 'privilege_id', key: 'id' },
-      ],
-      intermediateTable: 'employee_privilege',
-    },
-  ],
+	"name": "___transql___test_northwind",
+	"tables": [
+		{
+			"name": "customer",
+			"columns": [
+				{
+					"name": "address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "attachments",
+					"comment": "",
+					"nullable": true,
+					"type": "binary",
+					"description": {
+						"bits": null
+					}
+				},
+				{
+					"name": "business_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "city",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "company",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "country_region",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "email_address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "fax_number",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "first_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "home_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "job_title",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "last_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "mobile_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "notes",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "state_province",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "web_page",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "zip_postal_code",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 15,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		},
+		{
+			"name": "employee",
+			"columns": [
+				{
+					"name": "address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "attachments",
+					"comment": "",
+					"nullable": true,
+					"type": "binary",
+					"description": {
+						"bits": null
+					}
+				},
+				{
+					"name": "business_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "city",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "company",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "country_region",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "email_address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "fax_number",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "first_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "home_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "job_title",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "last_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "mobile_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "notes",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "state_province",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "web_page",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "zip_postal_code",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 15,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		},
+		{
+			"name": "employee_privilege",
+			"columns": [
+				{
+					"name": "employee_id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "privilege_id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				}
+			]
+		},
+		{
+			"name": "inventory_transaction",
+			"columns": [
+				{
+					"name": "comments",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 255,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "customer_order_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "product_id",
+					"comment": "",
+					"key": "index",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "purchase_order_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "quantity",
+					"comment": "",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "transaction_created_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "transaction_modified_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "transaction_type",
+					"comment": "",
+					"key": "index",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 1,
+						"maxLength": 4
+					}
+				}
+			]
+		},
+		{
+			"name": "inventory_transaction_type",
+			"columns": [
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 1,
+						"maxLength": 4
+					}
+				},
+				{
+					"name": "type_name",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		},
+		{
+			"name": "invoice",
+			"columns": [
+				{
+					"name": "amount_due",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "due_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "invoice_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "order_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "shipping",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "tax",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				}
+			]
+		},
+		{
+			"name": "order",
+			"columns": [
+				{
+					"name": "customer_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "employee_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "notes",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "order_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "paid_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "payment_type",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "ship_address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "ship_city",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "ship_country_region",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "ship_name",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "ship_state_province",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "ship_zip_postal_code",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "shipped_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "shipper_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "shipping_fee",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "status_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"defaultValue": 0,
+						"byteSize": 1,
+						"maxLength": 4
+					}
+				},
+				{
+					"name": "tax_rate",
+					"comment": "",
+					"nullable": true,
+					"type": "float",
+					"description": {
+						"precision": "double",
+						"defaultValue": 0
+					}
+				},
+				{
+					"name": "tax_status_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 1,
+						"maxLength": 4
+					}
+				},
+				{
+					"name": "taxes",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				}
+			]
+		},
+		{
+			"name": "order_detail",
+			"columns": [
+				{
+					"name": "date_allocated",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "discount",
+					"comment": "",
+					"nullable": false,
+					"type": "float",
+					"description": {
+						"precision": "double",
+						"defaultValue": 0
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "inventory_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "order_id",
+					"comment": "",
+					"key": "index",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "product_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "purchase_order_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "quantity",
+					"comment": "",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "18",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "status_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "unit_price",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				}
+			]
+		},
+		{
+			"name": "order_details_status",
+			"columns": [
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "status_name",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		},
+		{
+			"name": "orders_status",
+			"columns": [
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 1,
+						"maxLength": 4
+					}
+				},
+				{
+					"name": "status_name",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		},
+		{
+			"name": "orders_tax_status",
+			"columns": [
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 1,
+						"maxLength": 4
+					}
+				},
+				{
+					"name": "tax_status_name",
+					"comment": "",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		},
+		{
+			"name": "privilege",
+			"columns": [
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "privilege_name",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		},
+		{
+			"name": "product",
+			"columns": [
+				{
+					"name": "attachments",
+					"comment": "",
+					"nullable": true,
+					"type": "binary",
+					"description": {
+						"bits": null
+					}
+				},
+				{
+					"name": "category",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "description",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "discontinued",
+					"comment": "",
+					"nullable": false,
+					"type": "boolean",
+					"description": {
+						"defaultValue": true
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "list_price",
+					"comment": "",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "minimum_reorder_quantity",
+					"comment": "",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "product_code",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "product_name",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "quantity_per_unit",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "reorder_level",
+					"comment": "",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "standard_cost",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "supplier_ids",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "target_level",
+					"comment": "",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				}
+			]
+		},
+		{
+			"name": "purchase_order",
+			"columns": [
+				{
+					"name": "approved_by",
+					"comment": "",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "approved_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "created_by",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "creation_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "expected_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "notes",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "payment_amount",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "payment_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "payment_method",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "shipping_fee",
+					"comment": "",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "status_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"defaultValue": 0,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "submitted_by",
+					"comment": "",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "submitted_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "supplier_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "taxes",
+					"comment": "",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				}
+			]
+		},
+		{
+			"name": "purchase_order_detail",
+			"columns": [
+				{
+					"name": "date_received",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "inventory_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "posted_to_inventory",
+					"comment": "",
+					"nullable": false,
+					"type": "boolean",
+					"description": {
+						"defaultValue": true
+					}
+				},
+				{
+					"name": "product_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "purchase_order_id",
+					"comment": "",
+					"key": "index",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "quantity",
+					"comment": "",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "18",
+						"precision": "4"
+					}
+				},
+				{
+					"name": "unit_cost",
+					"comment": "",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4"
+					}
+				}
+			]
+		},
+		{
+			"name": "purchase_order_status",
+			"columns": [
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "status",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		},
+		{
+			"name": "sales_report",
+			"columns": [
+				{
+					"name": "default",
+					"comment": "",
+					"nullable": false,
+					"type": "boolean",
+					"description": {
+						"defaultValue": true
+					}
+				},
+				{
+					"name": "display",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "filter_row_source",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "group_by",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "title",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		},
+		{
+			"name": "shipper",
+			"columns": [
+				{
+					"name": "address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "attachments",
+					"comment": "",
+					"nullable": true,
+					"type": "binary",
+					"description": {
+						"bits": null
+					}
+				},
+				{
+					"name": "business_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "city",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "company",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "country_region",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "email_address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "fax_number",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "first_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "home_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "job_title",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "last_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "mobile_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "notes",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "state_province",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "web_page",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "zip_postal_code",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 15,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		},
+		{
+			"name": "string",
+			"columns": [
+				{
+					"name": "string_data",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 255,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "string_id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				}
+			]
+		},
+		{
+			"name": "supplier",
+			"columns": [
+				{
+					"name": "address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "attachments",
+					"comment": "",
+					"nullable": true,
+					"type": "binary",
+					"description": {
+						"bits": null
+					}
+				},
+				{
+					"name": "business_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "city",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "company",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "country_region",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "email_address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "fax_number",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "first_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "home_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "job_title",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "last_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "mobile_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "notes",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "state_province",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "web_page",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "zip_postal_code",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 15,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				}
+			]
+		}
+	],
+	"references": [
+		{
+			"referencingTable": "employee_privilege",
+			"referencedTable": "employee",
+			"referencingColumn": "employee_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "employee_privilege",
+			"referencedTable": "privilege",
+			"referencingColumn": "privilege_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order",
+			"referencedTable": "customer",
+			"referencingColumn": "customer_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order",
+			"referencedTable": "employee",
+			"referencingColumn": "employee_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order",
+			"referencedTable": "shipper",
+			"referencingColumn": "shipper_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order",
+			"referencedTable": "orders_tax_status",
+			"referencingColumn": "tax_status_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order",
+			"referencedTable": "orders_status",
+			"referencingColumn": "status_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order",
+			"referencedTable": "employee",
+			"referencingColumn": "created_by",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order",
+			"referencedTable": "purchase_order_status",
+			"referencingColumn": "status_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order",
+			"referencedTable": "supplier",
+			"referencingColumn": "supplier_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "inventory_transaction",
+			"referencedTable": "order",
+			"referencingColumn": "customer_order_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "inventory_transaction",
+			"referencedTable": "product",
+			"referencingColumn": "product_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "inventory_transaction",
+			"referencedTable": "purchase_order",
+			"referencingColumn": "purchase_order_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "inventory_transaction",
+			"referencedTable": "inventory_transaction_type",
+			"referencingColumn": "transaction_type",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "invoice",
+			"referencedTable": "order",
+			"referencingColumn": "order_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order_detail",
+			"referencedTable": "order",
+			"referencingColumn": "order_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order_detail",
+			"referencedTable": "product",
+			"referencingColumn": "product_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order_detail",
+			"referencedTable": "order_details_status",
+			"referencingColumn": "status_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order_detail",
+			"referencedTable": "inventory_transaction",
+			"referencingColumn": "inventory_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order_detail",
+			"referencedTable": "product",
+			"referencingColumn": "product_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order_detail",
+			"referencedTable": "purchase_order",
+			"referencingColumn": "purchase_order_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		}
+	],
+	"manyToManyRelationships": [
+		{
+			"pair": [
+				{
+					"table": "employee",
+					"column": "employee_id",
+					"key": "id"
+				},
+				{
+					"table": "privilege",
+					"column": "privilege_id",
+					"key": "id"
+				}
+			],
+			"intermediateTable": "employee_privilege"
+		}
+	]
 }

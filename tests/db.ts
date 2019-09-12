@@ -7,6 +7,7 @@
 
 import * as fs from 'fs'
 import * as knex from 'knex'
+import { DatabaseDriver } from '~/index'
 
 export interface TestConfig {
   mysql: {
@@ -50,4 +51,30 @@ export async function createMySqlDatabase(config: TestConfig, connection: knex, 
 
 export async function destroyMySqlDatabase(connection: knex, database: string): Promise<void> {
   await connection.raw(`DROP DATABASE IF EXISTS ${database};`)
+}
+
+/**
+ * Interface for database connection configuration
+ */
+export interface DatabaseConnectionConfiguration {
+  host?: string
+  port?: number
+  user?: string
+  password?: string
+}
+
+/**
+ * Creates a connection to a database wtih knex
+ * @param config
+ */
+export async function createConnection(driver: DatabaseDriver, config: DatabaseConnectionConfiguration): Promise<knex> {
+  const connection = knex({
+    client: driver,
+    connection: {
+      ...config,
+      multipleStatements: true,
+    },
+  })
+  if ((await connection.raw('SELECT 1'))[0][0][1] !== 1) throw 'Failed to initialize SQL connection!'
+  return connection
 }
