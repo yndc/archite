@@ -1,5 +1,5 @@
 export const allTypes = {
-	"name": "___transql___test_all_types",
+	"name": "___polymorph___test_all_types",
 	"tables": [
 		{
 			"name": "all_types_table",
@@ -378,7 +378,7 @@ export const allTypes = {
 }
 
 export const northwind = {
-	"name": "___transql___test_northwind",
+	"name": "___polymorph___test_northwind",
 	"tables": [
 		{
 			"name": "customer",

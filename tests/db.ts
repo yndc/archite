@@ -26,7 +26,7 @@ export function loadConfig(configFilePath = './tests/config.json'): TestConfig {
       port: 3306,
       user: 'root',
       password: '',
-      database_prefix: '___transql___test_',
+      database_prefix: '___polymorph___test_',
     },
   }
   if (fs.existsSync(configFilePath)) {

@@ -1,5 +1,5 @@
 {
-  "name": "sql-inspector",
+  "name": "polymorph",
   "description": "Node.js library for inspecting SQL database schemas.",
   "version": "0.0.1",
   "author": "Jonathan Steven <yondercode@gmail.com>",

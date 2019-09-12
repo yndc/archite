@@ -1,7 +1,5 @@
-import { JsonSchemaPackage } from '~/json-schema'
-
 export const allTypesCombined = {
-  $id: '___transql___test_all_types.json',
+  $id: '___polymorph___test_all_types.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   definitions: {
     all_types_table: {
@@ -160,10 +158,10 @@ export const allTypesCombined = {
 }
 
 export const allTypesSplitted = {
-  rootId: '___transql___test_all_types',
+  rootId: '___polymorph___test_all_types',
   schemas: [
     {
-      $id: '___transql___test_all_types/all_types_table.json',
+      $id: '___polymorph___test_all_types/all_types_table.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
       required: [
         'col_bigint',
@@ -320,7 +318,7 @@ export const allTypesSplitted = {
 }
 
 export const northwindCombined = {
-  $id: '___transql___test_northwind.json',
+  $id: '___polymorph___test_northwind.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   definitions: {
     sales_report: {
@@ -1366,8 +1364,8 @@ export const northwindCombined = {
   },
 }
 
-export const northwindSplitted: JsonSchemaPackage = {
-  rootId: '___transql___test_northwind',
+export const northwindSplitted = {
+  rootId: '___polymorph___test_northwind',
   schemas: [
     {
       required: ['id'],
@@ -1400,7 +1398,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         zip_postal_code: { type: 'string', maxLength: 15 },
         orders: { type: 'array', items: { $ref: './order.json' } },
       },
-      $id: '___transql___test_northwind/customer.json',
+      $id: '___polymorph___test_northwind/customer.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1442,7 +1440,7 @@ export const northwindSplitted: JsonSchemaPackage = {
           items: { $ref: './privilege.json' },
         },
       },
-      $id: '___transql___test_northwind/employee.json',
+      $id: '___polymorph___test_northwind/employee.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1488,7 +1486,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         product: { $ref: './product.json' },
         purchase_order: { $ref: './purchase_order.json' },
       },
-      $id: '___transql___test_northwind/inventory_transaction.json',
+      $id: '___polymorph___test_northwind/inventory_transaction.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1501,7 +1499,7 @@ export const northwindSplitted: JsonSchemaPackage = {
           items: { $ref: './inventory_transaction.json' },
         },
       },
-      $id: '___transql___test_northwind/inventory_transaction_type.json',
+      $id: '___polymorph___test_northwind/inventory_transaction_type.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1539,7 +1537,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         },
         order: { $ref: './order.json' },
       },
-      $id: '___transql___test_northwind/invoice.json',
+      $id: '___polymorph___test_northwind/invoice.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1606,7 +1604,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         tax_status: { $ref: './orders_tax_status.json' },
         shipper: { $ref: './shipper.json' },
       },
-      $id: '___transql___test_northwind/order.json',
+      $id: '___polymorph___test_northwind/order.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1660,7 +1658,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         status: { $ref: './order_details_status.json' },
         product: { $ref: './product.json' },
       },
-      $id: '___transql___test_northwind/order_detail.json',
+      $id: '___polymorph___test_northwind/order_detail.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1677,7 +1675,7 @@ export const northwindSplitted: JsonSchemaPackage = {
           items: { $ref: './order_detail.json' },
         },
       },
-      $id: '___transql___test_northwind/order_details_status.json',
+      $id: '___polymorph___test_northwind/order_details_status.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1687,7 +1685,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         status_name: { type: 'string', maxLength: 50 },
         orders: { type: 'array', items: { $ref: './order.json' } },
       },
-      $id: '___transql___test_northwind/orders_status.json',
+      $id: '___polymorph___test_northwind/orders_status.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1697,7 +1695,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         tax_status_name: { type: 'string', maxLength: 50 },
         orders: { type: 'array', items: { $ref: './order.json' } },
       },
-      $id: '___transql___test_northwind/orders_tax_status.json',
+      $id: '___polymorph___test_northwind/orders_tax_status.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1711,7 +1709,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         privilege_name: { type: 'string', maxLength: 50 },
         employees: { type: 'array', items: { $ref: './employee.json' } },
       },
-      $id: '___transql___test_northwind/privilege.json',
+      $id: '___polymorph___test_northwind/privilege.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1774,7 +1772,7 @@ export const northwindSplitted: JsonSchemaPackage = {
           items: { $ref: './purchase_order_detail.json' },
         },
       },
-      $id: '___transql___test_northwind/product.json',
+      $id: '___polymorph___test_northwind/product.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1843,7 +1841,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         status: { $ref: './purchase_order_status.json' },
         supplier: { $ref: './supplier.json' },
       },
-      $id: '___transql___test_northwind/purchase_order.json',
+      $id: '___polymorph___test_northwind/purchase_order.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1885,7 +1883,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         product: { $ref: './product.json' },
         purchase_order: { $ref: './purchase_order.json' },
       },
-      $id: '___transql___test_northwind/purchase_order_detail.json',
+      $id: '___polymorph___test_northwind/purchase_order_detail.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1902,7 +1900,7 @@ export const northwindSplitted: JsonSchemaPackage = {
           items: { $ref: './purchase_order.json' },
         },
       },
-      $id: '___transql___test_northwind/purchase_order_status.json',
+      $id: '___polymorph___test_northwind/purchase_order_status.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1914,7 +1912,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         group_by: { type: 'string', maxLength: 50 },
         title: { type: 'string', maxLength: 50 },
       },
-      $id: '___transql___test_northwind/sales_report.json',
+      $id: '___polymorph___test_northwind/sales_report.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1948,7 +1946,7 @@ export const northwindSplitted: JsonSchemaPackage = {
         zip_postal_code: { type: 'string', maxLength: 15 },
         orders: { type: 'array', items: { $ref: './order.json' } },
       },
-      $id: '___transql___test_northwind/shipper.json',
+      $id: '___polymorph___test_northwind/shipper.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1961,7 +1959,7 @@ export const northwindSplitted: JsonSchemaPackage = {
           minimum: -2147483648,
         },
       },
-      $id: '___transql___test_northwind/string.json',
+      $id: '___polymorph___test_northwind/string.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
     {
@@ -1998,7 +1996,7 @@ export const northwindSplitted: JsonSchemaPackage = {
           items: { $ref: './purchase_order.json' },
         },
       },
-      $id: '___transql___test_northwind/supplier.json',
+      $id: '___polymorph___test_northwind/supplier.json',
       $schema: 'http://json-schema.org/draft-07/schema#',
     },
   ],
