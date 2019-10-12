@@ -6,12 +6,12 @@
  */
 
 import * as knex from 'knex'
-import { DatabaseConnectionParser } from '~/sql/parsers'
+import { DatabaseParser } from '~/sql/parsers'
 import { DatabaseSchema } from '~/sql/model/database'
 import { TableSchema } from '~/sql/model/table'
 import { ColumnSchema, KeyType, StringFormat } from '~/sql/model/column'
-import { Reference, ManyToManyRelationship, ConstraintRule } from '~/sql/model/references'
-import { mapAsync, mapObject, cleanObject } from '~/utils'
+import { Reference, ConstraintRule } from '~/sql/model/references'
+import { mapObject, cleanObject } from '~/utils'
 
 /**
  * Raw, unparsed MySQL column descriptions
@@ -58,14 +58,16 @@ interface RawMySqlColumnDescription {
 /**
  * Query to get column description
  */
-const SQLSelectTableColumns = `COLUMN_NAME as name,
+const SQLSelectTableColumns = `
+  COLUMN_NAME as name,
   COLUMN_TYPE as rawType,
   IS_NULLABLE as nullable,
   COLUMN_DEFAULT as defaultValue,
   COLUMN_KEY as 'key',
   COLUMN_COMMENT as comment,
   COLLATION_NAME as collation,
-  EXTRA as extra`
+  EXTRA as extra
+`
 
 /**
  * Retrieve the list of tables within a database
@@ -90,29 +92,6 @@ export async function listTables(options: { connection: knex; database: string }
       FROM INFORMATION_SCHEMA.TABLES 
       WHERE TABLE_SCHEMA = '${database}';`,
   ))[0].map((x: { table: string }) => x.table)
-}
-
-/**
- * Get a list of intermediate table names from a database
- * @param options
- */
-export async function listIntermediateTables(options: { connection: knex; database: string }): Promise<string[]> {
-  const { connection, database } = options
-  return (await connection.raw(`
-  USE INFORMATION_SCHEMA;
-  SELECT
-    KEY_COLUMN_USAGE.TABLE_NAME as name
-  FROM KEY_COLUMN_USAGE
-  INNER JOIN COLUMNS
-    ON COLUMNS.TABLE_NAME = KEY_COLUMN_USAGE.TABLE_NAME
-  WHERE
-    COLUMNS.TABLE_SCHEMA = '${database}'
-    AND KEY_COLUMN_USAGE.TABLE_SCHEMA = '${database}'
-    AND KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME IS NOT NULL
-  GROUP BY name
-  HAVING COUNT(DISTINCT COLUMNS.COLUMN_NAME) = COUNT(DISTINCT KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME)`))[0][1].map(
-    (x: { name: string }) => x.name,
-  ) as string[]
 }
 
 /**
@@ -267,7 +246,7 @@ function parseColumn(column: RawMySqlColumnDescription): ColumnSchema {
  * Get all references within a database
  * @param options
  */
-export async function getDatabaseReferences(options: { connection: knex; database: string }): Promise<Reference[]> {
+export async function parseDatabaseReferences(options: { connection: knex; database: string }): Promise<Reference[]> {
   const { connection, database } = options
   const mapConstraintRule = (rule: string): ConstraintRule => {
     switch (rule) {
@@ -311,7 +290,7 @@ export async function getDatabaseReferences(options: { connection: knex; databas
  * Get the references from a table
  * @param options
  */
-export async function getTableReferences(options: {
+export async function parseTableReferences(options: {
   connection: knex
   database: string
   table: string
@@ -336,42 +315,6 @@ export async function getTableReferences(options: {
       } 
     ;`
   return (await connection.raw(query))[0][1] as Reference[]
-}
-
-/**
- * Get all many to many relationshoip in a database
- * @param options
- */
-export async function getManyToManyRelationships(options: {
-  connection: knex
-  database: string
-}): Promise<ManyToManyRelationship[]> {
-  const intermediateTables = await listIntermediateTables(options)
-  if (intermediateTables.length && intermediateTables.length >= 0) {
-    return await mapAsync<string, ManyToManyRelationship>(intermediateTables, async (table: string) => {
-      const references = await getTableReferences({
-        ...options,
-        table,
-        filter: 'REFERENCING',
-      })
-      return {
-        pair: [
-          {
-            table: references[0].referencedTable,
-            column: references[0].referencingColumn,
-            key: references[0].referencedColumn,
-          },
-          {
-            table: references[1].referencedTable,
-            column: references[1].referencingColumn,
-            key: references[1].referencedColumn,
-          },
-        ],
-        intermediateTable: table,
-      }
-    })
-  }
-  return []
 }
 
 export async function parseDatabase(options: {
@@ -410,13 +353,9 @@ export async function parseDatabase(options: {
       columns: columns.map(parseColumn),
     }),
   )
-  const references = await getDatabaseReferences(options)
-  const manyToManyRelationships = await getManyToManyRelationships(options)
   return {
     name: database,
     tables,
-    references,
-    manyToManyRelationships,
   }
 }
 
@@ -442,31 +381,15 @@ export async function parseTable(options: { connection: knex; database: string; 
 }
 
 /**
- * Checks if the given table schema is an intermediate table
- * @param options
- */
-export async function isIntermediateTable(options: {
-  connection: knex
-  database: string
-  table: string
-}): Promise<boolean> {
-  const { table } = options
-  const intermediateTables = await listIntermediateTables(options)
-  return intermediateTables.includes(table)
-}
-
-/**
  * Export everything as a DatabaseParser as a default
  */
-const MySqlDatabaseParser: DatabaseConnectionParser = {
+const MySqlConnectionDatabaseParser: DatabaseParser = {
   parseDatabase,
   parseTable,
   listDatabases,
-  listIntermediateTables,
   listTables,
-  isIntermediateTable,
-  getDatabaseReferences,
-  getTableReferences,
-  getManyToManyRelationships,
+  parseDatabaseReferences,
+  parseTableReferences,
 }
-export default MySqlDatabaseParser as DatabaseConnectionParser
+
+export default MySqlConnectionDatabaseParser

@@ -8,12 +8,10 @@ import * as knex from 'knex'
 import {
   parseTable,
   parseDatabase,
-  getDatabaseReferences,
-  listIntermediateTables,
-  getManyToManyRelationships,
+  parseDatabaseReferences,
   listTables,
-  getTableReferences,
-} from '~/sql/drivers/mysql/parsers/connection'
+  parseTableReferences,
+} from '~/sql/drivers/mysql/connection-parser'
 import { createConnection } from '../db'
 import { allTypes, northwind } from '../fixtures/models'
 import { sortComparer, deepRecursiveSort } from '~/utils'
@@ -78,7 +76,7 @@ describe('mysql connection parser', () => {
 
   test('getDatabaseReferences all_types', async () => {
     const expected1 = []
-    const actual1 = await getDatabaseReferences({
+    const actual1 = await parseDatabaseReferences({
       connection,
       database: typesDbName,
     })
@@ -256,7 +254,7 @@ describe('mysql connection parser', () => {
         deleteRule: 'none',
       },
     ]
-    const actual1 = await getDatabaseReferences({
+    const actual1 = await parseDatabaseReferences({
       connection,
       database: northwindDbName,
     })
@@ -317,7 +315,7 @@ describe('mysql connection parser', () => {
         referencedColumn: 'id',
       },
     ]
-    const actual1 = await getTableReferences({
+    const actual1 = await parseTableReferences({
       connection,
       database: northwindDbName,
       table: 'order',
@@ -359,7 +357,7 @@ describe('mysql connection parser', () => {
         referencedColumn: 'id',
       },
     ]
-    const actual1 = await getTableReferences({
+    const actual1 = await parseTableReferences({
       connection,
       database: northwindDbName,
       table: 'order',
@@ -389,65 +387,13 @@ describe('mysql connection parser', () => {
         referencedColumn: 'id',
       },
     ]
-    const actual1 = await getTableReferences({
+    const actual1 = await parseTableReferences({
       connection,
       database: northwindDbName,
       table: 'order',
       filter: 'REFERENCED',
     })
     expect(deepRecursiveSort(expected1)).toEqual(deepRecursiveSort(actual1))
-  })
-
-  test('getIntermediateTables all_types', async () => {
-    const expected1 = []
-    const actual1 = await listIntermediateTables({
-      connection,
-      database: typesDbName,
-    })
-    expect(actual1).toEqual(expected1)
-  })
-
-  test('getIntermediateTables northwind', async () => {
-    const expected1 = ['employee_privilege']
-    const actual1 = await listIntermediateTables({
-      connection,
-      database: northwindDbName,
-    })
-    expect(actual1).toEqual(expected1)
-  })
-
-  test('getManyToManyRelationships all_types', async () => {
-    const expected1 = []
-    const actual1 = await getManyToManyRelationships({
-      connection,
-      database: typesDbName,
-    })
-    expect(actual1).toEqual(expected1)
-  })
-
-  test('getManyToManyRelationships northwind', async () => {
-    const expected1 = [
-      {
-        intermediateTable: 'employee_privilege',
-        pair: [
-          {
-            column: 'employee_id',
-            key: 'id',
-            table: 'employee',
-          },
-          {
-            column: 'privilege_id',
-            key: 'id',
-            table: 'privilege',
-          },
-        ],
-      },
-    ]
-    const actual1 = await getManyToManyRelationships({
-      connection,
-      database: northwindDbName,
-    })
-    expect(actual1).toEqual(expected1)
   })
 
   test('parseTable for checking all MySQL types', async () => {

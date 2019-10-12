@@ -5,7 +5,7 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-import { ColumnSchema } from '~/model/column'
+import { ColumnSchema } from './column'
 
 /**
  * Abstraction for SQL table schema

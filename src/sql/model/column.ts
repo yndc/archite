@@ -8,7 +8,7 @@
 /**
  * Supported column types
  */
-export type ColumnType =
+export type ColumnDataType =
   | 'boolean'
   | 'timestamp'
   | 'integer'
@@ -44,7 +44,7 @@ export interface ColumnSchema {
   /**
    * Column type
    */
-  type: ColumnType
+  type: ColumnDataType
   /**
    * Additional description dependent on the type
    */

@@ -48,6 +48,6 @@ export interface Reference {
  * thus creating a many-to-many relationship
  */
 export interface ManyToManyRelationship {
-  pair: [{ table: string; column: string; key?: string }, { table: string; column: string; key?: string } | undefined]
+  pair: [{ table: string; column: string; key?: string }, { table: string; column: string; key?: string }]
   intermediateTable: string
 }
