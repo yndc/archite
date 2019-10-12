@@ -2494,192 +2494,194 @@ export const northwind = {
 				}
 			]
 		}
-	],
-	"references": [
-		{
-			"referencingTable": "employee_privilege",
-			"referencedTable": "employee",
-			"referencingColumn": "employee_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "employee_privilege",
-			"referencedTable": "privilege",
-			"referencingColumn": "privilege_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "order",
-			"referencedTable": "customer",
-			"referencingColumn": "customer_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "order",
-			"referencedTable": "employee",
-			"referencingColumn": "employee_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "order",
-			"referencedTable": "shipper",
-			"referencingColumn": "shipper_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "order",
-			"referencedTable": "orders_tax_status",
-			"referencingColumn": "tax_status_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "order",
-			"referencedTable": "orders_status",
-			"referencingColumn": "status_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "purchase_order",
-			"referencedTable": "employee",
-			"referencingColumn": "created_by",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "purchase_order",
-			"referencedTable": "purchase_order_status",
-			"referencingColumn": "status_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "purchase_order",
-			"referencedTable": "supplier",
-			"referencingColumn": "supplier_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "inventory_transaction",
-			"referencedTable": "order",
-			"referencingColumn": "customer_order_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "inventory_transaction",
-			"referencedTable": "product",
-			"referencingColumn": "product_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "inventory_transaction",
-			"referencedTable": "purchase_order",
-			"referencingColumn": "purchase_order_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "inventory_transaction",
-			"referencedTable": "inventory_transaction_type",
-			"referencingColumn": "transaction_type",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "invoice",
-			"referencedTable": "order",
-			"referencingColumn": "order_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "order_detail",
-			"referencedTable": "order",
-			"referencingColumn": "order_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "order_detail",
-			"referencedTable": "product",
-			"referencingColumn": "product_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "order_detail",
-			"referencedTable": "order_details_status",
-			"referencingColumn": "status_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "purchase_order_detail",
-			"referencedTable": "inventory_transaction",
-			"referencingColumn": "inventory_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "purchase_order_detail",
-			"referencedTable": "product",
-			"referencingColumn": "product_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		},
-		{
-			"referencingTable": "purchase_order_detail",
-			"referencedTable": "purchase_order",
-			"referencingColumn": "purchase_order_id",
-			"referencedColumn": "id",
-			"updateRule": "none",
-			"deleteRule": "none"
-		}
-	],
-	"manyToManyRelationships": [
-		{
-			"pair": [
-				{
-					"table": "employee",
-					"column": "employee_id",
-					"key": "id"
-				},
-				{
-					"table": "privilege",
-					"column": "privilege_id",
-					"key": "id"
-				}
-			],
-			"intermediateTable": "employee_privilege"
-		}
 	]
 }
+
+export const northwindReferences = [
+	{
+		"referencingTable": "employee_privilege",
+		"referencedTable": "employee",
+		"referencingColumn": "employee_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "employee_privilege",
+		"referencedTable": "privilege",
+		"referencingColumn": "privilege_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "order",
+		"referencedTable": "customer",
+		"referencingColumn": "customer_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "order",
+		"referencedTable": "employee",
+		"referencingColumn": "employee_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "order",
+		"referencedTable": "shipper",
+		"referencingColumn": "shipper_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "order",
+		"referencedTable": "orders_tax_status",
+		"referencingColumn": "tax_status_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "order",
+		"referencedTable": "orders_status",
+		"referencingColumn": "status_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "purchase_order",
+		"referencedTable": "employee",
+		"referencingColumn": "created_by",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "purchase_order",
+		"referencedTable": "purchase_order_status",
+		"referencingColumn": "status_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "purchase_order",
+		"referencedTable": "supplier",
+		"referencingColumn": "supplier_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "inventory_transaction",
+		"referencedTable": "order",
+		"referencingColumn": "customer_order_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "inventory_transaction",
+		"referencedTable": "product",
+		"referencingColumn": "product_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "inventory_transaction",
+		"referencedTable": "purchase_order",
+		"referencingColumn": "purchase_order_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "inventory_transaction",
+		"referencedTable": "inventory_transaction_type",
+		"referencingColumn": "transaction_type",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "invoice",
+		"referencedTable": "order",
+		"referencingColumn": "order_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "order_detail",
+		"referencedTable": "order",
+		"referencingColumn": "order_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "order_detail",
+		"referencedTable": "product",
+		"referencingColumn": "product_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "order_detail",
+		"referencedTable": "order_details_status",
+		"referencingColumn": "status_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "purchase_order_detail",
+		"referencedTable": "inventory_transaction",
+		"referencingColumn": "inventory_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "purchase_order_detail",
+		"referencedTable": "product",
+		"referencingColumn": "product_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	},
+	{
+		"referencingTable": "purchase_order_detail",
+		"referencedTable": "purchase_order",
+		"referencingColumn": "purchase_order_id",
+		"referencedColumn": "id",
+		"updateRule": "none",
+		"deleteRule": "none"
+	}
+]
+
+export const northwindManyToManyRelationships = [
+	{
+		"pair": [
+			{
+				"table": "employee",
+				"column": "employee_id",
+				"key": "id"
+			},
+			{
+				"table": "privilege",
+				"column": "privilege_id",
+				"key": "id"
+			}
+		],
+		"intermediateTable": "employee_privilege"
+	}
+]
