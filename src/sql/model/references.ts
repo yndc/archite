@@ -1,5 +1,5 @@
 /**
- * Standard SQL references and relationships interface
+ * Standard SQL references interfaces and functions
  *
  * Author   : Jonathan Steven (yondercode@gmail.com)
  * License  : GNU General Public License v3 (GPLv3)
@@ -39,15 +39,4 @@ export interface Reference {
    * On update constraint
    */
   updateRule: ConstraintRule
-}
-
-/**
- * Many to many relationship abstraction.
- * When a table schema only has 2 columns where every column is a foreign key to other columns,
- * then that table will be flagged as an intermediate table, which connects the 2 referenced tables
- * thus creating a many-to-many relationship
- */
-export interface ManyToManyRelationship {
-  pair: [{ table: string; column: string; key?: string }, { table: string; column: string; key?: string }]
-  intermediateTable: string
 }

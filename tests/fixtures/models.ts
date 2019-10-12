@@ -2667,21 +2667,3 @@ export const northwindReferences = [
 		"deleteRule": "none"
 	}
 ]
-
-export const northwindManyToManyRelationships = [
-	{
-		"pair": [
-			{
-				"table": "employee",
-				"column": "employee_id",
-				"key": "id"
-			},
-			{
-				"table": "privilege",
-				"column": "privilege_id",
-				"key": "id"
-			}
-		],
-		"intermediateTable": "employee_privilege"
-	}
-]
