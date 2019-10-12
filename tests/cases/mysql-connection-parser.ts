@@ -14,7 +14,7 @@ import {
 } from '~/sql/drivers/mysql/connection-parser'
 import { createConnection } from '../db'
 import { allTypes, northwind } from '../fixtures/models'
-import { sortComparer, deepRecursiveSort } from '~/utils'
+import { deepRecursiveSort } from '~/utils'
 import { normalizeObject, writeResult } from '../utils'
 
 describe('mysql connection parser', () => {
@@ -259,9 +259,7 @@ describe('mysql connection parser', () => {
       database: northwindDbName,
     })
     writeResult('./parser/northwind_references.json', actual1)
-    expect(normalizeObject(actual1).sort((a, b) => sortComparer(a).localeCompare(sortComparer(b)))).toEqual(
-      normalizeObject(expected1).sort((a, b) => sortComparer(a).localeCompare(sortComparer(b))),
-    )
+    expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(normalizeObject(deepRecursiveSort(expected1)))
   })
 
   test('getTableReferences northwind', async () => {
@@ -417,12 +415,12 @@ describe('mysql connection parser', () => {
   })
 
   test('parseDatabase northwind', async () => {
-    const expected1 = northwind
+    const expected1 = { name: northwind.name, tables: northwind.tables }
     const actual1 = await parseDatabase({
       connection,
       database: northwindDbName,
     })
     writeResult('./parser/northwind.json', actual1)
-    expect(deepRecursiveSort(expected1)).toEqual(normalizeObject(deepRecursiveSort(actual1)))
+    expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(deepRecursiveSort(expected1))
   })
 })

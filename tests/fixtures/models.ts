@@ -382,117 +382,6 @@ export const northwind = {
 			"name": "customer",
 			"columns": [
 				{
-					"name": "address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "attachments",
-					"comment": "",
-					"nullable": true,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
-				},
-				{
-					"name": "business_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "city",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "company",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "country_region",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "email_address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "fax_number",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "first_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "home_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
 					"name": "id",
 					"comment": "",
 					"key": "primary",
@@ -506,8 +395,9 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "job_title",
+					"name": "company",
 					"comment": "",
+					"key": "index",
 					"nullable": true,
 					"type": "string",
 					"description": {
@@ -529,6 +419,62 @@ export const northwind = {
 					}
 				},
 				{
+					"name": "first_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "email_address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "job_title",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "business_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "home_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
 					"name": "mobile_phone",
 					"comment": "",
 					"nullable": true,
@@ -540,7 +486,18 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "notes",
+					"name": "fax_number",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "address",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
@@ -551,9 +508,44 @@ export const northwind = {
 					}
 				},
 				{
+					"name": "city",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
 					"name": "state_province",
 					"comment": "",
 					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "zip_postal_code",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 15,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "country_region",
+					"comment": "",
 					"nullable": true,
 					"type": "string",
 					"description": {
@@ -574,15 +566,23 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "zip_postal_code",
+					"name": "notes",
 					"comment": "",
-					"key": "index",
 					"nullable": true,
 					"type": "string",
 					"description": {
-						"maxLength": 15,
+						"maxLength": 4294967295,
 						"format": "none",
 						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "attachments",
+					"comment": "",
+					"nullable": true,
+					"type": "binary",
+					"description": {
+						"bits": null
 					}
 				}
 			]
@@ -591,117 +591,6 @@ export const northwind = {
 			"name": "employee",
 			"columns": [
 				{
-					"name": "address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "attachments",
-					"comment": "",
-					"nullable": true,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
-				},
-				{
-					"name": "business_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "city",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "company",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "country_region",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "email_address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "fax_number",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "first_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "home_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
 					"name": "id",
 					"comment": "",
 					"key": "primary",
@@ -715,8 +604,9 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "job_title",
+					"name": "company",
 					"comment": "",
+					"key": "index",
 					"nullable": true,
 					"type": "string",
 					"description": {
@@ -738,6 +628,62 @@ export const northwind = {
 					}
 				},
 				{
+					"name": "first_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "email_address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "job_title",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "business_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "home_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
 					"name": "mobile_phone",
 					"comment": "",
 					"nullable": true,
@@ -749,7 +695,18 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "notes",
+					"name": "fax_number",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "address",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
@@ -760,9 +717,44 @@ export const northwind = {
 					}
 				},
 				{
+					"name": "city",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
 					"name": "state_province",
 					"comment": "",
 					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "zip_postal_code",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 15,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "country_region",
+					"comment": "",
 					"nullable": true,
 					"type": "string",
 					"description": {
@@ -783,15 +775,23 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "zip_postal_code",
+					"name": "notes",
 					"comment": "",
-					"key": "index",
 					"nullable": true,
 					"type": "string",
 					"description": {
-						"maxLength": 15,
+						"maxLength": 4294967295,
 						"format": "none",
 						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "attachments",
+					"comment": "",
+					"nullable": true,
+					"type": "binary",
+					"description": {
+						"bits": null
 					}
 				}
 			]
@@ -831,30 +831,6 @@ export const northwind = {
 			"name": "inventory_transaction",
 			"columns": [
 				{
-					"name": "comments",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 255,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "customer_order_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
 					"name": "id",
 					"comment": "",
 					"key": "primary",
@@ -868,9 +844,52 @@ export const northwind = {
 					}
 				},
 				{
+					"name": "transaction_type",
+					"comment": "",
+					"key": "index",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 1,
+						"maxLength": 4
+					}
+				},
+				{
+					"name": "transaction_created_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "transaction_modified_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
 					"name": "product_id",
 					"comment": "",
 					"key": "index",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "quantity",
+					"comment": "",
 					"nullable": false,
 					"type": "integer",
 					"description": {
@@ -894,9 +913,10 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "quantity",
+					"name": "customer_order_id",
 					"comment": "",
-					"nullable": false,
+					"key": "index",
+					"nullable": true,
 					"type": "integer",
 					"description": {
 						"autoIncrement": false,
@@ -906,34 +926,14 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "transaction_created_date",
+					"name": "comments",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
 					"description": {
-						"format": "date-time"
-					}
-				},
-				{
-					"name": "transaction_modified_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
-				},
-				{
-					"name": "transaction_type",
-					"comment": "",
-					"key": "index",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 1,
-						"maxLength": 4
+						"maxLength": 255,
+						"format": "none",
+						"collation": "utf8_general_ci"
 					}
 				}
 			]
@@ -971,30 +971,23 @@ export const northwind = {
 			"name": "invoice",
 			"columns": [
 				{
-					"name": "amount_due",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
-				},
-				{
-					"name": "due_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
-				},
-				{
 					"name": "id",
 					"comment": "",
 					"key": "primary",
 					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "order_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
 					"type": "integer",
 					"description": {
 						"autoIncrement": false,
@@ -1013,16 +1006,23 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "order_id",
+					"name": "due_date",
 					"comment": "",
-					"key": "index",
 					"nullable": true,
-					"type": "integer",
+					"type": "string",
 					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "tax",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
 					}
 				},
 				{
@@ -1037,7 +1037,7 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "tax",
+					"name": "amount_due",
 					"comment": "",
 					"nullable": true,
 					"type": "decimal",
@@ -1053,10 +1053,10 @@ export const northwind = {
 			"name": "order",
 			"columns": [
 				{
-					"name": "customer_id",
+					"name": "id",
 					"comment": "",
-					"key": "index",
-					"nullable": true,
+					"key": "primary",
+					"nullable": false,
 					"type": "integer",
 					"description": {
 						"autoIncrement": false,
@@ -1079,27 +1079,16 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "id",
+					"name": "customer_id",
 					"comment": "",
-					"key": "primary",
-					"nullable": false,
+					"key": "index",
+					"nullable": true,
 					"type": "integer",
 					"description": {
 						"autoIncrement": false,
 						"unsigned": false,
 						"byteSize": 4,
 						"maxLength": 11
-					}
-				},
-				{
-					"name": "notes",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
 					}
 				},
 				{
@@ -1112,7 +1101,7 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "paid_date",
+					"name": "shipped_date",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
@@ -1121,7 +1110,20 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "payment_type",
+					"name": "shipper_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "ship_name",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
@@ -1144,28 +1146,6 @@ export const northwind = {
 				},
 				{
 					"name": "ship_city",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "ship_country_region",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "ship_name",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
@@ -1199,25 +1179,14 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "shipped_date",
+					"name": "ship_country_region",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
 					"description": {
-						"format": "date-time"
-					}
-				},
-				{
-					"name": "shipper_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
 					}
 				},
 				{
@@ -1232,17 +1201,45 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "status_id",
+					"name": "taxes",
 					"comment": "",
-					"key": "index",
 					"nullable": true,
-					"type": "integer",
+					"type": "decimal",
 					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"defaultValue": 0,
-						"byteSize": 1,
-						"maxLength": 4
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "payment_type",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "paid_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "notes",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
 					}
 				},
 				{
@@ -1269,14 +1266,17 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "taxes",
+					"name": "status_id",
 					"comment": "",
+					"key": "index",
 					"nullable": true,
-					"type": "decimal",
+					"type": "integer",
 					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
+						"autoIncrement": false,
+						"unsigned": false,
+						"defaultValue": 0,
+						"byteSize": 1,
+						"maxLength": 4
 					}
 				}
 			]
@@ -1285,42 +1285,10 @@ export const northwind = {
 			"name": "order_detail",
 			"columns": [
 				{
-					"name": "date_allocated",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
-				},
-				{
-					"name": "discount",
-					"comment": "",
-					"nullable": false,
-					"type": "float",
-					"description": {
-						"precision": "double",
-						"defaultValue": 0
-					}
-				},
-				{
 					"name": "id",
 					"comment": "",
 					"key": "primary",
 					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
-					"name": "inventory_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
 					"type": "integer",
 					"description": {
 						"autoIncrement": false,
@@ -1356,19 +1324,6 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "purchase_order_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
 					"name": "quantity",
 					"comment": "",
 					"nullable": false,
@@ -1377,6 +1332,27 @@ export const northwind = {
 						"maxLength": "18",
 						"precision": "4",
 						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "unit_price",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "discount",
+					"comment": "",
+					"nullable": false,
+					"type": "float",
+					"description": {
+						"precision": "double",
+						"defaultValue": 0
 					}
 				},
 				{
@@ -1393,14 +1369,38 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "unit_price",
+					"name": "date_allocated",
 					"comment": "",
 					"nullable": true,
-					"type": "decimal",
+					"type": "string",
 					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "purchase_order_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "inventory_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
 					}
 				}
 			]
@@ -1525,27 +1525,7 @@ export const northwind = {
 			"name": "product",
 			"columns": [
 				{
-					"name": "attachments",
-					"comment": "",
-					"nullable": true,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
-				},
-				{
-					"name": "category",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "description",
+					"name": "supplier_ids",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
@@ -1556,42 +1536,10 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "discontinued",
-					"comment": "",
-					"nullable": false,
-					"type": "boolean",
-					"description": {
-						"defaultValue": true
-					}
-				},
-				{
 					"name": "id",
 					"comment": "",
 					"key": "primary",
 					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
-					"name": "list_price",
-					"comment": "",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
-				},
-				{
-					"name": "minimum_reorder_quantity",
-					"comment": "",
-					"nullable": true,
 					"type": "integer",
 					"description": {
 						"autoIncrement": false,
@@ -1624,14 +1572,36 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "quantity_per_unit",
+					"name": "description",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
 					"description": {
-						"maxLength": 50,
+						"maxLength": 4294967295,
 						"format": "none",
 						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "standard_cost",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "list_price",
+					"comment": "",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
 					}
 				},
 				{
@@ -1647,28 +1617,6 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "standard_cost",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
-				},
-				{
-					"name": "supplier_ids",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
 					"name": "target_level",
 					"comment": "",
 					"nullable": true,
@@ -1679,12 +1627,208 @@ export const northwind = {
 						"byteSize": 4,
 						"maxLength": 11
 					}
+				},
+				{
+					"name": "quantity_per_unit",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "discontinued",
+					"comment": "",
+					"nullable": false,
+					"type": "boolean",
+					"description": {
+						"defaultValue": true
+					}
+				},
+				{
+					"name": "minimum_reorder_quantity",
+					"comment": "",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "category",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "attachments",
+					"comment": "",
+					"nullable": true,
+					"type": "binary",
+					"description": {
+						"bits": null
+					}
 				}
 			]
 		},
 		{
 			"name": "purchase_order",
 			"columns": [
+				{
+					"name": "id",
+					"comment": "",
+					"key": "primary",
+					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "supplier_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "created_by",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "submitted_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "creation_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "status_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"defaultValue": 0,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "expected_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "shipping_fee",
+					"comment": "",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "taxes",
+					"comment": "",
+					"nullable": false,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "payment_date",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "payment_amount",
+					"comment": "",
+					"nullable": true,
+					"type": "decimal",
+					"description": {
+						"maxLength": "19",
+						"precision": "4",
+						"defaultValue": "0.0000"
+					}
+				},
+				{
+					"name": "payment_method",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "notes",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 4294967295,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
 				{
 					"name": "approved_by",
 					"comment": "",
@@ -1707,117 +1851,6 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "created_by",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
-					"name": "creation_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
-				},
-				{
-					"name": "expected_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
-				},
-				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
-					"name": "notes",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "payment_amount",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
-				},
-				{
-					"name": "payment_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
-				},
-				{
-					"name": "payment_method",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "shipping_fee",
-					"comment": "",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
-				},
-				{
-					"name": "status_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"defaultValue": 0,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
 					"name": "submitted_by",
 					"comment": "",
 					"nullable": true,
@@ -1828,39 +1861,6 @@ export const northwind = {
 						"byteSize": 4,
 						"maxLength": 11
 					}
-				},
-				{
-					"name": "submitted_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
-				},
-				{
-					"name": "supplier_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
-					"name": "taxes",
-					"comment": "",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
 				}
 			]
 		},
@@ -1868,54 +1868,10 @@ export const northwind = {
 			"name": "purchase_order_detail",
 			"columns": [
 				{
-					"name": "date_received",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
-				},
-				{
 					"name": "id",
 					"comment": "",
 					"key": "primary",
 					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
-					"name": "inventory_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
-					"name": "posted_to_inventory",
-					"comment": "",
-					"nullable": false,
-					"type": "boolean",
-					"description": {
-						"defaultValue": true
-					}
-				},
-				{
-					"name": "product_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
 					"type": "integer",
 					"description": {
 						"autoIncrement": false,
@@ -1929,6 +1885,19 @@ export const northwind = {
 					"comment": "",
 					"key": "index",
 					"nullable": false,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
+					}
+				},
+				{
+					"name": "product_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
 					"type": "integer",
 					"description": {
 						"autoIncrement": false,
@@ -1955,6 +1924,37 @@ export const northwind = {
 					"description": {
 						"maxLength": "19",
 						"precision": "4"
+					}
+				},
+				{
+					"name": "date_received",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"format": "date-time"
+					}
+				},
+				{
+					"name": "posted_to_inventory",
+					"comment": "",
+					"nullable": false,
+					"type": "boolean",
+					"description": {
+						"defaultValue": true
+					}
+				},
+				{
+					"name": "inventory_id",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "integer",
+					"description": {
+						"autoIncrement": false,
+						"unsigned": false,
+						"byteSize": 4,
+						"maxLength": 11
 					}
 				}
 			]
@@ -1992,16 +1992,30 @@ export const northwind = {
 			"name": "sales_report",
 			"columns": [
 				{
-					"name": "default",
+					"name": "group_by",
 					"comment": "",
+					"key": "primary",
 					"nullable": false,
-					"type": "boolean",
+					"type": "string",
 					"description": {
-						"defaultValue": true
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
 					}
 				},
 				{
 					"name": "display",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "title",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
@@ -2023,26 +2037,12 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "group_by",
+					"name": "default",
 					"comment": "",
-					"key": "primary",
 					"nullable": false,
-					"type": "string",
+					"type": "boolean",
 					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "title",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
+						"defaultValue": true
 					}
 				}
 			]
@@ -2050,117 +2050,6 @@ export const northwind = {
 		{
 			"name": "shipper",
 			"columns": [
-				{
-					"name": "address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "attachments",
-					"comment": "",
-					"nullable": true,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
-				},
-				{
-					"name": "business_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "city",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "company",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "country_region",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "email_address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "fax_number",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "first_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "home_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
 				{
 					"name": "id",
 					"comment": "",
@@ -2175,8 +2064,9 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "job_title",
+					"name": "company",
 					"comment": "",
+					"key": "index",
 					"nullable": true,
 					"type": "string",
 					"description": {
@@ -2198,6 +2088,62 @@ export const northwind = {
 					}
 				},
 				{
+					"name": "first_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "email_address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "job_title",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "business_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "home_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
 					"name": "mobile_phone",
 					"comment": "",
 					"nullable": true,
@@ -2209,7 +2155,18 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "notes",
+					"name": "fax_number",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "address",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
@@ -2220,9 +2177,44 @@ export const northwind = {
 					}
 				},
 				{
+					"name": "city",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
 					"name": "state_province",
 					"comment": "",
 					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "zip_postal_code",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 15,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "country_region",
+					"comment": "",
 					"nullable": true,
 					"type": "string",
 					"description": {
@@ -2243,15 +2235,23 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "zip_postal_code",
+					"name": "notes",
 					"comment": "",
-					"key": "index",
 					"nullable": true,
 					"type": "string",
 					"description": {
-						"maxLength": 15,
+						"maxLength": 4294967295,
 						"format": "none",
 						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "attachments",
+					"comment": "",
+					"nullable": true,
+					"type": "binary",
+					"description": {
+						"bits": null
 					}
 				}
 			]
@@ -2259,17 +2259,6 @@ export const northwind = {
 		{
 			"name": "string",
 			"columns": [
-				{
-					"name": "string_data",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 255,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
 				{
 					"name": "string_id",
 					"comment": "",
@@ -2282,123 +2271,23 @@ export const northwind = {
 						"byteSize": 4,
 						"maxLength": 11
 					}
+				},
+				{
+					"name": "string_data",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 255,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
 				}
 			]
 		},
 		{
 			"name": "supplier",
 			"columns": [
-				{
-					"name": "address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "attachments",
-					"comment": "",
-					"nullable": true,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
-				},
-				{
-					"name": "business_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "city",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "company",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "country_region",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "email_address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "fax_number",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "first_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
-				{
-					"name": "home_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
-				},
 				{
 					"name": "id",
 					"comment": "",
@@ -2413,8 +2302,9 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "job_title",
+					"name": "company",
 					"comment": "",
+					"key": "index",
 					"nullable": true,
 					"type": "string",
 					"description": {
@@ -2436,6 +2326,62 @@ export const northwind = {
 					}
 				},
 				{
+					"name": "first_name",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "email_address",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "job_title",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "business_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "home_phone",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
 					"name": "mobile_phone",
 					"comment": "",
 					"nullable": true,
@@ -2447,7 +2393,18 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "notes",
+					"name": "fax_number",
+					"comment": "",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 25,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "address",
 					"comment": "",
 					"nullable": true,
 					"type": "string",
@@ -2458,9 +2415,44 @@ export const northwind = {
 					}
 				},
 				{
+					"name": "city",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
 					"name": "state_province",
 					"comment": "",
 					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 50,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "zip_postal_code",
+					"comment": "",
+					"key": "index",
+					"nullable": true,
+					"type": "string",
+					"description": {
+						"maxLength": 15,
+						"format": "none",
+						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "country_region",
+					"comment": "",
 					"nullable": true,
 					"type": "string",
 					"description": {
@@ -2481,205 +2473,213 @@ export const northwind = {
 					}
 				},
 				{
-					"name": "zip_postal_code",
+					"name": "notes",
 					"comment": "",
-					"key": "index",
 					"nullable": true,
 					"type": "string",
 					"description": {
-						"maxLength": 15,
+						"maxLength": 4294967295,
 						"format": "none",
 						"collation": "utf8_general_ci"
+					}
+				},
+				{
+					"name": "attachments",
+					"comment": "",
+					"nullable": true,
+					"type": "binary",
+					"description": {
+						"bits": null
 					}
 				}
 			]
 		}
 	],
-	// "references": [
-	// 	{
-	// 		"referencingTable": "employee_privilege",
-	// 		"referencedTable": "employee",
-	// 		"referencingColumn": "employee_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "employee_privilege",
-	// 		"referencedTable": "privilege",
-	// 		"referencingColumn": "privilege_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "order",
-	// 		"referencedTable": "customer",
-	// 		"referencingColumn": "customer_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "order",
-	// 		"referencedTable": "employee",
-	// 		"referencingColumn": "employee_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "order",
-	// 		"referencedTable": "shipper",
-	// 		"referencingColumn": "shipper_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "order",
-	// 		"referencedTable": "orders_tax_status",
-	// 		"referencingColumn": "tax_status_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "order",
-	// 		"referencedTable": "orders_status",
-	// 		"referencingColumn": "status_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "purchase_order",
-	// 		"referencedTable": "employee",
-	// 		"referencingColumn": "created_by",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "purchase_order",
-	// 		"referencedTable": "purchase_order_status",
-	// 		"referencingColumn": "status_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "purchase_order",
-	// 		"referencedTable": "supplier",
-	// 		"referencingColumn": "supplier_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "inventory_transaction",
-	// 		"referencedTable": "order",
-	// 		"referencingColumn": "customer_order_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "inventory_transaction",
-	// 		"referencedTable": "product",
-	// 		"referencingColumn": "product_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "inventory_transaction",
-	// 		"referencedTable": "purchase_order",
-	// 		"referencingColumn": "purchase_order_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "inventory_transaction",
-	// 		"referencedTable": "inventory_transaction_type",
-	// 		"referencingColumn": "transaction_type",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "invoice",
-	// 		"referencedTable": "order",
-	// 		"referencingColumn": "order_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "order_detail",
-	// 		"referencedTable": "order",
-	// 		"referencingColumn": "order_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "order_detail",
-	// 		"referencedTable": "product",
-	// 		"referencingColumn": "product_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "order_detail",
-	// 		"referencedTable": "order_details_status",
-	// 		"referencingColumn": "status_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "purchase_order_detail",
-	// 		"referencedTable": "inventory_transaction",
-	// 		"referencingColumn": "inventory_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "purchase_order_detail",
-	// 		"referencedTable": "product",
-	// 		"referencingColumn": "product_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	},
-	// 	{
-	// 		"referencingTable": "purchase_order_detail",
-	// 		"referencedTable": "purchase_order",
-	// 		"referencingColumn": "purchase_order_id",
-	// 		"referencedColumn": "id",
-	// 		"updateRule": "none",
-	// 		"deleteRule": "none"
-	// 	}
-	// ],
-	// "manyToManyRelationships": [
-	// 	{
-	// 		"pair": [
-	// 			{
-	// 				"table": "employee",
-	// 				"column": "employee_id",
-	// 				"key": "id"
-	// 			},
-	// 			{
-	// 				"table": "privilege",
-	// 				"column": "privilege_id",
-	// 				"key": "id"
-	// 			}
-	// 		],
-	// 		"intermediateTable": "employee_privilege"
-	// 	}
-	// ]
+	"references": [
+		{
+			"referencingTable": "employee_privilege",
+			"referencedTable": "employee",
+			"referencingColumn": "employee_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "employee_privilege",
+			"referencedTable": "privilege",
+			"referencingColumn": "privilege_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order",
+			"referencedTable": "customer",
+			"referencingColumn": "customer_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order",
+			"referencedTable": "employee",
+			"referencingColumn": "employee_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order",
+			"referencedTable": "shipper",
+			"referencingColumn": "shipper_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order",
+			"referencedTable": "orders_tax_status",
+			"referencingColumn": "tax_status_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order",
+			"referencedTable": "orders_status",
+			"referencingColumn": "status_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order",
+			"referencedTable": "employee",
+			"referencingColumn": "created_by",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order",
+			"referencedTable": "purchase_order_status",
+			"referencingColumn": "status_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order",
+			"referencedTable": "supplier",
+			"referencingColumn": "supplier_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "inventory_transaction",
+			"referencedTable": "order",
+			"referencingColumn": "customer_order_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "inventory_transaction",
+			"referencedTable": "product",
+			"referencingColumn": "product_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "inventory_transaction",
+			"referencedTable": "purchase_order",
+			"referencingColumn": "purchase_order_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "inventory_transaction",
+			"referencedTable": "inventory_transaction_type",
+			"referencingColumn": "transaction_type",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "invoice",
+			"referencedTable": "order",
+			"referencingColumn": "order_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order_detail",
+			"referencedTable": "order",
+			"referencingColumn": "order_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order_detail",
+			"referencedTable": "product",
+			"referencingColumn": "product_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "order_detail",
+			"referencedTable": "order_details_status",
+			"referencingColumn": "status_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order_detail",
+			"referencedTable": "inventory_transaction",
+			"referencingColumn": "inventory_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order_detail",
+			"referencedTable": "product",
+			"referencingColumn": "product_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		},
+		{
+			"referencingTable": "purchase_order_detail",
+			"referencedTable": "purchase_order",
+			"referencingColumn": "purchase_order_id",
+			"referencedColumn": "id",
+			"updateRule": "none",
+			"deleteRule": "none"
+		}
+	],
+	"manyToManyRelationships": [
+		{
+			"pair": [
+				{
+					"table": "employee",
+					"column": "employee_id",
+					"key": "id"
+				},
+				{
+					"table": "privilege",
+					"column": "privilege_id",
+					"key": "id"
+				}
+			],
+			"intermediateTable": "employee_privilege"
+		}
+	]
 }
