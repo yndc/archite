@@ -1,14 +1,50 @@
 /**
- * Standard SQL column interface
+ * Sql Model Interfaces
  *
  * Author   : Jonathan Steven (yondercode@gmail.com)
  * License  : GNU General Public License v3 (GPLv3)
  */
 
 /**
- * Supported column types
+ * Abstraction for Sql database schema
  */
-export type ColumnDataType =
+export interface DatabaseSchema {
+  /**
+   * Database name
+   */
+  name: string
+  /**
+   * Tables in this database
+   */
+  tables: TableSchema[]
+  /**
+   * Default collation for this database
+   */
+  defaultCollation?: string
+}
+
+/**
+ * Abstraction for Sql table schema
+ */
+export interface TableSchema {
+  /**
+   * Table name
+   */
+  name: string
+  /**
+   * Columns
+   */
+  columns: ColumnSchema[]
+  /**
+   * Default collation for this table
+   */
+  defaultCollation?: string
+}
+
+/**
+ * Supported generic SQL column types
+ */
+export type SqlDataType =
   | 'boolean'
   | 'timestamp'
   | 'integer'
@@ -30,7 +66,7 @@ export type StringFormat = 'none' | 'date' | 'date-time' | 'cidr'
 export type KeyType = 'primary' | 'unique' | 'index' | undefined
 
 /**
- * Abstraction for SQL table schema
+ * Abstraction for Sql table schema
  */
 export interface ColumnSchema {
   /**
@@ -44,14 +80,14 @@ export interface ColumnSchema {
   /**
    * Column type
    */
-  type: ColumnDataType
+  type: SqlDataType
   /**
    * Additional description dependent on the type
    */
   description: ColumnDescription
   /**
    * Is the column an array / repeatable?
-   * Only PostgreSQL supports this at the moment.
+   * Only PostgreSql supports this at the moment.
    */
   array?: boolean
   /**
@@ -197,4 +233,40 @@ export interface EnumDescription extends ColumnDescription {
    * Default value
    */
   defaultValue: string
+}
+
+/**
+ * Constraint type for foreign keys
+ */
+export type ConstraintRule = 'restrict' | 'cascade' | 'set_null' | 'set_default' | 'none'
+
+/**
+ * Abstraction for a table reference.
+ * Not that references within intermediate tables MUST be included too.
+ */
+export interface ColumnReference {
+  /**
+   * Name of table that references other table
+   */
+  referencingTable: string
+  /**
+   * Name of table that is being referenced
+   */
+  referencedTable: string
+  /**
+   * Column name of the referencing table
+   */
+  referencingColumn: string
+  /**
+   * Column name of the referenced table
+   */
+  referencedColumn: string
+  /**
+   * On delete constraint
+   */
+  deleteRule: ConstraintRule
+  /**
+   * On update constraint
+   */
+  updateRule: ConstraintRule
 }

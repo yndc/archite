@@ -1,17 +1,157 @@
 /**
- * MySQL connection parsers
+ * MySQL connection parser
  *
  * Author   : Jonathan Steven (yondercode@gmail.com)
  * License  : GNU General Public License v3 (GPLv3)
  */
 
 import * as knex from 'knex'
-import { DatabaseParser } from '~/sql/parsers'
-import { DatabaseSchema } from '~/sql/model/database'
-import { TableSchema } from '~/sql/model/table'
-import { ColumnSchema, KeyType, StringFormat } from '~/sql/model/column'
-import { Reference, ConstraintRule } from '~/sql/model/references'
+import { DatabaseParser } from '~/sql/parser'
+import {
+  DatabaseSchema,
+  TableSchema,
+  ColumnSchema,
+  KeyType,
+  StringFormat,
+  ColumnReference,
+  ConstraintRule,
+} from '~/sql/model'
 import { mapObject, cleanObject } from '~/utils'
+
+/**
+ * List of supported MySql data types
+ */
+export const mySqlDataTypes = [
+  // numeric types
+  'bit',
+  'int',
+  'integer', // synonym for int
+  'tinyint',
+  'smallint',
+  'mediumint',
+  'bigint',
+  'float',
+  'double',
+  'double precision', // synonym for double
+  'real', // synonym for double
+  'decimal',
+  'dec', // synonym for decimal
+  'numeric', // synonym for decimal
+  'fixed', // synonym for decimal
+  'bool', // synonym for tinyint
+  'boolean', // synonym for tinyint
+  // date and time types
+  'date',
+  'datetime',
+  'timestamp',
+  'time',
+  'year',
+  // string types
+  'char',
+  'nchar', // synonym for national char
+  'national char',
+  'varchar',
+  'nvarchar', // synonym for national varchar
+  'national varchar',
+  'blob',
+  'text',
+  'tinyblob',
+  'tinytext',
+  'mediumblob',
+  'mediumtext',
+  'longblob',
+  'longtext',
+  'enum',
+  'set',
+  'binary',
+  'varbinary',
+  // json data type
+  'json',
+  // spatial data types
+  'geometry',
+  'point',
+  'linestring',
+  'polygon',
+  'multipoint',
+  'multilinestring',
+  'multipolygon',
+  'geometrycollection',
+]
+
+/**
+ * List of MySql Spatial Types
+ */
+export const spatialTypes = [
+  'geometry',
+  'point',
+  'linestring',
+  'polygon',
+  'multipoint',
+  'multilinestring',
+  'multipolygon',
+  'geometrycollection',
+]
+
+/**
+ * List of column data types that support length
+ */
+export const withLengthColumnTypes = ['char', 'varchar', 'nvarchar', 'binary', 'varbinary']
+
+/**
+ * List of column data types that support length
+ */
+export const withWidthColumnTypes = ['bit', 'tinyint', 'smallint', 'mediumint', 'int', 'integer', 'bigint']
+
+/**
+ * List of column data types that support precision
+ */
+export const withPrecisionColumnTypes = [
+  'decimal',
+  'dec',
+  'numeric',
+  'fixed',
+  'float',
+  'double',
+  'double precision',
+  'real',
+  'time',
+  'datetime',
+  'timestamp',
+]
+
+/**
+ *List of column data types that supports scale
+ */
+export const withScaleColumnTypes = [
+  'decimal',
+  'dec',
+  'numeric',
+  'fixed',
+  'float',
+  'double',
+  'double precision',
+  'real',
+]
+
+/**
+ *List of column data types that supports UNSIGNED and ZEROFILL attributes.
+ */
+export const unsignedAndZerofillTypes = [
+  'int',
+  'integer',
+  'smallint',
+  'tinyint',
+  'mediumint',
+  'bigint',
+  'decimal',
+  'dec',
+  'numeric',
+  'fixed',
+  'float',
+  'double',
+  'double precision',
+  'real',
+]
 
 /**
  * Raw, unparsed MySQL column descriptions
@@ -246,7 +386,10 @@ function parseColumn(column: RawMySqlColumnDescription): ColumnSchema {
  * Get all references within a database
  * @param options
  */
-export async function parseDatabaseReferences(options: { connection: knex; database: string }): Promise<Reference[]> {
+export async function parseDatabaseReferences(options: {
+  connection: knex
+  database: string
+}): Promise<ColumnReference[]> {
   const { connection, database } = options
   const mapConstraintRule = (rule: string): ConstraintRule => {
     switch (rule) {
@@ -283,7 +426,7 @@ export async function parseDatabaseReferences(options: { connection: knex; datab
     ...x,
     updateRule: mapConstraintRule(x.updateRule),
     deleteRule: mapConstraintRule(x.deleteRule),
-  })) as Reference[]
+  })) as ColumnReference[]
 }
 
 /**
@@ -295,7 +438,7 @@ export async function parseTableReferences(options: {
   database: string
   table: string
   filter?: 'REFERENCING' | 'REFERENCED' | 'ALL'
-}): Promise<Reference[]> {
+}): Promise<ColumnReference[]> {
   const { connection, database, table, filter } = options
   const query = `
     USE INFORMATION_SCHEMA;
@@ -314,7 +457,7 @@ export async function parseTableReferences(options: {
           : `AND (TABLE_NAME = '${table}' OR REFERENCED_TABLE_NAME = '${table}')`
       } 
     ;`
-  return (await connection.raw(query))[0][1] as Reference[]
+  return (await connection.raw(query))[0][1] as ColumnReference[]
 }
 
 export async function parseDatabase(options: {

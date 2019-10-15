@@ -1,7 +1,12 @@
+/**
+ * SQL Parser Interface
+ *
+ * Author   : Jonathan Steven (yondercode@gmail.com)
+ * License  : GNU General Public License v3 (GPLv3)
+ */
+
 import * as knex from 'knex'
-import { Reference } from '~/sql/model/references'
-import { DatabaseSchema } from '~/sql/model/database'
-import { TableSchema } from '~/sql/model/table'
+import { DatabaseSchema, TableSchema, ColumnReference } from '~/sql/model'
 
 /**
  * Interface for database connection parsers
@@ -50,7 +55,7 @@ export interface DatabaseParser {
    * Get all references within a database
    * @param options
    */
-  parseDatabaseReferences(options: { connection: knex; database: string }): Promise<Reference[]>
+  parseDatabaseReferences(options: { connection: knex; database: string }): Promise<ColumnReference[]>
 
   /**
    * Get the references from a table
@@ -61,5 +66,5 @@ export interface DatabaseParser {
     database: string
     table: string
     filter?: 'REFERENCING' | 'REFERENCED' | 'ALL'
-  }): Promise<Reference[]>
+  }): Promise<ColumnReference[]>
 }
