@@ -5,7 +5,7 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-import { TableSchema, ColumnSchema, BinaryDescription } from './model'
+import { TableSpecification, ColumnSpecification, BinaryDescription } from './specification'
 import {
   createIdentifier,
   createProperty,
@@ -20,11 +20,11 @@ import {
  * Converts given SQL table model into TypeScript ESTree
  * @param databaseSchema
  */
-export function convertSqlTableToTypeScriptInterface(tableSchema: TableSchema) {
+export function convertSqlTableToTypeScriptInterface(tableSchema: TableSpecification) {
   const { name, columns } = tableSchema
 }
 
-export function convertSqlColumnToTypeScriptProperty(columnSchema: ColumnSchema): PropertyDeclaration {
+export function convertSqlColumnToTypeScriptProperty(columnSchema: ColumnSpecification): PropertyDeclaration {
   const { name, type, description, nullable, array } = columnSchema
   return createProperty(
     undefined, // Decorators
@@ -40,7 +40,7 @@ export function convertSqlColumnToTypeScriptProperty(columnSchema: ColumnSchema)
  * Creates a TypeScript TypeNode from Sql column schema
  * @param sqlType
  */
-function mapSqlToTypeScriptType(columnSchema: ColumnSchema): TypeNode {
+function mapSqlToTypeScriptType(columnSchema: ColumnSpecification): TypeNode {
   const { array, type, description } = columnSchema
   switch (type) {
     case 'binary': {

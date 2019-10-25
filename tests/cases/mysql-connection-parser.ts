@@ -11,7 +11,7 @@ import {
   parseDatabaseReferences,
   listTables,
   parseTableReferences,
-} from '~/sql/drivers/mysql/connection-parser'
+} from '~/sql/drivers/mysql/parsers/connection'
 import { createConnection } from '../db'
 import { allTypes, northwind, northwindReferences } from '../fixtures/models'
 import { deepRecursiveSort } from '~/utils'

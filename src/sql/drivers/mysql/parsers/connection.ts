@@ -6,16 +6,16 @@
  */
 
 import * as knex from 'knex'
-import { DatabaseParser } from '~/sql/parser'
+import { SqlConnectionParser } from '../../../driver'
 import {
-  DatabaseSchema,
-  TableSchema,
-  ColumnSchema,
+  DatabaseSpecification,
+  TableSpecification,
+  ColumnSpecification,
+  ReferenceSpecification,
   KeyType,
-  StringFormat,
-  ColumnReference,
+  StringFormatType,
   ConstraintRule,
-} from '~/sql/model'
+} from '../../../specification'
 import { mapObject, cleanObject } from '~/utils'
 
 /**
@@ -95,12 +95,7 @@ export const spatialTypes = [
 /**
  * List of column data types that support length
  */
-export const withLengthColumnTypes = ['char', 'varchar', 'nvarchar', 'binary', 'varbinary']
-
-/**
- * List of column data types that support length
- */
-export const withWidthColumnTypes = ['bit', 'tinyint', 'smallint', 'mediumint', 'int', 'integer', 'bigint']
+export const withLengthColumnTypes = ['char', 'varchar', 'nvarchar', 'binary', 'varbinary', 'bit', 'tinyint', 'smallint', 'mediumint', 'int', 'integer', 'bigint']
 
 /**
  * List of column data types that support precision
@@ -263,7 +258,7 @@ function parseColumnKey(raw: string): KeyType {
  * Parses raw MySQL column description
  * @param column
  */
-function parseColumn(column: RawMySqlColumnDescription): ColumnSchema {
+function parseColumn(column: RawMySqlColumnDescription): ColumnSpecification {
   const { name, key, nullable, comment, defaultValue, collation } = column
   if (defaultValue === 'NULL') column = { ...column, defaultValue: undefined }
   const splittedRawColumnType = splitRawColumnType(column.rawType)
@@ -288,7 +283,7 @@ function parseColumn(column: RawMySqlColumnDescription): ColumnSchema {
       maxLength: parsedSize,
     },
   })
-  const createStringDescription = (format: StringFormat = 'none', maxLength: number = parsedSize): object => ({
+  const createStringDescription = (format: StringFormatType = 'none', maxLength: number = parsedSize): object => ({
     type: 'string',
     description: {
       maxLength: maxLength ? maxLength : size,
@@ -379,7 +374,7 @@ function parseColumn(column: RawMySqlColumnDescription): ColumnSchema {
     })
   if (!result.hasOwnProperty('type') || !result.hasOwnProperty('description'))
     throw `Failed to parse column ${column.name} (${typeName})`
-  return cleanObject(result as ColumnSchema, true)
+  return cleanObject(result as ColumnSpecification, true)
 }
 
 /**
@@ -389,7 +384,7 @@ function parseColumn(column: RawMySqlColumnDescription): ColumnSchema {
 export async function parseDatabaseReferences(options: {
   connection: knex
   database: string
-}): Promise<ColumnReference[]> {
+}): Promise<ReferenceSpecification[]> {
   const { connection, database } = options
   const mapConstraintRule = (rule: string): ConstraintRule => {
     switch (rule) {
@@ -426,7 +421,7 @@ export async function parseDatabaseReferences(options: {
     ...x,
     updateRule: mapConstraintRule(x.updateRule),
     deleteRule: mapConstraintRule(x.deleteRule),
-  })) as ColumnReference[]
+  })) as ReferenceSpecification[]
 }
 
 /**
@@ -438,7 +433,7 @@ export async function parseTableReferences(options: {
   database: string
   table: string
   filter?: 'REFERENCING' | 'REFERENCED' | 'ALL'
-}): Promise<ColumnReference[]> {
+}): Promise<ReferenceSpecification[]> {
   const { connection, database, table, filter } = options
   const query = `
     USE INFORMATION_SCHEMA;
@@ -457,7 +452,7 @@ export async function parseTableReferences(options: {
           : `AND (TABLE_NAME = '${table}' OR REFERENCED_TABLE_NAME = '${table}')`
       } 
     ;`
-  return (await connection.raw(query))[0][1] as ColumnReference[]
+  return (await connection.raw(query))[0][1] as ReferenceSpecification[]
 }
 
 export async function parseDatabase(options: {
@@ -469,7 +464,7 @@ export async function parseDatabase(options: {
    * Database name to parse
    */
   database: string
-}): Promise<DatabaseSchema> {
+}): Promise<DatabaseSpecification> {
   const { connection, database } = options
   const query = `
     SELECT
@@ -489,7 +484,7 @@ export async function parseDatabase(options: {
     r[table] = [...r[table], x]
     return r
   }, {})
-  const tables: TableSchema[] = mapObject<TableSchema, RawMySqlColumnDescription[]>(
+  const tables: TableSpecification[] = mapObject<TableSpecification, RawMySqlColumnDescription[]>(
     mappedResult,
     (tableName, columns) => ({
       name: tableName,
@@ -506,7 +501,11 @@ export async function parseDatabase(options: {
  * Get table fields
  * @param options
  */
-export async function parseTable(options: { connection: knex; database: string; table: string }): Promise<TableSchema> {
+export async function parseTable(options: {
+  connection: knex
+  database: string
+  table: string
+}): Promise<TableSpecification> {
   const { connection, database, table } = options
   const columns = (await connection.raw(
     `SELECT

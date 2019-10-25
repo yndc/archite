@@ -1,13 +1,13 @@
 {
   "name": "polymorph",
-  "description": "Node.js library for inspecting SQL database schemas.",
+  "description": "Node.js library for working with schemas.",
   "version": "0.0.1",
   "author": "Jonathan Steven <yondercode@gmail.com>",
   "dependencies": {
     "@typescript-eslint/typescript-estree": "^2.3.3",
     "dedent-js": "^1.0.1",
     "js-yaml": "^3.13.1",
-    "knex": "^0.19.3",
+    "knex": "^0.19.5",
     "mysql": "^2.17.1",
     "mysql2": "^1.7.0",
     "pluralize": "^8.0.0",
@@ -34,7 +34,7 @@
   "files": [
     "/dist"
   ],
-  "repository": "https://github.com/yndc/sql-inspector.git",
+  "repository": "https://github.com/yndc/polymorph.git",
   "scripts": {
     "build": "rm -rf ./dist && tsc -p tsconfig.build.json && tspath -f",
     "test": "yarn lint && jest -i",

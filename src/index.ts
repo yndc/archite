@@ -1,5 +1,7 @@
 /**
- * Entry point for the library
+ * Polymorph
+ *
+ * Node.js library and CLI for working with schemas
  *
  * Author   : Jonathan Steven (yondercode@gmail.com)
  * License  : GNU General Public License v3 (GPLv3)
@@ -13,7 +15,7 @@ export type DatabaseDriver = 'mysql' | 'postgresql' | 'sql-server' | 'oracle'
 /**
  * Exports all functions
  */
-import mySqlConnectionParser from './sql/drivers/mysql/connection-parser'
+import mySqlConnectionParser from './sql/drivers/mysql/parsers/connection'
 import * as columnModels from './sql/model/column'
 import * as databaseModels from './sql/model/database'
 import * as tableModels from './sql/model/table'
