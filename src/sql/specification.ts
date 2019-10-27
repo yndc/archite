@@ -5,6 +5,8 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
+import * as knex from 'knex'
+
 /**
  * Sql Database Schema Specification
  */
@@ -62,52 +64,64 @@ export interface ColumnSpecification {
    */
   name: string
   /**
+   * Column data type properties
+   */
+  type: {
+    /**
+     * Base type of the column
+     */
+    base: BaseDataType[]
+    /**
+     * Maximum data size (for integers and bytes)
+     */
+    size?: number
+    /**
+     * Maximum length
+     */
+    length?: number
+    /**
+     * Data precision
+     */
+    precision?: number
+    /**
+     * Data character set
+     */
+    charset?: string
+    /**
+     * Data character collation
+     */
+    collation?: string
+    /**
+     * Restrict values to these options
+     */
+    options?: string[]
+    /**
+     * Allows multiple values
+     */
+    multiple?: boolean
+    /**
+     * Allows unsigned values
+     */
+    unsigned?: boolean
+    /**
+     * Allows zerofill values
+     */
+    zerofill?: boolean
+  }
+  /**
    * Column description
    */
-  description: string
+  description?: string
   /**
-   * Column data base type
+   * Nullable column
    */
-  type: BaseDataType
-  /**
-   * Is the column nullable?
-   */
-  nullable: boolean
-  /**
+  nullable?: boolean
+  /**1
    * Column ordinal
    */
   ordinal?: number
   /**
-   * Maximum data size (for integers and bytes)
-   */
-  maxSize?: number
-  /**
-   * Maximum length
-   */
-  maxLength?: number
-  /**
-   * Data precision
-   */
-  precision?: number
-  /**
-   * Data character set
-   */
-  charset?: string
-  /**
-   * Data character collation
-   */
-  collation?: string
-  /**
-   * Possible values
-   */
-  options?: string[]
-  /**
-   * Possible types
-   */
-  typeOptions?: BaseDataType
-  /**
-   * Is the column an array / repeatable?
-   * Only PostgreSql supports this at the moment.
+   * Flags column an array (Only PostgreSql supports this at the moment.)
    */
   array?: boolean
   /**
@@ -130,42 +144,14 @@ export interface ColumnSpecification {
  * They are modeled as the most atomic type to represent a real SQL data type.
  */
 export enum BaseDataType {
-  /**
-   * Integer based data types
-   */
   Integer,
-  /**
-   * Decimal data types
-   */
   Decimal,
-  /**
-   * Floating point based data types
-   */
   Float,
-  /**
-   * String based data types
-   */
   String,
-  /**
-   * Enumerated values
-   */
-  Enum,
-  /**
-   * Point geometric values
-   */
   Point,
-  /**
-   * Line geometric values
-   */
   Line,
-  /**
-   * Polygon geometric values
-   */
   Polygon,
-  /**
-   * Special data type that may consists of multiple types
-   */
-  Mixed
+  Special, // Special data type that requires special handling
 }
 
 /**
@@ -194,6 +180,7 @@ export enum StringFormatType {
   DateTime,
   Year,
   CIDR,
+  JSON,
 }
 
 /**
@@ -245,4 +232,127 @@ export interface ReferenceSpecification {
    * On update constraint
    */
   updateRule: ConstraintRule
+}
+
+/**
+ * Interface for database driver
+ */
+export interface SqlDriver {
+  /**
+   * SQL Database Parsers
+   */
+  parsers: {
+    connection: SqlConnectionParser
+    query: SqlQueryParser
+  }
+  /**
+   * SQL Database Generators
+   */
+  generators: {
+    query: SqlQueryGenerator
+  }
+  /**
+   * SQL data specification
+   */
+  specification: SqlDriverSpecification
+}
+
+export enum DataTypePropertyType {
+  Size,
+  Length,
+  Charset,
+  Collation,
+  Multiple,
+  Precision,
+  Options,
+}
+
+/**
+ * SQL driver specification
+ */
+export interface SqlDriverSpecification {
+  /**
+   * Data types specifications
+   */
+  dataTypes: {
+    /**
+     * List all data types with their respective base data type
+     */
+    base: Map<BaseDataType, string[]>
+    /**
+     * List all data types that have the provided properties
+     */
+    with: Map<DataTypePropertyType, string[]>
+  }
+  /**
+   * Requires columns ordering in table specifications
+   */
+  ordinal: boolean
+}
+
+export interface SqlQueryGenerator {}
+export interface SqlQueryParser {}
+
+/**
+ * Interface for database connection parsers
+ */
+export interface SqlConnectionParser {
+  /**
+   * Retrieve the list of databases within a connection
+   * @param options
+   */
+  listDatabases(connection: knex): Promise<string[]>
+
+  /**
+   * Retrieve the list of tables within a database
+   * @param options
+   */
+  listTables(connection: knex, database: string): Promise<string[]>
+
+  /**
+   * Parses database schema from the given connection. Returning standarized model of the database.
+   *
+   * References will not be included in the resulting schema.
+   * Additional call of parseDatabaseReferences is required to do so.
+   * @param connection
+   * @param database
+   */
+  parseDatabase(connection: knex, database: string): Promise<DatabaseSpecification>
+
+  /**
+   * Parses a table from the given connection. Returning standarized model of the table.
+   *
+   * None of the relationships or references information will be included with this method.
+   * Additional call of parseTableReferences is required to do so.
+   * @param options
+   */
+  parseTable(connection: knex, database: string, table: string): Promise<TableSpecification>
+
+  /**
+   * Get all references within a database
+   * @param options
+   */
+  parseDatabaseReferences(connection: knex, database: string): Promise<ReferenceSpecification[]>
+
+  /**
+   * Get the references from a table
+   * @param options
+   */
+  parseTableReferences(
+    connection: knex,
+    database: string,
+    table: string,
+    options: {
+      filter?: ReferenceFilter
+    },
+  ): Promise<ReferenceSpecification[]>
+}
+
+/**
+ * Reference filter mode
+ */
+export enum ReferenceFilter {
+  ReferencingOnly = 1,
+  ReferencedOnly,
+  All,
 }
