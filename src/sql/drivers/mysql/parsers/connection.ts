@@ -6,17 +6,17 @@
  */
 
 import * as knex from 'knex'
-import { SqlConnectionParser, ReferenceFilter, DataTypePropertyType } from '../../../specification'
 import {
-  DatabaseSpecification,
-  TableSpecification,
-  ColumnSpecification,
+  ColumnDataTypeProperties,
   ReferenceSpecification,
-  KeyType,
-  StringFormatType,
+  DatabaseSpecification,
+  SqlConnectionParser, 
+  ColumnSpecification,
+  TableSpecification,
+  ReferenceFilter, 
   ConstraintRule,
+  KeyType,
 } from '../../../specification'
-import { allTypes, createBaseTypeMap, createPropertiesMap } from '../../../lib/type'
 import { mySqlDriver } from '../driver'
 import { mapObject, cleanObject } from '~/utils'
 
@@ -139,9 +139,11 @@ export function parser(): SqlConnectionParser {
     },
     listTables: async function(connection: knex, database: string): Promise<string[]> {
       return (await connection.raw(
-        `SELECT TABLE_NAME AS 'table'
-      FROM INFORMATION_SCHEMA.TABLES 
-      WHERE TABLE_SCHEMA = '${database}';`,
+        `
+          SELECT TABLE_NAME AS 'table'
+          FROM INFORMATION_SCHEMA.TABLES 
+          WHERE TABLE_SCHEMA = '${database}';
+        `,
       ))[0].map((x: { table: string }) => x.table)
     },
     parseDatabaseReferences: async function(connection: knex, database: string): Promise<ReferenceSpecification[]> {
@@ -221,9 +223,10 @@ export function parser(): SqlConnectionParser {
           INFORMATION_SCHEMA.COLUMNS
         INNER JOIN 
           INFORMATION_SCHEMA.TABLES
-        ON TABLES.TABLE_NAME = COLUMNS.TABLE_NAME
+        ON 
+          TABLES.TABLE_NAME = COLUMNS.TABLE_NAME
         WHERE
-        COLUMNS.TABLE_SCHEMA = '${database}'
+          COLUMNS.TABLE_SCHEMA = '${database}'
       ;`
       const queryResult = ((await connection.raw(query))[0] as object[]).map(x => cleanObject(x, true))
       const groupedResult = queryResult.reduce<Map<string, RawMySqlColumnDescription[]>>((map, row: RawMySqlColumnDescription) => map.set(row.TABLE_NAME, [ ...(map.get(row.TABLE_NAME) ?? []), row ]), new Map())
@@ -288,9 +291,15 @@ function mapKey(raw: string): KeyType | undefined {
  * Extract column type and properties from COLUMN_TYPE
  * @param rawType
  */
-function extractColumnType(rawType: string): [string[], string[]] {
-  const splitted = rawType.split(/[.\(\)]/).map(x => x.trim())
-  return [splitted[1].split(',').map(x => x.trim()), splitted.slice(2)]
+function extractColumnDataTypeProperties(column: RawMySqlColumnDescription): ColumnDataTypeProperties {
+  const splitted = column.COLUMN_TYPE.split(/[.\(\)]/).map(x => x.trim())
+  return {
+    name: splitted[0],
+    measurements: splitted[1].split(',').map(x => x.trim()),
+    flags: splitted[2].split(' ').map(x => x.trim()).concat(column.EXTRA.split(' ').map(x => x.trim())),
+    charset: column.CHARACTER_SET_NAME,
+    collation: column.COLLATION_NAME
+  }
 }
 
 /**
@@ -298,58 +307,13 @@ function extractColumnType(rawType: string): [string[], string[]] {
  * @param column
  */
 function parseColumn(column: RawMySqlColumnDescription): ColumnSpecification {
-  // typeScake is any value inside the parenthesis, for example varchar(23) returns 23
-  // enum('one','two') returns 'one','two'
-  const { COLUMN_NAME, COLUMN_KEY, COLLATION_NAME, COLUMN_COMMENT, COLUMN_DEFAULT, EXTRA, IS_NULLABLE, CHARACTER_MAXIMUM_LENGTH, COLUMN_TYPE, CHARACTER_OCTET_LENGTH, CHARACTER_SET_NAME, DATA_TYPE, DATETIME_PRECISION, NUMERIC_PRECISION, NUMERIC_SCALE, TABLE_COMMENT, TABLE_NAME } = column
-  const [ typeMeasurements, typeProperties] = extractColumnType(COLUMN_TYPE)
-  const baseTypeMap = createBaseTypeMap(mySqlDriver.specification)
-  const propertiesMap = createPropertiesMap(mySqlDriver.specification)
-  const baseType = baseTypeMap.get(DATA_TYPE)
-  const propertiesKey = propertiesMap.get(DATA_TYPE)
-
-  const tryParseInt = x => (x === undefined ? undefined : parseInt(x))
-
-  if (baseType === undefined) throw `Failed to get the base type for ${typeName}`
-
-  const result: ColumnSpecification = {
-    name,
-    description: comment,
-    key: mapKey(key),
-    type: {
-      base: [baseType],
-    },
-  }
-
-  if (propertiesKey !== undefined) {
-    if (propertiesKey.includes(DataTypePropertyType.Size)) result.type.size = tryParseInt(typeScale.shift())
-    if (propertiesKey.includes(DataTypePropertyType.Length)) result.type.size = tryParseInt(typeScale.pop())
-    if (propertiesKey.includes(DataTypePropertyType.Precision)) result.type.precision = tryParseInt(typeScale.shift())
-    if (propertiesKey.includes(DataTypePropertyType.Charset)) result.type.charset = 
-    if (propertiesKey.includes(DataTypePropertyType.Precision)) result.type.precision = tryParseInt(typeScale.shift())
-    if (propertiesKey.includes(DataTypePropertyType.Precision)) result.type.precision = tryParseInt(typeScale.shift())
-    if (propertiesKey.includes(DataTypePropertyType.Precision)) result.type.precision = tryParseInt(typeScale.shift())
-  }
-
+  const typeProperties = extractColumnDataTypeProperties(column)
+  const generator = mySqlDriver.specification.dataTypes.get(column.DATA_TYPE) 
+  if (generator === undefined) throw `Unknown type: ${column.DATA_TYPE}`
   return {
     name,
-    description: comment,
-    key: mapKey(key),
-    type: {
-      base: [baseType],
-    },
+    description: column.TABLE_COMMENT,
+    key: mapKey(column.COLUMN_KEY),
+    type: generator(typeProperties),
   }
 }
-
-/**
- * Export ever y  ,iything as a DatabaseParser as a default
- */
-const MySqlConnectionDatabaseParser: SqlConnectionParser = {
-  parseDatabase,
-  parseTable,
-  listDatabases,
-  listTables,
-  parseDatabaseReferences,
-  parseTableReferences,
-}
-
-export default MySqlConnectionDatabaseParser

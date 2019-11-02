@@ -6,6 +6,7 @@
  */
 
 import * as knex from 'knex'
+import { DataTypeSpecification } from '~/datatype'
 
 /**
  * Sql Database Schema Specification
@@ -66,48 +67,7 @@ export interface ColumnSpecification {
   /**
    * Column data type properties
    */
-  type: {
-    /**
-     * Base type of the column
-     */
-    base: BaseDataType[]
-    /**
-     * Maximum data size (for integers and bytes)
-     */
-    size?: number
-    /**
-     * Maximum length
-     */
-    length?: number
-    /**
-     * Data precision
-     */
-    precision?: number
-    /**
-     * Data character set
-     */
-    charset?: string
-    /**
-     * Data character collation
-     */
-    collation?: string
-    /**
-     * Restrict values to these options
-     */
-    options?: string[]
-    /**
-     * Allows multiple values
-     */
-    multiple?: boolean
-    /**
-     * Allows unsigned values
-     */
-    unsigned?: boolean
-    /**
-     * Allows zerofill values
-     */
-    zerofill?: boolean
-  }
+  type: DataTypeSpecification
   /**
    * Column description
    */
@@ -139,22 +99,6 @@ export interface ColumnSpecification {
 }
 
 /**
- * Base SQL column types.
- *
- * They are modeled as the most atomic type to represent a real SQL data type.
- */
-export enum BaseDataType {
-  Integer,
-  Decimal,
-  Float,
-  String,
-  Point,
-  Line,
-  Polygon,
-  Special, // Special data type that requires special handling
-}
-
-/**
  * Generic SQL default values
  */
 export enum DefaultValueFunction {
@@ -170,17 +114,6 @@ export enum DefaultValueFunction {
    * Use UUID generation from SQL implementation
    */
   UUID,
-}
-
-/**
- * Available string formats
- */
-export enum StringFormatType {
-  Date,
-  DateTime,
-  Year,
-  CIDR,
-  JSON,
 }
 
 /**
@@ -235,6 +168,32 @@ export interface ReferenceSpecification {
 }
 
 /**
+ * Source column type properties extracted from connection or SQL
+ */
+export interface ColumnDataTypeProperties {
+  /**
+   * Type name
+   */
+  name: string
+  /**
+   * Measurements retrieved from inside the type parantheses in MySql
+   */
+  measurements: string[]
+  /**
+   * Flags combined from post-paranthesis keywords in type column and extra column
+   */
+  flags: string[]
+  /**
+   * Type collation for strings
+   */
+  collation?: string
+  /**
+   * Charset collation for strings
+   */
+  charset?: string
+}
+
+/**
  * Interface for database driver
  */
 export interface SqlDriver {
@@ -243,14 +202,14 @@ export interface SqlDriver {
    */
   parsers: {
     connection: SqlConnectionParser
-    query: SqlQueryParser
+    // query: SqlQueryParser
   }
   /**
    * SQL Database Generators
    */
-  generators: {
-    query: SqlQueryGenerator
-  }
+  // generators: {
+  //   query: SqlQueryGenerator
+  // }
   /**
    * SQL data specification
    */
@@ -267,6 +226,8 @@ export enum DataTypePropertyType {
   Options,
 }
 
+export type SpecificationGenerator = (properties: ColumnDataTypeProperties) => DataTypeSpecification
+
 /**
  * SQL driver specification
  */
@@ -274,16 +235,7 @@ export interface SqlDriverSpecification {
   /**
    * Data types specifications
    */
-  dataTypes: {
-    /**
-     * List all data types with their respective base data type
-     */
-    base: Map<BaseDataType, string[]>
-    /**
-     * List all data types that have the provided properties
-     */
-    with: Map<DataTypePropertyType, string[]>
-  }
+  dataTypes: Map<string, SpecificationGenerator>
   /**
    * Requires columns ordering in table specifications
    */

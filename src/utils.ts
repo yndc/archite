@@ -583,3 +583,50 @@ export function deepRecursiveSort<T extends object>(value: T): T {
   }
   return value
 }
+
+/**
+ * Parses int if possible, returns undefined on failure
+ * @param x
+ * @param fn Optional function to apply to the result if it's not undefined
+ */
+export function tryParseInt(x, fn?: (n: number) => number) {
+  if (x === undefined) return undefined
+  const parsed = parseInt(x)
+  if (parsed === NaN) return undefined
+  return fn ? fn(parsed) : parsed
+}
+
+/**
+ * Try executing the given function with the given parameters.
+ * If args in undefined, undefined will be returned instead.
+ * @param fn
+ * @param args
+ */
+export function tryOrUndefined<T extends (...args: any) => any>(fn: T, arg: Parameters<T> | undefined): T | undefined {
+  if (arg === undefined) return undefined
+  return fn(...arg)
+}
+
+/**
+ * Creates multiple key-value map from multiple keys that have the same value
+ * @param keys
+ * @param value
+ */
+export function multiKey<T>(keys: string[], value: T): [string, T][] {
+  return keys.map(key => [key, value])
+}
+
+/**
+ * Returns a flag that sets 1 all until the given value (inclusive)
+ * Example: 100000 -> 1111111
+ */
+export function all(until: number) {
+  return (until - 1) | until
+}
+
+/**
+ * Returns a bitRange from start to end (inclusive)
+ */
+export function bitRange(start: number, end: number) {
+  return (start - 1) ^ ((end - 1) | end)
+}
