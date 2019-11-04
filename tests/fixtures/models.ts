@@ -1,4 +1,4 @@
-export const allTypes = {
+export const dataTypes = {
 	"name": "___polymorph___test_all_types",
 	"tables": [
 		{

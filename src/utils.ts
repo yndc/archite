@@ -630,3 +630,15 @@ export function all(until: number) {
 export function bitRange(start: number, end: number) {
   return (start - 1) ^ ((end - 1) | end)
 }
+
+/**
+ * Merge the given flags. Automatically assumes undefined as no flags.
+ */
+export function mergeFlags(...flags: (number | any)[]) {
+  let result = 0
+  flags.forEach(flag => {
+    if (typeof flag !== 'number') return
+    result = result | flag
+  })
+  return result
+}

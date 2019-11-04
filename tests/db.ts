@@ -42,7 +42,8 @@ export function loadConfig(configFilePath = './tests/config.json'): TestConfig {
 
 export async function createMySqlDatabase(config: TestConfig, connection: knex, database: string): Promise<string> {
   const sql = fs.readFileSync(`./tests/fixtures/mysql/${database}.sql`).toString()
-  const dbname = config.mysql.database_prefix + database
+  const prefix = config.mysql.database_prefix || '___polymorph__test__'
+  const dbname = prefix + database
   await destroyMySqlDatabase(connection, database)
   await connection.raw(`CREATE DATABASE IF NOT EXISTS ${dbname};`)
   await connection.raw(`USE ${dbname};\n\n${sql}`)

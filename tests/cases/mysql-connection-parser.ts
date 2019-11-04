@@ -11,11 +11,12 @@ import {
   parseDatabaseReferences,
   listTables,
   parseTableReferences,
-} from '~/sql/drivers/mysql/parsers/connection'
+} from '../../src/sql/drivers/mysql/parsers/connection'
 import { createConnection } from '../db'
-import { allTypes, northwind, northwindReferences } from '../fixtures/models'
+import { dataTypes, northwind, northwindReferences } from '../fixtures/models'
 import { deepRecursiveSort } from '~/utils'
 import { normalizeObject, writeResult } from '../utils'
+import { ReferenceFilter } from '../../src/sql/specification'
 
 describe('mysql connection parser', () => {
   let connection: knex
@@ -25,7 +26,7 @@ describe('mysql connection parser', () => {
   beforeAll(async () => {
     config = loadConfig()
     connection = await createConnection('mysql', config.mysql)
-    typesDbName = await createMySqlDatabase(config, connection, 'all_types')
+    typesDbName = await createMySqlDatabase(config, connection, 'datatypes')
     northwindDbName = await createMySqlDatabase(config, connection, 'northwind')
   })
   afterAll(async () => {
@@ -34,16 +35,13 @@ describe('mysql connection parser', () => {
     await connection.destroy()
   })
 
-  test('getTableList all_types', async () => {
-    const expected1 = ['all_types_table']
-    const actual1 = await listTables({
-      connection,
-      database: typesDbName,
-    })
+  test('listTables on datatypes', async () => {
+    const expected1 = ['all']
+    const actual1 = await listTables(connection, typesDbName)
     expect(actual1).toEqual(expected1)
   })
 
-  test('getTableList northwind', async () => {
+  test('listTables on northwind', async () => {
     const expected1 = [
       'customer',
       'employee',
@@ -67,28 +65,19 @@ describe('mysql connection parser', () => {
       'supplier',
     ]
 
-    const actual1 = await listTables({
-      connection,
-      database: northwindDbName,
-    })
+    const actual1 = await listTables(connection, typesDbName)
     expect(actual1).toEqual(expected1)
   })
 
-  test('getDatabaseReferences all_types', async () => {
+  test('getDatabaseReferences datatypes', async () => {
     const expected1 = []
-    const actual1 = await parseDatabaseReferences({
-      connection,
-      database: typesDbName,
-    })
+    const actual1 = await parseDatabaseReferences(connection, typesDbName)
     expect(deepRecursiveSort(actual1)).toEqual(deepRecursiveSort(expected1))
   })
 
   test('getDatabaseReferences northwind', async () => {
     const expected1 = northwindReferences
-    const actual1 = await parseDatabaseReferences({
-      connection,
-      database: northwindDbName,
-    })
+    const actual1 = await parseDatabaseReferences(connection, northwindDbName)
     writeResult('./parser/northwind_references.json', actual1)
     expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(normalizeObject(deepRecursiveSort(expected1)))
   })
@@ -144,11 +133,7 @@ describe('mysql connection parser', () => {
         referencedColumn: 'id',
       },
     ]
-    const actual1 = await parseTableReferences({
-      connection,
-      database: northwindDbName,
-      table: 'order',
-    })
+    const actual1 = await parseTableReferences(connection, northwindDbName, 'order')
     writeResult('./parser/northwind_order_references.json', actual1)
     expect(deepRecursiveSort(actual1)).toEqual(deepRecursiveSort(expected1))
   })
@@ -186,11 +171,8 @@ describe('mysql connection parser', () => {
         referencedColumn: 'id',
       },
     ]
-    const actual1 = await parseTableReferences({
-      connection,
-      database: northwindDbName,
-      table: 'order',
-      filter: 'REFERENCING',
+    const actual1 = await parseTableReferences(connection, northwindDbName, 'order', {
+      filter: ReferenceFilter.ReferencingOnly,
     })
     expect(deepRecursiveSort(expected1)).toEqual(deepRecursiveSort(actual1))
   })
@@ -216,41 +198,28 @@ describe('mysql connection parser', () => {
         referencedColumn: 'id',
       },
     ]
-    const actual1 = await parseTableReferences({
-      connection,
-      database: northwindDbName,
-      table: 'order',
-      filter: 'REFERENCED',
+    const actual1 = await parseTableReferences(connection, northwindDbName, 'order', {
+      filter: ReferenceFilter.ReferencingOnly,
     })
     expect(deepRecursiveSort(expected1)).toEqual(deepRecursiveSort(actual1))
   })
 
-  test('parseTable for checking all MySQL types', async () => {
-    const expected1 = allTypes.tables[0]
-    const actual1 = await parseTable({
-      connection,
-      database: typesDbName,
-      table: 'all_types_table',
-    })
+  test('parseTable for datatypes', async () => {
+    const expected1 = dataTypes.tables[0]
+    const actual1 = await parseTable(connection, typesDbName, 'datatypes_table')
     expect(deepRecursiveSort(expected1)).toEqual(normalizeObject(deepRecursiveSort(actual1)))
   })
 
-  test('parseDatabase all_types_table', async () => {
-    const expected1 = allTypes
-    const actual1 = await parseDatabase({
-      connection,
-      database: typesDbName,
-    })
-    writeResult('./parser/all_types.json', actual1)
+  test('parseDatabase datatypes_table', async () => {
+    const expected1 = dataTypes
+    const actual1 = await parseDatabase(connection, typesDbName)
+    writeResult('./parser/datatypes.json', actual1)
     expect(deepRecursiveSort(expected1)).toEqual(normalizeObject(deepRecursiveSort(actual1)))
   })
 
   test('parseDatabase northwind', async () => {
     const expected1 = { name: northwind.name, tables: northwind.tables }
-    const actual1 = await parseDatabase({
-      connection,
-      database: northwindDbName,
-    })
+    const actual1 = await parseDatabase(connection, northwindDbName)
     writeResult('./parser/northwind.json', actual1)
     expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(deepRecursiveSort(expected1))
   })

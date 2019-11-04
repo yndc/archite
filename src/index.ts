@@ -15,7 +15,7 @@ export type DatabaseDriver = 'mysql' | 'postgresql' | 'sql-server' | 'oracle'
 /**
  * Exports all functions
  */
-import mySqlConnectionParser from './sql/drivers/mysql/parsers/connection'
+import { parser } from './sql/drivers/mysql/parsers/connection'
 import * as columnModels from './sql/model/column'
 import * as databaseModels from './sql/model/database'
 import * as tableModels from './sql/model/table'
@@ -23,12 +23,6 @@ import * as referenceModels from './sql/model/references'
 
 export default {
   sql: {
-    models: {
-      ...columnModels,
-      ...databaseModels,
-      ...tableModels,
-      ...referenceModels,
-    },
     parsers: {
       mysql: {
         connection: mySqlConnectionParser,

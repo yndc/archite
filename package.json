@@ -37,7 +37,7 @@
   "repository": "https://github.com/yndc/polymorph.git",
   "scripts": {
     "build": "rm -rf ./dist && tsc -p tsconfig.build.json && tspath -f",
-    "test": "yarn lint && jest -i",
+    "test": "jest -i",
     "lint": "./node_modules/.bin/eslint --ext .ts ./src/."
   }
 }
