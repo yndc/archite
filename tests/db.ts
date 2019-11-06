@@ -7,7 +7,7 @@
 
 import * as fs from 'fs'
 import * as knex from 'knex'
-import { DatabaseDriver } from '~/index'
+import { DatabaseDriver } from '../src/index'
 
 export interface TestConfig {
   mysql: {

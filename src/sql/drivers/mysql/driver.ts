@@ -6,7 +6,7 @@
  */
 
 import { SqlDriver } from '../../specification'
-import { parser as connectionParser } from './parsers/connection'
+import * as connectionParser from './parsers/connection'
 import { DataTypeSpecification } from '../../../standard'
 
 /**
@@ -45,7 +45,7 @@ export type SpecificationGenerator = (properties: MySqlColumnDataTypeProperties)
  */
 export const mySqlDriver: SqlDriver = {
   parsers: {
-    connection: connectionParser(),
+    connection: connectionParser,
     // query: undefined,
   },
   // generators: {},

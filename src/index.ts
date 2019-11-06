@@ -13,10 +13,13 @@
 export type DatabaseDriver = 'mysql' | 'postgresql' | 'sql-server' | 'oracle'
 
 /**
- * Exports all functions
+ * Import all functions
  */
 import { parse as mySqlConnectionParser } from './sql/drivers/mysql/parsers/connection'
 
+/**
+ * Export all functions
+ */
 export default {
   sql: {
     parsers: {

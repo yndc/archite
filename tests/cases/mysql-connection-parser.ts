@@ -7,10 +7,11 @@ import { TestConfig, loadConfig, createMySqlDatabase, destroyMySqlDatabase } fro
 import * as knex from 'knex'
 import { parse } from '../../src/sql/drivers/mysql/parsers/connection'
 import { createConnection } from '../db'
-import { deepRecursiveSort } from '~/utils'
+import { deepRecursiveSort } from '../../src/utils'
 import { normalizeObject, writeResult } from '../utils'
-import * as dataTypesStandard from '../fixtures/standard/datatypes.json'
-import * as northwindStandard from '../fixtures/standard/northwind.json'
+
+const datatypesStandard = require('../fixtures/standard/datatypes.json')
+const northwindStandard = require('../fixtures/standard/northwind.json')
 
 describe('mysql connection parser', () => {
   let connection: knex
@@ -30,7 +31,7 @@ describe('mysql connection parser', () => {
   })
 
   test('parse datatypes', async () => {
-    const expected1 = dataTypesStandard
+    const expected1 = datatypesStandard
     const actual1 = await parse(connection, typesDbName)
     writeResult('./parsed/connection-datatypes.json', actual1)
     expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(deepRecursiveSort(expected1))

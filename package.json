@@ -1,42 +1,36 @@
 {
   "name": "archite",
   "description": "Node.js library for working with schemas.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Jonathan Steven <yondercode@gmail.com>",
   "dependencies": {
-    "@types/prettier": "^1.18.3",
+    "prettier": "^1.18.2",
+    "knex": "^0.19.5",
     "dedent-js": "^1.0.1",
     "js-yaml": "^3.13.1",
-    "knex": "^0.19.5",
     "mysql": "^2.17.1",
     "mysql2": "^1.7.0",
     "pluralize": "^8.0.0",
     "tslib": "^1"
   },
   "devDependencies": {
+    "@types/prettier": "^1.18.3",
     "@types/jest": "^24.0.18",
     "@types/node": "^10",
-    "@typescript-eslint/eslint-plugin": "^2.2.0",
-    "@typescript-eslint/parser": "^2.2.0",
-    "eslint": "^6.3.0",
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-prettier": "^3.1.0",
     "jest": "^24.9.0",
-    "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
-    "ts-loader": "^6.0.4",
-    "ts-node": "^8",
-    "tspath": "^1.3.7",
     "typescript": "^3.7.1-rc"
   },
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "main": "dist/index.js",
   "files": [
-    "/dist"
+    "dist",
+    "LICENSE",
+    "docs/README.md"
   ],
   "repository": "https://github.com/yndc/archite.git",
   "scripts": {
-    "build": "rm -rf ./dist && tsc -p tsconfig.build.json && tspath -f",
+    "build": "rm -rf ./dist && tsc",
     "test": "jest -i",
     "lint": "./node_modules/.bin/eslint --ext .ts ./src/."
   }

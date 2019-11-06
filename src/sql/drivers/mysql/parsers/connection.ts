@@ -8,8 +8,8 @@
 import * as knex from 'knex'
 import { MySqlColumnDataTypeProperties } from '../driver'
 import { typemap } from '../typemap'
-import { cleanObject, mergeFlags, mapObject } from '~/utils'
-import { FieldSpecification, ModelSpecification, FieldFlags, GeneratedDefaultValues, SchemaSpecification, DefaultValueType, ReferenceConstraintRule, ConstraintSpecification, ReferenceFilter } from '~/standard'
+import { cleanObject, mergeFlags, mapObject } from '../../../../utils'
+import { FieldSpecification, ModelSpecification, FieldFlags, SchemaSpecification, DefaultValueType, ReferenceConstraintRule } from '../../../../standard'
 
 /**
  * Parses the given database connection into standard schema
@@ -60,7 +60,6 @@ export async function parse (connection: knex, database: string): Promise<Schema
 
   interface GroupedColumns { [table: string]: ColumnRawResult[] }
   const result = ((await connection.raw(query))[0]) as object[][]
-  console.log(result[1].length)
   const tablesResult = result[1].reduce<GroupedColumns>(
     (result, row: ColumnRawResult) => {
       if (result[row.TABLE_NAME] === undefined) result[row.TABLE_NAME] = [row]

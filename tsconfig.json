@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "baseUrl": ".",
+    "baseUrl": "./src/",
     "resolveJsonModule": true,
     "lib": ["es2015", "dom"],
     "rootDirs": ["./src"],
@@ -10,18 +10,15 @@
     "declaration": true,
     "declarationDir": "dist",
     "target": "es5",
-    "removeComments": true,
+    "removeComments": false,
     "noImplicitReturns": true,
     "strictNullChecks": true,
     "stripInternal": true,
     "noFallthroughCasesInSwitch": true,
     "outDir": "dist",
     "noEmitOnError": true,
-    "downlevelIteration": true,
-    "paths": {
-      "~/*": ["src/*"]
-    }
+    "downlevelIteration": true
   },
-  "include": ["src", "tests"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }
