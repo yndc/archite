@@ -11,40 +11,9 @@ import { typemap } from '../typemap'
 import { cleanObject, mergeFlags, mapObject } from '~/utils'
 import { FieldSpecification, ModelSpecification, FieldFlags, GeneratedDefaultValues, SchemaSpecification, DefaultValueType, ReferenceConstraintRule, ConstraintSpecification, ReferenceFilter } from '~/standard'
 
-// export async function parseReferences (connection: knex, database: string): Promise<ReferenceSpecification[]> {
-//   const query = `
-//     USE INFORMATION_SCHEMA;
-//     SELECT 
-//       KEY_COLUMN_USAGE.TABLE_NAME,
-//       KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME,
-//       KEY_COLUMN_USAGE.COLUMN_NAME,
-//       KEY_COLUMN_USAGE.REFERENCED_COLUMN_NAME,
-//       REFERENTIAL_CONSTRAINTS.UPDATE_RULE,
-//       REFERENTIAL_CONSTRAINTS.DELETE_RULE
-//     FROM 
-//       KEY_COLUMN_USAGE
-//     INNER JOIN 
-//       REFERENTIAL_CONSTRAINTS
-//     ON 
-//       REFERENTIAL_CONSTRAINTS.CONSTRAINT_NAME = KEY_COLUMN_USAGE.CONSTRAINT_NAME
-//     WHERE 
-//       TABLE_SCHEMA = '${database}'
-//       AND KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME IS NOT NULL;
-//   `
-//   return (await connection.raw(query))[0][1].map(x => ({
-//     referencing: {
-//       model: x.TABLE_NAME,
-//       field: x.COLUMN_NAME
-//     },
-//     referenced: {
-//       model: x.REFERENCED_TABLE_NAME,
-//       field: x.REFERENCED_COLUMN_NAME
-//     },
-//     deleteRule: mapReferenceConstraintRule(x.DELETE_RULE),
-//     updateRule: mapReferenceConstraintRule(x.UPDATE_RULE)
-//   }))
-// }
-
+/**
+ * Parses the given database connection into standard schema
+ */
 export async function parse (connection: knex, database: string): Promise<SchemaSpecification> {
   const query = `
     USE INFORMATION_SCHEMA;
@@ -57,7 +26,7 @@ export async function parse (connection: knex, database: string): Promise<Schema
     INNER JOIN 
       TABLES
     ON 
-      TABLES.TABLE_NAME = COLUMNS.TABLE_NAME
+    COLUMNS.TABLE_NAME = TABLES.TABLE_NAME 
     WHERE
       COLUMNS.TABLE_SCHEMA = '${database}';
 

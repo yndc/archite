@@ -5,6 +5,9 @@
  * Please do not edit
  */
 
+/**
+ * heyy
+ */
 export interface Integers {
   col_bigint?: number
   col_boolean?: number

@@ -1,0 +1,710 @@
+{
+	"id": "__polymorph__test__datatypes",
+	"models": [
+		{
+			"id": "integers",
+			"description": "heyy",
+			"fields": [
+				{
+					"id": "col_bigint",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 64,
+						"length": 20,
+						"flags": 0
+					},
+					"flags": 0,
+					"defaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_boolean",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_boolean_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_int",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_int_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_int_len",
+					"description": "Integer with 5 digit length",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 5,
+						"flags": 2
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_mediumint",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 24,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_smallint",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 16,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_tinyint",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_ubigint",
+					"description": "Unsigned 64 bit integer",
+					"type": {
+						"primitive": "integer",
+						"size": 64,
+						"length": 20,
+						"flags": 2
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_uint",
+					"description": "Unsigned 32 bit integer",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 2
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "floats",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_double",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 0,
+					"defaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_double_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_double_alias_2",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_float",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 0
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "decimals",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_decimal",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0,
+					"defaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_decimal_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_decimal_alias_2",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_decimal_alias_3",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_decimal_precision",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 20,
+						"precision": 10
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "time",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 7
+					},
+					"flags": 0,
+					"defaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_datetime",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_datetime_ms",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 127
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_datetime_us",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 255
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_time",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 56
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_timestamp",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 63
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_timestamp_ms",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 127
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_timestamp_us",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 255
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_year",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 1
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "strings",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_char",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"flags": 1,
+						"length": 64
+					},
+					"flags": 0,
+					"defaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_char_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"flags": 1,
+						"length": 64
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_char_alias_2",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"flags": 1,
+						"length": 64
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_enum",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"options": [
+							"'ONE'",
+							"'TWO'",
+							"'THREE'"
+						]
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_json",
+					"description": "",
+					"type": {
+						"primitive": "json"
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_longtext",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 4294967295
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_mediumtext",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 16777215
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_set",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"options": [
+							"'ONE'",
+							"'TWO'",
+							"'THREE'"
+						],
+						"flags": 4
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_text",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 65535
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_tinytext",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 255
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_varchar",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 64
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_varchar_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 64
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_varchar_alias_2",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 64
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "binaries",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_binary",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 512,
+						"flags": 1
+					},
+					"flags": 0,
+					"defaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_bit",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 64,
+						"flags": 2
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_blob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 524280
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_longblob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 34359738360
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_mediumblob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 134217720
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_tinyblob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 2040
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_varbinary",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 512
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "spatials",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_geometry",
+					"description": "",
+					"type": {
+						"primitive": "geometry"
+					},
+					"flags": 0,
+					"defaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_geometrycollection",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"flags": 4
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_linestring",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 1
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_multilinestring",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 1,
+						"flags": 4
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_multipoint",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 0,
+						"flags": 4
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_multipolygon",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 2,
+						"flags": 4
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_point",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_polygon",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 2
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "defaults",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_auto_increment",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
+				},
+				{
+					"id": "col_current_time_on_create",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 63
+					},
+					"flags": 1,
+					"defaultValueType": 4
+				},
+				{
+					"id": "col_current_time_on_update",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 63
+					},
+					"flags": 1,
+					"defaultValueType": 4
+				},
+				{
+					"id": "col_filler",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 255
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_varchar_default",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 64
+					},
+					"flags": 1,
+					"defaultValueType": 1,
+					"defaultValue": "default string"
+				}
+			]
+		}
+	],
+	"constraints": [],
+	"defaultCollation": "utf8mb4_0900_ai_ci",
+	"defaultCharset": "utf8mb4"
+}
