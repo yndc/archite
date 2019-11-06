@@ -26,7 +26,7 @@ export function loadConfig(configFilePath = './tests/config.json'): TestConfig {
       port: 3306,
       user: 'root',
       password: '',
-      database_prefix: '___polymorph___test_',
+      database_prefix: '__archite__test__',
     },
   }
   if (fs.existsSync(configFilePath)) {
@@ -42,7 +42,7 @@ export function loadConfig(configFilePath = './tests/config.json'): TestConfig {
 
 export async function createMySqlDatabase(config: TestConfig, connection: knex, database: string): Promise<string> {
   const sql = fs.readFileSync(`./tests/fixtures/mysql/${database}.sql`).toString()
-  const prefix = config.mysql.database_prefix || '___polymorph__test__'
+  const prefix = config.mysql.database_prefix || '__archite__test__'
   const dbname = prefix + database
   await destroyMySqlDatabase(connection, dbname)
   await connection.raw(`CREATE DATABASE IF NOT EXISTS ${dbname};`)

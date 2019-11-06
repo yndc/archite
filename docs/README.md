@@ -3,7 +3,7 @@ Everything below is unfinished, although [some are working](#Features-and-roadma
 
 ---
 
-<img src="https://github.com/yndc/polymorph/raw/master/docs/logo.png" height="60">
+<img src="https://github.com/yndc/archite/raw/master/docs/logo.png" height="60">
 
 > imagine writing schema files by hand
 
@@ -15,7 +15,13 @@ This is a Node.js Library to convert schemas across multiple specifications, inc
 - **GraphQL** (type, query, and mutation definitions)
 - **OpenAPI** (operation objects)
 
-This is the tool for **10x'ers**.
+Please be noted that the result is best-effort and assumptions are made.
+
+## Usage
+
+```
+npm install archite
+```
 
 ## Specification versions
 
@@ -25,82 +31,6 @@ Although the ability to specify target specification version when generating sch
 | ------------- | ---------- |
 | JSON Schema   | `draft-07` |
 | protobuf      | `proto3`   |
-| OpenAPI       | `3.0.1`    |
+| OpenAPI       | `3.0`      |
 | MySQL         | `8.0`      |
 | GraphQL       | June 2018  |
-
-# RDMBS Compability Check List
-
-## MySQL
-
-### Field types:
-
-<details><summary>Numeric types</summary>
-<p>
-
-- [x] float
-- [x] double
-- [x] tinyint
-- [x] smallint
-- [x] mediumint
-- [x] int
-- [x] bigint
-- [x] decimal
-
-</p>
-</details>
-
-<details><summary>String types</summary>
-<p>
-
-- [x] char
-- [x] varchar
-- [x] enum
-- [x] set
-- [x] tinytext
-- [x] text
-- [x] mediumtext
-- [x] longtext
-
-</p>
-</details>
-
-<details><summary>Time types</summary>
-<p>
-
-- [x] date
-- [x] time
-- [x] datetime
-- [x] timestamp
-- [x] year
-
-</p>
-</details>
-
-<details><summary>Spatial types</summary>
-<p>
-
-- [ ] geometry
-- [ ] point
-- [ ] linestring
-- [ ] polygon
-- [ ] geometrycollection
-- [ ] multilinestring
-- [ ] multipoint
-- [ ] multipolygon
-
-</p>
-</details>
-
-<details><summary>Other types</summary>
-<p>
-
-- [ ] json
-- [ ] bit
-- [x] tinyblob
-- [x] mediumblob
-- [x] blob
-- [x] longblob
-
-</p>
-</details>
