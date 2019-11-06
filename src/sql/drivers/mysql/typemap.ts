@@ -66,6 +66,12 @@ export const typemap = new Map<string, SpecificationGenerator>([
     }),
   ],
   /**
+   * Boolean types
+   */
+  ...multiKey<SpecificationGenerator>(['bool', 'boolean'], () => ({
+    primitive: PrimitiveType.Boolean,
+  })),
+  /**
    * Floating point based types
    */
   [
@@ -246,11 +252,10 @@ export const typemap = new Map<string, SpecificationGenerator>([
   /**
    * Binary types
    */
-  ...multiKey<SpecificationGenerator>(['bool', 'boolean'], () => ({
-    primitive: PrimitiveType.Binary,
-    size: 1,
-  })),
-  ['bit', props => ({ primitive: PrimitiveType.Integer, size: tryParseInt(props.measurements.shift()), unsigned: true })],
+  [
+    'bit',
+    props => ({ primitive: PrimitiveType.Binary, size: tryParseInt(props.measurements.shift()), unsigned: true }),
+  ],
   [
     'binary',
     props => {
@@ -274,7 +279,7 @@ export const typemap = new Map<string, SpecificationGenerator>([
     'tinyblob',
     () => {
       return {
-        primitive: PrimitiveType.String,
+        primitive: PrimitiveType.Binary,
         size: 255 * 8,
       }
     },
@@ -283,7 +288,7 @@ export const typemap = new Map<string, SpecificationGenerator>([
     'blob',
     () => {
       return {
-        primitive: PrimitiveType.String,
+        primitive: PrimitiveType.Binary,
         size: 65535 * 8,
       }
     },
@@ -292,7 +297,7 @@ export const typemap = new Map<string, SpecificationGenerator>([
     'mediumblob',
     () => {
       return {
-        primitive: PrimitiveType.String,
+        primitive: PrimitiveType.Binary,
         size: 16777215 * 8,
       }
     },
@@ -301,7 +306,7 @@ export const typemap = new Map<string, SpecificationGenerator>([
     'longblob',
     () => {
       return {
-        primitive: PrimitiveType.String,
+        primitive: PrimitiveType.Binary,
         size: 4294967295 * 8,
       }
     },
@@ -375,7 +380,7 @@ export const typemap = new Map<string, SpecificationGenerator>([
     },
   ],
   [
-    'geometrycollection',
+    'geomcollection',
     () => {
       return {
         primitive: PrimitiveType.Geometry,

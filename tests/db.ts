@@ -44,7 +44,7 @@ export async function createMySqlDatabase(config: TestConfig, connection: knex, 
   const sql = fs.readFileSync(`./tests/fixtures/mysql/${database}.sql`).toString()
   const prefix = config.mysql.database_prefix || '___polymorph__test__'
   const dbname = prefix + database
-  await destroyMySqlDatabase(connection, database)
+  await destroyMySqlDatabase(connection, dbname)
   await connection.raw(`CREATE DATABASE IF NOT EXISTS ${dbname};`)
   await connection.raw(`USE ${dbname};\n\n${sql}`)
   return dbname

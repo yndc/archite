@@ -1,2669 +1,3052 @@
 export const dataTypes = {
-	"name": "___polymorph___test_all_types",
-	"tables": [
+	"id": "__polymorph__test__datatypes",
+	"description": "",
+	"models": [
 		{
-			"name": "all_types_table",
-			"columns": [
+			"id": "binaries",
+			"description": "",
+			"fields": [
 				{
-					"name": "col_bigint",
-					"comment": "",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 8,
-						"maxLength": 20
-					}
+					"id": "col_bit",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 64,
+						"unsigned": true
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "col_binary",
-					"comment": "",
-					"nullable": false,
-					"type": "binary",
-					"description": {
-						"bits": 984
-					}
+					"id": "col_binary",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 512,
+						"flags": 1
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_bit",
-					"comment": "",
-					"nullable": false,
-					"type": "binary",
-					"description": {
-						"bits": 4
-					}
+					"id": "col_varbinary",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 512
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_blob",
-					"comment": "",
-					"nullable": false,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
+					"id": "col_tinyblob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 2040
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_char",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 1,
-						"format": "none",
-						"collation": "utf8mb4_0900_ai_ci"
-					}
+					"id": "col_blob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 524280
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_date",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"format": "date"
-					}
+					"id": "col_mediumblob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 134217720
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_datetime",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "col_longblob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 34359738360
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "decimals",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_decimal",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "col_decimal",
-					"comment": "",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "10",
-						"precision": "5"
-					}
+					"id": "col_decimal_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_default_decimal",
-					"comment": "This is a decimal, the default should be 5",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "10",
-						"precision": "5",
-						"defaultValue": "5.00000"
-					}
+					"id": "col_decimal_alias_2",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_default_integer",
-					"comment": "",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"defaultValue": 123,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "col_decimal_alias_3",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_default_varchar",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 11,
-						"format": "none",
+					"id": "col_decimal_precision",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 20,
+						"precision": 10
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "defaults",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_auto_increment",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
+				},
+				{
+					"id": "col_varchar_default",
+					"description": "",
+					"type": {
+						"primitive": "string",
 						"collation": "utf8mb4_0900_ai_ci",
-						"defaultValue": "ayy lmao"
-					}
+						"charset": "utf8mb4",
+						"length": 64
+					},
+					"flags": 1,
+					"DefaultValueType": 1,
+					"defaultValue": "default string"
 				},
 				{
-					"name": "col_double",
-					"comment": "",
-					"nullable": false,
-					"type": "float",
-					"description": {
-						"precision": "double"
-					}
+					"id": "col_current_time_on_create",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 63
+					},
+					"flags": 1,
+					"defaultValueType": 4
 				},
 				{
-					"name": "col_enum",
-					"comment": "",
-					"nullable": false,
-					"type": "enum",
-					"array": false,
-					"description": {
+					"id": "col_current_time_on_update",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 63
+					},
+					"flags": 1,
+					"defaultValueType": 4
+				},
+				{
+					"id": "col_filler",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 255
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "floats",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_float",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 0
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_double",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_double_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_double_alias_2",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "integers",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_int",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_int_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_tinyint",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_smallint",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 16,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_mediumint",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 24,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_bigint",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 64,
+						"length": 20,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_uint",
+					"description": "Unsigned 32 bit integer",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 2
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_ubigint",
+					"description": "Unsigned 64 bit integer",
+					"type": {
+						"primitive": "integer",
+						"size": 64,
+						"length": 20,
+						"flags": 2
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_int_len",
+					"description": "Integer with 5 digit length",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 5,
+						"flags": 2
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_boolean",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_boolean_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "spatials",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_point",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 0
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_multipoint",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 0,
+						"flags": 4
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_linestring",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 1
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_multilinestring",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 1,
+						"flags": 4
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_polygon",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 2
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_multipolygon",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"dimension": 2,
+						"flags": 4
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_geometry",
+					"description": "",
+					"type": {
+						"primitive": "geometry"
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_geometrycollection",
+					"description": "",
+					"type": {
+						"primitive": "geometry",
+						"flags": 4
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "strings",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_char",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"flags": 1,
+						"length": 64
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": null
+				},
+				{
+					"id": "col_char_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"flags": 1,
+						"length": 64
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_char_alias_2",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"flags": 1,
+						"length": 64
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_varchar",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 64
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_varchar_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 64
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_varchar_alias_2",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 64
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_tinytext",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 255
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_text",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 65535
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_mediumtext",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 16777215
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_longtext",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 4294967295
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_enum",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
 						"options": [
-							"ONE",
-							"TWO",
-							"THREE"
+							"'ONE'",
+							"'TWO'",
+							"'THREE'"
 						]
-					}
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_float",
-					"comment": "",
-					"nullable": false,
-					"type": "float",
-					"description": {
-						"precision": "float"
-					}
-				},
-				{
-					"name": "col_int",
-					"comment": "This is an integer",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
-					"name": "col_longblob",
-					"comment": "",
-					"nullable": false,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
-				},
-				{
-					"name": "col_longtext",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8mb4_0900_ai_ci"
-					}
-				},
-				{
-					"name": "col_mediumblob",
-					"comment": "",
-					"nullable": false,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
-				},
-				{
-					"name": "col_mediumint",
-					"comment": "This is a medium integer",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 3,
-						"maxLength": 11
-					}
-				},
-				{
-					"name": "col_mediumtext",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 16777215,
-						"format": "none",
-						"collation": "utf8mb4_0900_ai_ci"
-					}
-				},
-				{
-					"name": "col_nullable_double",
-					"comment": "",
-					"nullable": true,
-					"type": "float",
-					"description": {
-						"precision": "double"
-					}
-				},
-				{
-					"name": "col_nullable_integer",
-					"comment": "",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
-				},
-				{
-					"name": "col_nullable_varchar",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 255,
-						"format": "none",
-						"collation": "utf8mb4_0900_ai_ci"
-					}
-				},
-				{
-					"name": "col_set",
-					"comment": "",
-					"nullable": false,
-					"type": "enum",
-					"array": true,
-					"description": {
+					"id": "col_set",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
 						"options": [
-							"ONE",
-							"TWO",
-							"THREE"
-						]
-					}
+							"'ONE'",
+							"'TWO'",
+							"'THREE'"
+						],
+						"flags": 4
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_smallint",
-					"comment": "This is a smol integer",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 2,
-						"maxLength": 11
-					}
+					"id": "col_json",
+					"description": "",
+					"type": {
+						"primitive": "json"
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "time",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_timestamp",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 63
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "col_text",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 65535,
-						"format": "none",
-						"collation": "utf8mb4_0900_ai_ci"
-					}
+					"id": "col_timestamp_ms",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 127
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_timestamp",
-					"comment": "",
-					"nullable": false,
-					"type": "timestamp",
-					"description": {}
+					"id": "col_timestamp_us",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 255
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_tinyblob",
-					"comment": "",
-					"nullable": false,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
+					"id": "col_datetime",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_tinyint",
-					"comment": "A boolean value",
-					"nullable": false,
-					"type": "boolean",
-					"description": {
-						"defaultValue": false
-					}
+					"id": "col_datetime_ms",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 127
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_tinytext",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 255,
-						"format": "none",
-						"collation": "utf8mb4_0900_ai_ci"
-					}
+					"id": "col_datetime_us",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 255
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_ubigint",
-					"comment": "",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": true,
-						"byteSize": 8,
-						"maxLength": 20
-					}
+					"id": "col_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 7
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_uint",
-					"comment": "This is an unsigned integer",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": true,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "col_time",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 56
+					},
+					"flags": 0
 				},
 				{
-					"name": "col_varbinary",
-					"comment": "",
-					"nullable": false,
-					"type": "binary",
-					"description": {
-						"bits": 4000
-					}
-				},
-				{
-					"name": "col_varchar",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 255,
-						"format": "none",
-						"collation": "utf8mb4_0900_ai_ci"
-					}
-				},
-				{
-					"name": "col_year",
-					"comment": "",
-					"nullable": false,
-					"type": "year",
-					"description": {}
+					"id": "col_year",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 1
+					},
+					"flags": 0
 				}
 			]
 		}
 	],
+	"references": [],
+	"defaultCollation": "utf8mb4_0900_ai_ci",
+	"defaultCharset": "utf8mb4"
 }
 
 export const northwind = {
-	"name": "___polymorph___test_northwind",
-	"tables": [
+	"id": "__polymorph__test__northwind",
+	"description": "",
+	"models": [
 		{
-			"name": "customer",
-			"columns": [
+			"id": "customer",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "company",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "company",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "last_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "last_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "first_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "first_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "email_address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "email_address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "job_title",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "job_title",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "business_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "business_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "home_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "home_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "mobile_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "mobile_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "fax_number",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "fax_number",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "city",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "city",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "state_province",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "state_province",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "zip_postal_code",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 15,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "zip_postal_code",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 15
+					},
+					"flags": 16
 				},
 				{
-					"name": "country_region",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "country_region",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "web_page",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "web_page",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "notes",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "notes",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "attachments",
-					"comment": "",
-					"nullable": true,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
+					"id": "attachments",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 34359738360
+					},
+					"flags": 0
 				}
 			]
 		},
 		{
-			"name": "employee",
-			"columns": [
+			"id": "employee",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "company",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "company",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "last_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "last_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "first_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "first_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "email_address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "email_address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "job_title",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "job_title",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "business_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "business_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "home_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "home_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "mobile_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "mobile_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "fax_number",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "fax_number",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "city",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "city",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "state_province",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "state_province",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "zip_postal_code",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 15,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "zip_postal_code",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 15
+					},
+					"flags": 16
 				},
 				{
-					"name": "country_region",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "country_region",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "web_page",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "web_page",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "notes",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "notes",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "attachments",
-					"comment": "",
-					"nullable": true,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
+					"id": "attachments",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 34359738360
+					},
+					"flags": 0
 				}
 			]
 		},
 		{
-			"name": "employee_privilege",
-			"columns": [
+			"id": "employee_privilege",
+			"description": "",
+			"fields": [
 				{
-					"name": "employee_id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "employee_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "privilege_id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "privilege_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5
 				}
 			]
 		},
 		{
-			"name": "inventory_transaction",
-			"columns": [
+			"id": "inventory_transaction",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "transaction_type",
-					"comment": "",
-					"key": "index",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 1,
-						"maxLength": 4
-					}
+					"id": "transaction_type",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 4,
+						"flags": 0
+					},
+					"flags": 17
 				},
 				{
-					"name": "transaction_created_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "transaction_created_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "transaction_modified_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "transaction_modified_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "product_id",
-					"comment": "",
-					"key": "index",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "product_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 17
 				},
 				{
-					"name": "quantity",
-					"comment": "",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "quantity",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 1
 				},
 				{
-					"name": "purchase_order_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "purchase_order_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "customer_order_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "customer_order_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "comments",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 255,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "comments",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 255
+					},
+					"flags": 0
 				}
 			]
 		},
 		{
-			"name": "inventory_transaction_type",
-			"columns": [
+			"id": "inventory_transaction_type",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 1,
-						"maxLength": 4
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 4,
+						"flags": 0
+					},
+					"flags": 5,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "type_name",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "type_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 1
 				}
 			]
 		},
 		{
-			"name": "invoice",
-			"columns": [
+			"id": "invoice",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "order_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "order_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "invoice_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "invoice_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "due_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "due_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "tax",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "tax",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "shipping",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "shipping",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "amount_due",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "amount_due",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				}
 			]
 		},
 		{
-			"name": "order",
-			"columns": [
+			"id": "order",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "employee_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "employee_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "customer_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "customer_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "order_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "order_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "shipped_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "shipped_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "shipper_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "shipper_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "ship_name",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "ship_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "ship_address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "ship_address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "ship_city",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "ship_city",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "ship_state_province",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "ship_state_province",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "ship_zip_postal_code",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "ship_zip_postal_code",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "ship_country_region",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "ship_country_region",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "shipping_fee",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "shipping_fee",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "taxes",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "taxes",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "payment_type",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "payment_type",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "paid_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "paid_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "notes",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "notes",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "tax_rate",
-					"comment": "",
-					"nullable": true,
-					"type": "float",
-					"description": {
-						"precision": "double",
-						"defaultValue": 0
-					}
+					"id": "tax_rate",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": "0"
 				},
 				{
-					"name": "tax_status_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 1,
-						"maxLength": 4
-					}
+					"id": "tax_status_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 4,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "status_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"defaultValue": 0,
-						"byteSize": 1,
-						"maxLength": 4
-					}
+					"id": "status_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 4,
+						"flags": 0
+					},
+					"flags": 16,
+					"DefaultValueType": 1,
+					"defaultValue": "0"
 				}
 			]
 		},
 		{
-			"name": "order_detail",
-			"columns": [
+			"id": "order_detail",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "order_id",
-					"comment": "",
-					"key": "index",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "order_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 17
 				},
 				{
-					"name": "product_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "product_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "quantity",
-					"comment": "",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "18",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "quantity",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 18,
+						"precision": 4
+					},
+					"flags": 1,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "unit_price",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "unit_price",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "discount",
-					"comment": "",
-					"nullable": false,
-					"type": "float",
-					"description": {
-						"precision": "double",
-						"defaultValue": 0
-					}
+					"id": "discount",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 1,
+					"DefaultValueType": 1,
+					"defaultValue": "0"
 				},
 				{
-					"name": "status_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "status_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "date_allocated",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "date_allocated",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "purchase_order_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "purchase_order_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "inventory_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "inventory_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				}
 			]
 		},
 		{
-			"name": "order_details_status",
-			"columns": [
+			"id": "order_details_status",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "status_name",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "status_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 1
 				}
 			]
 		},
 		{
-			"name": "orders_status",
-			"columns": [
+			"id": "orders_status",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 1,
-						"maxLength": 4
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 4,
+						"flags": 0
+					},
+					"flags": 5,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "status_name",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "status_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 1
 				}
 			]
 		},
 		{
-			"name": "orders_tax_status",
-			"columns": [
+			"id": "orders_tax_status",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 1,
-						"maxLength": 4
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 4,
+						"flags": 0
+					},
+					"flags": 5,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "tax_status_name",
-					"comment": "",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "tax_status_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 1
 				}
 			]
 		},
 		{
-			"name": "privilege",
-			"columns": [
+			"id": "privilege",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "privilege_name",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "privilege_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				}
 			]
 		},
 		{
-			"name": "product",
-			"columns": [
+			"id": "product",
+			"description": "",
+			"fields": [
 				{
-					"name": "supplier_ids",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "supplier_ids",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "product_code",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "product_code",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 16
 				},
 				{
-					"name": "product_name",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "product_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "description",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "description",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "standard_cost",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "standard_cost",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "list_price",
-					"comment": "",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "list_price",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 1,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "reorder_level",
-					"comment": "",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "reorder_level",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
 				},
 				{
-					"name": "target_level",
-					"comment": "",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "target_level",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
 				},
 				{
-					"name": "quantity_per_unit",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "quantity_per_unit",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "discontinued",
-					"comment": "",
-					"nullable": false,
-					"type": "boolean",
-					"description": {
-						"defaultValue": true
-					}
+					"id": "discontinued",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
+					},
+					"flags": 1,
+					"DefaultValueType": 1,
+					"defaultValue": "0"
 				},
 				{
-					"name": "minimum_reorder_quantity",
-					"comment": "",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "minimum_reorder_quantity",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
 				},
 				{
-					"name": "category",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "category",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "attachments",
-					"comment": "",
-					"nullable": true,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
+					"id": "attachments",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 34359738360
+					},
+					"flags": 0
 				}
 			]
 		},
 		{
-			"name": "purchase_order",
-			"columns": [
+			"id": "purchase_order",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "supplier_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "supplier_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "created_by",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "created_by",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "submitted_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "submitted_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "creation_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "creation_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "status_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"defaultValue": 0,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "status_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16,
+					"DefaultValueType": 1,
+					"defaultValue": "0"
 				},
 				{
-					"name": "expected_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "expected_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "shipping_fee",
-					"comment": "",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "shipping_fee",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 1,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "taxes",
-					"comment": "",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "taxes",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 1,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "payment_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "payment_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "payment_amount",
-					"comment": "",
-					"nullable": true,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4",
-						"defaultValue": "0.0000"
-					}
+					"id": "payment_amount",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"DefaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
-					"name": "payment_method",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "payment_method",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "notes",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "notes",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "approved_by",
-					"comment": "",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "approved_by",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
 				},
 				{
-					"name": "approved_date",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "approved_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "submitted_by",
-					"comment": "",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "submitted_by",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
 				}
 			]
 		},
 		{
-			"name": "purchase_order_detail",
-			"columns": [
+			"id": "purchase_order_detail",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "purchase_order_id",
-					"comment": "",
-					"key": "index",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "purchase_order_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 17
 				},
 				{
-					"name": "product_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "product_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				},
 				{
-					"name": "quantity",
-					"comment": "",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "18",
-						"precision": "4"
-					}
+					"id": "quantity",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 18,
+						"precision": 4
+					},
+					"flags": 1
 				},
 				{
-					"name": "unit_cost",
-					"comment": "",
-					"nullable": false,
-					"type": "decimal",
-					"description": {
-						"maxLength": "19",
-						"precision": "4"
-					}
+					"id": "unit_cost",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 1
 				},
 				{
-					"name": "date_received",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"format": "date-time"
-					}
+					"id": "date_received",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
-					"name": "posted_to_inventory",
-					"comment": "",
-					"nullable": false,
-					"type": "boolean",
-					"description": {
-						"defaultValue": true
-					}
+					"id": "posted_to_inventory",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
+					},
+					"flags": 1,
+					"DefaultValueType": 1,
+					"defaultValue": "0"
 				},
 				{
-					"name": "inventory_id",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "inventory_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				}
 			]
 		},
 		{
-			"name": "purchase_order_status",
-			"columns": [
+			"id": "purchase_order_status",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "status",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "status",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				}
 			]
 		},
 		{
-			"name": "sales_report",
-			"columns": [
+			"id": "sales_report",
+			"description": "",
+			"fields": [
 				{
-					"name": "group_by",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "group_by",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 5,
+					"DefaultValueType": 1,
+					"defaultValue": null
 				},
 				{
-					"name": "display",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "display",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "title",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "title",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "filter_row_source",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "filter_row_source",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "default",
-					"comment": "",
-					"nullable": false,
-					"type": "boolean",
-					"description": {
-						"defaultValue": true
-					}
+					"id": "default",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
+					},
+					"flags": 1,
+					"DefaultValueType": 1,
+					"defaultValue": "0"
 				}
 			]
 		},
 		{
-			"name": "shipper",
-			"columns": [
+			"id": "shipper",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "company",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "company",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "last_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "last_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "first_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "first_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "email_address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "email_address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "job_title",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "job_title",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "business_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "business_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "home_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "home_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "mobile_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "mobile_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "fax_number",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "fax_number",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "city",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "city",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "state_province",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "state_province",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "zip_postal_code",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 15,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "zip_postal_code",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 15
+					},
+					"flags": 16
 				},
 				{
-					"name": "country_region",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "country_region",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "web_page",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "web_page",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "notes",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "notes",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "attachments",
-					"comment": "",
-					"nullable": true,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
+					"id": "attachments",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 34359738360
+					},
+					"flags": 0
 				}
 			]
 		},
 		{
-			"name": "string",
-			"columns": [
+			"id": "string",
+			"description": "",
+			"fields": [
 				{
-					"name": "string_id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "string_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "string_data",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 255,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "string_data",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 255
+					},
+					"flags": 0
 				}
 			]
 		},
 		{
-			"name": "supplier",
-			"columns": [
+			"id": "supplier",
+			"description": "",
+			"fields": [
 				{
-					"name": "id",
-					"comment": "",
-					"key": "primary",
-					"nullable": false,
-					"type": "integer",
-					"description": {
-						"autoIncrement": false,
-						"unsigned": false,
-						"byteSize": 4,
-						"maxLength": 11
-					}
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"name": "company",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "company",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "last_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "last_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "first_name",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "first_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "email_address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "email_address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "job_title",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "job_title",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "business_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "business_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "home_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "home_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "mobile_phone",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "mobile_phone",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "fax_number",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 25,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "fax_number",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 25
+					},
+					"flags": 0
 				},
 				{
-					"name": "address",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "city",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "city",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "state_province",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "state_province",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
-					"name": "zip_postal_code",
-					"comment": "",
-					"key": "index",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 15,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "zip_postal_code",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 15
+					},
+					"flags": 16
 				},
 				{
-					"name": "country_region",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 50,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "country_region",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
 				},
 				{
-					"name": "web_page",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "web_page",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "notes",
-					"comment": "",
-					"nullable": true,
-					"type": "string",
-					"description": {
-						"maxLength": 4294967295,
-						"format": "none",
-						"collation": "utf8_general_ci"
-					}
+					"id": "notes",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
-					"name": "attachments",
-					"comment": "",
-					"nullable": true,
-					"type": "binary",
-					"description": {
-						"bits": null
-					}
+					"id": "attachments",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 34359738360
+					},
+					"flags": 0
 				}
 			]
 		}
-	]
+	],
+	"references": [
+		{
+			"referencing": {
+				"model": "employee_privilege",
+				"field": "employee_id"
+			},
+			"referenced": {
+				"model": "employee",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "employee_privilege",
+				"field": "privilege_id"
+			},
+			"referenced": {
+				"model": "privilege",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "order",
+				"field": "customer_id"
+			},
+			"referenced": {
+				"model": "customer",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "order",
+				"field": "employee_id"
+			},
+			"referenced": {
+				"model": "employee",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "order",
+				"field": "shipper_id"
+			},
+			"referenced": {
+				"model": "shipper",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "order",
+				"field": "tax_status_id"
+			},
+			"referenced": {
+				"model": "orders_tax_status",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "order",
+				"field": "status_id"
+			},
+			"referenced": {
+				"model": "orders_status",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "purchase_order",
+				"field": "created_by"
+			},
+			"referenced": {
+				"model": "employee",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "purchase_order",
+				"field": "status_id"
+			},
+			"referenced": {
+				"model": "purchase_order_status",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "purchase_order",
+				"field": "supplier_id"
+			},
+			"referenced": {
+				"model": "supplier",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "inventory_transaction",
+				"field": "customer_order_id"
+			},
+			"referenced": {
+				"model": "order",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "inventory_transaction",
+				"field": "product_id"
+			},
+			"referenced": {
+				"model": "product",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "inventory_transaction",
+				"field": "purchase_order_id"
+			},
+			"referenced": {
+				"model": "purchase_order",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "inventory_transaction",
+				"field": "transaction_type"
+			},
+			"referenced": {
+				"model": "inventory_transaction_type",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "invoice",
+				"field": "order_id"
+			},
+			"referenced": {
+				"model": "order",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "order_detail",
+				"field": "order_id"
+			},
+			"referenced": {
+				"model": "order",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "order_detail",
+				"field": "product_id"
+			},
+			"referenced": {
+				"model": "product",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "order_detail",
+				"field": "status_id"
+			},
+			"referenced": {
+				"model": "order_details_status",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "purchase_order_detail",
+				"field": "inventory_id"
+			},
+			"referenced": {
+				"model": "inventory_transaction",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "purchase_order_detail",
+				"field": "product_id"
+			},
+			"referenced": {
+				"model": "product",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		},
+		{
+			"referencing": {
+				"model": "purchase_order_detail",
+				"field": "purchase_order_id"
+			},
+			"referenced": {
+				"model": "purchase_order",
+				"field": "id"
+			},
+			"deleteRule": 0,
+			"updateRule": 0
+		}
+	],
+	"defaultCollation": "utf8mb4_0900_ai_ci",
+	"defaultCharset": "utf8mb4"
 }
-
-export const northwindReferences = [
-	{
-		"referencingTable": "employee_privilege",
-		"referencedTable": "employee",
-		"referencingColumn": "employee_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "employee_privilege",
-		"referencedTable": "privilege",
-		"referencingColumn": "privilege_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "order",
-		"referencedTable": "customer",
-		"referencingColumn": "customer_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "order",
-		"referencedTable": "employee",
-		"referencingColumn": "employee_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "order",
-		"referencedTable": "shipper",
-		"referencingColumn": "shipper_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "order",
-		"referencedTable": "orders_tax_status",
-		"referencingColumn": "tax_status_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "order",
-		"referencedTable": "orders_status",
-		"referencingColumn": "status_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "purchase_order",
-		"referencedTable": "employee",
-		"referencingColumn": "created_by",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "purchase_order",
-		"referencedTable": "purchase_order_status",
-		"referencingColumn": "status_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "purchase_order",
-		"referencedTable": "supplier",
-		"referencingColumn": "supplier_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "inventory_transaction",
-		"referencedTable": "order",
-		"referencingColumn": "customer_order_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "inventory_transaction",
-		"referencedTable": "product",
-		"referencingColumn": "product_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "inventory_transaction",
-		"referencedTable": "purchase_order",
-		"referencingColumn": "purchase_order_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "inventory_transaction",
-		"referencedTable": "inventory_transaction_type",
-		"referencingColumn": "transaction_type",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "invoice",
-		"referencedTable": "order",
-		"referencingColumn": "order_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "order_detail",
-		"referencedTable": "order",
-		"referencingColumn": "order_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "order_detail",
-		"referencedTable": "product",
-		"referencingColumn": "product_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "order_detail",
-		"referencedTable": "order_details_status",
-		"referencingColumn": "status_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "purchase_order_detail",
-		"referencedTable": "inventory_transaction",
-		"referencingColumn": "inventory_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "purchase_order_detail",
-		"referencedTable": "product",
-		"referencingColumn": "product_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	},
-	{
-		"referencingTable": "purchase_order_detail",
-		"referencedTable": "purchase_order",
-		"referencingColumn": "purchase_order_id",
-		"referencedColumn": "id",
-		"updateRule": "none",
-		"deleteRule": "none"
-	}
-]

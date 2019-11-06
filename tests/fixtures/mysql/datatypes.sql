@@ -19,7 +19,9 @@ CREATE TABLE IF NOT EXISTS `integers` (
   `col_bigint` bigint(20),
   `col_uint` int(11) unsigned COMMENT "Unsigned 32 bit integer",
   `col_ubigint` bigint(20) unsigned COMMENT "Unsigned 64 bit integer",
-  `col_int_len` int(5) unsigned COMMENT "Integer with 5 digit length"
+  `col_int_len` int(5) unsigned COMMENT "Integer with 5 digit length",
+  `col_boolean` boolean,
+  `col_boolean_alias_1` bool
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS `floats` (
@@ -68,8 +70,6 @@ CREATE TABLE IF NOT EXISTS `strings` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS `binaries` (
-  `col_boolean` boolean,
-  `col_boolean_alias_1` bool,
   `col_bit` bit(64),
   `col_binary` binary(64),
   `col_varbinary` varbinary(64),

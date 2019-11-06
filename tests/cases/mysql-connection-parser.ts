@@ -5,18 +5,11 @@
 
 import { TestConfig, loadConfig, createMySqlDatabase, destroyMySqlDatabase } from '../db'
 import * as knex from 'knex'
-import {
-  parseTable,
-  parseDatabase,
-  parseDatabaseReferences,
-  listTables,
-  parseTableReferences,
-} from '../../src/sql/drivers/mysql/parsers/connection'
+import { parse } from '../../src/sql/drivers/mysql/parsers/connection'
 import { createConnection } from '../db'
-import { dataTypes, northwind, northwindReferences } from '../fixtures/models'
+import { dataTypes, northwind } from '../fixtures/models'
 import { deepRecursiveSort } from '~/utils'
 import { normalizeObject, writeResult } from '../utils'
-import { ReferenceFilter } from '../../src/sql/specification'
 
 describe('mysql connection parser', () => {
   let connection: knex
@@ -35,192 +28,24 @@ describe('mysql connection parser', () => {
     await connection.destroy()
   })
 
-  test('listTables on datatypes', async () => {
-    const expected1 = ['all']
-    const actual1 = await listTables(connection, typesDbName)
-    expect(actual1).toEqual(expected1)
-  })
-
-  test('listTables on northwind', async () => {
-    const expected1 = [
-      'customer',
-      'employee',
-      'employee_privilege',
-      'inventory_transaction',
-      'inventory_transaction_type',
-      'invoice',
-      'order',
-      'order_detail',
-      'order_details_status',
-      'orders_status',
-      'orders_tax_status',
-      'privilege',
-      'product',
-      'purchase_order',
-      'purchase_order_detail',
-      'purchase_order_status',
-      'sales_report',
-      'shipper',
-      'string',
-      'supplier',
-    ]
-
-    const actual1 = await listTables(connection, typesDbName)
-    expect(actual1).toEqual(expected1)
-  })
-
-  test('getDatabaseReferences datatypes', async () => {
-    const expected1 = []
-    const actual1 = await parseDatabaseReferences(connection, typesDbName)
-    expect(deepRecursiveSort(actual1)).toEqual(deepRecursiveSort(expected1))
-  })
-
-  test('getDatabaseReferences northwind', async () => {
-    const expected1 = northwindReferences
-    const actual1 = await parseDatabaseReferences(connection, northwindDbName)
-    writeResult('./parser/northwind_references.json', actual1)
-    expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(normalizeObject(deepRecursiveSort(expected1)))
-  })
-
-  test('getTableReferences northwind', async () => {
-    const expected1 = [
-      {
-        referencingTable: 'inventory_transaction',
-        referencingColumn: 'customer_order_id',
-        referencedTable: 'order',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'invoice',
-        referencingColumn: 'order_id',
-        referencedTable: 'order',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order',
-        referencingColumn: 'customer_id',
-        referencedTable: 'customer',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order',
-        referencingColumn: 'employee_id',
-        referencedTable: 'employee',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order',
-        referencingColumn: 'status_id',
-        referencedTable: 'orders_status',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order',
-        referencingColumn: 'tax_status_id',
-        referencedTable: 'orders_tax_status',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order',
-        referencingColumn: 'shipper_id',
-        referencedTable: 'shipper',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order_detail',
-        referencingColumn: 'order_id',
-        referencedTable: 'order',
-        referencedColumn: 'id',
-      },
-    ]
-    const actual1 = await parseTableReferences(connection, northwindDbName, 'order')
-    writeResult('./parser/northwind_order_references.json', actual1)
-    expect(deepRecursiveSort(actual1)).toEqual(deepRecursiveSort(expected1))
-  })
-
-  test('getTableReferences northwind referencing only', async () => {
-    const expected1 = [
-      {
-        referencingTable: 'order',
-        referencingColumn: 'customer_id',
-        referencedTable: 'customer',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order',
-        referencingColumn: 'employee_id',
-        referencedTable: 'employee',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order',
-        referencingColumn: 'shipper_id',
-        referencedTable: 'shipper',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order',
-        referencingColumn: 'tax_status_id',
-        referencedTable: 'orders_tax_status',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order',
-        referencingColumn: 'status_id',
-        referencedTable: 'orders_status',
-        referencedColumn: 'id',
-      },
-    ]
-    const actual1 = await parseTableReferences(connection, northwindDbName, 'order', {
-      filter: ReferenceFilter.ReferencingOnly,
-    })
-    expect(deepRecursiveSort(expected1)).toEqual(deepRecursiveSort(actual1))
-  })
-
-  test('getTableReferences northwind referenced only', async () => {
-    const expected1 = [
-      {
-        referencingTable: 'inventory_transaction',
-        referencingColumn: 'customer_order_id',
-        referencedTable: 'order',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'invoice',
-        referencingColumn: 'order_id',
-        referencedTable: 'order',
-        referencedColumn: 'id',
-      },
-      {
-        referencingTable: 'order_detail',
-        referencingColumn: 'order_id',
-        referencedTable: 'order',
-        referencedColumn: 'id',
-      },
-    ]
-    const actual1 = await parseTableReferences(connection, northwindDbName, 'order', {
-      filter: ReferenceFilter.ReferencingOnly,
-    })
-    expect(deepRecursiveSort(expected1)).toEqual(deepRecursiveSort(actual1))
-  })
-
-  test('parseTable for datatypes', async () => {
-    const expected1 = dataTypes.tables[0]
-    const actual1 = await parseTable(connection, typesDbName, 'datatypes_table')
-    expect(deepRecursiveSort(expected1)).toEqual(normalizeObject(deepRecursiveSort(actual1)))
-  })
-
-  test('parseDatabase datatypes_table', async () => {
+  test('parse datatypes', async () => {
     const expected1 = dataTypes
-    const actual1 = await parseDatabase(connection, typesDbName)
-    writeResult('./parser/datatypes.json', actual1)
-    expect(deepRecursiveSort(expected1)).toEqual(normalizeObject(deepRecursiveSort(actual1)))
-  })
-
-  test('parseDatabase northwind', async () => {
-    const expected1 = { name: northwind.name, tables: northwind.tables }
-    const actual1 = await parseDatabase(connection, northwindDbName)
-    writeResult('./parser/northwind.json', actual1)
+    const actual1 = await parse(connection, typesDbName)
+    writeResult('./parsed/connection-datatypes.json', actual1)
     expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(deepRecursiveSort(expected1))
   })
+
+  test('parse northwind', async () => {
+    const expected1 = northwind
+    const actual1 = await parse(connection, northwindDbName)
+    writeResult('./parsed/connection-northwind.json', actual1)
+    expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(deepRecursiveSort(expected1))
+  })
+
+  // test('parseDatabase northwind', async () => {
+  //   const expected1 = { name: northwind.name, tables: northwind.tables }
+  //   const actual1 = await parseDatabase(connection, northwindDbName)
+  //   writeResult('./parser/northwind.json', actual1)
+  //   expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(deepRecursiveSort(expected1))
+  // })
 })

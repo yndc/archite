@@ -8,13 +8,14 @@
  * License  : GNU General Public License v3 (GPLv3)
  */
 
-export interface DomainSpecification {
+export interface SchemaSpecification {
   /**
-   * Domain identification string
+   * Schema identification string
    */
   id: string
   description: string
   models: ModelSpecification[]
+  references: ReferenceSpecification[]
   defaultCharset: string
   defaultCollation: string
 }
@@ -45,12 +46,16 @@ export interface FieldSpecification {
   ordinal?: number
   flags?: number
   /**
-   * Uses DOMAIN.MODEL.FIELD format.
-   * Domain and model can be omitted when referencing fields in the same model or domain.
+   * Uses SCHEMA.MODEL.FIELD format.
+   * Schema and model can be omitted when referencing fields in the same model or schema.
    */
   reference?: string
   /**
    * Default value for this field
+   */
+  defaultValueType?: DefaultValueType
+  /**
+   * Default value for this field if defaultValueType is fixed
    */
   defaultValue?: any
 }
@@ -98,6 +103,52 @@ export interface DataTypeSpecification {
 }
 
 /**
+ * Constraint type for foreign keys
+ */
+export enum ReferenceConstraintRule {
+  None,
+  Restrict,
+  Cascade,
+  SetNull,
+  SetDefault,
+}
+
+/**
+ * Specification interface for field references.
+ */
+export interface ReferenceSpecification {
+  referencing: {
+    model: string
+    field: string
+    schema?: string
+  }
+  referenced: {
+    model: string
+    field: string
+    schema?: string
+  }
+  deleteRule: ReferenceConstraintRule
+  updateRule: ReferenceConstraintRule
+}
+
+/**
+ * Reference filter mode
+ */
+export enum ReferenceFilter {
+  NoFilter,
+  ReferencingOnly,
+  ReferencedOnly,
+}
+
+export enum DefaultValueType {
+  None,
+  Fixed,
+  UUID,
+  Increment,
+  CurrentTime,
+}
+
+/**
  * Field flags
  */
 export enum FieldFlags {
@@ -112,15 +163,16 @@ export enum FieldFlags {
  * Primitive data types
  */
 export enum PrimitiveType {
-  Integer,
-  Binary,
-  Decimal,
-  Float,
-  String,
-  Time,
-  JSON,
-  Geometry,
-  Reference, // Reference to other field in the same package
+  Boolean = 'boolean',
+  Integer = 'integer',
+  Binary = 'binary',
+  Decimal = 'decimal',
+  Float = 'float',
+  String = 'string',
+  Time = 'time',
+  JSON = 'json',
+  Geometry = 'geometry',
+  Reference = 'reference', // Reference to other field in the same schema
 }
 
 /**
@@ -180,8 +232,8 @@ export enum TypeFlags {
 /**
  * Generated default values
  */
-export const GeneratedDefaultValues = {
-  Increment: Symbol('Increment'),
-  UUID: Symbol('UUID'),
-  CurrentTime: Symbol('CurrentTime'),
+export enum GeneratedDefaultValues {
+  Increment,
+  UUID,
+  CurrentTime,
 }
