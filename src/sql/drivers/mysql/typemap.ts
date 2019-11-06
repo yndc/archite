@@ -2,7 +2,7 @@
  * MySql column type to standard data type map
  *
  * Author   : Jonathan Steven (yondercode@gmail.com)
- * License  : GNU General Public License v3 (GPLv3)
+ * License  : MIT
  */
 
 import { SpecificationGenerator } from './driver'
