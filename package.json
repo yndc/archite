@@ -1,7 +1,7 @@
 {
   "name": "archite",
   "description": "Node.js library for working with schemas.",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "author": "Jonathan Steven <yondercode@gmail.com>",
   "dependencies": {
     "prettier": "^1.18.2",
@@ -26,7 +26,7 @@
   "files": [
     "dist",
     "LICENSE",
-    "docs/README.md"
+    "README.md"
   ],
   "repository": "https://github.com/yndc/archite.git",
   "scripts": {
