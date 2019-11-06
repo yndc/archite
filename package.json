@@ -1,10 +1,9 @@
 {
   "name": "archite",
   "description": "Node.js library for working with schemas.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Jonathan Steven <yondercode@gmail.com>",
   "dependencies": {
-    "archite": "^0.0.4",
     "dedent-js": "^1.0.1",
     "js-yaml": "^3.13.1",
     "knex": "^0.19.5",
