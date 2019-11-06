@@ -9,7 +9,7 @@ import * as knex from 'knex'
 import { MySqlColumnDataTypeProperties } from '../driver'
 import { typemap } from '../typemap'
 import { cleanObject, mergeFlags, mapObject } from '~/utils'
-import { FieldSpecification, ModelSpecification, FieldFlags, GeneratedDefaultValues, SchemaSpecification, DefaultValueType, ReferenceConstraintRule, ReferenceSpecification, ReferenceFilter } from '~/standard'
+import { FieldSpecification, ModelSpecification, FieldFlags, GeneratedDefaultValues, SchemaSpecification, DefaultValueType, ReferenceConstraintRule, ConstraintSpecification, ReferenceFilter } from '~/standard'
 
 // export async function parseReferences (connection: knex, database: string): Promise<ReferenceSpecification[]> {
 //   const query = `
@@ -91,6 +91,7 @@ export async function parse (connection: knex, database: string): Promise<Schema
 
   interface GroupedColumns { [table: string]: ColumnRawResult[] }
   const result = ((await connection.raw(query))[0]) as object[][]
+  console.log(result[1].length)
   const tablesResult = result[1].reduce<GroupedColumns>(
     (result, row: ColumnRawResult) => {
       if (result[row.TABLE_NAME] === undefined) result[row.TABLE_NAME] = [row]
@@ -113,7 +114,7 @@ export async function parse (connection: knex, database: string): Promise<Schema
   const defauls = result[3][0] as DefaultCollationCharsetRawResult
   return {
     id: database,
-    description: "",
+    description: undefined,
     models: mapObject<ModelSpecification, ColumnRawResult[]>(tablesResult, (table, columns) => {
       return {
         id: table,
@@ -121,7 +122,7 @@ export async function parse (connection: knex, database: string): Promise<Schema
         fields: columns.map(parseColumn)
       }
     }),
-    references,
+    constraints: references,
     defaultCollation: defauls.DEFAULT_COLLATION_NAME,
     defaultCharset: defauls.DEFAULT_CHARACTER_SET_NAME
   }
@@ -294,7 +295,7 @@ function parseColumn(column: ColumnRawResult): FieldSpecification {
         return { defaultValueType: DefaultValueType.CurrentTime }
       }
       if (column.COLUMN_DEFAULT === undefined) return
-      return { DefaultValueType: DefaultValueType.Fixed, defaultValue: column.COLUMN_DEFAULT }
+      return { defaultValueType: DefaultValueType.Fixed, defaultValue: column.COLUMN_DEFAULT }
     })()
   }
 }

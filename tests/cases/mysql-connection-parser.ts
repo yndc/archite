@@ -7,7 +7,7 @@ import { TestConfig, loadConfig, createMySqlDatabase, destroyMySqlDatabase } fro
 import * as knex from 'knex'
 import { parse } from '../../src/sql/drivers/mysql/parsers/connection'
 import { createConnection } from '../db'
-import { dataTypes, northwind } from '../fixtures/models'
+import { dataTypes, northwind } from '../fixtures/standard'
 import { deepRecursiveSort } from '~/utils'
 import { normalizeObject, writeResult } from '../utils'
 
@@ -41,11 +41,4 @@ describe('mysql connection parser', () => {
     writeResult('./parsed/connection-northwind.json', actual1)
     expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(deepRecursiveSort(expected1))
   })
-
-  // test('parseDatabase northwind', async () => {
-  //   const expected1 = { name: northwind.name, tables: northwind.tables }
-  //   const actual1 = await parseDatabase(connection, northwindDbName)
-  //   writeResult('./parser/northwind.json', actual1)
-  //   expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(deepRecursiveSort(expected1))
-  // })
 })

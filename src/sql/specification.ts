@@ -6,7 +6,7 @@
  */
 
 import * as knex from 'knex'
-import { SchemaSpecification, ModelSpecification, ReferenceSpecification, ReferenceFilter } from '../standard'
+import { SchemaSpecification, ModelSpecification, ConstraintSpecification, ReferenceFilter } from '../standard'
 
 /**
  * Interface for database driver
@@ -66,7 +66,7 @@ export interface SqlConnectionParser {
    * Get all references within a database
    * @param options
    */
-  parseDatabaseReferences(connection: knex, database: string): Promise<ReferenceSpecification[]>
+  parseDatabaseReferences(connection: knex, database: string): Promise<ConstraintSpecification[]>
 
   /**
    * Get the references from a table
@@ -79,5 +79,5 @@ export interface SqlConnectionParser {
     options: {
       filter?: ReferenceFilter
     },
-  ): Promise<ReferenceSpecification[]>
+  ): Promise<ConstraintSpecification[]>
 }

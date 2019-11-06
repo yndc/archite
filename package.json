@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "author": "Jonathan Steven <yondercode@gmail.com>",
   "dependencies": {
+    "@types/prettier": "^1.18.3",
     "@typescript-eslint/typescript-estree": "^2.3.3",
     "dedent-js": "^1.0.1",
     "js-yaml": "^3.13.1",

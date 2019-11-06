@@ -13,11 +13,11 @@ export interface SchemaSpecification {
    * Schema identification string
    */
   id: string
-  description: string
   models: ModelSpecification[]
-  references: ReferenceSpecification[]
+  constraints: ConstraintSpecification[]
   defaultCharset: string
   defaultCollation: string
+  description?: string
 }
 
 export interface ModelSpecification {
@@ -25,8 +25,8 @@ export interface ModelSpecification {
    * Model identification string
    */
   id: string
-  description: string
   fields: FieldSpecification[]
+  description?: string
 }
 
 /**
@@ -46,11 +46,6 @@ export interface FieldSpecification {
   ordinal?: number
   flags?: number
   /**
-   * Uses SCHEMA.MODEL.FIELD format.
-   * Schema and model can be omitted when referencing fields in the same model or schema.
-   */
-  reference?: string
-  /**
    * Default value for this field
    */
   defaultValueType?: DefaultValueType
@@ -67,7 +62,7 @@ export interface DataTypeSpecification {
   /**
    * Base type of the column
    */
-  primitive: PrimitiveType
+  primitive: PrimitiveType | string
   /**
    * Maximum data size (for integers and bytes)
    */
@@ -100,6 +95,11 @@ export interface DataTypeSpecification {
    * Type flags
    */
   flags?: number
+  /**
+   * Uses SCHEMA.MODEL.FIELD format.
+   * Schema and model can be omitted when referencing fields in the same model or schema.
+   */
+  reference?: string
 }
 
 /**
@@ -116,7 +116,7 @@ export enum ReferenceConstraintRule {
 /**
  * Specification interface for field references.
  */
-export interface ReferenceSpecification {
+export interface ConstraintSpecification {
   referencing: {
     model: string
     field: string

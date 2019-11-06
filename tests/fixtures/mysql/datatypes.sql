@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `integers` (
   `col_int_len` int(5) unsigned COMMENT "Integer with 5 digit length",
   `col_boolean` boolean,
   `col_boolean_alias_1` bool
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'heyy';
 
 CREATE TABLE IF NOT EXISTS `floats` (
   `col_float` float,

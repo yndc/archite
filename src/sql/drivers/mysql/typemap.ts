@@ -254,7 +254,7 @@ export const typemap = new Map<string, SpecificationGenerator>([
    */
   [
     'bit',
-    props => ({ primitive: PrimitiveType.Binary, size: tryParseInt(props.measurements.shift()), unsigned: true }),
+    props => ({ primitive: PrimitiveType.Binary, size: tryParseInt(props.measurements.shift()), flags: TypeFlags.Unsigned }),
   ],
   [
     'binary',

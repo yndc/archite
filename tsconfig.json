@@ -12,7 +12,6 @@
     "target": "es5",
     "removeComments": true,
     "noImplicitReturns": true,
-    "noUnusedParameters": true,
     "strictNullChecks": true,
     "stripInternal": true,
     "noFallthroughCasesInSwitch": true,
