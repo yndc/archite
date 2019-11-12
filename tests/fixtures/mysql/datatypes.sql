@@ -22,14 +22,14 @@ CREATE TABLE IF NOT EXISTS `integers` (
   `col_int_len` int(5) unsigned COMMENT "Integer with 5 digit length",
   `col_boolean` boolean,
   `col_boolean_alias_1` bool
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'heyy';
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Integer data types';
 
 CREATE TABLE IF NOT EXISTS `floats` (
   `col_float` float,
   `col_double` double,
   `col_double_alias_1` double precision,
   `col_double_alias_2` real
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Floating point data types';
 
 CREATE TABLE IF NOT EXISTS `decimals` (
   `col_decimal` DECIMAL(10, 5),
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `decimals` (
   `col_decimal_alias_2` NUMERIC(10, 5),
   `col_decimal_alias_3` FIXED(10, 5),
   `col_decimal_precision` FIXED(20, 10)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Decimals data types';
 
 CREATE TABLE IF NOT EXISTS `time` (
   `col_timestamp` timestamp,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `time` (
   `col_date` date,
   `col_time` time,
   `col_year` year
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Time data types';
 
 CREATE TABLE IF NOT EXISTS `strings` (
   `col_char` char(64),
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `strings` (
   set
     ('ONE', 'TWO', 'THREE'),
     `col_json` json
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'String data types';
 
 CREATE TABLE IF NOT EXISTS `binaries` (
   `col_bit` bit(64),
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `binaries` (
   `col_blob` blob,
   `col_mediumblob` mediumblob,
   `col_longblob` longblob
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Binary data types';
 
 CREATE TABLE IF NOT EXISTS `spatials` (
   `col_point` point,
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `spatials` (
   `col_multipolygon` multipolygon,
   `col_geometry` geometry,
   `col_geometrycollection` geometrycollection
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Spatial data types';
 
 CREATE TABLE IF NOT EXISTS `defaults` (
   `col_auto_increment` int(11) NOT NULL AUTO_INCREMENT,
