@@ -62,8 +62,9 @@ export async function parse (connection: knex, database: string): Promise<Schema
   const result = ((await connection.raw(query))[0]) as object[][]
   const tablesResult = result[1].reduce<GroupedColumns>(
     (result, row: ColumnRawResult) => {
+      row = cleanObject(row)
       if (result[row.TABLE_NAME] === undefined) result[row.TABLE_NAME] = [row]
-      else result[row.TABLE_NAME].push(cleanObject(row))
+      else result[row.TABLE_NAME].push(row)
       return result
     }, {}
   )

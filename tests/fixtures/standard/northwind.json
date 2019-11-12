@@ -6,24 +6,69 @@
 			"description": "",
 			"fields": [
 				{
-					"id": "address",
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
+				},
+				{
+					"id": "company",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 4294967295
+						"length": 50
 					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 16
 				},
 				{
-					"id": "attachments",
+					"id": "last_name",
 					"description": "",
 					"type": {
-						"primitive": "binary",
-						"size": 34359738360
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
+				},
+				{
+					"id": "first_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
+				},
+				{
+					"id": "email_address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "job_title",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
 					},
 					"flags": 0
 				},
@@ -39,46 +84,24 @@
 					"flags": 0
 				},
 				{
-					"id": "city",
+					"id": "home_phone",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "company",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "country_region",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
+						"length": 25
 					},
 					"flags": 0
 				},
 				{
-					"id": "email_address",
+					"id": "mobile_phone",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 50
+						"length": 25
 					},
 					"flags": 0
 				},
@@ -94,7 +117,18 @@
 					"flags": 0
 				},
 				{
-					"id": "first_name",
+					"id": "address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
+				},
+				{
+					"id": "city",
 					"description": "",
 					"type": {
 						"primitive": "string",
@@ -105,41 +139,7 @@
 					"flags": 16
 				},
 				{
-					"id": "home_phone",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 25
-					},
-					"flags": 0
-				},
-				{
-					"id": "id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 5,
-					"defaultValueType": 3
-				},
-				{
-					"id": "job_title",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 0
-				},
-				{
-					"id": "last_name",
+					"id": "state_province",
 					"description": "",
 					"type": {
 						"primitive": "string",
@@ -150,13 +150,35 @@
 					"flags": 16
 				},
 				{
-					"id": "mobile_phone",
+					"id": "zip_postal_code",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 25
+						"length": 15
+					},
+					"flags": 16
+				},
+				{
+					"id": "country_region",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "web_page",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
 					},
 					"flags": 0
 				},
@@ -172,37 +194,13 @@
 					"flags": 0
 				},
 				{
-					"id": "state_province",
+					"id": "attachments",
 					"description": "",
 					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "web_page",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 4294967295
+						"primitive": "binary",
+						"size": 34359738360
 					},
 					"flags": 0
-				},
-				{
-					"id": "zip_postal_code",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 15
-					},
-					"flags": 16
 				}
 			]
 		},
@@ -211,24 +209,69 @@
 			"description": "",
 			"fields": [
 				{
-					"id": "address",
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
+				},
+				{
+					"id": "company",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 4294967295
+						"length": 50
 					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 16
 				},
 				{
-					"id": "attachments",
+					"id": "last_name",
 					"description": "",
 					"type": {
-						"primitive": "binary",
-						"size": 34359738360
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
+				},
+				{
+					"id": "first_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
+				},
+				{
+					"id": "email_address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "job_title",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
 					},
 					"flags": 0
 				},
@@ -244,46 +287,24 @@
 					"flags": 0
 				},
 				{
-					"id": "city",
+					"id": "home_phone",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "company",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "country_region",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
+						"length": 25
 					},
 					"flags": 0
 				},
 				{
-					"id": "email_address",
+					"id": "mobile_phone",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 50
+						"length": 25
 					},
 					"flags": 0
 				},
@@ -299,7 +320,18 @@
 					"flags": 0
 				},
 				{
-					"id": "first_name",
+					"id": "address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
+				},
+				{
+					"id": "city",
 					"description": "",
 					"type": {
 						"primitive": "string",
@@ -310,41 +342,7 @@
 					"flags": 16
 				},
 				{
-					"id": "home_phone",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 25
-					},
-					"flags": 0
-				},
-				{
-					"id": "id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 5,
-					"defaultValueType": 3
-				},
-				{
-					"id": "job_title",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 0
-				},
-				{
-					"id": "last_name",
+					"id": "state_province",
 					"description": "",
 					"type": {
 						"primitive": "string",
@@ -355,13 +353,35 @@
 					"flags": 16
 				},
 				{
-					"id": "mobile_phone",
+					"id": "zip_postal_code",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 25
+						"length": 15
+					},
+					"flags": 16
+				},
+				{
+					"id": "country_region",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "web_page",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
 					},
 					"flags": 0
 				},
@@ -377,37 +397,13 @@
 					"flags": 0
 				},
 				{
-					"id": "state_province",
+					"id": "attachments",
 					"description": "",
 					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "web_page",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 4294967295
+						"primitive": "binary",
+						"size": 34359738360
 					},
 					"flags": 0
-				},
-				{
-					"id": "zip_postal_code",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 15
-					},
-					"flags": 16
 				}
 			]
 		},
@@ -453,9 +449,7 @@
 						"length": 11,
 						"flags": 0
 					},
-					"flags": 5,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 5
 				},
 				{
 					"id": "privilege_id",
@@ -483,9 +477,7 @@
 						"length": 4,
 						"flags": 0
 					},
-					"flags": 5,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 5
 				},
 				{
 					"id": "type_name",
@@ -505,24 +497,69 @@
 			"description": "",
 			"fields": [
 				{
-					"id": "address",
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
+				},
+				{
+					"id": "company",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 4294967295
+						"length": 50
 					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 16
 				},
 				{
-					"id": "attachments",
+					"id": "last_name",
 					"description": "",
 					"type": {
-						"primitive": "binary",
-						"size": 34359738360
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
+				},
+				{
+					"id": "first_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
+				},
+				{
+					"id": "email_address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "job_title",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
 					},
 					"flags": 0
 				},
@@ -538,46 +575,24 @@
 					"flags": 0
 				},
 				{
-					"id": "city",
+					"id": "home_phone",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "company",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "country_region",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
+						"length": 25
 					},
 					"flags": 0
 				},
 				{
-					"id": "email_address",
+					"id": "mobile_phone",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 50
+						"length": 25
 					},
 					"flags": 0
 				},
@@ -593,7 +608,18 @@
 					"flags": 0
 				},
 				{
-					"id": "first_name",
+					"id": "address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
+				},
+				{
+					"id": "city",
 					"description": "",
 					"type": {
 						"primitive": "string",
@@ -604,41 +630,7 @@
 					"flags": 16
 				},
 				{
-					"id": "home_phone",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 25
-					},
-					"flags": 0
-				},
-				{
-					"id": "id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 5,
-					"defaultValueType": 3
-				},
-				{
-					"id": "job_title",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 0
-				},
-				{
-					"id": "last_name",
+					"id": "state_province",
 					"description": "",
 					"type": {
 						"primitive": "string",
@@ -649,13 +641,35 @@
 					"flags": 16
 				},
 				{
-					"id": "mobile_phone",
+					"id": "zip_postal_code",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 25
+						"length": 15
+					},
+					"flags": 16
+				},
+				{
+					"id": "country_region",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "web_page",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
 					},
 					"flags": 0
 				},
@@ -671,37 +685,13 @@
 					"flags": 0
 				},
 				{
-					"id": "state_province",
+					"id": "attachments",
 					"description": "",
 					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "web_page",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 4294967295
+						"primitive": "binary",
+						"size": 34359738360
 					},
 					"flags": 0
-				},
-				{
-					"id": "zip_postal_code",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 15
-					},
-					"flags": 16
 				}
 			]
 		},
@@ -718,9 +708,7 @@
 						"length": 4,
 						"flags": 0
 					},
-					"flags": 5,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 5
 				},
 				{
 					"id": "tax_status_name",
@@ -748,9 +736,7 @@
 						"length": 4,
 						"flags": 0
 					},
-					"flags": 5,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 5
 				},
 				{
 					"id": "status_name",
@@ -770,7 +756,7 @@
 			"description": "",
 			"fields": [
 				{
-					"id": "customer_id",
+					"id": "id",
 					"description": "",
 					"type": {
 						"primitive": "integer",
@@ -778,9 +764,8 @@
 						"length": 11,
 						"flags": 0
 					},
-					"flags": 16,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
 					"id": "employee_id",
@@ -794,7 +779,7 @@
 					"flags": 16
 				},
 				{
-					"id": "id",
+					"id": "customer_id",
 					"description": "",
 					"type": {
 						"primitive": "integer",
@@ -802,19 +787,7 @@
 						"length": 11,
 						"flags": 0
 					},
-					"flags": 5,
-					"defaultValueType": 3
-				},
-				{
-					"id": "notes",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 4294967295
-					},
-					"flags": 0
+					"flags": 16
 				},
 				{
 					"id": "order_date",
@@ -826,7 +799,7 @@
 					"flags": 0
 				},
 				{
-					"id": "paid_date",
+					"id": "shipped_date",
 					"description": "",
 					"type": {
 						"primitive": "time",
@@ -835,7 +808,18 @@
 					"flags": 0
 				},
 				{
-					"id": "payment_type",
+					"id": "shipper_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
+				},
+				{
+					"id": "ship_name",
 					"description": "",
 					"type": {
 						"primitive": "string",
@@ -868,28 +852,6 @@
 					"flags": 0
 				},
 				{
-					"id": "ship_country_region",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 0
-				},
-				{
-					"id": "ship_name",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 0
-				},
-				{
 					"id": "ship_state_province",
 					"description": "",
 					"type": {
@@ -912,24 +874,15 @@
 					"flags": 16
 				},
 				{
-					"id": "shipped_date",
+					"id": "ship_country_region",
 					"description": "",
 					"type": {
-						"primitive": "time",
-						"precision": 63
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
 					},
 					"flags": 0
-				},
-				{
-					"id": "shipper_id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 16
 				},
 				{
 					"id": "shipping_fee",
@@ -944,17 +897,47 @@
 					"defaultValue": "0.0000"
 				},
 				{
-					"id": "status_id",
+					"id": "taxes",
 					"description": "",
 					"type": {
-						"primitive": "integer",
-						"size": 8,
-						"length": 4,
-						"flags": 0
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
 					},
-					"flags": 16,
+					"flags": 0,
 					"defaultValueType": 1,
-					"defaultValue": "0"
+					"defaultValue": "0.0000"
+				},
+				{
+					"id": "payment_type",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "paid_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
+				},
+				{
+					"id": "notes",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
 				},
 				{
 					"id": "tax_rate",
@@ -979,16 +962,17 @@
 					"flags": 16
 				},
 				{
-					"id": "taxes",
+					"id": "status_id",
 					"description": "",
 					"type": {
-						"primitive": "decimal",
-						"length": 19,
-						"precision": 4
+						"primitive": "integer",
+						"size": 8,
+						"length": 4,
+						"flags": 0
 					},
-					"flags": 0,
+					"flags": 16,
 					"defaultValueType": 1,
-					"defaultValue": "0.0000"
+					"defaultValue": "0"
 				}
 			]
 		},
@@ -997,29 +981,7 @@
 			"description": "",
 			"fields": [
 				{
-					"id": "attachments",
-					"description": "",
-					"type": {
-						"primitive": "binary",
-						"size": 34359738360
-					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": null
-				},
-				{
-					"id": "category",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 0
-				},
-				{
-					"id": "description",
+					"id": "supplier_ids",
 					"description": "",
 					"type": {
 						"primitive": "string",
@@ -1028,19 +990,6 @@
 						"length": 4294967295
 					},
 					"flags": 0
-				},
-				{
-					"id": "discontinued",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 8,
-						"length": 1,
-						"flags": 0
-					},
-					"flags": 1,
-					"defaultValueType": 1,
-					"defaultValue": "0"
 				},
 				{
 					"id": "id",
@@ -1053,29 +1002,6 @@
 					},
 					"flags": 5,
 					"defaultValueType": 3
-				},
-				{
-					"id": "list_price",
-					"description": "",
-					"type": {
-						"primitive": "decimal",
-						"length": 19,
-						"precision": 4
-					},
-					"flags": 1,
-					"defaultValueType": 1,
-					"defaultValue": "0.0000"
-				},
-				{
-					"id": "minimum_reorder_quantity",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 0
 				},
 				{
 					"id": "product_code",
@@ -1100,24 +1026,13 @@
 					"flags": 0
 				},
 				{
-					"id": "quantity_per_unit",
+					"id": "description",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 0
-				},
-				{
-					"id": "reorder_level",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
+						"length": 4294967295
 					},
 					"flags": 0
 				},
@@ -1134,13 +1049,25 @@
 					"defaultValue": "0.0000"
 				},
 				{
-					"id": "supplier_ids",
+					"id": "list_price",
 					"description": "",
 					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 4294967295
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 1,
+					"defaultValueType": 1,
+					"defaultValue": "0.0000"
+				},
+				{
+					"id": "reorder_level",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
 					},
 					"flags": 0
 				},
@@ -1152,6 +1079,61 @@
 						"size": 32,
 						"length": 11,
 						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "quantity_per_unit",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "discontinued",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
+					},
+					"flags": 1,
+					"defaultValueType": 1,
+					"defaultValue": "0"
+				},
+				{
+					"id": "minimum_reorder_quantity",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "category",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "attachments",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 34359738360
 					},
 					"flags": 0
 				}
@@ -1170,9 +1152,7 @@
 						"length": 11,
 						"flags": 0
 					},
-					"flags": 5,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 5
 				},
 				{
 					"id": "status",
@@ -1192,24 +1172,69 @@
 			"description": "",
 			"fields": [
 				{
-					"id": "address",
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
+				},
+				{
+					"id": "company",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 4294967295
+						"length": 50
 					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 16
 				},
 				{
-					"id": "attachments",
+					"id": "last_name",
 					"description": "",
 					"type": {
-						"primitive": "binary",
-						"size": 34359738360
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
+				},
+				{
+					"id": "first_name",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
+				},
+				{
+					"id": "email_address",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "job_title",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
 					},
 					"flags": 0
 				},
@@ -1225,46 +1250,24 @@
 					"flags": 0
 				},
 				{
-					"id": "city",
+					"id": "home_phone",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "company",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "country_region",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
+						"length": 25
 					},
 					"flags": 0
 				},
 				{
-					"id": "email_address",
+					"id": "mobile_phone",
 					"description": "",
 					"type": {
 						"primitive": "string",
 						"collation": "utf8_general_ci",
 						"charset": "utf8",
-						"length": 50
+						"length": 25
 					},
 					"flags": 0
 				},
@@ -1280,74 +1283,7 @@
 					"flags": 0
 				},
 				{
-					"id": "first_name",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "home_phone",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 25
-					},
-					"flags": 0
-				},
-				{
-					"id": "id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 5,
-					"defaultValueType": 3
-				},
-				{
-					"id": "job_title",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 0
-				},
-				{
-					"id": "last_name",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 16
-				},
-				{
-					"id": "mobile_phone",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 25
-					},
-					"flags": 0
-				},
-				{
-					"id": "notes",
+					"id": "address",
 					"description": "",
 					"type": {
 						"primitive": "string",
@@ -1356,6 +1292,17 @@
 						"length": 4294967295
 					},
 					"flags": 0
+				},
+				{
+					"id": "city",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 16
 				},
 				{
 					"id": "state_province",
@@ -1369,17 +1316,6 @@
 					"flags": 16
 				},
 				{
-					"id": "web_page",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 4294967295
-					},
-					"flags": 0
-				},
-				{
 					"id": "zip_postal_code",
 					"description": "",
 					"type": {
@@ -1389,75 +1325,28 @@
 						"length": 15
 					},
 					"flags": 16
-				}
-			]
-		},
-		{
-			"id": "purchase_order",
-			"description": "",
-			"fields": [
-				{
-					"id": "approved_by",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": null
 				},
 				{
-					"id": "approved_date",
+					"id": "country_region",
 					"description": "",
 					"type": {
-						"primitive": "time",
-						"precision": 63
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
 					},
 					"flags": 0
 				},
 				{
-					"id": "created_by",
+					"id": "web_page",
 					"description": "",
 					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 16
-				},
-				{
-					"id": "creation_date",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 63
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
 					},
 					"flags": 0
-				},
-				{
-					"id": "expected_date",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 63
-					},
-					"flags": 0
-				},
-				{
-					"id": "id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 5,
-					"defaultValueType": 3
 				},
 				{
 					"id": "notes",
@@ -1471,19 +1360,56 @@
 					"flags": 0
 				},
 				{
-					"id": "payment_amount",
+					"id": "attachments",
 					"description": "",
 					"type": {
-						"primitive": "decimal",
-						"length": 19,
-						"precision": 4
+						"primitive": "binary",
+						"size": 34359738360
 					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": "0.0000"
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "purchase_order",
+			"description": "",
+			"fields": [
+				{
+					"id": "id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
 				},
 				{
-					"id": "payment_date",
+					"id": "supplier_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
+				},
+				{
+					"id": "created_by",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
+				},
+				{
+					"id": "submitted_date",
 					"description": "",
 					"type": {
 						"primitive": "time",
@@ -1492,13 +1418,33 @@
 					"flags": 0
 				},
 				{
-					"id": "payment_method",
+					"id": "creation_date",
 					"description": "",
 					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
+				},
+				{
+					"id": "status_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16,
+					"defaultValueType": 1,
+					"defaultValue": "0"
+				},
+				{
+					"id": "expected_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
 					},
 					"flags": 0
 				},
@@ -1515,7 +1461,62 @@
 					"defaultValue": "0.0000"
 				},
 				{
-					"id": "status_id",
+					"id": "taxes",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 1,
+					"defaultValueType": 1,
+					"defaultValue": "0.0000"
+				},
+				{
+					"id": "payment_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
+				},
+				{
+					"id": "payment_amount",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"defaultValueType": 1,
+					"defaultValue": "0.0000"
+				},
+				{
+					"id": "payment_method",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "notes",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 4294967295
+					},
+					"flags": 0
+				},
+				{
+					"id": "approved_by",
 					"description": "",
 					"type": {
 						"primitive": "integer",
@@ -1523,9 +1524,16 @@
 						"length": 11,
 						"flags": 0
 					},
-					"flags": 16,
-					"defaultValueType": 1,
-					"defaultValue": "0"
+					"flags": 0
+				},
+				{
+					"id": "approved_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
 				},
 				{
 					"id": "submitted_by",
@@ -1537,38 +1545,6 @@
 						"flags": 0
 					},
 					"flags": 0
-				},
-				{
-					"id": "submitted_date",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 63
-					},
-					"flags": 0
-				},
-				{
-					"id": "supplier_id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 16
-				},
-				{
-					"id": "taxes",
-					"description": "",
-					"type": {
-						"primitive": "decimal",
-						"length": 19,
-						"precision": 4
-					},
-					"flags": 1,
-					"defaultValueType": 1,
-					"defaultValue": "0.0000"
 				}
 			]
 		},
@@ -1576,30 +1552,6 @@
 			"id": "inventory_transaction",
 			"description": "",
 			"fields": [
-				{
-					"id": "comments",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 255
-					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": null
-				},
-				{
-					"id": "customer_order_id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 16
-				},
 				{
 					"id": "id",
 					"description": "",
@@ -1613,37 +1565,15 @@
 					"defaultValueType": 3
 				},
 				{
-					"id": "product_id",
+					"id": "transaction_type",
 					"description": "",
 					"type": {
 						"primitive": "integer",
-						"size": 32,
-						"length": 11,
+						"size": 8,
+						"length": 4,
 						"flags": 0
 					},
 					"flags": 17
-				},
-				{
-					"id": "purchase_order_id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 16
-				},
-				{
-					"id": "quantity",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 1
 				},
 				{
 					"id": "transaction_created_date",
@@ -1664,15 +1594,59 @@
 					"flags": 0
 				},
 				{
-					"id": "transaction_type",
+					"id": "product_id",
 					"description": "",
 					"type": {
 						"primitive": "integer",
-						"size": 8,
-						"length": 4,
+						"size": 32,
+						"length": 11,
 						"flags": 0
 					},
 					"flags": 17
+				},
+				{
+					"id": "quantity",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 1
+				},
+				{
+					"id": "purchase_order_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
+				},
+				{
+					"id": "customer_order_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
+				},
+				{
+					"id": "comments",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 255
+					},
+					"flags": 0
 				}
 			]
 		},
@@ -1680,27 +1654,6 @@
 			"id": "invoice",
 			"description": "",
 			"fields": [
-				{
-					"id": "amount_due",
-					"description": "",
-					"type": {
-						"primitive": "decimal",
-						"length": 19,
-						"precision": 4
-					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": "0.0000"
-				},
-				{
-					"id": "due_date",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 63
-					},
-					"flags": 0
-				},
 				{
 					"id": "id",
 					"description": "",
@@ -1714,15 +1667,6 @@
 					"defaultValueType": 3
 				},
 				{
-					"id": "invoice_date",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 63
-					},
-					"flags": 0
-				},
-				{
 					"id": "order_id",
 					"description": "",
 					"type": {
@@ -1732,6 +1676,36 @@
 						"flags": 0
 					},
 					"flags": 16
+				},
+				{
+					"id": "invoice_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
+				},
+				{
+					"id": "due_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
+				},
+				{
+					"id": "tax",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"defaultValueType": 1,
+					"defaultValue": "0.0000"
 				},
 				{
 					"id": "shipping",
@@ -1746,7 +1720,7 @@
 					"defaultValue": "0.0000"
 				},
 				{
-					"id": "tax",
+					"id": "amount_due",
 					"description": "",
 					"type": {
 						"primitive": "decimal",
@@ -1772,9 +1746,7 @@
 						"length": 11,
 						"flags": 0
 					},
-					"flags": 5,
-					"defaultValueType": 1,
-					"defaultValue": null
+					"flags": 5
 				},
 				{
 					"id": "status_name",
@@ -1794,28 +1766,6 @@
 			"description": "",
 			"fields": [
 				{
-					"id": "date_allocated",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 63
-					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": null
-				},
-				{
-					"id": "discount",
-					"description": "",
-					"type": {
-						"primitive": "float",
-						"precision": 1
-					},
-					"flags": 1,
-					"defaultValueType": 1,
-					"defaultValue": "0"
-				},
-				{
 					"id": "id",
 					"description": "",
 					"type": {
@@ -1826,17 +1776,6 @@
 					},
 					"flags": 5,
 					"defaultValueType": 3
-				},
-				{
-					"id": "inventory_id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 16
 				},
 				{
 					"id": "order_id",
@@ -1861,17 +1800,6 @@
 					"flags": 16
 				},
 				{
-					"id": "purchase_order_id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 16
-				},
-				{
 					"id": "quantity",
 					"description": "",
 					"type": {
@@ -1882,6 +1810,29 @@
 					"flags": 1,
 					"defaultValueType": 1,
 					"defaultValue": "0.0000"
+				},
+				{
+					"id": "unit_price",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 19,
+						"precision": 4
+					},
+					"flags": 0,
+					"defaultValueType": 1,
+					"defaultValue": "0.0000"
+				},
+				{
+					"id": "discount",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 1,
+					"defaultValueType": 1,
+					"defaultValue": "0"
 				},
 				{
 					"id": "status_id",
@@ -1895,16 +1846,35 @@
 					"flags": 16
 				},
 				{
-					"id": "unit_price",
+					"id": "date_allocated",
 					"description": "",
 					"type": {
-						"primitive": "decimal",
-						"length": 19,
-						"precision": 4
+						"primitive": "time",
+						"precision": 63
 					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": "0.0000"
+					"flags": 0
+				},
+				{
+					"id": "purchase_order_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
+				},
+				{
+					"id": "inventory_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
 				}
 			]
 		},
@@ -1912,17 +1882,6 @@
 			"id": "purchase_order_detail",
 			"description": "",
 			"fields": [
-				{
-					"id": "date_received",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 63
-					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": null
-				},
 				{
 					"id": "id",
 					"description": "",
@@ -1936,7 +1895,7 @@
 					"defaultValueType": 3
 				},
 				{
-					"id": "inventory_id",
+					"id": "purchase_order_id",
 					"description": "",
 					"type": {
 						"primitive": "integer",
@@ -1944,20 +1903,7 @@
 						"length": 11,
 						"flags": 0
 					},
-					"flags": 16
-				},
-				{
-					"id": "posted_to_inventory",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 8,
-						"length": 1,
-						"flags": 0
-					},
-					"flags": 1,
-					"defaultValueType": 1,
-					"defaultValue": "0"
+					"flags": 17
 				},
 				{
 					"id": "product_id",
@@ -1969,17 +1915,6 @@
 						"flags": 0
 					},
 					"flags": 16
-				},
-				{
-					"id": "purchase_order_id",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 17
 				},
 				{
 					"id": "quantity",
@@ -2000,15 +1935,18 @@
 						"precision": 4
 					},
 					"flags": 1
-				}
-			]
-		},
-		{
-			"id": "sales_report",
-			"description": "",
-			"fields": [
+				},
 				{
-					"id": "default",
+					"id": "date_received",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
+				},
+				{
+					"id": "posted_to_inventory",
 					"description": "",
 					"type": {
 						"primitive": "integer",
@@ -2021,7 +1959,46 @@
 					"defaultValue": "0"
 				},
 				{
+					"id": "inventory_id",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 16
+				}
+			]
+		},
+		{
+			"id": "sales_report",
+			"description": "",
+			"fields": [
+				{
+					"id": "group_by",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 5
+				},
+				{
 					"id": "display",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 50
+					},
+					"flags": 0
+				},
+				{
+					"id": "title",
 					"description": "",
 					"type": {
 						"primitive": "string",
@@ -2043,26 +2020,17 @@
 					"flags": 0
 				},
 				{
-					"id": "group_by",
+					"id": "default",
 					"description": "",
 					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
+						"primitive": "integer",
+						"size": 8,
+						"length": 1,
+						"flags": 0
 					},
-					"flags": 5
-				},
-				{
-					"id": "title",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 50
-					},
-					"flags": 0
+					"flags": 1,
+					"defaultValueType": 1,
+					"defaultValue": "0"
 				}
 			]
 		},
@@ -2070,19 +2038,6 @@
 			"id": "string",
 			"description": "",
 			"fields": [
-				{
-					"id": "string_data",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8_general_ci",
-						"charset": "utf8",
-						"length": 255
-					},
-					"flags": 0,
-					"defaultValueType": 1,
-					"defaultValue": null
-				},
 				{
 					"id": "string_id",
 					"description": "",
@@ -2094,6 +2049,17 @@
 					},
 					"flags": 5,
 					"defaultValueType": 3
+				},
+				{
+					"id": "string_data",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8_general_ci",
+						"charset": "utf8",
+						"length": 255
+					},
+					"flags": 0
 				}
 			]
 		}

@@ -15,7 +15,7 @@ import * as v8 from 'v8'
  * @param obj
  * @param fn
  */
-export function mapObject<T1, T2>(obj: object, fn: (key: string, value: T2) => T1): T1[] {
+export function mapObject<T1, T2>(obj: Record<string, T2>, fn: (key: string, value: T2) => T1): T1[] {
   return Object.keys(obj).map(k => fn(k, obj[k]))
 }
 
@@ -66,6 +66,18 @@ export async function filterAsync<T>(
  */
 export function upperFirst(str: string): string {
   return str.slice(0, 1).toUpperCase() + str.slice(1, str.length)
+}
+
+/**
+ * Converts camelCase string to snake-case
+ * @param str
+ */
+export function camelToSnake(str: string): string {
+  return str
+    .trim()
+    .split(/(?=[A-Z])/)
+    .join('_')
+    .toLowerCase()
 }
 
 /**
@@ -130,6 +142,26 @@ export function getExtension(str: string): string {
  */
 export function generateTypeName(ref: string): string {
   return snakeToPascal(path.basename(removeExtension(ref.replace(' ', ''))))
+}
+
+/**
+ * Deletes a folder recursively
+ * @param target Target directory
+ * @param removeRoot If set to true, will delete the target directory too
+ */
+export function rimraf(target: string, removeRoot: boolean = true) {
+  if (target === '/') throw "You wouldn't wanna do this"
+  if (fs.existsSync(target)) {
+    fs.readdirSync(target).forEach(file => {
+      const curPath = path.join(target, file)
+      if (fs.lstatSync(curPath).isDirectory()) {
+        rimraf(curPath)
+      } else {
+        fs.unlinkSync(curPath)
+      }
+    })
+    if (removeRoot) fs.rmdirSync(target)
+  }
 }
 
 /**
@@ -258,6 +290,7 @@ export async function searchFileExtension(filePath: string): Promise<string[]> {
 export function clean<T>(value: T): T | undefined {
   if (typeof value === 'object' && value === null) return undefined
   if (value === null) return undefined
+  if (typeof value === 'string' && value.toLowerCase() === 'null') return undefined
   return value as T
 }
 
@@ -268,9 +301,7 @@ export function clean<T>(value: T): T | undefined {
 export function cleanObject<T extends object>(value: T, deleteUndefined = false): T {
   for (const k in value) {
     if (value.hasOwnProperty(k)) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       value[k] = clean(value[k]) as any
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (typeof value[k] === 'object') value[k] = cleanObject(value[k] as any)
       else if (deleteUndefined && value[k] === undefined) delete value[k]
     }

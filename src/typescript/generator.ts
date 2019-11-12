@@ -20,12 +20,6 @@ import { snakeToPascal } from '../utils'
 
 export interface GeneratorOptions {
   /**
-   * File header in the top of the file
-   * 
-   * Defaults to none
-   */
-  header?: string
-  /**
    * Formatter (prettier) options
    */
   formatterOptions?: PrettierOptions
@@ -53,12 +47,12 @@ const createFormatter = (options?: PrettierOptions) => (source: string) => forma
  * Generate a collection of TypeScript interfaces from schema specification
  * @param schema
  */
-export function generateFromSchema(schema: SchemaSpecification, options?: GeneratorOptions): string {
-  let result: string = options?.header ?? ''
-  const append = (line: string) => (result += line)
+export function generateFromSchema(schema: SchemaSpecification, options?: GeneratorOptions): Record<string, string> {
   const { models } = schema
-  models.forEach(model => append(generateFromModel(model, options) + "\n"))
-  return result
+  return models.reduce<Record<string, string>>((result, model) => {
+    result[model.id] = generateFromModel(model, options)
+    return result
+  }, {})
 }
 
 /**
