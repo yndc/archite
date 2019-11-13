@@ -14,15 +14,9 @@ import {
   DataTypeSpecification,
   PrimitiveType,
 } from '../standard'
-import * as dedent from 'dedent-js'
-import { format, Options as PrettierOptions } from 'prettier'
-import { snakeToPascal } from '../utils'
+import { snakeToPascal, renderComment } from '../utils'
 
 export interface GeneratorOptions {
-  /**
-   * Formatter (prettier) options
-   */
-  formatterOptions?: PrettierOptions
   /**
    * Transforms original model to the desired model name.
    * Defaults to PascalCase function
@@ -40,60 +34,54 @@ export interface GeneratorOptions {
   referenceNameTransformer?: (original: string) => string
 }
 
-// const formatTypescript = (source: string) => source
-const createFormatter = (options?: PrettierOptions) => (source: string) => format(source, { parser: "typescript", ...options })
+export interface ModelTypeScriptInterface {
+  id: string,
+  name: string,
+  body: string
+  description?: string,
+}
 
 /**
  * Generate a collection of TypeScript interfaces from schema specification
  * @param schema
  */
-export function generateFromSchema(schema: SchemaSpecification, options?: GeneratorOptions): Record<string, string> {
+export function generate(schema: SchemaSpecification, options?: GeneratorOptions): ModelTypeScriptInterface[] {
   const { models } = schema
-  return models.reduce<Record<string, string>>((result, model) => {
-    result[model.id] = generateFromModel(model, options)
-    return result
-  }, {})
+  return models.map(model => generateBody(model, options))
 }
 
 /**
- * Generate a TypeScript interface from model specification
+ * Generate a TypeScript interface body from model specification
  * @param model
  */
-export function generateFromModel(model: ModelSpecification, options?: GeneratorOptions): string {
+export function generateBody(model: ModelSpecification, options?: GeneratorOptions): ModelTypeScriptInterface {
   let result: string = ''
   const modelNameTransformer = options?.modelNameTransformer || snakeToPascal
   const append = (line: string) => (result += line)
   const { id, description, fields } = model
-  if (description)
-    append(dedent`
-      /**
-       * ${description}
-       */
-
-    `)
-  append(`export interface ${modelNameTransformer(id)} {\n`)
-  fields.forEach(field => append(generateFromField(field, options)))
+  const modelName = modelNameTransformer(id)
+  if (description) append(renderComment(description))
+  append(`{\n`)
+  fields.forEach(field => append(generateProperty(field, options)))
   append(`}\n\n\n`)
-  return createFormatter(options?.formatterOptions)(result)
+  return {
+    id: model.id,
+    name: modelName,
+    description,
+    body: result
+  }
 }
 
 /**
  * Gemerate a TypeScript interface property string from a field specification
  * @param field
  */
-export function generateFromField(field: FieldSpecification, options?: GeneratorOptions): string {
+export function generateProperty(field: FieldSpecification, options?: GeneratorOptions): string {
   let result: string = ''
   const fieldNameTransformer = options?.fieldNameTransformer ?? (x => x)
   const { id, description, flags } = field
   const append = (line: string) => (result += line)
-  if (description)
-    append(dedent`
-      /**
-       * ${description}
-       */
-
-    `)
-
+  if (description) append(renderComment(description))
   append(`${fieldNameTransformer(id)}${flags && flags & FieldFlags.Required ? '' : '?'}: ${mapType(field, options)}\n`)
   return result
 }

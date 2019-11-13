@@ -2,8 +2,241 @@
 	"id": "__archite__test__datatypes",
 	"models": [
 		{
+			"id": "binaries",
+			"description": "Binary data types",
+			"fields": [
+				{
+					"id": "col_bit",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 64,
+						"flags": 2
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_binary",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 512,
+						"flags": 1
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_varbinary",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 512
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_tinyblob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 2040
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_blob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 524280
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_mediumblob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 134217720
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_longblob",
+					"description": "",
+					"type": {
+						"primitive": "binary",
+						"size": 34359738360
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "decimals",
+			"description": "Decimals data types",
+			"fields": [
+				{
+					"id": "col_decimal",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_decimal_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_decimal_alias_2",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_decimal_alias_3",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 10,
+						"precision": 5
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_decimal_precision",
+					"description": "",
+					"type": {
+						"primitive": "decimal",
+						"length": 20,
+						"precision": 10
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "defaults",
+			"description": "",
+			"fields": [
+				{
+					"id": "col_auto_increment",
+					"description": "",
+					"type": {
+						"primitive": "integer",
+						"size": 32,
+						"length": 11,
+						"flags": 0
+					},
+					"flags": 5,
+					"defaultValueType": 3
+				},
+				{
+					"id": "col_varchar_default",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 64
+					},
+					"flags": 1,
+					"defaultValueType": 1,
+					"defaultValue": "default string"
+				},
+				{
+					"id": "col_current_time_on_create",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 63
+					},
+					"flags": 1,
+					"defaultValueType": 4
+				},
+				{
+					"id": "col_current_time_on_update",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"flags": 8,
+						"precision": 63
+					},
+					"flags": 1,
+					"defaultValueType": 4
+				},
+				{
+					"id": "col_filler",
+					"description": "",
+					"type": {
+						"primitive": "string",
+						"collation": "utf8mb4_0900_ai_ci",
+						"charset": "utf8mb4",
+						"length": 255
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
+			"id": "floats",
+			"description": "Floating point data types",
+			"fields": [
+				{
+					"id": "col_float",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 0
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_double",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_double_alias_1",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_double_alias_2",
+					"description": "",
+					"type": {
+						"primitive": "float",
+						"precision": 1
+					},
+					"flags": 0
+				}
+			]
+		},
+		{
 			"id": "integers",
-			"description": "heyy",
+			"description": "Integer data types",
 			"fields": [
 				{
 					"id": "col_int",
@@ -129,188 +362,80 @@
 			]
 		},
 		{
-			"id": "floats",
-			"description": "",
+			"id": "spatials",
+			"description": "Spatial data types",
 			"fields": [
 				{
-					"id": "col_float",
+					"id": "col_point",
 					"description": "",
 					"type": {
-						"primitive": "float",
-						"precision": 0
+						"primitive": "geometry",
+						"dimension": 0
 					},
 					"flags": 0
 				},
 				{
-					"id": "col_double",
+					"id": "col_multipoint",
 					"description": "",
 					"type": {
-						"primitive": "float",
-						"precision": 1
+						"primitive": "geometry",
+						"dimension": 0,
+						"flags": 4
 					},
 					"flags": 0
 				},
 				{
-					"id": "col_double_alias_1",
+					"id": "col_linestring",
 					"description": "",
 					"type": {
-						"primitive": "float",
-						"precision": 1
+						"primitive": "geometry",
+						"dimension": 1
 					},
 					"flags": 0
 				},
 				{
-					"id": "col_double_alias_2",
+					"id": "col_multilinestring",
 					"description": "",
 					"type": {
-						"primitive": "float",
-						"precision": 1
-					},
-					"flags": 0
-				}
-			]
-		},
-		{
-			"id": "decimals",
-			"description": "",
-			"fields": [
-				{
-					"id": "col_decimal",
-					"description": "",
-					"type": {
-						"primitive": "decimal",
-						"length": 10,
-						"precision": 5
+						"primitive": "geometry",
+						"dimension": 1,
+						"flags": 4
 					},
 					"flags": 0
 				},
 				{
-					"id": "col_decimal_alias_1",
+					"id": "col_polygon",
 					"description": "",
 					"type": {
-						"primitive": "decimal",
-						"length": 10,
-						"precision": 5
+						"primitive": "geometry",
+						"dimension": 2
 					},
 					"flags": 0
 				},
 				{
-					"id": "col_decimal_alias_2",
+					"id": "col_multipolygon",
 					"description": "",
 					"type": {
-						"primitive": "decimal",
-						"length": 10,
-						"precision": 5
+						"primitive": "geometry",
+						"dimension": 2,
+						"flags": 4
 					},
 					"flags": 0
 				},
 				{
-					"id": "col_decimal_alias_3",
+					"id": "col_geometry",
 					"description": "",
 					"type": {
-						"primitive": "decimal",
-						"length": 10,
-						"precision": 5
+						"primitive": "geometry"
 					},
 					"flags": 0
 				},
 				{
-					"id": "col_decimal_precision",
+					"id": "col_geometrycollection",
 					"description": "",
 					"type": {
-						"primitive": "decimal",
-						"length": 20,
-						"precision": 10
-					},
-					"flags": 0
-				}
-			]
-		},
-		{
-			"id": "time",
-			"description": "",
-			"fields": [
-				{
-					"id": "col_timestamp",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"flags": 8,
-						"precision": 63
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_timestamp_ms",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"flags": 8,
-						"precision": 127
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_timestamp_us",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"flags": 8,
-						"precision": 255
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_datetime",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 63
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_datetime_ms",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 127
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_datetime_us",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 255
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_date",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 7
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_time",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 56
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_year",
-					"description": "",
-					"type": {
-						"primitive": "time",
-						"precision": 1
+						"primitive": "geometry",
+						"flags": 4
 					},
 					"flags": 0
 				}
@@ -318,7 +443,7 @@
 		},
 		{
 			"id": "strings",
-			"description": "",
+			"description": "String data types",
 			"fields": [
 				{
 					"id": "col_char",
@@ -475,215 +600,90 @@
 			]
 		},
 		{
-			"id": "binaries",
-			"description": "",
+			"id": "time",
+			"description": "Time data types",
 			"fields": [
 				{
-					"id": "col_bit",
-					"description": "",
-					"type": {
-						"primitive": "binary",
-						"size": 64,
-						"flags": 2
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_binary",
-					"description": "",
-					"type": {
-						"primitive": "binary",
-						"size": 512,
-						"flags": 1
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_varbinary",
-					"description": "",
-					"type": {
-						"primitive": "binary",
-						"size": 512
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_tinyblob",
-					"description": "",
-					"type": {
-						"primitive": "binary",
-						"size": 2040
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_blob",
-					"description": "",
-					"type": {
-						"primitive": "binary",
-						"size": 524280
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_mediumblob",
-					"description": "",
-					"type": {
-						"primitive": "binary",
-						"size": 134217720
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_longblob",
-					"description": "",
-					"type": {
-						"primitive": "binary",
-						"size": 34359738360
-					},
-					"flags": 0
-				}
-			]
-		},
-		{
-			"id": "spatials",
-			"description": "",
-			"fields": [
-				{
-					"id": "col_point",
-					"description": "",
-					"type": {
-						"primitive": "geometry",
-						"dimension": 0
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_multipoint",
-					"description": "",
-					"type": {
-						"primitive": "geometry",
-						"dimension": 0,
-						"flags": 4
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_linestring",
-					"description": "",
-					"type": {
-						"primitive": "geometry",
-						"dimension": 1
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_multilinestring",
-					"description": "",
-					"type": {
-						"primitive": "geometry",
-						"dimension": 1,
-						"flags": 4
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_polygon",
-					"description": "",
-					"type": {
-						"primitive": "geometry",
-						"dimension": 2
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_multipolygon",
-					"description": "",
-					"type": {
-						"primitive": "geometry",
-						"dimension": 2,
-						"flags": 4
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_geometry",
-					"description": "",
-					"type": {
-						"primitive": "geometry"
-					},
-					"flags": 0
-				},
-				{
-					"id": "col_geometrycollection",
-					"description": "",
-					"type": {
-						"primitive": "geometry",
-						"flags": 4
-					},
-					"flags": 0
-				}
-			]
-		},
-		{
-			"id": "defaults",
-			"description": "",
-			"fields": [
-				{
-					"id": "col_auto_increment",
-					"description": "",
-					"type": {
-						"primitive": "integer",
-						"size": 32,
-						"length": 11,
-						"flags": 0
-					},
-					"flags": 5,
-					"defaultValueType": 3
-				},
-				{
-					"id": "col_varchar_default",
-					"description": "",
-					"type": {
-						"primitive": "string",
-						"collation": "utf8mb4_0900_ai_ci",
-						"charset": "utf8mb4",
-						"length": 64
-					},
-					"flags": 1,
-					"defaultValueType": 1,
-					"defaultValue": "default string"
-				},
-				{
-					"id": "col_current_time_on_create",
+					"id": "col_timestamp",
 					"description": "",
 					"type": {
 						"primitive": "time",
 						"flags": 8,
 						"precision": 63
 					},
-					"flags": 1,
-					"defaultValueType": 4
+					"flags": 0
 				},
 				{
-					"id": "col_current_time_on_update",
+					"id": "col_timestamp_ms",
 					"description": "",
 					"type": {
 						"primitive": "time",
 						"flags": 8,
-						"precision": 63
+						"precision": 127
 					},
-					"flags": 1,
-					"defaultValueType": 4
+					"flags": 0
 				},
 				{
-					"id": "col_filler",
+					"id": "col_timestamp_us",
 					"description": "",
 					"type": {
-						"primitive": "string",
-						"collation": "utf8mb4_0900_ai_ci",
-						"charset": "utf8mb4",
-						"length": 255
+						"primitive": "time",
+						"flags": 8,
+						"precision": 255
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_datetime",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 63
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_datetime_ms",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 127
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_datetime_us",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 255
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_date",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 7
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_time",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 56
+					},
+					"flags": 0
+				},
+				{
+					"id": "col_year",
+					"description": "",
+					"type": {
+						"primitive": "time",
+						"precision": 1
 					},
 					"flags": 0
 				}

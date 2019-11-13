@@ -1,0 +1,122 @@
+[
+	{
+		"id": "customer",
+		"name": "Customer",
+		"description": "",
+		"body": "{\nid: number\ncompany?: string\nlast_name?: string\nfirst_name?: string\nemail_address?: string\njob_title?: string\nbusiness_phone?: string\nhome_phone?: string\nmobile_phone?: string\nfax_number?: string\naddress?: string\ncity?: string\nstate_province?: string\nzip_postal_code?: string\ncountry_region?: string\nweb_page?: string\nnotes?: string\nattachments?: Buffer[]\n}\n\n\n"
+	},
+	{
+		"id": "employee",
+		"name": "Employee",
+		"description": "",
+		"body": "{\nid: number\ncompany?: string\nlast_name?: string\nfirst_name?: string\nemail_address?: string\njob_title?: string\nbusiness_phone?: string\nhome_phone?: string\nmobile_phone?: string\nfax_number?: string\naddress?: string\ncity?: string\nstate_province?: string\nzip_postal_code?: string\ncountry_region?: string\nweb_page?: string\nnotes?: string\nattachments?: Buffer[]\n}\n\n\n"
+	},
+	{
+		"id": "privilege",
+		"name": "Privilege",
+		"description": "",
+		"body": "{\nid: number\nprivilege_name?: string\n}\n\n\n"
+	},
+	{
+		"id": "employee_privilege",
+		"name": "EmployeePrivilege",
+		"description": "",
+		"body": "{\nemployee_id: number\nprivilege_id: number\n}\n\n\n"
+	},
+	{
+		"id": "inventory_transaction_type",
+		"name": "InventoryTransactionType",
+		"description": "",
+		"body": "{\nid: number\ntype_name: string\n}\n\n\n"
+	},
+	{
+		"id": "shipper",
+		"name": "Shipper",
+		"description": "",
+		"body": "{\nid: number\ncompany?: string\nlast_name?: string\nfirst_name?: string\nemail_address?: string\njob_title?: string\nbusiness_phone?: string\nhome_phone?: string\nmobile_phone?: string\nfax_number?: string\naddress?: string\ncity?: string\nstate_province?: string\nzip_postal_code?: string\ncountry_region?: string\nweb_page?: string\nnotes?: string\nattachments?: Buffer[]\n}\n\n\n"
+	},
+	{
+		"id": "orders_tax_status",
+		"name": "OrdersTaxStatus",
+		"description": "",
+		"body": "{\nid: number\ntax_status_name: string\n}\n\n\n"
+	},
+	{
+		"id": "orders_status",
+		"name": "OrdersStatus",
+		"description": "",
+		"body": "{\nid: number\nstatus_name: string\n}\n\n\n"
+	},
+	{
+		"id": "order",
+		"name": "Order",
+		"description": "",
+		"body": "{\nid: number\nemployee_id?: number\ncustomer_id?: number\norder_date?: Date\nshipped_date?: Date\nshipper_id?: number\nship_name?: string\nship_address?: string\nship_city?: string\nship_state_province?: string\nship_zip_postal_code?: string\nship_country_region?: string\nshipping_fee?: string\ntaxes?: string\npayment_type?: string\npaid_date?: Date\nnotes?: string\ntax_rate?: number\ntax_status_id?: number\nstatus_id?: number\n}\n\n\n"
+	},
+	{
+		"id": "product",
+		"name": "Product",
+		"description": "",
+		"body": "{\nsupplier_ids?: string\nid: number\nproduct_code?: string\nproduct_name?: string\ndescription?: string\nstandard_cost?: string\nlist_price: string\nreorder_level?: number\ntarget_level?: number\nquantity_per_unit?: string\ndiscontinued: number\nminimum_reorder_quantity?: number\ncategory?: string\nattachments?: Buffer[]\n}\n\n\n"
+	},
+	{
+		"id": "purchase_order_status",
+		"name": "PurchaseOrderStatus",
+		"description": "",
+		"body": "{\nid: number\nstatus?: string\n}\n\n\n"
+	},
+	{
+		"id": "supplier",
+		"name": "Supplier",
+		"description": "",
+		"body": "{\nid: number\ncompany?: string\nlast_name?: string\nfirst_name?: string\nemail_address?: string\njob_title?: string\nbusiness_phone?: string\nhome_phone?: string\nmobile_phone?: string\nfax_number?: string\naddress?: string\ncity?: string\nstate_province?: string\nzip_postal_code?: string\ncountry_region?: string\nweb_page?: string\nnotes?: string\nattachments?: Buffer[]\n}\n\n\n"
+	},
+	{
+		"id": "purchase_order",
+		"name": "PurchaseOrder",
+		"description": "",
+		"body": "{\nid: number\nsupplier_id?: number\ncreated_by?: number\nsubmitted_date?: Date\ncreation_date?: Date\nstatus_id?: number\nexpected_date?: Date\nshipping_fee: string\ntaxes: string\npayment_date?: Date\npayment_amount?: string\npayment_method?: string\nnotes?: string\napproved_by?: number\napproved_date?: Date\nsubmitted_by?: number\n}\n\n\n"
+	},
+	{
+		"id": "inventory_transaction",
+		"name": "InventoryTransaction",
+		"description": "",
+		"body": "{\nid: number\ntransaction_type: number\ntransaction_created_date?: Date\ntransaction_modified_date?: Date\nproduct_id: number\nquantity: number\npurchase_order_id?: number\ncustomer_order_id?: number\ncomments?: string\n}\n\n\n"
+	},
+	{
+		"id": "invoice",
+		"name": "Invoice",
+		"description": "",
+		"body": "{\nid: number\norder_id?: number\ninvoice_date?: Date\ndue_date?: Date\ntax?: string\nshipping?: string\namount_due?: string\n}\n\n\n"
+	},
+	{
+		"id": "order_details_status",
+		"name": "OrderDetailsStatus",
+		"description": "",
+		"body": "{\nid: number\nstatus_name: string\n}\n\n\n"
+	},
+	{
+		"id": "order_detail",
+		"name": "OrderDetail",
+		"description": "",
+		"body": "{\nid: number\norder_id: number\nproduct_id?: number\nquantity: string\nunit_price?: string\ndiscount: number\nstatus_id?: number\ndate_allocated?: Date\npurchase_order_id?: number\ninventory_id?: number\n}\n\n\n"
+	},
+	{
+		"id": "purchase_order_detail",
+		"name": "PurchaseOrderDetail",
+		"description": "",
+		"body": "{\nid: number\npurchase_order_id: number\nproduct_id?: number\nquantity: string\nunit_cost: string\ndate_received?: Date\nposted_to_inventory: number\ninventory_id?: number\n}\n\n\n"
+	},
+	{
+		"id": "sales_report",
+		"name": "SalesReport",
+		"description": "",
+		"body": "{\ngroup_by: string\ndisplay?: string\ntitle?: string\nfilter_row_source?: string\ndefault: number\n}\n\n\n"
+	},
+	{
+		"id": "string",
+		"name": "String",
+		"description": "",
+		"body": "{\nstring_id: number\nstring_data?: string\n}\n\n\n"
+	}
+]

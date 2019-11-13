@@ -9,6 +9,7 @@ import * as path from 'path'
 import * as url from 'url'
 import * as fs from 'fs'
 import * as v8 from 'v8'
+import dedent = require('dedent-js')
 
 /**
  * Maps over an object properties with a function
@@ -162,6 +163,19 @@ export function rimraf(target: string, removeRoot: boolean = true) {
     })
     if (removeRoot) fs.rmdirSync(target)
   }
+}
+
+/**
+ * Renders a multi line comment
+ */
+export function renderComment(str?: string) {
+  if (!str) return ""
+  return dedent`
+    /**
+     * ${str}
+     */
+
+  `
 }
 
 /**
