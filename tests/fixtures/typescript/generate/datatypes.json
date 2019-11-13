@@ -3,13 +3,13 @@
 		"id": "binaries",
 		"name": "Binaries",
 		"description": "Binary data types",
-		"body": "/**\n * Binary data types\n */\n{\ncol_bit?: Buffer[]\ncol_binary?: Buffer[]\ncol_varbinary?: Buffer[]\ncol_tinyblob?: Buffer[]\ncol_blob?: Buffer[]\ncol_mediumblob?: Buffer[]\ncol_longblob?: Buffer[]\n}\n\n\n"
+		"body": "{\ncol_bit?: Buffer[]\ncol_binary?: Buffer[]\ncol_varbinary?: Buffer[]\ncol_tinyblob?: Buffer[]\ncol_blob?: Buffer[]\ncol_mediumblob?: Buffer[]\ncol_longblob?: Buffer[]\n}\n\n\n"
 	},
 	{
 		"id": "decimals",
 		"name": "Decimals",
 		"description": "Decimals data types",
-		"body": "/**\n * Decimals data types\n */\n{\ncol_decimal?: string\ncol_decimal_alias_1?: string\ncol_decimal_alias_2?: string\ncol_decimal_alias_3?: string\ncol_decimal_precision?: string\n}\n\n\n"
+		"body": "{\ncol_decimal?: string\ncol_decimal_alias_1?: string\ncol_decimal_alias_2?: string\ncol_decimal_alias_3?: string\ncol_decimal_precision?: string\n}\n\n\n"
 	},
 	{
 		"id": "defaults",
@@ -21,30 +21,30 @@
 		"id": "floats",
 		"name": "Floats",
 		"description": "Floating point data types",
-		"body": "/**\n * Floating point data types\n */\n{\ncol_float?: number\ncol_double?: number\ncol_double_alias_1?: number\ncol_double_alias_2?: number\n}\n\n\n"
+		"body": "{\ncol_float?: number\ncol_double?: number\ncol_double_alias_1?: number\ncol_double_alias_2?: number\n}\n\n\n"
 	},
 	{
 		"id": "integers",
 		"name": "Integers",
 		"description": "Integer data types",
-		"body": "/**\n * Integer data types\n */\n{\ncol_int?: number\ncol_int_alias_1?: number\ncol_tinyint?: number\ncol_smallint?: number\ncol_mediumint?: number\ncol_bigint?: number\n/**\n * Unsigned 32 bit integer\n */\ncol_uint?: number\n/**\n * Unsigned 64 bit integer\n */\ncol_ubigint?: number\n/**\n * Integer with 5 digit length\n */\ncol_int_len?: number\ncol_boolean?: number\ncol_boolean_alias_1?: number\n}\n\n\n"
+		"body": "{\ncol_int?: number\ncol_int_alias_1?: number\ncol_tinyint?: number\ncol_smallint?: number\ncol_mediumint?: number\ncol_bigint?: number\n/**\n * Unsigned 32 bit integer\n */\ncol_uint?: number\n/**\n * Unsigned 64 bit integer\n */\ncol_ubigint?: number\n/**\n * Integer with 5 digit length\n */\ncol_int_len?: number\ncol_boolean?: number\ncol_boolean_alias_1?: number\n}\n\n\n"
 	},
 	{
 		"id": "spatials",
 		"name": "Spatials",
 		"description": "Spatial data types",
-		"body": "/**\n * Spatial data types\n */\n{\ncol_point?: any\ncol_multipoint?: any[]\ncol_linestring?: any\ncol_multilinestring?: any[]\ncol_polygon?: any\ncol_multipolygon?: any[]\ncol_geometry?: any\ncol_geometrycollection?: any[]\n}\n\n\n"
+		"body": "{\ncol_point?: any\ncol_multipoint?: any[]\ncol_linestring?: any\ncol_multilinestring?: any[]\ncol_polygon?: any\ncol_multipolygon?: any[]\ncol_geometry?: any\ncol_geometrycollection?: any[]\n}\n\n\n"
 	},
 	{
 		"id": "strings",
 		"name": "Strings",
 		"description": "String data types",
-		"body": "/**\n * String data types\n */\n{\ncol_char?: string\ncol_char_alias_1?: string\ncol_char_alias_2?: string\ncol_varchar?: string\ncol_varchar_alias_1?: string\ncol_varchar_alias_2?: string\ncol_tinytext?: string\ncol_text?: string\ncol_mediumtext?: string\ncol_longtext?: string\ncol_enum?: ('ONE' | 'TWO' | 'THREE')\ncol_set?: ('ONE' | 'TWO' | 'THREE')[]\ncol_json?: string\n}\n\n\n"
+		"body": "{\ncol_char?: string\ncol_char_alias_1?: string\ncol_char_alias_2?: string\ncol_varchar?: string\ncol_varchar_alias_1?: string\ncol_varchar_alias_2?: string\ncol_tinytext?: string\ncol_text?: string\ncol_mediumtext?: string\ncol_longtext?: string\ncol_enum?: ('ONE' | 'TWO' | 'THREE')\ncol_set?: ('ONE' | 'TWO' | 'THREE')[]\ncol_json?: string\n}\n\n\n"
 	},
 	{
 		"id": "time",
 		"name": "Time",
 		"description": "Time data types",
-		"body": "/**\n * Time data types\n */\n{\ncol_timestamp?: Date\ncol_timestamp_ms?: Date\ncol_timestamp_us?: Date\ncol_datetime?: Date\ncol_datetime_ms?: Date\ncol_datetime_us?: Date\ncol_date?: Date\ncol_time?: Date\ncol_year?: Date\n}\n\n\n"
+		"body": "{\ncol_timestamp?: Date\ncol_timestamp_ms?: Date\ncol_timestamp_us?: Date\ncol_datetime?: Date\ncol_datetime_ms?: Date\ncol_datetime_us?: Date\ncol_date?: Date\ncol_time?: Date\ncol_year?: Date\n}\n\n\n"
 	}
 ]

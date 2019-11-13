@@ -60,7 +60,6 @@ export function generateBody(model: ModelSpecification, options?: GeneratorOptio
   const append = (line: string) => (result += line)
   const { id, description, fields } = model
   const modelName = modelNameTransformer(id)
-  if (description) append(renderComment(description))
   append(`{\n`)
   fields.forEach(field => append(generateProperty(field, options)))
   append(`}\n\n\n`)
