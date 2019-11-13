@@ -4,8 +4,6 @@
   "version": "0.0.7",
   "author": "Jonathan Steven <yondercode@gmail.com>",
   "repository": "https://github.com/yndc/archite.git",
-  "main": "dist/index.js",
-  "types": "dist/index.d.js",
   "license": "MIT",
   "dependencies": {
     "dedent-js": "^1.0.1",
@@ -25,14 +23,10 @@
     "ts-jest": "^24.0.2",
     "typescript": "^3.7.1-rc"
   },
-  "files": [
-    "dist",
-    "LICENSE",
-    "README.md"
-  ],
   "scripts": {
-    "build": "rm -rf ./dist && tsc",
+    "build": "rm -rf ./dist && tsc && cat package.json | jq 'del(.devDependencies)' | jq 'del(.scripts)' > ./dist/package.json ",
     "test": "jest -i",
-    "lint": "./node_modules/.bin/eslint --ext .ts ./src/."
+    "lint": "./node_modules/.bin/eslint --ext .ts ./src/.",
+    "prepublishOnly": ""
   }
 }
