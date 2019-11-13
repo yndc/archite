@@ -14,7 +14,7 @@ import { FieldSpecification, ModelSpecification, FieldFlags, SchemaSpecification
 /**
  * Parses the given database connection into standard schema
  */
-export async function parse (connection: knex, database: string): Promise<SchemaSpecification> {
+export async function parse (connection: knex, database: string, exclusions?: string[]): Promise<SchemaSpecification> {
   const query = `
     USE INFORMATION_SCHEMA;
 
@@ -28,7 +28,12 @@ export async function parse (connection: knex, database: string): Promise<Schema
     ON 
     COLUMNS.TABLE_NAME = TABLES.TABLE_NAME 
     WHERE
-      COLUMNS.TABLE_SCHEMA = '${database}';
+      COLUMNS.TABLE_SCHEMA = '${database}'
+    ${exclusions ? `
+    AND 
+      COLUMNS.TABLE_NAME NOT IN (${exclusions.map(x => `'${x}'`).join(', ')})
+    ` : ''}
+    ;
 
     -- Result [2] references
     SELECT 
@@ -46,7 +51,8 @@ export async function parse (connection: knex, database: string): Promise<Schema
       REFERENTIAL_CONSTRAINTS.CONSTRAINT_NAME = KEY_COLUMN_USAGE.CONSTRAINT_NAME
     WHERE 
       TABLE_SCHEMA = '${database}'
-      AND KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME IS NOT NULL;
+    AND 
+      KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME IS NOT NULL;
 
     -- Result [3] default collations and charsets
     SELECT

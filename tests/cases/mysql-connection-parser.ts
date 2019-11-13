@@ -37,6 +37,16 @@ describe('mysql connection parser', () => {
     expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(deepRecursiveSort(expected1))
   })
 
+  test('parse datatypes with exclusions', async () => {
+    const expected1 = {
+      ...datatypesStandard,
+      models: datatypesStandard.models.filter(x => x.id !== 'integers' && x.id !== 'binaries'),
+    }
+    const actual1 = await parse(connection, typesDbName, ['integers', 'binaries'])
+    writeResult('./parsed/connection-datatypes-exclusion.json', actual1)
+    expect(normalizeObject(deepRecursiveSort(actual1))).toEqual(deepRecursiveSort(expected1))
+  })
+
   test('parse northwind', async () => {
     const expected1 = northwindStandard
     const actual1 = await parse(connection, northwindDbName)
