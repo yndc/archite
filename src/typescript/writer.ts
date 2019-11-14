@@ -48,6 +48,10 @@ export interface WriterOptions {
    * Defaults to use kebab-case
    */
   fileNameTransformer?: (name: string) => string
+  /**
+   * Transformer used to the generated before writing
+   */
+  fileContentTransformer?: (filePath: string, content: string) => string
 }
 
 /**
@@ -63,7 +67,9 @@ export function write(options: WriterOptions) {
     split = false,
     formatterOptions,
     fileNameTransformer = (str: string) => camelToSnake(str).replace(/_/g, '-') + '.ts',
+    fileContentTransformer = (_, content) => content,
   } = options
+  const writeFile = (filePath, content) => fs.writeFileSync(filePath, fileContentTransformer(filePath, content))
   const createFormatter = (options?: PrettierOptions) => (source: string) =>
     format(source, { parser: 'typescript', ...options })
   const resolvedTarget = path.resolve(target)
@@ -112,10 +118,10 @@ export function write(options: WriterOptions) {
       const newContent = `export interface ${source.name} ${source.body}`
       const oldFileContent = fs.existsSync(filePath) ? fs.readFileSync(filePath).toString() : ''
       const newFileContent = formatTypescript(writer(newContent, oldFileContent, source))
-      fs.writeFileSync(filePath, newFileContent)
+      writeFile(filePath, newFileContent)
     })
   }
-  
+
   // Write a single file that defines the whole schema
   else {
     const render = (source: ModelTypeScriptInterface) => `export interface ${source.name} ${source.body}`
@@ -123,21 +129,21 @@ export function write(options: WriterOptions) {
       throw `Unable to write to ${resolvedTarget}, the file already exists. Use with option 'override' to forcefully override the file.`
     if (overrideMode === 'file') {
       const content = formatTypescript(sources.map(render).join('\n'))
-      fs.writeFileSync(resolvedTarget, content)
+      writeFile(resolvedTarget, content)
     } else if (overrideMode === 'name') {
       sources.forEach(source => {
         const old = fs.existsSync(resolvedTarget) ? fs.readFileSync(resolvedTarget).toString() : ''
         const newContent = formatTypescript(render(source))
         const pattern = new RegExp(`export interface ${source.name}[\\s\\S]*?}`, 'gm')
-        if (!old) fs.writeFileSync(resolvedTarget, newContent)
-        else if (old.search(pattern) === -1) fs.writeFileSync(resolvedTarget, old + `\n${newContent}`)
-        else fs.writeFileSync(resolvedTarget, old.replace(pattern, newContent))
+        if (!old) writeFile(resolvedTarget, newContent)
+        else if (old.search(pattern) === -1) writeFile(resolvedTarget, old + `\n${newContent}`)
+        else writeFile(resolvedTarget, old.replace(pattern, newContent))
       })
     } else if (overrideMode === 'space') {
       const newContent = formatTypescript(sources.map(render).join('\n'))
       const old = fs.existsSync(resolvedTarget) ? fs.readFileSync(resolvedTarget).toString() : ''
       const pattern = new RegExp(`//@archite-start\n[\\s\\S]*?\n//@archite-end`, 'gm')
-      fs.writeFileSync(resolvedTarget, old.replace(pattern, `//@archite-start\n${newContent}\n//@archite-end`))
+      writeFile(resolvedTarget, old.replace(pattern, `//@archite-start\n${newContent}\n//@archite-end`))
     }
   }
 }
